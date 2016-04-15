@@ -7,69 +7,33 @@ RSpec.describe 'finding stocks' do
 
   it 'enables the user to view stocks' do
     visit '/'
-    see_headers
-    see_3M_stock
-    sort_by_stock_name
+    see_a_list_of_properties
+    # click_on_a_property
+    # see_the_property_details
   end
 
-  def sort_by_stock_name
-    click_on 'Name'
-    stock = page.find('.some-stock', text: 'ZYNGA')
-    expect(stock.find('.stock-name')).to have_content 'ZYNGA'
+  def see_a_list_of_properties
+    expect(page).to have_content('Street')
+    expect(page).to have_content('City')
+    expect(page).to have_content('State')
+    expect(page).to have_content('Zip Code')
+
+    expect(page).to have_content '421 Moroni Blvd'
+    expect(page).to have_content 'Salt Lake City'
+    expect(page).to have_content 'UT'
+    expect(page).to have_content '12345'
+
+    expect(page).to have_content '123 Sesame St'
+    expect(page).to have_content 'Buffalo'
+    expect(page).to have_content 'NY'
+    expect(page).to have_content '67890'
   end
 
-  def see_3M_stock
-    stock = page.find('.some-stock', text: '3M COMPANY')
-    expect(stock.find('.stock-name')).to have_content '3M COMPANY (MMM) NYSE'
-    expect(stock.find('.last-trade-price').text).to match /\d+\.\d+/
-    expect(stock.find('.current-eps').text).to match /\d+\.\d+/
-    expect(stock.find('.dividends-amount').text).to match /\d+\.\d+/
-    expect(stock.find('.book-value').text).to match /\d+\.\d+/
-    expect(stock.find('.price-to-book-ratio').text).to match /\d+\.\d+/
-    expect(stock.find('.price-to-earnings-ratio').text).to match /\d+\.\d+/
-    expect(stock.find('.year-low-price').text).to match /\d+\.\d+/
-    expect(stock.find('.year-high-price').text).to match /\d+\.\d+/
-    expect(stock.find('.ebitda').text).to match /\d+\.\d+/
-    expect(stock.find('.market-cap').text).to match /\d+\.\d+/
-    expect(stock.find('.one-year-target-price').text).to match /\d+\.\d+/
-    expect(stock.find('.dividend-yield').text).to match /\d+\.\d+/
-    expect(stock.find('.fifty-day-moving-average').text).to match /\d+\.\d+/
-    expect(stock.find('.percent-change-from-fifty-day-moving-average').text).to match /\d+\.\d+/
-    expect(stock.find('.two-hundred-day-moving-average').text).to match /\d+\.\d+/
-    expect(stock.find('.percent-change-from-two-hundred-day-moving-average').text).to match /\d+\.\d+/
-    expect(stock.find('.marketwatch-recommendation').text).to match /\D+/
-    expect(stock.find('.street-insider-recommendation').text).to match /\D+/
+  def click_on_a_property
+    page.find('div', text: '421 Moroni Blvd')
   end
 
-  def see_headers
-    expected_row_headers = [
-      'Name',
-      'Last Trade Price',
-      'Annual EPS',
-      'Dividend',
-      'Dividend Yield (%)',
-      'EBITDA (ttm)',
-      'Market Cap',
-      '1Y Target',
-      '50-day Moving Average',
-      '% Change from 50-day Moving Average',
-      '200-day Moving Average',
-      '% Change from 200-day Moving Average',
-      'Book Value',
-      'P/B (mrq)',
-      'P/E',
-      'Bar Chart',
-      'Street Insider',
-      'Street Insider',
-      'MW',
-      'Year Low',
-      'Year High'
-    ]
-    actual_row_headers = page.all('.all-stocks-table th').map do |header|
-      header.text
-    end
-    expected_row_headers.each do |expected_header|
-      expect(actual_row_headers).to include expected_header
-    end
+  def see_the_property_details
+    expect(page).to have_content 'Financing and Income Assumptions'
   end
 end
