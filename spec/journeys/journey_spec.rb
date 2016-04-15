@@ -8,8 +8,8 @@ RSpec.describe 'finding stocks' do
   it 'enables the user to view stocks' do
     visit '/'
     see_a_list_of_properties
-    # click_on_a_property
-    # see_the_property_details
+    click_on_a_property
+    see_the_property_details
   end
 
   def see_a_list_of_properties
@@ -30,7 +30,7 @@ RSpec.describe 'finding stocks' do
   end
 
   def click_on_a_property
-    page.find('div', text: '421 Moroni Blvd')
+    page.find('div.rental-property-summary', text: '421 Moroni Blvd').click
   end
 
   def see_the_property_details

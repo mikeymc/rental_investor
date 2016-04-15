@@ -1,0 +1,14 @@
+<div ng-controller="RentalPropertiesListController">
+  <span>Street</span>
+  <span>City</span>
+  <span>State</span>
+  <span>Zip Code</span>
+  <div ng-repeat="rental_property in rental_properties">
+    <div ng-click="goToProperty(rental_property.id)" class="rental-property-summary">
+      <span>{{rental_property.street}}</span>
+      <span>{{rental_property.city}}</span>
+      <span>{{rental_property.state}}</span>
+      <span>{{rental_property.zip_code}}</span>
+    </div>
+  </div>
+</div>
