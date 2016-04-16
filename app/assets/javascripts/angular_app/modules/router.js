@@ -7,7 +7,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
   });
 
   $stateProvider.state('rental_property', {
-    url: '/rental_property/:id',
+    url: '/rental_property/:rental_id',
     templateUrl: 'investment_properties_pages/rental_property.html'
   });
 });

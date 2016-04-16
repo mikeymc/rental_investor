@@ -4,6 +4,6 @@ angular.module('rentals').controller('RentalPropertiesListController', function(
   });
 
   $scope.goToProperty = function(id) {
-    $state.go('rental_property', id);
+    $state.go('rental_property', {rental_id: id});
   };
 });

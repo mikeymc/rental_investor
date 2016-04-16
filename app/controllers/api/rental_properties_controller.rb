@@ -7,12 +7,8 @@ class Api::RentalPropertiesController < ApplicationController
   end
 
   def show
-    # begin
-    #   @budget = Rental.find(params['id'])
-    #   render json: @budget, serializer: BudgetSerializer
-    # rescue
-    #   render json: {}, status: 404
-    # end
+    @rental_property = RentalProperty.find(params[:id])
+    render json: @rental_property.to_json(include: :financing_and_income_assumption)
   end
 
   def update

@@ -11,10 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160414053332) do
+ActiveRecord::Schema.define(version: 20160416062325) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "financing_and_income_assumptions", force: true do |t|
+    t.decimal "land_cost"
+    t.decimal "building_cost"
+    t.decimal "improvements"
+    t.decimal "total_square_feet"
+    t.decimal "number_of_units"
+    t.decimal "average_monthly_rent_per_unit"
+    t.decimal "other_monthly_income"
+    t.decimal "equity_percentage"
+    t.decimal "loan_interest_rate"
+    t.decimal "amortization_period_in_years"
+    t.integer "rental_property_id"
+  end
+
+  add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
   create_table "rental_properties", force: true do |t|
     t.string "street"
