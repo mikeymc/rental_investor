@@ -55,4 +55,16 @@
     <div id="settlement-company-charges">Settlement Company Charges: {{closing_cost.settlement_company_charges}}</div>
     <div id="wire-charges">Wire Charges: {{closing_cost.wire_charges}}</div>
   </div>
+
+  <div id="income-and-cost-projections">
+    <div>Income and Cost Projections</div>
+    <div id="rent-increases">
+      <div>Rent Increases</div>
+      <li ng-repeat="increase in income_and_cost_projection.rent_increases track by $index">{{increase}}</li>
+    </div>
+    <div id="operating-expense-increases">
+      <div>Operating Expense Increases</div>
+      <li ng-repeat="increase in income_and_cost_projection.operating_expense_increases track by $index">{{increase}}</li>
+    </div>
+  </div>
 </div>

@@ -11,7 +11,8 @@ class Api::RentalPropertiesController < ApplicationController
     render json: @rental_property.to_json(include: [
       :financing_and_income_assumption,
       :operating_expenses_assumption,
-      :closing_cost
+      :closing_cost,
+      :income_and_cost_projection,
     ])
   end
 

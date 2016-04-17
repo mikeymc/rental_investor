@@ -12,11 +12,13 @@ RSpec.describe 'finding stocks' do
     see_the_property_details
     see_the_operating_expenses
     see_the_closing_costs
+    see_the_income_and_cost_projections
     visit '/'
     click_on_another_property
     see_the_property_details_for_the_other_property
     see_the_operating_expenses_for_the_other_property
     see_the_closing_costs_for_the_other_property
+    see_the_income_and_cost_projections
   end
 
   def see_a_list_of_properties
@@ -82,6 +84,27 @@ RSpec.describe 'finding stocks' do
     expect(closing_costs.find('#homeowners-insurance', text: 'Homeowners Insurance')).to have_content '1100'
     expect(closing_costs.find('#settlement-company-charges', text: 'Settlement Company Charges')).to have_content '175'
     expect(closing_costs.find('#wire-charges', text: 'Wire Charges')).to have_content '55'
+  end
+
+  def see_the_income_and_cost_projections
+    projections = page.find('#income-and-cost-projections')
+    expect(projections).to have_content 'Income and Cost Projections'
+
+    rent_increases = projections.find('#rent-increases')
+    expect(rent_increases).to have_content 'Rent Increases'
+    expect(rent_increases.all('li', count: 5)[0]).to have_content '0.0'
+    expect(rent_increases.all('li', count: 5)[1]).to have_content '3.0'
+    expect(rent_increases.all('li', count: 5)[2]).to have_content '3.5'
+    expect(rent_increases.all('li', count: 5)[3]).to have_content '3.0'
+    expect(rent_increases.all('li', count: 5)[4]).to have_content '3.0'
+
+    operating_expense_increases = projections.find('#operating-expense-increases')
+    expect(operating_expense_increases).to have_content 'Operating Expense Increases'
+    expect(operating_expense_increases.all('li', count: 5)[0]).to have_content '0.0'
+    expect(operating_expense_increases.all('li', count: 5)[1]).to have_content '-2.0'
+    expect(operating_expense_increases.all('li', count: 5)[2]).to have_content '-1.0'
+    expect(operating_expense_increases.all('li', count: 5)[3]).to have_content '1.5'
+    expect(operating_expense_increases.all('li', count: 5)[4]).to have_content '2.0'
   end
 
   def see_the_closing_costs_for_the_other_property

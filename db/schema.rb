@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417051946) do
+ActiveRecord::Schema.define(version: 20160417061633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,14 @@ ActiveRecord::Schema.define(version: 20160417051946) do
   end
 
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
+
+  create_table "income_and_cost_projections", force: true do |t|
+    t.decimal "rent_increases",              default: [#<BigDecimal:7fcf27aa4cd8,'0.0',9(18)>, #<BigDecimal:7fcf27aa4c88,'0.0',9(18)>, #<BigDecimal:7fcf27aa4c38,'0.0',9(18)>, #<BigDecimal:7fcf27aa4be8,'0.0',9(18)>, #<BigDecimal:7fcf27aa4b98,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fcf27aa43c8,'0.0',9(18)>, #<BigDecimal:7fcf27aa4378,'0.0',9(18)>, #<BigDecimal:7fcf27aa4328,'0.0',9(18)>, #<BigDecimal:7fcf27aa42d8,'0.0',9(18)>, #<BigDecimal:7fcf27aa4288,'0.0',9(18)>], array: true
+    t.integer "rental_property_id"
+  end
+
+  add_index "income_and_cost_projections", ["rental_property_id"], name: "index_income_and_cost_projections_on_rental_property_id", using: :btree
 
   create_table "operating_expenses_assumptions", force: true do |t|
     t.decimal "vacancy_rate"

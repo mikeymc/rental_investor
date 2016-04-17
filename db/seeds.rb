@@ -107,6 +107,20 @@ OperatingExpensesAssumption.create!(
   rental_property_id: 2
 )
 
+IncomeAndCostProjection.create!(
+  id: 1,
+  rent_increases: [0, 3, 3.5, 3, 3],
+  operating_expense_increases: [0, -2, -1, 1.5, 2],
+  rental_property_id: 1
+)
+
+IncomeAndCostProjection.create!(
+  id: 2,
+  rent_increases: [0, 3, 3.5, 3, 3],
+  operating_expense_increases: [0, -2, -1, 1.5, 2],
+  rental_property_id: 2
+)
+
 ClosingCost.create!(
   id: 2,
   origination_fee: 2990,
