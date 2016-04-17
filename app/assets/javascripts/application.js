@@ -5,3 +5,4 @@
 //= require bootstrap-sprockets
 //= require_tree ./angular_app/modules
 //= require_tree ./angular_app/controllers
+//= require_tree ./angular_app/directives
