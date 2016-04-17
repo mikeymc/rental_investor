@@ -1,0 +1,26 @@
+@mixin column-adjust($column,$gutter) {
+
+  // set custom variables for our grid structure
+  $grid-columns: $column;
+  $grid-gutter-width: $gutter;
+
+  .row {
+    @include make-row();
+  }
+  @include make-grid-columns();
+  // @include make-grid(xs);
+  @media (min-width: $screen-sm-min) {
+    @include make-grid(sm);
+  }
+  @media (min-width: $screen-md-min) {
+    @include make-grid(md);
+  }
+  @media (min-width: $screen-lg-min) {
+    @include make-grid(lg);
+  }
+
+  // reset global vars;
+  $grid-columns: $new-columns;
+  $grid-gutter-width: $new-gutter-width;
+
+}

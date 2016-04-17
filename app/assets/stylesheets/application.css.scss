@@ -4,6 +4,8 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "vars";
+@import "mixins";
 
 body {
   font-size: 10px;
@@ -28,4 +30,8 @@ li {
 
 .align-right {
   text-align: right;
+}
+
+.grid-24-across {
+  @include column-adjust(24, $grid-gutter-width);
 }
