@@ -1,0 +1,8 @@
+{
+  "name": "rental_investor",
+  "dependencies": {
+    "angular": ">=1.4.0",
+    "jquery": ">=2.1.4",
+    "angular-ui-router": ">=0.2.15"
+  }
+}

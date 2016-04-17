@@ -1,18 +1,38 @@
 <div id="financing-and-income-assumptions"
      ng-controller="RentalPropertyController">
 
-  Financing and Income Assumptions
+  <div>Financing and Income Assumptions</div>
   <div id="valuation-inputs">
-    Inputs
-    <div id="land-cost">{{financing_and_income_assumption.land_cost}}</div>
-    <div id="building-cost">{{financing_and_income_assumption.building_cost}}</div>
-    <div id="improvements">{{financing_and_income_assumption.improvements}}</div>
-    <div id="total-square-feet">{{financing_and_income_assumption.total_square_feet}}</div>
-    <div id="number-of-units">{{financing_and_income_assumption.number_of_units}}</div>
-    <div id="average-monthly-rent">{{financing_and_income_assumption.average_monthly_rent_per_unit}}</div>
-    <div id="other-income">{{financing_and_income_assumption.other_monthly_income}}</div>
-    <div id="equity-percentage">{{financing_and_income_assumption.equity_percentage}}</div>
-    <div id="loan-interest-rate">{{financing_and_income_assumption.loan_interest_rate}}</div>
-    <div id="amortization-period-in-years">{{financing_and_income_assumption.amortization_period_in_years}}</div>
+    <div>Inputs</div>
+    <div id="land-cost">Land Cost: {{financing_and_income_assumption.land_cost}}</div>
+    <div id="building-cost">Building Cost: {{financing_and_income_assumption.building_cost}}</div>
+    <div id="improvements">Improvements: {{financing_and_income_assumption.improvements}}</div>
+    <div id="total-square-feet">Total Square Feet: {{financing_and_income_assumption.total_square_feet}}</div>
+    <div id="number-of-units">Number of Units: {{financing_and_income_assumption.number_of_units}}</div>
+    <div id="average-monthly-rent">Average Monthly Rent: {{financing_and_income_assumption.average_monthly_rent_per_unit}}</div>
+    <div id="other-income">Other Income: {{financing_and_income_assumption.other_monthly_income}}</div>
+    <div id="equity-percentage">Equity Percentage: {{financing_and_income_assumption.equity_percentage}}</div>
+    <div id="loan-interest-rate">Loan Interest Rate: {{financing_and_income_assumption.loan_interest_rate}}</div>
+    <div id="amortization-period-in-years">Amortization Period in Years: {{financing_and_income_assumption.amortization_period_in_years}}</div>
+  </div>
+
+  <div id="operating-expenses-inputs">
+    <div>Monthly Operating Expenses</div>
+    <div id="vacancy-rate">Vacancy Rate: {{operating_expenses_assumption.vacancy_rate}}</div>
+    <div id="repairs-and-maintenance">Repairs and Maintenance: {{operating_expenses_assumption.repairs_and_maintenance}}</div>
+    <div id="property-management-fees">Property Management Fees: {{operating_expenses_assumption.property_management_fees}}</div>
+    <div id="utilities">Utilities: {{operating_expenses_assumption.utilities}}</div>
+    <div id="taxes">Taxes: {{operating_expenses_assumption.taxes}}</div>
+    <div id="insurance">Insurance: {{operating_expenses_assumption.insurance}}</div>
+    <div id="salaries-and-wages">Salaries and Wages: {{operating_expenses_assumption.salaries_and_wages}}</div>
+    <div id="water-and-sewer">Water and Sewer: {{operating_expenses_assumption.water_and_sewer}}</div>
+    <div id="trash-removal">Trash Removal: {{operating_expenses_assumption.trash_removal}}</div>
+    <div id="professional-fees">Professional Fees: {{operating_expenses_assumption.professional_fees}}</div>
+    <div id="advertising">Advertising: {{operating_expenses_assumption.advertising}}</div>
+    <div id="landscaping">Landscaping: {{operating_expenses_assumption.landscaping}}</div>
+    <div id="capital-expenditures">CapEx: {{operating_expenses_assumption.capex}}</div>
+    <div id="other-expenses">Other Expenses: {{operating_expenses_assumption.other_expenses}}</div>
+    <div id="equipment-depreciation">Equipment Depreciation: {{operating_expenses_assumption.equipment_depreciation}}</div>
+    <div id="income-tax-rate">Income Tax Rate: {{operating_expenses_assumption.income_tax_rate}}</div>
   </div>
 </div>

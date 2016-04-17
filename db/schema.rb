@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160416062325) do
+ActiveRecord::Schema.define(version: 20160417025029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,28 @@ ActiveRecord::Schema.define(version: 20160416062325) do
   end
 
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
+
+  create_table "operating_expenses_assumptions", force: true do |t|
+    t.decimal "vacancy_rate"
+    t.decimal "repairs_and_maintenance"
+    t.decimal "property_management_fees"
+    t.decimal "taxes"
+    t.decimal "insurance"
+    t.decimal "salaries_and_wages"
+    t.decimal "utilities"
+    t.decimal "water_and_sewer"
+    t.decimal "trash_removal"
+    t.decimal "professional_fees"
+    t.decimal "advertising"
+    t.decimal "landscaping"
+    t.decimal "capex"
+    t.decimal "other_expenses"
+    t.decimal "equipment_depreciation"
+    t.decimal "income_tax_rate"
+    t.integer "rental_property_id"
+  end
+
+  add_index "operating_expenses_assumptions", ["rental_property_id"], name: "index_operating_expenses_assumptions_on_rental_property_id", using: :btree
 
   create_table "rental_properties", force: true do |t|
     t.string "street"

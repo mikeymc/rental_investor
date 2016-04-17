@@ -8,7 +8,7 @@ class Api::RentalPropertiesController < ApplicationController
 
   def show
     @rental_property = RentalProperty.find(params[:id])
-    render json: @rental_property.to_json(include: :financing_and_income_assumption)
+    render json: @rental_property.to_json(include: [:financing_and_income_assumption, :operating_expenses_assumption])
   end
 
   def update

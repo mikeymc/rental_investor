@@ -21,6 +21,48 @@ FinancingAndIncomeAssumption.create!(
   rental_property_id: 1
 )
 
+OperatingExpensesAssumption.create!(
+  id: 1,
+  vacancy_rate: 5,
+  repairs_and_maintenance: 5625,
+  property_management_fees: 3.5,
+  taxes: 3200.03,
+  insurance: 812.03,
+  salaries_and_wages: 1800.02,
+  utilities: 2119.97,
+  water_and_sewer: 5,
+  trash_removal: 125.02,
+  professional_fees: 299.98,
+  advertising: 500.01,
+  landscaping: 0,
+  capex: 7,
+  other_expenses: 999.99,
+  equipment_depreciation: 0,
+  income_tax_rate: 0,
+  rental_property_id: 1
+)
+
+OperatingExpensesAssumption.create!(
+  id: 2,
+  vacancy_rate: 5,
+  repairs_and_maintenance: 125,
+  property_management_fees: 10,
+  taxes: 121,
+  insurance: 150,
+  salaries_and_wages: 0,
+  utilities: 0,
+  water_and_sewer: 0,
+  trash_removal: 125,
+  professional_fees: 0,
+  advertising: 0,
+  landscaping: 0,
+  capex: 7,
+  other_expenses: 0,
+  equipment_depreciation: 0,
+  income_tax_rate: 0,
+  rental_property_id: 2
+)
+
 RentalProperty.create!(
   id: 2,
   street: '123 Sesame St',
