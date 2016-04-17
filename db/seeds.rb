@@ -42,25 +42,25 @@ OperatingExpensesAssumption.create!(
   rental_property_id: 1
 )
 
-OperatingExpensesAssumption.create!(
-  id: 2,
-  vacancy_rate: 5,
-  repairs_and_maintenance: 125,
-  property_management_fees: 10,
-  taxes: 121,
-  insurance: 150,
-  salaries_and_wages: 0,
-  utilities: 0,
-  water_and_sewer: 0,
-  trash_removal: 125,
-  professional_fees: 0,
-  advertising: 0,
-  landscaping: 0,
-  capex: 7,
-  other_expenses: 0,
-  equipment_depreciation: 0,
-  income_tax_rate: 0,
-  rental_property_id: 2
+ClosingCost.create!(
+  id: 1,
+  origination_fee: 30000,
+  processing_fee:	400,
+  discount_points: 0,
+  underwriting_fee:	500,
+  appraisal:	425,
+  credit_report:	35,
+  flood_certificate: 0,
+  tax_services:	75,
+  title_insurance: 175,
+  title_fees: 180,
+  survey:	175,
+  government_recording_charges: 125,
+  transfer_taxes:	0,
+  homeowners_insurance:	1100,
+  settlement_company_charges:	175,
+  wire_charges: 55,
+  rental_property_id: 1
 )
 
 RentalProperty.create!(
@@ -83,5 +83,47 @@ FinancingAndIncomeAssumption.create!(
   equity_percentage: 20,
   loan_interest_rate: 4,
   amortization_period_in_years: 30,
+  rental_property_id: 2
+)
+
+OperatingExpensesAssumption.create!(
+  id: 2,
+  vacancy_rate: 5,
+  repairs_and_maintenance: 125,
+  property_management_fees: 10,
+  taxes: 121,
+  insurance: 150,
+  salaries_and_wages: 0,
+  utilities: 0,
+  water_and_sewer: 0,
+  trash_removal: 125,
+  professional_fees: 0,
+  advertising: 0,
+  landscaping: 0,
+  capex: 7,
+  other_expenses: 0,
+  equipment_depreciation: 0,
+  income_tax_rate: 0,
+  rental_property_id: 2
+)
+
+ClosingCost.create!(
+  id: 2,
+  origination_fee: 2990,
+  processing_fee:	400,
+  discount_points: 0,
+  underwriting_fee:	500,
+  appraisal:	425,
+  credit_report:	35,
+  flood_certificate: 0,
+  tax_services:	75,
+  title_insurance: 175,
+  title_fees: 180,
+  survey:	175,
+  government_recording_charges: 125,
+  transfer_taxes:	0,
+  homeowners_insurance:	1100,
+  settlement_company_charges:	175,
+  wire_charges: 55,
   rental_property_id: 2
 )

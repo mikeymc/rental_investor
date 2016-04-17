@@ -3,5 +3,6 @@ angular.module('rentals').controller('RentalPropertyController', function($scope
     var rental_property = response.data;
     $scope.financing_and_income_assumption = rental_property.financing_and_income_assumption;
     $scope.operating_expenses_assumption = rental_property.operating_expenses_assumption;
+    $scope.closing_cost = rental_property.closing_cost;
   });
 });

@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417025029) do
+ActiveRecord::Schema.define(version: 20160417051946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "closing_costs", force: true do |t|
+    t.decimal "origination_fee"
+    t.decimal "processing_fee"
+    t.decimal "discount_points"
+    t.decimal "underwriting_fee"
+    t.decimal "appraisal"
+    t.decimal "credit_report"
+    t.decimal "flood_certificate"
+    t.decimal "tax_services"
+    t.decimal "title_insurance"
+    t.decimal "title_fees"
+    t.decimal "survey"
+    t.decimal "government_recording_charges"
+    t.decimal "transfer_taxes"
+    t.decimal "homeowners_insurance"
+    t.decimal "settlement_company_charges"
+    t.decimal "wire_charges"
+    t.integer "rental_property_id"
+  end
+
+  add_index "closing_costs", ["rental_property_id"], name: "index_closing_costs_on_rental_property_id", using: :btree
 
   create_table "financing_and_income_assumptions", force: true do |t|
     t.decimal "land_cost"

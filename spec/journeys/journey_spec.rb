@@ -11,10 +11,12 @@ RSpec.describe 'finding stocks' do
     click_on_a_property
     see_the_property_details
     see_the_operating_expenses
+    see_the_closing_costs
     visit '/'
     click_on_another_property
     see_the_property_details_for_the_other_property
     see_the_operating_expenses_for_the_other_property
+    see_the_closing_costs_for_the_other_property
   end
 
   def see_a_list_of_properties
@@ -59,6 +61,48 @@ RSpec.describe 'finding stocks' do
     expect(valuation_inputs.find('#equity-percentage', text: 'Equity Percentage')).to have_content '17'
     expect(valuation_inputs.find('#loan-interest-rate', text: 'Loan Interest Rate')).to have_content '5.75'
     expect(valuation_inputs.find('#amortization-period-in-years', text: 'Amortization Period in Years')).to have_content '25'
+  end
+
+  def see_the_closing_costs
+    closing_costs = page.find('#closing-costs')
+    expect(closing_costs).to have_content 'Closing Costs'
+    expect(closing_costs.find('#origination-fee', text: 'Origination Fee')).to have_content '30000'
+    expect(closing_costs.find('#processing-fee', text: 'Processing Fee')).to have_content '400'
+    expect(closing_costs.find('#discount-points', text: 'Discount Points')).to have_content '0'
+    expect(closing_costs.find('#underwriting-fee', text: 'Underwriting Fee')).to have_content '500'
+    expect(closing_costs.find('#appraisal', text: 'Appraisal')).to have_content '425'
+    expect(closing_costs.find('#credit-report', text: 'Credit Report')).to have_content '35'
+    expect(closing_costs.find('#flood-certificate', text: 'Flood Certificate')).to have_content '0'
+    expect(closing_costs.find('#tax-services', text: 'Tax Services')).to have_content '75'
+    expect(closing_costs.find('#title-insurance', text: 'Title Insurance')).to have_content '175'
+    expect(closing_costs.find('#title-fees', text: 'Title Fees')).to have_content '180'
+    expect(closing_costs.find('#survey', text: 'Survey')).to have_content '175'
+    expect(closing_costs.find('#government-recording-charges', text: 'Government Recording Charges')).to have_content '125'
+    expect(closing_costs.find('#transfer-taxes', text: 'Transfer Taxes')).to have_content '0'
+    expect(closing_costs.find('#homeowners-insurance', text: 'Homeowners Insurance')).to have_content '1100'
+    expect(closing_costs.find('#settlement-company-charges', text: 'Settlement Company Charges')).to have_content '175'
+    expect(closing_costs.find('#wire-charges', text: 'Wire Charges')).to have_content '55'
+  end
+
+  def see_the_closing_costs_for_the_other_property
+    closing_costs = page.find('#closing-costs')
+    expect(closing_costs).to have_content 'Closing Costs'
+    expect(closing_costs.find('#origination-fee', text: 'Origination Fee')).to have_content '2990'
+    expect(closing_costs.find('#processing-fee', text: 'Processing Fee')).to have_content '400'
+    expect(closing_costs.find('#discount-points', text: 'Discount Points')).to have_content '0'
+    expect(closing_costs.find('#underwriting-fee', text: 'Underwriting Fee')).to have_content '500'
+    expect(closing_costs.find('#appraisal', text: 'Appraisal')).to have_content '425'
+    expect(closing_costs.find('#credit-report', text: 'Credit Report')).to have_content '35'
+    expect(closing_costs.find('#flood-certificate', text: 'Flood Certificate')).to have_content '0'
+    expect(closing_costs.find('#tax-services', text: 'Tax Services')).to have_content '75'
+    expect(closing_costs.find('#title-insurance', text: 'Title Insurance')).to have_content '175'
+    expect(closing_costs.find('#title-fees', text: 'Title Fees')).to have_content '180'
+    expect(closing_costs.find('#survey', text: 'Survey')).to have_content '175'
+    expect(closing_costs.find('#government-recording-charges', text: 'Government Recording Charges')).to have_content '125'
+    expect(closing_costs.find('#transfer-taxes', text: 'Transfer Taxes')).to have_content '0'
+    expect(closing_costs.find('#homeowners-insurance', text: 'Homeowners Insurance')).to have_content '1100'
+    expect(closing_costs.find('#settlement-company-charges', text: 'Settlement Company Charges')).to have_content '175'
+    expect(closing_costs.find('#wire-charges', text: 'Wire Charges')).to have_content '55'
   end
 
   def see_the_operating_expenses

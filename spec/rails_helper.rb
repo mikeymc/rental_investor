@@ -19,7 +19,7 @@ Capybara.configure do |configuration|
   configuration.server_port = 8888
   configuration.default_driver = :poltergeist
   configuration.app_host = 'http://localhost:8888'
-  configuration.default_max_wait_time = 10
+  configuration.default_max_wait_time = 3
 end
 
 RSpec.configure do |configuration|
