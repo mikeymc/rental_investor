@@ -1,19 +1,69 @@
 <div id="operating-expenses-inputs">
-  <div>Monthly Operating Expenses</div>
-  <div id="vacancy-rate">Vacancy Rate: {{operating_expenses_assumption.vacancy_rate}}</div>
-  <div id="repairs-and-maintenance">Repairs and Maintenance: {{operating_expenses_assumption.repairs_and_maintenance}}</div>
-  <div id="property-management-fees">Property Management Fees: {{operating_expenses_assumption.property_management_fees}}</div>
-  <div id="utilities">Utilities: {{operating_expenses_assumption.utilities}}</div>
-  <div id="taxes">Taxes: {{operating_expenses_assumption.taxes}}</div>
-  <div id="insurance">Insurance: {{operating_expenses_assumption.insurance}}</div>
-  <div id="salaries-and-wages">Salaries and Wages: {{operating_expenses_assumption.salaries_and_wages}}</div>
-  <div id="water-and-sewer">Water and Sewer: {{operating_expenses_assumption.water_and_sewer}}</div>
-  <div id="trash-removal">Trash Removal: {{operating_expenses_assumption.trash_removal}}</div>
-  <div id="professional-fees">Professional Fees: {{operating_expenses_assumption.professional_fees}}</div>
-  <div id="advertising">Advertising: {{operating_expenses_assumption.advertising}}</div>
-  <div id="landscaping">Landscaping: {{operating_expenses_assumption.landscaping}}</div>
-  <div id="capital-expenditures">CapEx: {{operating_expenses_assumption.capex}}</div>
-  <div id="other-expenses">Other Expenses: {{operating_expenses_assumption.other_expenses}}</div>
-  <div id="equipment-depreciation">Equipment Depreciation: {{operating_expenses_assumption.equipment_depreciation}}</div>
-  <div id="income-tax-rate">Income Tax Rate: {{operating_expenses_assumption.income_tax_rate}}</div>
+  <div class="row">
+    <div class="col-md-3 subsection-header">Monthly Operating Expenses</div>
+  </div>
+  <div id="vacancy-rate" class="row">
+    <span class="col-md-2">Vacancy Rate</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.vacancy_rate | percentage}}</span>
+  </div>
+  <div id="repairs-and-maintenance" class="row">
+    <span class="col-md-2">Repairs and Maintenance</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.repairs_and_maintenance | currency}}</span>
+  </div>
+  <div id="property-management-fees" class="row">
+    <span class="col-md-2">Property Management Fees</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.property_management_fees | percentage}}</span>
+  </div>
+  <div id="utilities" class="row">
+    <span class="col-md-2">Utilities</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.utilities | currency}}</span>
+  </div>
+  <div id="taxes" class="row">
+    <span class="col-md-2">Taxes</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.taxes | currency}}</span>
+  </div>
+  <div id="insurance" class="row">
+    <span class="col-md-2">Insurance</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.insurance | currency}}</span>
+  </div>
+  <div id="salaries-and-wages" class="row">
+    <span class="col-md-2">Salaries and Wages</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.salaries_and_wages | currency}}</span>
+  </div>
+  <div id="water-and-sewer" class="row">
+    <span class="col-md-2">Water and Sewer</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.water_and_sewer | currency}}</span>
+  </div>
+  <div id="trash-removal" class="row">
+    <span class="col-md-2">Trash Removal</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.trash_removal | currency}}</span>
+  </div>
+  <div id="professional-fees" class="row">
+    <span class="col-md-2">Professional Fees</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.professional_fees | currency}}</span>
+  </div>
+  <div id="advertising" class="row">
+    <span class="col-md-2">Advertising</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.advertising | currency}}</span>
+  </div>
+  <div id="landscaping" class="row">
+    <span class="col-md-2">Landscaping</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.landscaping | currency}}</span>
+  </div>
+  <div id="capital-expenditures" class="row">
+    <span class="col-md-2">CapEx</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.capex | percentage}}</span>
+  </div>
+  <div id="other-expenses" class="row">
+    <span class="col-md-2">Other Expenses</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.other_expenses | currency}}</span>
+  </div>
+  <div id="equipment-depreciation" class="row">
+    <span class="col-md-2">Equipment Depreciation</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.equipment_depreciation | currency}}</span>
+  </div>
+  <div id="income-tax-rate" class="row">
+    <span class="col-md-2">Income Tax Rate</span>
+    <span class="col-md-1 align-right">{{operating_expenses_assumption.income_tax_rate | percentage}}</span>
+  </div>
 </div>

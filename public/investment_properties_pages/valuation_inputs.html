@@ -1,13 +1,45 @@
 <div id="valuation-inputs">
-  <div>Inputs</div>
-  <div id="land-cost">Land Cost: {{financing_and_income_assumption.land_cost}}</div>
-  <div id="building-cost">Building Cost: {{financing_and_income_assumption.building_cost}}</div>
-  <div id="improvements">Improvements: {{financing_and_income_assumption.improvements}}</div>
-  <div id="total-square-feet">Total Square Feet: {{financing_and_income_assumption.total_square_feet}}</div>
-  <div id="number-of-units">Number of Units: {{financing_and_income_assumption.number_of_units}}</div>
-  <div id="average-monthly-rent">Average Monthly Rent: {{financing_and_income_assumption.average_monthly_rent_per_unit}}</div>
-  <div id="other-income">Other Income: {{financing_and_income_assumption.other_monthly_income}}</div>
-  <div id="equity-percentage">Equity Percentage: {{financing_and_income_assumption.equity_percentage}}</div>
-  <div id="loan-interest-rate">Loan Interest Rate: {{financing_and_income_assumption.loan_interest_rate}}</div>
-  <div id="amortization-period-in-years">Amortization Period in Years: {{financing_and_income_assumption.amortization_period_in_years}}</div>
+  <div class="row">
+    <div class="col-md-3 subsection-header">Inputs</div>
+  </div>
+  <div id="land-cost" class="row">
+    <span class="col-md-2">Land Cost:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.land_cost | currency}}</span>
+  </div>
+  <div id="building-cost" class="row">
+    <span class="col-md-2">Building Cost:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.building_cost | currency}}</span>
+  </div>
+  <div id="improvements" class="row">
+    <span class="col-md-2">Improvements:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.improvements | currency}}</span>
+  </div>
+  <div id="total-square-feet" class="row">
+    <span class="col-md-2">Total Square Feet:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.total_square_feet | number}}</span>
+  </div>
+  <div id="number-of-units" class="row">
+    <span class="col-md-2">Number of Units:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.number_of_units | number}}</span>
+  </div>
+  <div id="average-monthly-rent" class="row">
+    <span class="col-md-2">Average Monthly Rent:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.average_monthly_rent_per_unit | currency}}</span>
+  </div>
+  <div id="other-income" class="row">
+    <span class="col-md-2">Other Income:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.other_monthly_income | currency}}</span>
+  </div>
+  <div id="equity-percentage" class="row">
+    <span class="col-md-2">Equity Percentage:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.equity_percentage | percentage}}</span>
+  </div>
+  <div id="loan-interest-rate" class="row">
+    <span class="col-md-2">Loan Interest Rate:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.loan_interest_rate | percentage}}</span>
+  </div>
+  <div id="amortization-period-in-years" class="row">
+    <span class="col-md-2">Amortization Period in Years:</span>
+    <span class="col-md-1 align-right">{{financing_and_income_assumption.amortization_period_in_years | number}}</span>
+  </div>
 </div>

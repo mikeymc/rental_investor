@@ -1,0 +1,31 @@
+/*
+ *= require_self
+ *= require_tree .
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  font-size: 10px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.subsection-header {
+  font-weight: bold;
+  text-align: center;
+  background-color: #d9d9d9;
+  border-top: thin solid;
+  border-bottom: thin solid;
+}
+
+.container {
+  width: 1275px;
+  $grid-columns: 24;
+}
+
+.align-right {
+  text-align: right;
+}

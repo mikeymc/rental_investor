@@ -1,11 +1,13 @@
 <div id="income-and-cost-projections">
-  <div>Income and Cost Projections</div>
-  <div id="rent-increases">
-    <div>Rent Increases</div>
-    <li ng-repeat="increase in income_and_cost_projection.rent_increases track by $index">{{increase}}</li>
+  <div class="row">
+    <div class="col-md-3 subsection-header">Income and Cost Projections</div>
   </div>
-  <div id="operating-expense-increases">
-    <div>Operating Expense Increases</div>
-    <li ng-repeat="increase in income_and_cost_projection.operating_expense_increases track by $index">{{increase}}</li>
+  <div id="rent-increases" class="row">
+    <div class="col-md-2">Rent Increases</div>
+    <li class="col-md-1 align-right" ng-repeat="increase in income_and_cost_projection.rent_increases track by $index">{{increase | percentage}}</li>
+  </div>
+  <div id="operating-expense-increases" class="row">
+    <div class="col-md-2">Operating Expense Increases</div>
+    <li class="col-md-1 align-right" ng-repeat="increase in income_and_cost_projection.operating_expense_increases track by $index">{{increase | percentage}}</li>
   </div>
 </div>
