@@ -13,12 +13,44 @@ RSpec.describe 'finding stocks' do
     see_the_operating_expenses
     see_the_closing_costs
     see_the_income_and_cost_projections
+    see_the_cost_and_revenue_assumptions
     visit '/'
     click_on_another_property
     see_the_property_details_for_the_other_property
     see_the_operating_expenses_for_the_other_property
     see_the_closing_costs_for_the_other_property
     see_the_income_and_cost_projections
+    see_the_cost_and_revenue_assumptions_for_the_other_property
+  end
+
+  def see_the_cost_and_revenue_assumptions
+    cost_and_revenue_assumptions = page.find('#cost-and-revenue-assumptions')
+    expect(cost_and_revenue_assumptions).to have_content 'Cost and Revenue Assumptions'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Land')).to have_content '$500,000'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Building')).to have_content '$2,500,000'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Improvements')).to have_content '$0'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Closing Costs')).to have_content '$33,420'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Total Cost')).to have_content '$3,033,420'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Number of Units')).to have_content '60'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Average Monthly Rent')).to have_content '$700'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Gross Monthly Rent')).to have_content '$42,000'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Other Income')).to have_content '$600'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Total Gross Monthly Income')).to have_content '$42,600'
+  end
+
+  def see_the_cost_and_revenue_assumptions_for_the_other_property
+    cost_and_revenue_assumptions = page.find('#cost-and-revenue-assumptions')
+    expect(cost_and_revenue_assumptions).to have_content 'Cost and Revenue Assumptions'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Land')).to have_content '$0'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Building')).to have_content '$299,000'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Improvements')).to have_content '$0'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Closing Costs')).to have_content '$6,410'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Total Cost')).to have_content '$305,410'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Number of Units')).to have_content '6'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Average Monthly Rent')).to have_content '$482'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Gross Monthly Rent')).to have_content '$2,892'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Other Income')).to have_content '$0'
+    expect(cost_and_revenue_assumptions.find('div', text: 'Total Gross Monthly Income')).to have_content '$2,892'
   end
 
   def see_a_list_of_properties

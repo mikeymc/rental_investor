@@ -21,6 +21,22 @@ FinancingAndIncomeAssumption.create!(
   rental_property_id: 1
 )
 
+FinancingAndIncomeAssumption.create!(
+  id: 2,
+  land_cost: 0,
+  building_cost: 299000,
+  improvements: 0,
+  total_square_feet: 3311,
+  number_of_units: 6,
+  average_monthly_rent_per_unit: 482,
+  other_monthly_income: 0,
+  equity_percentage: 20,
+  loan_interest_rate: 4,
+  amortization_period_in_years: 30,
+  rental_property_id: 2
+)
+
+
 OperatingExpensesAssumption.create!(
   id: 1,
   vacancy_rate: 5,
@@ -40,50 +56,6 @@ OperatingExpensesAssumption.create!(
   equipment_depreciation: 0,
   income_tax_rate: 0,
   rental_property_id: 1
-)
-
-ClosingCost.create!(
-  id: 1,
-  origination_fee: 30000,
-  processing_fee:	400,
-  discount_points: 0,
-  underwriting_fee:	500,
-  appraisal:	425,
-  credit_report:	35,
-  flood_certificate: 0,
-  tax_services:	75,
-  title_insurance: 175,
-  title_fees: 180,
-  survey:	175,
-  government_recording_charges: 125,
-  transfer_taxes:	0,
-  homeowners_insurance:	1100,
-  settlement_company_charges:	175,
-  wire_charges: 55,
-  rental_property_id: 1
-)
-
-RentalProperty.create!(
-  id: 2,
-  street: '123 Sesame St',
-  city: 'Buffalo',
-  state: 'NY',
-  zip_code: '67890'
-)
-
-FinancingAndIncomeAssumption.create!(
-  id: 2,
-  land_cost: 0,
-  building_cost: 299000,
-  improvements: 0,
-  total_square_feet: 3311,
-  number_of_units: 6,
-  average_monthly_rent_per_unit: 482,
-  other_monthly_income: 0,
-  equity_percentage: 20,
-  loan_interest_rate: 4,
-  amortization_period_in_years: 30,
-  rental_property_id: 2
 )
 
 OperatingExpensesAssumption.create!(
@@ -107,18 +79,25 @@ OperatingExpensesAssumption.create!(
   rental_property_id: 2
 )
 
-IncomeAndCostProjection.create!(
+ClosingCost.create!(
   id: 1,
-  rent_increases: [0, 3, 3.5, 3, 3],
-  operating_expense_increases: [0, -2, -1, 1.5, 2],
+  origination_fee: 30000,
+  processing_fee:	400,
+  discount_points: 0,
+  underwriting_fee:	500,
+  appraisal:	425,
+  credit_report:	35,
+  flood_certificate: 0,
+  tax_services:	75,
+  title_insurance: 175,
+  title_fees: 180,
+  survey:	175,
+  government_recording_charges: 125,
+  transfer_taxes:	0,
+  homeowners_insurance:	1100,
+  settlement_company_charges:	175,
+  wire_charges: 55,
   rental_property_id: 1
-)
-
-IncomeAndCostProjection.create!(
-  id: 2,
-  rent_increases: [0, 3, 3.5, 3, 3],
-  operating_expense_increases: [0, -2, -1, 1.5, 2],
-  rental_property_id: 2
 )
 
 ClosingCost.create!(
@@ -139,5 +118,27 @@ ClosingCost.create!(
   homeowners_insurance:	1100,
   settlement_company_charges:	175,
   wire_charges: 55,
+  rental_property_id: 2
+)
+
+RentalProperty.create!(
+  id: 2,
+  street: '123 Sesame St',
+  city: 'Buffalo',
+  state: 'NY',
+  zip_code: '67890'
+)
+
+IncomeAndCostProjection.create!(
+  id: 1,
+  rent_increases: [0, 3, 3.5, 3, 3],
+  operating_expense_increases: [0, -2, -1, 1.5, 2],
+  rental_property_id: 1
+)
+
+IncomeAndCostProjection.create!(
+  id: 2,
+  rent_increases: [0, 3, 3.5, 3, 3],
+  operating_expense_increases: [0, -2, -1, 1.5, 2],
   rental_property_id: 2
 )
