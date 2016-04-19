@@ -21,64 +21,64 @@ class Expectations
     expect(page).to have_content '67890'
   end
 
-  def to_see_the_property_details
-    assert_property_details({
-      land_cost: '$500,000',
-      building_cost: '$2,500,000',
-      improvements: '$0',
-      total_square_feet: '52,500',
-      number_of_units: '60',
-      average_monthly_rent: '$700',
-      other_income: '$600',
-      equity_percentage: '17.0%',
-      loan_interest_rate: '5.75%',
-      amortization_period_in_years: '25'
-    })
+  def to_see_the_property_details(property)
+    if property['name'] == 'moroni'
+      assert_property_details({
+        land_cost: '$500,000',
+        building_cost: '$2,500,000',
+        improvements: '$0',
+        total_square_feet: '52,500',
+        number_of_units: '60',
+        average_monthly_rent: '$700',
+        other_income: '$600',
+        equity_percentage: '17.0%',
+        loan_interest_rate: '5.75%',
+        amortization_period_in_years: '25'
+      })
+    elsif property['name'] == 'sesame'
+      assert_property_details({
+        land_cost: '$0',
+        building_cost: '$299,000',
+        improvements: '$0',
+        total_square_feet: '3,311',
+        number_of_units: '6',
+        average_monthly_rent: '$482',
+        other_income: '$0',
+        equity_percentage: '20',
+        loan_interest_rate: '4.0%',
+        amortization_period_in_years: '30'
+      })
+    end
   end
 
-  def to_see_the_property_details_for_the_other_property
-    assert_property_details({
-      land_cost: '$0',
-      building_cost: '$299,000',
-      improvements: '$0',
-      total_square_feet: '3,311',
-      number_of_units: '6',
-      average_monthly_rent: '$482',
-      other_income: '$0',
-      equity_percentage: '20',
-      loan_interest_rate: '4.0%',
-      amortization_period_in_years: '30'
-    })
-  end
-
-  def to_see_the_cost_and_revenue_assumptions
-    assert_cost_and_revenue_assumptions({
-      land: '$500,000',
-      building: '$2,500,000',
-      improvement: '$0',
-      closing_costs: '$33,420',
-      total_cost: '$3,033,420',
-      number_of_units: '60',
-      average_monthly_rent: '$700',
-      gross_monthly_rent: '$42,000',
-      other_income: '$600',
-      total_gross_monthly_income: '$42,600'
-    })
-  end
-
-  def to_see_the_cost_and_revenue_assumptions_for_the_other_property
-    assert_cost_and_revenue_assumptions({
-      land: '$0',
-      building: '$299,000',
-      improvements: '$0',
-      closing_costs: '$6,410',
-      total_cost: '$305,410',
-      number_of_units: '6',
-      average_monthly_rent: '$482',
-      gross_monthly_rent: '$2,892',
-      other_income: '$0',
-      total_gross_monthly_income: '$2,892'
-    })
+  def to_see_the_cost_and_revenue_assumptions(property)
+    if property['name'] == 'moroni'
+      assert_cost_and_revenue_assumptions({
+        land: '$500,000',
+        building: '$2,500,000',
+        improvement: '$0',
+        closing_costs: '$33,420',
+        total_cost: '$3,033,420',
+        number_of_units: '60',
+        average_monthly_rent: '$700',
+        gross_monthly_rent: '$42,000',
+        other_income: '$600',
+        total_gross_monthly_income: '$42,600'
+      })
+    elsif property['name'] == 'sesame'
+      assert_cost_and_revenue_assumptions({
+        land: '$0',
+        building: '$299,000',
+        improvements: '$0',
+        closing_costs: '$6,410',
+        total_cost: '$305,410',
+        number_of_units: '6',
+        average_monthly_rent: '$482',
+        gross_monthly_rent: '$2,892',
+        other_income: '$0',
+        total_gross_monthly_income: '$2,892'
+      })
+    end
   end
 
   def to_see_the_income_and_cost_projections
@@ -102,88 +102,88 @@ class Expectations
     expect(operating_expense_increases.all('li', count: 5)[4]).to have_content '2.0%'
   end
 
-  def to_see_the_closing_costs
-    assert_closing_costs({
-          origination_fee: '$30,000',
-          processing_fee: '$400',
-          discount_points: '0',
-          underwriting_fee: '$500',
-          appraisal: '$425',
-          credit_report: '$35',
-          flood_certificate: '$0',
-          tax_services: '$75',
-          title_insurance: '$175',
-          title_fees: '$180',
-          survey: '$175',
-          government_recording_charges: '$125',
-          transfer_taxes: '$0',
-          homeowners_insurance: '$1,100',
-          settlement_company_charges: '$175',
-          wire_charges: '$55'
-        })
+  def to_see_the_closing_costs(property)
+    if property['name'] == 'moroni'
+      assert_closing_costs({
+        origination_fee: '$30,000',
+        processing_fee: '$400',
+        discount_points: '0',
+        underwriting_fee: '$500',
+        appraisal: '$425',
+        credit_report: '$35',
+        flood_certificate: '$0',
+        tax_services: '$75',
+        title_insurance: '$175',
+        title_fees: '$180',
+        survey: '$175',
+        government_recording_charges: '$125',
+        transfer_taxes: '$0',
+        homeowners_insurance: '$1,100',
+        settlement_company_charges: '$175',
+        wire_charges: '$55'
+      })
+    elsif property['name'] == 'sesame'
+      assert_closing_costs({
+        origination_fee: '$2,990',
+        processing_fee: '$400',
+        discount_points: '0',
+        underwriting_fee: '$500',
+        appraisal: '$425',
+        credit_report: '$35',
+        flood_certificate: '$0',
+        tax_services: '$75',
+        title_insurance: '$175',
+        title_fees: '$180',
+        survey: '$175',
+        government_recording_charges: '$125',
+        transfer_taxes: '$0',
+        homeowners_insurance: '$1,100',
+        settlement_company_charges: '$175',
+        wire_charges: '$55'
+      })
+    end
   end
 
-  def to_see_the_closing_costs_for_the_other_property
-    assert_closing_costs({
-      origination_fee: '$2,990',
-      processing_fee: '$400',
-      discount_points: '0',
-      underwriting_fee: '$500',
-      appraisal: '$425',
-      credit_report: '$35',
-      flood_certificate: '$0',
-      tax_services: '$75',
-      title_insurance: '$175',
-      title_fees: '$180',
-      survey: '$175',
-      government_recording_charges: '$125',
-      transfer_taxes: '$0',
-      homeowners_insurance: '$1,100',
-      settlement_company_charges: '$175',
-      wire_charges: '$55'
-    })
-  end
-
-  def to_see_the_operating_expenses
-    assert_operating_expenses({
-          vacancy_rate: '5.0%',
-          repairs_and_maintenance: '$5,625',
-          property_management_fees: '3.5%',
-          taxes: '$3,200.03',
-          insurance: '$812.03',
-          salaries_and_wages: '$1,800.02',
-          water_and_sewer: '$5',
-          utilities: '$2,119.97',
-          trash_removal: '$125.02',
-          professional_fees: '$299.98',
-          advertising: '$500.01',
-          landscaping: '$0',
-          capital_expenditures: '7.0%',
-          other_expenses: '$999.99',
-          equipment_depreciation: '$0',
-          income_tax_rate: '0%'
-        })
-  end
-
-  def to_see_the_operating_expenses_for_the_other_property
-    assert_operating_expenses({
-      vacancy_rate: '5.0%',
-      repairs_and_maintenance: '$125',
-      property_management_fees: '10.0%',
-      taxes: '$121',
-      insurance: '$150',
-      salaries_and_wages: '$0',
-      water_and_sewer: '$0',
-      utilities: '$0',
-      trash_removal: '$125',
-      professional_fees: '$0',
-      advertising: '$0',
-      landscaping: '$0',
-      capital_expenditures: '7.0%',
-      other_expenses: '$0',
-      equipment_depreciation: '$0',
-      income_tax_rate: '0%'
-    })
+  def to_see_the_operating_expenses(property)
+    if property['name'] == 'moroni'
+      assert_operating_expenses({
+        vacancy_rate: '5.0%',
+        repairs_and_maintenance: '$5,625',
+        property_management_fees: '3.5%',
+        taxes: '$3,200.03',
+        insurance: '$812.03',
+        salaries_and_wages: '$1,800.02',
+        water_and_sewer: '$5',
+        utilities: '$2,119.97',
+        trash_removal: '$125.02',
+        professional_fees: '$299.98',
+        advertising: '$500.01',
+        landscaping: '$0',
+        capital_expenditures: '7.0%',
+        other_expenses: '$999.99',
+        equipment_depreciation: '$0',
+        income_tax_rate: '0%'
+      })
+    elsif property['name'] == 'sesame'
+      assert_operating_expenses({
+        vacancy_rate: '5.0%',
+        repairs_and_maintenance: '$125',
+        property_management_fees: '10.0%',
+        taxes: '$121',
+        insurance: '$150',
+        salaries_and_wages: '$0',
+        water_and_sewer: '$0',
+        utilities: '$0',
+        trash_removal: '$125',
+        professional_fees: '$0',
+        advertising: '$0',
+        landscaping: '$0',
+        capital_expenditures: '7.0%',
+        other_expenses: '$0',
+        equipment_depreciation: '$0',
+        income_tax_rate: '0%'
+      })
+    end
   end
 
   private
