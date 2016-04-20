@@ -4,10 +4,10 @@
   </div>
   <div id="rent-increases" class="row">
     <div class="col-md-9">Rent Increases</div>
-    <li class="col-md-3 align-right" ng-repeat="increase in income_and_cost_projection.rent_increases track by $index">{{increase | percentage}}</li>
+    <li class="col-md-3 align-right" ng-repeat="increase in rental_property.income_and_cost_projection.rent_increases track by $index">{{increase | percentage}}</li>
   </div>
   <div id="operating-expense-increases" class="row">
     <div class="col-md-9">Op Exp Increases</div>
-    <li class="col-md-3 align-right" ng-repeat="increase in income_and_cost_projection.operating_expense_increases track by $index">{{increase | percentage}}</li>
+    <li class="col-md-3 align-right" ng-repeat="increase in rental_property.income_and_cost_projection.operating_expense_increases track by $index">{{increase | percentage}}</li>
   </div>
 </div>

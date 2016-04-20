@@ -4,19 +4,23 @@ angular.module('rentals').directive('costAndRevenueAssumptions', function(cost_a
     restrict: 'E',
     link: function($scope) {
       var s = cost_and_revenue_assumptions_service;
-      $scope.$watchGroup(['closing_cost', 'financing_and_income_assumption'], function() {
-        if ($scope.closing_cost && $scope.financing_and_income_assumption) {
-          $scope.total_closing_costs = s.get_closing_costs($scope.closing_cost);
+      $scope.$watch('rental_property', function() {
+        if(!$scope.rental_property) {
+          return;
+        }
+
+        if ($scope.rental_property.closing_cost && $scope.rental_property.financing_and_income_assumption) {
+          $scope.total_closing_costs = s.get_closing_costs($scope.rental_property.closing_cost);
           $scope.gross_monthly_rent = s.get_gross_monthly_rent(
-            $scope.financing_and_income_assumption
+            $scope.rental_property.financing_and_income_assumption
           );
           $scope.total_cost = s.get_total_cost(
             $scope.total_closing_costs,
-            $scope.financing_and_income_assumption
+            $scope.rental_property.financing_and_income_assumption
           );
           $scope.total_gross_monthly_income = s.get_total_gross_monthly_income(
             $scope.gross_monthly_rent,
-            $scope.financing_and_income_assumption
+            $scope.rental_property.financing_and_income_assumption
           );
         }
       });
