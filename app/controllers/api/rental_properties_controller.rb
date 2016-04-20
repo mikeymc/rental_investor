@@ -17,6 +17,17 @@ class Api::RentalPropertiesController < ApplicationController
   end
 
   def update
+    @rental_property = RentalProperty.find(params[:rental_property][:id])
+    new_land_cost = params[:rental_property][:financing_and_income_assumption][:land_cost]
+
+    @rental_property.financing_and_income_assumption.update(land_cost: new_land_cost)
+    render json: @rental_property.to_json(include: [
+      :financing_and_income_assumption,
+      :operating_expenses_assumption,
+      :closing_cost,
+      :income_and_cost_projection,
+    ])
+
     # begin
     #   @budget = Budget.find(params['id'])
     #   @budget.annual_savings_goal = params['annual_savings_goal']
