@@ -9,18 +9,38 @@ RSpec.describe 'the rental investment tool' do
   let(:then_expect) { Expectations.new }
 
   it 'enables the user to evaluate investment properties' do
+    go_home
     check_property(name: 'moroni')
+
+    go_home
     check_property(name: 'sesame')
+
+    go_home
+    update_property
+    see_updated_values
   end
 
   private
 
-  def check_property(property)
+  def go_home
     visit '/'
+  end
+
+  def check_property(property)
     then_expect.to_see_a_list_of_properties
 
     select(name: property[:name])
     evaluate(name: property[:name])
+  end
+
+  def update_property
+    select(name: 'moroni')
+    fill_in('land-cost-input', with: '600000')
+  end
+
+  def see_updated_values
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content '$600,000'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content '$3,133,420'
   end
 
   def select(property)

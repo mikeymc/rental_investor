@@ -15,6 +15,17 @@ li {
   list-style-type: none;
 }
 
+input {
+  margin: 0;
+  border: none;
+  text-align: right;
+  background-color: #f3f3f3;
+}
+
+input:focus {
+  outline: none;
+}
+
 .subsection-header {
   font-weight: bold;
   text-align: center;

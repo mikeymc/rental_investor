@@ -8,7 +8,6 @@ angular.module('rentals').directive('costAndRevenueAssumptions', function(cost_a
         if(!$scope.rental_property) {
           return;
         }
-
         if ($scope.rental_property.closing_cost && $scope.rental_property.financing_and_income_assumption) {
           $scope.total_closing_costs = s.get_closing_costs($scope.rental_property.closing_cost);
           $scope.gross_monthly_rent = s.get_gross_monthly_rent(
@@ -23,7 +22,7 @@ angular.module('rentals').directive('costAndRevenueAssumptions', function(cost_a
             $scope.rental_property.financing_and_income_assumption
           );
         }
-      });
+      }, true);
     }
   }
 });
