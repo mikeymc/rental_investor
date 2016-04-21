@@ -4,19 +4,27 @@ angular.module('rentals').directive('closingCostsInputs', function(cost_and_reve
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {
-        if(!$scope.rental_property) {
+        if (!$scope.rental_property) {
           return;
         }
 
-        var land_cost = parseFloat($scope.rental_property.financing_and_income_assumption.land_cost);
-        var building_cost = parseFloat($scope.rental_property.financing_and_income_assumption.building_cost);
-        $scope.rental_property.closing_cost.origination_fee = 0.01 * (land_cost + building_cost);
-
-        $scope.total = cost_and_revenue_assumptions_service.get_closing_costs(
-          $scope.rental_property.closing_cost
-        );
+        $scope.rental_property.closing_cost.origination_fee = recalculate_origination_fee($scope.rental_property);
+        $scope.total = closing_costs($scope.rental_property);
 
       }, true);
+
+      /* --- Private --- */
+
+      function recalculate_origination_fee(property) {
+        var land_cost = parseFloat(property.financing_and_income_assumption.land_cost);
+        var building_cost = parseFloat(property.financing_and_income_assumption.building_cost);
+
+        return 0.01 * (land_cost + building_cost);
+      }
+
+      function closing_costs(property) {
+        return cost_and_revenue_assumptions_service.get_closing_costs(property.closing_cost);
+      }
     }
   }
 });
