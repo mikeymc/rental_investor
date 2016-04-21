@@ -22,28 +22,28 @@ class Expectations
   end
 
   def to_see_the_property_details(property)
-    if property['name'] == 'moroni'
+    if property[:name] == 'moroni'
       assert_property_details({
-        land_cost: '$500,000',
-        building_cost: '$2,500,000',
-        improvements: '$0',
+        land_cost: '$500,000.00',
+        building_cost: '$2,500,000.00',
+        improvements: '$0.00',
         total_square_feet: '52,500',
         number_of_units: '60',
-        average_monthly_rent: '$700',
-        other_income: '$600',
+        average_monthly_rent: '$700.00',
+        other_income: '$600.00',
         equity_percentage: '17.0%',
         loan_interest_rate: '5.75%',
         amortization_period_in_years: '25'
       })
-    elsif property['name'] == 'sesame'
+    elsif property[:name] == 'sesame'
       assert_property_details({
-        land_cost: '$0',
-        building_cost: '$299,000',
-        improvements: '$0',
+        land_cost: '$0.00',
+        building_cost: '$299,000.00',
+        improvements: '$0.00',
         total_square_feet: '3,311',
         number_of_units: '6',
-        average_monthly_rent: '$482',
-        other_income: '$0',
+        average_monthly_rent: '$482.00',
+        other_income: '$0.00',
         equity_percentage: '20',
         loan_interest_rate: '4.0%',
         amortization_period_in_years: '30'
@@ -52,11 +52,11 @@ class Expectations
   end
 
   def to_see_the_cost_and_revenue_assumptions(property)
-    if property['name'] == 'moroni'
+    if property[:name] == 'moroni'
       assert_cost_and_revenue_assumptions({
         land: '$500,000',
         building: '$2,500,000',
-        improvement: '$0',
+        improvements: '$0',
         closing_costs: '$33,420',
         total_cost: '$3,033,420',
         number_of_units: '60',
@@ -65,7 +65,7 @@ class Expectations
         other_income: '$600',
         total_gross_monthly_income: '$42,600'
       })
-    elsif property['name'] == 'sesame'
+    elsif property[:name] == 'sesame'
       assert_cost_and_revenue_assumptions({
         land: '$0',
         building: '$299,000',
@@ -103,7 +103,7 @@ class Expectations
   end
 
   def to_see_the_closing_costs(property)
-    if property['name'] == 'moroni'
+    if property[:name] == 'moroni'
       assert_closing_costs({
         origination_fee: '$30,000',
         processing_fee: '$400',
@@ -120,9 +120,10 @@ class Expectations
         transfer_taxes: '$0',
         homeowners_insurance: '$1,100',
         settlement_company_charges: '$175',
-        wire_charges: '$55'
+        wire_charges: '$55',
+        total: '$33,420'
       })
-    elsif property['name'] == 'sesame'
+    elsif property[:name] == 'sesame'
       assert_closing_costs({
         origination_fee: '$2,990',
         processing_fee: '$400',
@@ -139,13 +140,14 @@ class Expectations
         transfer_taxes: '$0',
         homeowners_insurance: '$1,100',
         settlement_company_charges: '$175',
-        wire_charges: '$55'
+        wire_charges: '$55',
+        total: '$6,410'
       })
     end
   end
 
   def to_see_the_operating_expenses(property)
-    if property['name'] == 'moroni'
+    if property[:name] == 'moroni'
       assert_operating_expenses({
         vacancy_rate: '5.0%',
         repairs_and_maintenance: '$5,625',
@@ -164,7 +166,7 @@ class Expectations
         equipment_depreciation: '$0',
         income_tax_rate: '0%'
       })
-    elsif property['name'] == 'sesame'
+    elsif property[:name] == 'sesame'
       assert_operating_expenses({
         vacancy_rate: '5.0%',
         repairs_and_maintenance: '$125',
@@ -186,27 +188,61 @@ class Expectations
     end
   end
 
+  def to_see_the_financing_assumptions(property)
+    if property[:name] == 'moroni'
+      assert_financing_assumptions({
+        total_purchase_value: '$3,033,420',
+        total_purchase_percentage: '100%',
+        owners_equity_value: '$515,681',
+        owners_equity_percentage: '17.0%',
+        balance_to_finance_value: '$2,517,738.60',
+        balance_to_finance_percentage: '83%'
+      })
+    elsif property[:name] == 'sesame'
+      assert_financing_assumptions({
+        total_purchase_value: '$305,410',
+        total_purchase_percentage: '100%',
+        owners_equity_value: '$61,082',
+        owners_equity_percentage: '20.0%',
+        balance_to_finance_value: '$244,328',
+        balance_to_finance_percentage: '80%'
+      })
+    end
+  end
+
   private
+
+  def assert_financing_assumptions(details)
+    closing_costs = page.find('#financing-assumptions')
+    expect(closing_costs).to have_content 'Financing Assumptions'
+    expect(closing_costs.find('#total-purchase', text: 'Total Purchase')).to have_content details[:total_purchase_value]
+    expect(closing_costs.find('#total-purchase', text: 'Total Purchase')).to have_content details[:total_purchase_percentage]
+    expect(closing_costs.find('#down-payment', text: 'Owner\'s Equity')).to have_content details[:owners_equity_value]
+    expect(closing_costs.find('#down-payment', text: 'Owner\'s Equity')).to have_content details[:owners_equity_percentage]
+    expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content details[:balance_to_finance_value]
+    expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content details[:balance_to_finance_percentage]
+  end
 
   def assert_closing_costs(details)
     closing_costs = page.find('#closing-costs')
     expect(closing_costs).to have_content 'Closing Costs'
-    expect(closing_costs.find('#origination-fee', text: 'Origination Fee')).to have_content details['origination_fee']
-    expect(closing_costs.find('#processing-fee', text: 'Processing Fee')).to have_content details['processing_fee']
-    expect(closing_costs.find('#discount-points', text: 'Discount Points')).to have_content details['discount_points']
-    expect(closing_costs.find('#underwriting-fee', text: 'Underwriting Fee')).to have_content details['underwriting_fee']
-    expect(closing_costs.find('#appraisal', text: 'Appraisal')).to have_content details['appraisal']
-    expect(closing_costs.find('#credit-report', text: 'Credit Report')).to have_content details['credit_report']
-    expect(closing_costs.find('#flood-certificate', text: 'Flood Certificate')).to have_content details['flood_certificate']
-    expect(closing_costs.find('#tax-services', text: 'Tax Services')).to have_content details['tax_services']
-    expect(closing_costs.find('#title-insurance', text: 'Title Insurance')).to have_content details['title_insurance']
-    expect(closing_costs.find('#title-fees', text: 'Title Fees')).to have_content details['title_fees']
-    expect(closing_costs.find('#survey', text: 'Survey')).to have_content details['survey']
-    expect(closing_costs.find('#government-recording-charges', text: 'Government Recording Charges')).to have_content details['government_recording_charges']
-    expect(closing_costs.find('#transfer-taxes', text: 'Transfer Taxes')).to have_content details['transfer_taxes']
-    expect(closing_costs.find('#homeowners-insurance', text: 'Homeowners Insurance')).to have_content details['homeowners_insurance']
-    expect(closing_costs.find('#settlement-company-charges', text: 'Settlement Company Charges')).to have_content details['settlement_company_charges']
-    expect(closing_costs.find('#wire-charges', text: 'Wire Charges')).to have_content details['wire_charges']
+    expect(closing_costs.find('#origination-fee', text: 'Origination Fee')).to have_content details[:origination_fee]
+    expect(closing_costs.find('#processing-fee', text: 'Processing Fee')).to have_content details[:processing_fee]
+    expect(closing_costs.find('#discount-points', text: 'Discount Points')).to have_content details[:discount_points]
+    expect(closing_costs.find('#underwriting-fee', text: 'Underwriting Fee')).to have_content details[:underwriting_fee]
+    expect(closing_costs.find('#appraisal', text: 'Appraisal')).to have_content details[:appraisal]
+    expect(closing_costs.find('#credit-report', text: 'Credit Report')).to have_content details[:credit_report]
+    expect(closing_costs.find('#flood-certificate', text: 'Flood Certificate')).to have_content details[:flood_certificate]
+    expect(closing_costs.find('#tax-services', text: 'Tax Services')).to have_content details[:tax_services]
+    expect(closing_costs.find('#title-insurance', text: 'Title Insurance')).to have_content details[:title_insurance]
+    expect(closing_costs.find('#title-fees', text: 'Title Fees')).to have_content details[:title_fees]
+    expect(closing_costs.find('#survey', text: 'Survey')).to have_content details[:survey]
+    expect(closing_costs.find('#government-recording-charges', text: 'Government Recording Charges')).to have_content details[:government_recording_charges]
+    expect(closing_costs.find('#transfer-taxes', text: 'Transfer Taxes')).to have_content details[:transfer_taxes]
+    expect(closing_costs.find('#homeowners-insurance', text: 'Homeowners Insurance')).to have_content details[:homeowners_insurance]
+    expect(closing_costs.find('#settlement-company-charges', text: 'Settlement Company Charges')).to have_content details[:settlement_company_charges]
+    expect(closing_costs.find('#wire-charges', text: 'Wire Charges')).to have_content details[:wire_charges]
+    expect(closing_costs.find('#total-closing-costs', text: 'Total')).to have_content details[:total]
   end
 
   def assert_property_details(details)
@@ -216,52 +252,52 @@ class Expectations
     expect(assumptions).to have_content 'Financing and Income Assumptions'
     expect(inputs).to have_content 'Inputs'
 
-    expect(inputs.find('#land-cost')).to have_content details['land_cost']
-    expect(inputs.find('#building-cost')).to have_content details['building_cost']
-    expect(inputs.find('#improvements')).to have_content details['improvements']
-    expect(inputs.find('#total-square-feet')).to have_content details['total_sq_ft']
-    expect(inputs.find('#number-of-units')).to have_content details['num_units']
-    expect(inputs.find('#average-monthly-rent')).to have_content details['avg_rent']
-    expect(inputs.find('#other-income')).to have_content details['other_income']
-    expect(inputs.find('#equity-percentage')).to have_content details['equity_percentage']
-    expect(inputs.find('#loan-interest-rate')).to have_content details['interest_rate']
-    expect(inputs.find('#amortization-period-in-years')).to have_content details['amort_period']
+    expect(inputs.find_field('land-cost-input').value).to eq details[:land_cost]
+    expect(inputs.find_field('building-cost-input').value).to eq details[:building_cost]
+    expect(inputs.find_field('improvements-input').value).to eq details[:improvements]
+    expect(inputs.find('#total-square-feet')).to have_content details[:total_sq_ft]
+    expect(inputs.find_field('number-of-units-input').value).to eq details[:number_of_units]
+    expect(inputs.find_field('average-monthly-rent-input').value).to eq details[:average_monthly_rent]
+    expect(inputs.find_field('other-income-input').value).to eq details[:other_income]
+    expect(inputs.find('#equity-percentage')).to have_content details[:equity_percentage]
+    expect(inputs.find('#loan-interest-rate')).to have_content details[:interest_rate]
+    expect(inputs.find('#amortization-period-in-years')).to have_content details[:amortization_period_in_years]
   end
 
   def assert_cost_and_revenue_assumptions(details)
     assumptions = page.find('#cost-and-revenue-assumptions')
     expect(assumptions).to have_content 'Cost and Revenue Assumptions'
-    expect(assumptions.find('div', text: 'Land')).to have_content details['land']
-    expect(assumptions.find('div', text: 'Building')).to have_content details['building']
-    expect(assumptions.find('div', text: 'Improvements')).to have_content details['improvements']
-    expect(assumptions.find('div', text: 'Closing Costs')).to have_content details['closing_costs']
-    expect(assumptions.find('div', text: 'Total Cost')).to have_content details['total_cost']
-    expect(assumptions.find('div', text: 'Number of Units')).to have_content details['number_of_units']
-    expect(assumptions.find('div', text: 'Average Monthly Rent')).to have_content details['average_monthly_rent']
-    expect(assumptions.find('div', text: 'Gross Monthly Rent')).to have_content details['gross_monthly_rent']
-    expect(assumptions.find('div', text: 'Other Income')).to have_content details['other_income']
-    expect(assumptions.find('div', text: 'Total Gross Monthly Income')).to have_content details['total_gross_monthly_income']
+    expect(assumptions.find('div', text: 'Land')).to have_content details[:land]
+    expect(assumptions.find('div', text: 'Building')).to have_content details[:building]
+    expect(assumptions.find('div', text: 'Improvements')).to have_content details[:improvements]
+    expect(assumptions.find('div', text: 'Closing Costs')).to have_content details[:closing_costs]
+    expect(assumptions.find('div', text: 'Total Cost')).to have_content details[:total_cost]
+    expect(assumptions.find('div', text: 'Number of Units')).to have_content details[:number_of_units]
+    expect(assumptions.find('div', text: 'Average Monthly Rent')).to have_content details[:average_monthly_rent]
+    expect(assumptions.find('div', text: 'Gross Monthly Rent')).to have_content details[:gross_monthly_rent]
+    expect(assumptions.find('div', text: 'Other Income')).to have_content details[:other_income]
+    expect(assumptions.find('div', text: 'Total Gross Monthly Income')).to have_content details[:total_gross_monthly_income]
   end
 
   def assert_operating_expenses(details)
     inputs = page.find('#operating-expenses-inputs')
 
     expect(inputs).to have_content 'Monthly Operating Expenses'
-    expect(inputs.find('#vacancy-rate', text: 'Vacancy Rate')).to have_content details['vacancy_rate']
-    expect(inputs.find('#repairs-and-maintenance', text: 'Repairs and Maintenance')).to have_content details['repairs_and_maintenance']
-    expect(inputs.find('#property-management-fees', text: 'Property Management Fees')).to have_content details['property_management_fees']
-    expect(inputs.find('#taxes', text: 'Taxes')).to have_content details['taxes']
-    expect(inputs.find('#insurance', text: 'Insurance')).to have_content details['insurance']
-    expect(inputs.find('#salaries-and-wages', text: 'Salaries and Wages')).to have_content details['salaries_and_wages']
-    expect(inputs.find('#water-and-sewer', text: 'Water and Sewer')).to have_content details['water_and_sewer']
-    expect(inputs.find('#utilities', text: 'Utilities')).to have_content details['utilities']
-    expect(inputs.find('#trash-removal', text: 'Trash Removal')).to have_content details['trash_removal']
-    expect(inputs.find('#professional-fees', text: 'Professional Fees')).to have_content details['professional_fees']
-    expect(inputs.find('#advertising', text: 'Advertising')).to have_content details['advertising']
-    expect(inputs.find('#landscaping', text: 'Landscaping')).to have_content details['landscaping']
-    expect(inputs.find('#capital-expenditures', text: 'CapEx')).to have_content details['capital_expenditures']
-    expect(inputs.find('#other-expenses', text: 'Other Expenses')).to have_content details['other_expenses']
-    expect(inputs.find('#equipment-depreciation', text: 'Equipment Depreciation')).to have_content details['equipment_depreciation']
-    expect(inputs.find('#income-tax-rate', text: 'Income Tax Rate')).to have_content details['income_tax_rate']
+    expect(inputs.find('#vacancy-rate', text: 'Vacancy Rate')).to have_content details[:vacancy_rate]
+    expect(inputs.find('#repairs-and-maintenance', text: 'Repairs and Maintenance')).to have_content details[:repairs_and_maintenance]
+    expect(inputs.find('#property-management-fees', text: 'Property Management Fees')).to have_content details[:property_management_fees]
+    expect(inputs.find('#taxes', text: 'Taxes')).to have_content details[:taxes]
+    expect(inputs.find('#insurance', text: 'Insurance')).to have_content details[:insurance]
+    expect(inputs.find('#salaries-and-wages', text: 'Salaries and Wages')).to have_content details[:salaries_and_wages]
+    expect(inputs.find('#water-and-sewer', text: 'Water and Sewer')).to have_content details[:water_and_sewer]
+    expect(inputs.find('#utilities', text: 'Utilities')).to have_content details[:utilities]
+    expect(inputs.find('#trash-removal', text: 'Trash Removal')).to have_content details[:trash_removal]
+    expect(inputs.find('#professional-fees', text: 'Professional Fees')).to have_content details[:professional_fees]
+    expect(inputs.find('#advertising', text: 'Advertising')).to have_content details[:advertising]
+    expect(inputs.find('#landscaping', text: 'Landscaping')).to have_content details[:landscaping]
+    expect(inputs.find('#capital-expenditures', text: 'CapEx')).to have_content details[:capital_expenditures]
+    expect(inputs.find('#other-expenses', text: 'Other Expenses')).to have_content details[:other_expenses]
+    expect(inputs.find('#equipment-depreciation', text: 'Equipment Depreciation')).to have_content details[:equipment_depreciation]
+    expect(inputs.find('#income-tax-rate', text: 'Income Tax Rate')).to have_content details[:income_tax_rate]
   end
 end

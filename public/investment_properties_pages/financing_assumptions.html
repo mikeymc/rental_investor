@@ -1,0 +1,20 @@
+<div id="financing-assumptions">
+  <div class="row">
+    <div class="col-md-24 subsection-header">Financing Assumptions</div>
+  </div>
+  <div class="row" id="total-purchase">
+    <span class="col-md-12">Total Purchase</span>
+    <span class="col-md-6 align-right">100%</span>
+    <span class="col-md-6 align-right">{{total_cost | currency}}</span>
+  </div>
+  <div class="row" id="down-payment">
+    <span class="col-md-12">Owner's Equity</span>
+    <span class="col-md-6 align-right">{{equity_percentage | percentage}}</span>
+    <span class="col-md-6 align-right">{{down_payment | currency}}</span>
+  </div>
+  <div class="row" id="balance-to-finance">
+    <span class="col-md-12">Balance to Finance</span>
+    <span class="col-md-6 align-right">{{balance_to_finance_percentage | percentage}}</span>
+    <span class="col-md-6 align-right">{{balance_to_finance | currency}}</span>
+  </div>
+</div>
