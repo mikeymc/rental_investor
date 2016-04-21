@@ -12,7 +12,11 @@
   </div>
   <div id="building-cost" class="row">
     <span class="col-md-18">Building Cost:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.building_cost | currency}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="building-cost-input"
+           format="currency"
+           ng-model="rental_property.financing_and_income_assumption.building_cost"/>
   </div>
   <div id="improvements" class="row">
     <span class="col-md-18">Improvements:</span>

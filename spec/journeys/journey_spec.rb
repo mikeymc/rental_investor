@@ -49,11 +49,13 @@ RSpec.describe 'the rental investment tool' do
 
   def update_property
     fill_in('land-cost-input', with: '600000')
+    fill_in('building-cost-input', with: '2600000')
   end
 
   def see_updated_values
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content '$600,000'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content '$3,133,420'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content '$2,600,000'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content '$3,233,420'
   end
 
   def select_property(property)
