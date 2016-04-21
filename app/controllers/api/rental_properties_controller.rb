@@ -17,7 +17,10 @@ class Api::RentalPropertiesController < ApplicationController
     finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
     @rental_property.financing_and_income_assumption.update({
       land_cost: finance_and_income_assumptions[:land_cost],
-      building_cost: finance_and_income_assumptions[:building_cost]
+      building_cost: finance_and_income_assumptions[:building_cost],
+      improvements: finance_and_income_assumptions[:improvements],
+      number_of_units: finance_and_income_assumptions[:number_of_units],
+      average_monthly_rent_per_unit: finance_and_income_assumptions[:average_monthly_rent_per_unit]
     })
     render json: serialize(@rental_property)
   end

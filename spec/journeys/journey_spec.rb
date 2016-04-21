@@ -50,12 +50,20 @@ RSpec.describe 'the rental investment tool' do
   def update_property
     fill_in('land-cost-input', with: '600000')
     fill_in('building-cost-input', with: '2600000')
+    fill_in('improvements-input', with: '15')
+    fill_in('number-of-units-input', with: '61')
+    fill_in('average-monthly-rent-input', with: '800')
   end
 
   def see_updated_values
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content '$600,000'
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content '$2,600,000'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content '$3,233,420'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content '$15'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content '$3,233,435'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content '61'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content '$800'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content '$48,800'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content '$49,400'
   end
 
   def select_property(property)

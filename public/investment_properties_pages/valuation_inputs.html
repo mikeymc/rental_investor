@@ -20,7 +20,11 @@
   </div>
   <div id="improvements" class="row">
     <span class="col-md-18">Improvements:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.improvements | currency}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="improvements-input"
+           format="currency"
+           ng-model="rental_property.financing_and_income_assumption.improvements"/>
   </div>
   <div id="total-square-feet" class="row">
     <span class="col-md-18">Total Square Feet:</span>
@@ -28,11 +32,19 @@
   </div>
   <div id="number-of-units" class="row">
     <span class="col-md-18">Number of Units:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.number_of_units | number}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="number-of-units-input"
+           format="currency"
+           ng-model="rental_property.financing_and_income_assumption.number_of_units"/>
   </div>
   <div id="average-monthly-rent" class="row">
     <span class="col-md-18">Average Monthly Rent:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.average_monthly_rent_per_unit | currency}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="average-monthly-rent-input"
+           format="currency"
+           ng-model="rental_property.financing_and_income_assumption.average_monthly_rent_per_unit"/>
   </div>
   <div id="other-income" class="row">
     <span class="col-md-18">Other Income:</span>
