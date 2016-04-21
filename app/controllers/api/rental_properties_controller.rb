@@ -8,42 +8,28 @@ class Api::RentalPropertiesController < ApplicationController
 
   def show
     @rental_property = RentalProperty.find(params[:id])
-    render json: @rental_property.to_json(include: [
-      :financing_and_income_assumption,
-      :operating_expenses_assumption,
-      :closing_cost,
-      :income_and_cost_projection,
-    ])
+    render json: serialize(@rental_property)
   end
 
   def update
-    finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
-    new_land_cost = finance_and_income_assumptions[:land_cost]
-    new_property_cost = finance_and_income_assumptions[:building_cost]
-
     @rental_property = RentalProperty.find(params[:rental_property][:id])
 
-    updates = {
-      land_cost: new_land_cost,
-      building_cost: new_property_cost
-    }
+    finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
+    @rental_property.financing_and_income_assumption.update({
+      land_cost: finance_and_income_assumptions[:land_cost],
+      building_cost: finance_and_income_assumptions[:building_cost]
+    })
+    render json: serialize(@rental_property)
+  end
 
-    @rental_property.financing_and_income_assumption.update(updates)
-    render json: @rental_property.to_json(include: [
+  private
+
+  def serialize(object)
+    object.to_json(include: [
       :financing_and_income_assumption,
       :operating_expenses_assumption,
       :closing_cost,
       :income_and_cost_projection,
     ])
-  end
-
-  def create
-    # begin
-    #   @budget = Budget.create()
-    #   @budget.save!
-    #   render json: @budget, serializer: BudgetSerializer
-    # rescue
-    #   render json: {}, status: 404
-    # end
   end
 end
