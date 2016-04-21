@@ -48,7 +48,11 @@
   </div>
   <div id="other-income" class="row">
     <span class="col-md-18">Other Income:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.other_monthly_income | currency}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="other-income-input"
+           format="currency"
+           ng-model="rental_property.financing_and_income_assumption.other_monthly_income"/>
   </div>
   <div id="equity-percentage" class="row">
     <span class="col-md-18">Equity Percentage:</span>

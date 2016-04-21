@@ -53,6 +53,7 @@ RSpec.describe 'the rental investment tool' do
     fill_in('improvements-input', with: '15')
     fill_in('number-of-units-input', with: '61')
     fill_in('average-monthly-rent-input', with: '800')
+    fill_in('other-income-input', with: '1000')
   end
 
   def see_updated_values
@@ -63,7 +64,7 @@ RSpec.describe 'the rental investment tool' do
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content '61'
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content '$800'
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content '$48,800'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content '$49,400'
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content '$49,800'
   end
 
   def select_property(property)
