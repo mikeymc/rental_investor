@@ -210,7 +210,40 @@ class Expectations
     end
   end
 
+  def to_see_updated_values
+    assert_updated_values({
+          land_cost: '$600,000',
+          building_cost: '$2,600,000',
+          improvements: '$15',
+          total_cost: '$3,235,435',
+          number_of_units: '61',
+          average_monthly_rent: '$800',
+          gross_monthly_rent: '$48,800',
+          gross_monthly_income: '$49,800',
+          total_cost: '$3,235,435',
+          total_closing_costs: '$35,420',
+          down_payment: '$550,023.95',
+          balance_to_finance: '$2,685,411.05',
+        })
+  end
+
   private
+
+  def assert_updated_values(details)
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content details[:land_cost]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content details[:building_cost]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content details[:improvements]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content details[:total_cost]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content details[:number_of_units]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content details[:average_monthly_rent]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content details[:gross_monthly_rent]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content details[:gross_monthly_income]
+    expect(page.find('#total-purchase')).to have_content details[:total_cost]
+    expect(page.find('#total-closing-costs')).to have_content details[:total_closing_costs]
+    expect(page.find('#down-payment')).to have_content details[:down_payment]
+    expect(page.find('#balance-to-finance')).to have_content details[:balance_to_finance]
+
+  end
 
   def assert_financing_assumptions(details)
     closing_costs = page.find('#financing-assumptions')

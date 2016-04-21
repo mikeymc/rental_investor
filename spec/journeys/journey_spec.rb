@@ -57,18 +57,7 @@ RSpec.describe 'the rental investment tool' do
   end
 
   def see_updated_values
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content '$600,000'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content '$2,600,000'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content '$15'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content '$3,235,435'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content '61'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content '$800'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content '$48,800'
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content '$49,800'
-    expect(page.find('#total-purchase')).to have_content '$3,235,435'
-    expect(page.find('#total-closing-costs')).to have_content '$35,420'
-    expect(page.find('#down-payment')).to have_content '$550,023.95'
-    expect(page.find('#balance-to-finance')).to have_content '$2,685,411.05'
+    then_expect.to_see_updated_values
   end
 
   def select_property(property)
