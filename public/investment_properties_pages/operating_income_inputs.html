@@ -4,7 +4,7 @@
   </div>
   <div id="vacancy-rate" class="row">
     <span class="col-md-18">Vacancy Rate</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage}}</span>
+    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage:1}}</span>
   </div>
   <div id="repairs-and-maintenance" class="row">
     <span class="col-md-18">Repairs and Maintenance</span>
@@ -12,7 +12,7 @@
   </div>
   <div id="property-management-fees" class="row">
     <span class="col-md-18">Property Management Fees</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.property_management_fees | percentage}}</span>
+    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.property_management_fees | percentage:1}}</span>
   </div>
   <div id="utilities" class="row">
     <span class="col-md-18">Utilities</span>
@@ -52,7 +52,7 @@
   </div>
   <div id="capital-expenditures" class="row">
     <span class="col-md-18">CapEx</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.capex | percentage}}</span>
+    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.capex | percentage:1}}</span>
   </div>
   <div id="other-expenses" class="row">
     <span class="col-md-18">Other Expenses</span>

@@ -16,8 +16,20 @@ angular.module('rentals').directive('financingAssumptions', function(cost_and_re
         $scope.down_payment = down_payment($scope.total_cost, $scope.equity_percentage);
         $scope.balance_to_finance_percentage = percent_to_finance($scope.equity_percentage);
         $scope.balance_to_finance = balance_to_finance($scope.total_cost, $scope.down_payment);
-
+        $scope.monthly_interest_rate = property.financing_and_income_assumption.loan_interest_rate / 12;
+        $scope.amortization_period_in_months = property.financing_and_income_assumption.amortization_period_in_years*12;
+        $scope.monthly_loan_payment = monthly_loan_payment(
+          $scope.balance_to_finance,
+          $scope.monthly_interest_rate,
+          $scope.amortization_period_in_months);
+        $scope.annual_loan_payment = $scope.monthly_loan_payment * 12;
       }, true);
+
+      function monthly_loan_payment(principal, interest_rate, num_payments) {
+        var i = interest_rate / 100;
+        var mortgage = principal * i * Math.pow(1 + i, num_payments) / (Math.pow(1 + i, num_payments) - 1);
+        return mortgage;
+      }
 
       function closing_costs(property) {
         return cost_and_revenue_assumptions_service.get_closing_costs(property.closing_cost);

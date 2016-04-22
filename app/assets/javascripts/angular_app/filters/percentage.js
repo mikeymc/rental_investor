@@ -1,5 +1,6 @@
-angular.module('rentals').filter('percentage', function() {
-  return function(input) {
-    return input ? input + '%' : input;
+angular.module('rentals').filter('percentage', function($filter) {
+  return function(input, decimals) {
+    var round = decimals ? decimals : 0;
+    return input ? $filter('number')(input, round) + '%' : input;
   }
 });

@@ -31,7 +31,7 @@ class Expectations
         number_of_units: '60',
         average_monthly_rent: '$700.00',
         other_income: '$600.00',
-        equity_percentage: '17.0%',
+        equity_percentage: '17%',
         loan_interest_rate: '5.75%',
         amortization_period_in_years: '25'
       })
@@ -194,18 +194,32 @@ class Expectations
         total_purchase_value: '$3,033,420',
         total_purchase_percentage: '100%',
         owners_equity_value: '$515,681',
-        owners_equity_percentage: '17.0%',
+        owners_equity_percentage: '17%',
         balance_to_finance_value: '$2,517,738.60',
-        balance_to_finance_percentage: '83%'
+        balance_to_finance_percentage: '83%',
+        interest_rate: '5.750%',
+        interest_rate_monthly: '0.479%',
+        amortization_period: '25',
+        amortization_period_in_months: '300',
+        annual_loan_payment: '$190,071',
+        monthly_loan_payment: '$15,839',
+        annual_label: 'Annual',
+        monthly_label: 'Monthly'
       })
     elsif property[:name] == 'sesame'
       assert_financing_assumptions({
         total_purchase_value: '$305,410',
         total_purchase_percentage: '100%',
         owners_equity_value: '$61,082',
-        owners_equity_percentage: '20.0%',
+        owners_equity_percentage: '20%',
         balance_to_finance_value: '$244,328',
-        balance_to_finance_percentage: '80%'
+        balance_to_finance_percentage: '80%',
+        interest_rate: '4.000%',
+        interest_rate_monthly: '0.333%',
+        amortization_period: '30',
+        amortization_period_in_months: '360',
+        annual_loan_payment: '$13,997',
+        monthly_loan_payment: '$1,166'
       })
     end
   end
@@ -254,6 +268,14 @@ class Expectations
     expect(closing_costs.find('#down-payment', text: 'Owner\'s Equity')).to have_content details[:owners_equity_percentage]
     expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content details[:balance_to_finance_value]
     expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content details[:balance_to_finance_percentage]
+    expect(closing_costs.find('#interest-rate', text: 'Interest Rate')).to have_content details[:interest_rate]
+    expect(closing_costs.find('#interest-rate', text: 'Interest Rate')).to have_content details[:interest_rate_monthly]
+    expect(closing_costs.find('#amortization-period', text: 'Amortization Period')).to have_content details[:amortization_period]
+    expect(closing_costs.find('#amortization-period', text: 'Amortization Period')).to have_content details[:amortization_period_in_months]
+    expect(closing_costs.find('#loan-payment', text: 'Payment')).to have_content details[:annual_loan_payment]
+    expect(closing_costs.find('#loan-payment', text: 'Payment')).to have_content details[:monthly_loan_payment]
+    expect(closing_costs).to have_content details[:annual_label]
+    expect(closing_costs).to have_content details[:monthly_label]
   end
 
   def assert_closing_costs(details)

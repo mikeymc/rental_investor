@@ -9,12 +9,33 @@
   </div>
   <div class="row" id="down-payment">
     <span class="col-md-12">Owner's Equity</span>
-    <span class="col-md-6 align-right">{{equity_percentage | percentage}}</span>
+    <span class="col-md-6 align-right">{{equity_percentage | percentage:0}}</span>
     <span class="col-md-6 align-right">{{down_payment | currency}}</span>
   </div>
   <div class="row" id="balance-to-finance">
     <span class="col-md-12">Balance to Finance</span>
     <span class="col-md-6 align-right">{{balance_to_finance_percentage | percentage}}</span>
     <span class="col-md-6 align-right">{{balance_to_finance | currency}}</span>
+  </div>
+  <div class="row" id="interest-rate">
+    <span class="col-md-12">Interest Rate</span>
+    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.loan_interest_rate | percentage:3}}</span>
+    <span class="col-md-6 align-right">{{monthly_interest_rate | percentage:3}}</span>
+  </div>
+  <br/>
+  <div class="row">
+    <span class="col-md-12"></span>
+    <span class="col-md-6 align-right">Annual</span>
+    <span class="col-md-6 align-right">Monthly</span>
+  </div>
+  <div class="row" id="amortization-period">
+    <span class="col-md-12">Amortization Period</span>
+    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.amortization_period_in_years}}</span>
+    <span class="col-md-6 align-right">{{amortization_period_in_months}}</span>
+  </div>
+  <div class="row" id="loan-payment">
+    <span class="col-md-12">Payment</span>
+    <span class="col-md-6 align-right">{{annual_loan_payment | currency}}</span>
+    <span class="col-md-6 align-right">{{monthly_loan_payment | currency}}</span>
   </div>
 </div>
