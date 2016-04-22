@@ -5,7 +5,7 @@ angular.module('rentals').directive('format', ['$filter', function($filter) {
       if (!ctrl) return;
 
       ctrl.$formatters.unshift(function() {
-        return $filter(attrs.format)(ctrl.$modelValue)
+        return $filter(attrs.format)(ctrl.$modelValue, attrs.decimals)
       });
 
       elem.bind('focus', function() {
@@ -15,7 +15,7 @@ angular.module('rentals').directive('format', ['$filter', function($filter) {
 
       elem.bind('blur', function() {
         var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
-        elem.val($filter(attrs.format)(plainNumber));
+        elem.val($filter(attrs.format)(plainNumber, attrs.decimals));
       });
     }
   };

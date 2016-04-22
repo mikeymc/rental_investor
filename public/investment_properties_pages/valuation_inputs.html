@@ -64,7 +64,12 @@
   </div>
   <div id="loan-interest-rate" class="row">
     <span class="col-md-18">Loan Interest Rate:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.loan_interest_rate | percentage:3}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="loan-interest-rate-input"
+           format="percentage"
+           decimals="3"
+           ng-model="rental_property.financing_and_income_assumption.loan_interest_rate"/>
   </div>
   <div id="amortization-period-in-years" class="row">
     <span class="col-md-18">Amortization Period in Years:</span>

@@ -237,7 +237,9 @@ class Expectations
           total_closing_costs: '$35,420',
           down_payment: '$647,087.00',
           balance_to_finance: '$2,588,348.00',
-          equity_percentage: '20%'
+          equity_percentage: '20%',
+          loan_interest_rate: '6.750%',
+          loan_payment_monthly: '$17,883.19'
         })
   end
 
@@ -257,6 +259,10 @@ class Expectations
     expect(page.find('#down-payment')).to have_content details[:down_payment]
     expect(page.find('#down-payment')).to have_content details[:equity_percentage]
     expect(page.find('#balance-to-finance')).to have_content details[:balance_to_finance]
+    expect(page.find('#interest-rate')).to have_content details[:loan_interest_rate]
+    loan_payment = page.find('#loan-payment')
+    puts loan_payment.text
+    expect(loan_payment).to have_content details[:loan_payment_monthly]
 
   end
 
