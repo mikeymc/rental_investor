@@ -44,7 +44,7 @@ class Expectations
         number_of_units: '6',
         average_monthly_rent: '$482.00',
         other_income: '$0.00',
-        equity_percentage: '20',
+        equity_percentage: '20%',
         loan_interest_rate: '4.0%',
         amortization_period_in_years: '30'
       })
@@ -234,10 +234,10 @@ class Expectations
           average_monthly_rent: '$800',
           gross_monthly_rent: '$48,800',
           gross_monthly_income: '$49,800',
-          total_cost: '$3,235,435',
           total_closing_costs: '$35,420',
-          down_payment: '$550,023.95',
-          balance_to_finance: '$2,685,411.05',
+          down_payment: '$647,087.00',
+          balance_to_finance: '$2,588,348.00',
+          equity_percentage: '20%'
         })
   end
 
@@ -255,6 +255,7 @@ class Expectations
     expect(page.find('#total-purchase')).to have_content details[:total_cost]
     expect(page.find('#total-closing-costs')).to have_content details[:total_closing_costs]
     expect(page.find('#down-payment')).to have_content details[:down_payment]
+    expect(page.find('#down-payment')).to have_content details[:equity_percentage]
     expect(page.find('#balance-to-finance')).to have_content details[:balance_to_finance]
 
   end
@@ -314,7 +315,7 @@ class Expectations
     expect(inputs.find_field('number-of-units-input').value).to eq details[:number_of_units]
     expect(inputs.find_field('average-monthly-rent-input').value).to eq details[:average_monthly_rent]
     expect(inputs.find_field('other-income-input').value).to eq details[:other_income]
-    expect(inputs.find('#equity-percentage')).to have_content details[:equity_percentage]
+    expect(inputs.find_field('equity-percentage-input').value).to eq details[:equity_percentage]
     expect(inputs.find('#loan-interest-rate')).to have_content details[:interest_rate]
     expect(inputs.find('#amortization-period-in-years')).to have_content details[:amortization_period_in_years]
   end

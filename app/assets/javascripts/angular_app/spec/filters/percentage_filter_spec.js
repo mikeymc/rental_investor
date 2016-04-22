@@ -1,11 +1,10 @@
 describe('percentage', function() {
   var view;
+  beforeEach(function() {
+    this.inject_dependencies('render_template', '$scope', '$httpBackend');
+  });
 
-  describe('when used in a view', function() {
-    beforeEach(function() {
-      this.inject_dependencies('render_template', '$scope');
-    });
-
+  describe('when interpolated in a view', function() {
     it('adds a % to text', function() {
       this.$scope.number = '15';
       view = this.render_template('<div>{{number | percentage}}</div>', this.$scope);

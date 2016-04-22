@@ -56,11 +56,15 @@
   </div>
   <div id="equity-percentage" class="row">
     <span class="col-md-18">Equity Percentage:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.equity_percentage | percentage}}</span>
+    <input class="col-md-6"
+           type="text"
+           name="equity-percentage-input"
+           format="percentage"
+           ng-model="rental_property.financing_and_income_assumption.equity_percentage"/>
   </div>
   <div id="loan-interest-rate" class="row">
     <span class="col-md-18">Loan Interest Rate:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.loan_interest_rate | percentage}}</span>
+    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.loan_interest_rate | percentage:3}}</span>
   </div>
   <div id="amortization-period-in-years" class="row">
     <span class="col-md-18">Amortization Period in Years:</span>

@@ -54,6 +54,7 @@ RSpec.describe 'the rental investment tool' do
     fill_in('number-of-units-input', with: '61')
     fill_in('average-monthly-rent-input', with: '800')
     fill_in('other-income-input', with: '1000')
+    fill_in('equity-percentage-input', with: '20')
   end
 
   def see_updated_values

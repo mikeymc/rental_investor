@@ -1,14 +1,14 @@
-angular.module('rentals').directive('format', ['$filter', function ($filter) {
+angular.module('rentals').directive('format', ['$filter', function($filter) {
   return {
     require: '?ngModel',
-    link: function (scope, elem, attrs, ctrl) {
+    link: function(scope, elem, attrs, ctrl) {
       if (!ctrl) return;
 
-      ctrl.$formatters.unshift(function () {
+      ctrl.$formatters.unshift(function() {
         return $filter(attrs.format)(ctrl.$modelValue)
       });
 
-      elem.bind('focus', function(event) {
+      elem.bind('focus', function() {
         var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
         elem.val(plainNumber);
       });
