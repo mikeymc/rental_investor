@@ -51,6 +51,18 @@ class Expectations
     end
   end
 
+  def to_see_the_key_rent_ratios(property)
+    if property[:name] == 'moroni'
+      assert_key_rent_ratios({
+        total_area_in_sq_ft: '52,500'
+      })
+    elsif property[:name] == 'sesame'
+      assert_key_rent_ratios({
+        total_area_in_sq_ft: '3,311'
+      })
+    end
+  end
+
   def to_see_the_cost_and_revenue_assumptions(property)
     if property[:name] == 'moroni'
       assert_cost_and_revenue_assumptions({
@@ -246,6 +258,13 @@ class Expectations
   end
 
   private
+
+  def assert_key_rent_ratios(details)
+    ratios = page.find('#key-rent-ratios')
+
+    expect(ratios).to have_content 'Key Rent Ratios'
+    expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_area_in_sq_ft]
+  end
 
   def assert_updated_values(details)
     expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content details[:land_cost]
