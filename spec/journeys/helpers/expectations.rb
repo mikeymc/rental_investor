@@ -33,7 +33,8 @@ class Expectations
         other_income: '$600.00',
         equity_percentage: '17%',
         loan_interest_rate: '5.750%',
-        amortization_period_in_years: '25'
+        amortization_period_in_years: '25',
+        total_square_feet: '52,500'
       })
     elsif property[:name] == 'sesame'
       assert_property_details({
@@ -46,7 +47,8 @@ class Expectations
         other_income: '$0.00',
         equity_percentage: '20%',
         loan_interest_rate: '4.000%',
-        amortization_period_in_years: '30'
+        amortization_period_in_years: '30',
+        total_square_feet: '3,311'
       })
     end
   end
@@ -256,7 +258,8 @@ class Expectations
       loan_payment_monthly: '$16,787.98',
       amortization_period_in_years: '30',
       amortization_period_in_months: '360',
-      avg_sq_ft_per_unit: '860.66'
+      avg_sq_ft_per_unit: '877.05',
+      total_square_feet: '53,500'
     })
   end
 
@@ -289,6 +292,7 @@ class Expectations
     expect(page.find('#amortization-period')).to have_content details[:amortization_period_in_months]
     expect(page.find('#loan-payment')).to have_content details[:loan_payment_monthly]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
+    expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_square_feet]
   end
 
   def assert_financing_assumptions(details)
@@ -349,6 +353,7 @@ class Expectations
     expect(inputs.find_field('equity-percentage-input').value).to eq details[:equity_percentage]
     expect(inputs.find_field('amortization-period-in-years-input').value).to eq details[:amortization_period_in_years]
     expect(inputs.find_field('loan-interest-rate-input').value).to eq details[:loan_interest_rate]
+    expect(inputs.find_field('total-square-feet-input').value).to eq details[:total_square_feet]
   end
 
   def assert_cost_and_revenue_assumptions(details)

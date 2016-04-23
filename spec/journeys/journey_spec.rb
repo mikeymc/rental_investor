@@ -57,6 +57,7 @@ RSpec.describe 'the rental investment tool' do
     fill_in('equity-percentage-input', with: '20')
     fill_in('loan-interest-rate-input', with: '6.750')
     fill_in('amortization-period-in-years-input', with: '30')
+    fill_in('total-square-feet-input', with: '53500')
   end
 
   def see_updated_values
