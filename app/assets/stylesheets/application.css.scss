@@ -34,6 +34,10 @@ input:focus {
   border-bottom: thin solid;
 }
 
+.add-border-bottom {
+  border-bottom: thin black solid;
+}
+
 .container {
   width: 1275px;
   $grid-columns: 24;
