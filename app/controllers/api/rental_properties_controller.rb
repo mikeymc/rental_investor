@@ -23,7 +23,8 @@ class Api::RentalPropertiesController < ApplicationController
       average_monthly_rent_per_unit: finance_and_income_assumptions[:average_monthly_rent_per_unit],
       other_monthly_income: finance_and_income_assumptions[:other_monthly_income],
       equity_percentage: finance_and_income_assumptions[:equity_percentage],
-      loan_interest_rate: finance_and_income_assumptions[:loan_interest_rate]
+      loan_interest_rate: finance_and_income_assumptions[:loan_interest_rate],
+      amortization_period_in_years: finance_and_income_assumptions[:amortization_period_in_years]
     })
     render json: serialize(@rental_property)
   end

@@ -73,6 +73,11 @@
   </div>
   <div id="amortization-period-in-years" class="row">
     <span class="col-md-18">Amortization Period in Years:</span>
-    <span class="col-md-6 align-right">{{rental_property.financing_and_income_assumption.amortization_period_in_years | number}}</span>
+    <input class="col-md-6"
+           type="text"
+           format="number"
+           decimals="0"
+           name="amortization-period-in-years-input"
+           ng-model="rental_property.financing_and_income_assumption.amortization_period_in_years"/>
   </div>
 </div>

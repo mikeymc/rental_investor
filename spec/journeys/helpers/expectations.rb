@@ -32,7 +32,7 @@ class Expectations
         average_monthly_rent: '$700.00',
         other_income: '$600.00',
         equity_percentage: '17%',
-        loan_interest_rate: '5.75%',
+        loan_interest_rate: '5.750%',
         amortization_period_in_years: '25'
       })
     elsif property[:name] == 'sesame'
@@ -45,7 +45,7 @@ class Expectations
         average_monthly_rent: '$482.00',
         other_income: '$0.00',
         equity_percentage: '20%',
-        loan_interest_rate: '4.0%',
+        loan_interest_rate: '4.000%',
         amortization_period_in_years: '30'
       })
     end
@@ -239,7 +239,9 @@ class Expectations
           balance_to_finance: '$2,588,348.00',
           equity_percentage: '20%',
           loan_interest_rate: '6.750%',
-          loan_payment_monthly: '$17,883.19'
+          loan_payment_monthly: '$16,787.98',
+          amortization_period_in_years: '30',
+          amortization_period_in_months: '360'
         })
   end
 
@@ -260,10 +262,9 @@ class Expectations
     expect(page.find('#down-payment')).to have_content details[:equity_percentage]
     expect(page.find('#balance-to-finance')).to have_content details[:balance_to_finance]
     expect(page.find('#interest-rate')).to have_content details[:loan_interest_rate]
-    loan_payment = page.find('#loan-payment')
-    puts loan_payment.text
-    expect(loan_payment).to have_content details[:loan_payment_monthly]
-
+    expect(page.find('#amortization-period')).to have_content details[:amortization_period_in_years]
+    expect(page.find('#amortization-period')).to have_content details[:amortization_period_in_months]
+    expect(page.find('#loan-payment')).to have_content details[:loan_payment_monthly]
   end
 
   def assert_financing_assumptions(details)
@@ -322,8 +323,8 @@ class Expectations
     expect(inputs.find_field('average-monthly-rent-input').value).to eq details[:average_monthly_rent]
     expect(inputs.find_field('other-income-input').value).to eq details[:other_income]
     expect(inputs.find_field('equity-percentage-input').value).to eq details[:equity_percentage]
-    expect(inputs.find('#loan-interest-rate')).to have_content details[:interest_rate]
-    expect(inputs.find('#amortization-period-in-years')).to have_content details[:amortization_period_in_years]
+    expect(inputs.find_field('amortization-period-in-years-input').value).to eq details[:amortization_period_in_years]
+    expect(inputs.find_field('loan-interest-rate-input').value).to eq details[:loan_interest_rate]
   end
 
   def assert_cost_and_revenue_assumptions(details)
