@@ -5,10 +5,36 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
     get_total_cost: get_total_cost,
     get_gross_monthly_rent: get_gross_monthly_rent,
     get_projected_average_rents: get_projected_average_rents,
-    get_loan_origination_fee: get_loan_origination_fee
+    get_loan_origination_fee: get_loan_origination_fee,
+    get_cost_per_unit: get_cost_per_unit,
+    get_avg_area_per_unit: get_avg_area_per_unit,
+    get_total_cost_per_sq_ft: get_total_cost_per_sq_ft,
+    get_avg_rent_per_sq_ft: get_avg_rent_per_sq_ft
   };
 
   /* --- Private --- */
+
+  function get_avg_rent_per_sq_ft(property) {
+    var assumptions = property.financing_and_income_assumption;
+    var gross_rent = get_gross_monthly_rent(property);
+    return gross_rent / assumptions.total_square_feet;
+  }
+
+  function get_total_cost_per_sq_ft(property) {
+    var assumptions = property.financing_and_income_assumption;
+    var total_cost = get_total_cost(property);
+    return total_cost / assumptions.total_square_feet;
+  }
+
+  function get_avg_area_per_unit(property) {
+    var assumptions = property.financing_and_income_assumption;
+    return assumptions.total_square_feet / assumptions.number_of_units;
+  }
+
+  function get_cost_per_unit(property) {
+    var total_cost = get_total_cost(property);
+    return total_cost / property.financing_and_income_assumption.number_of_units;
+  }
 
   function get_loan_origination_fee(property) {
     var land_cost = parseFloat(property.financing_and_income_assumption.land_cost);
