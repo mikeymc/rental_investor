@@ -16,9 +16,7 @@ angular.module('rentals').directive('keyRentRatios', function(cost_and_revenue_a
       /* --- Private --- */
 
       function cost_per_unit(property) {
-        var assumptions = property.financing_and_income_assumption;
-        var closing_costs = cost_and_revenue_assumptions_service.get_closing_costs(property);
-        var total_cost = cost_and_revenue_assumptions_service.get_total_cost(closing_costs, assumptions);
+        var total_cost = cost_and_revenue_assumptions_service.get_total_cost(property);
         return total_cost / property.financing_and_income_assumption.number_of_units;
       }
 
@@ -29,8 +27,7 @@ angular.module('rentals').directive('keyRentRatios', function(cost_and_revenue_a
 
       function total_cost_per_sq_ft(property) {
         var assumptions = property.financing_and_income_assumption;
-        var closing_costs = cost_and_revenue_assumptions_service.get_closing_costs(property);
-        var total_cost = cost_and_revenue_assumptions_service.get_total_cost(closing_costs, assumptions);
+        var total_cost = cost_and_revenue_assumptions_service.get_total_cost(property);
         return total_cost / assumptions.total_square_feet;
       }
 

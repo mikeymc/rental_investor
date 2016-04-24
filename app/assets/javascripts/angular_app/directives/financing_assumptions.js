@@ -36,9 +36,7 @@ angular.module('rentals').directive('financingAssumptions', function(cost_and_re
       }
 
       function total_cost(property) {
-        var s = cost_and_revenue_assumptions_service;
-        var closing_cost = s.get_closing_costs(property);
-        return s.get_total_cost(closing_cost, property.financing_and_income_assumption);
+        return cost_and_revenue_assumptions_service.get_total_cost(property);
       }
 
       function down_payment(total_cost, equity_percentage) {

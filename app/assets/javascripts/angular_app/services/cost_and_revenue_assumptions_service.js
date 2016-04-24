@@ -35,7 +35,10 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
       parseFloat(assumptions.other_monthly_income);
   }
 
-  function get_total_cost(closing_costs, financing_and_income_assumptions) {
+  function get_total_cost(property) {
+    var financing_and_income_assumptions = property.financing_and_income_assumption;
+    var closing_costs = get_closing_costs(property);
+
     return parseFloat(closing_costs) +
       parseFloat(financing_and_income_assumptions.land_cost) +
       parseFloat(financing_and_income_assumptions.building_cost) +
