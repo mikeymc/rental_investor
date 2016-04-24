@@ -22,7 +22,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">Vacancy Rate</div>
-      <div class="col-md-1"></div>
+      <div class="col-md-1 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage:1}}</div>
       <div class="col-md-2 align-right add-border-bottom">{{vacancy | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="cost in projected_annual_vacancy_costs track by $index">{{cost | currency:"$":0}}</div>
     </div>
@@ -40,7 +40,7 @@
     </div>
     <div class="row">
       <div class="col-md-6">Gross Income</div>
-      <div class="col-md-1"></div>
+      <div class="col-md-1 align-right">100%</div>
       <div class="col-md-2 align-right">{{gross_income | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="income in projected_gross_incomes track by $index">{{income | currency:"$":0}}</div>
     </div>

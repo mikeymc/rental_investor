@@ -294,6 +294,7 @@ class Expectations
         other_income_yearly: ['$7,200', '$7,416', '$7,676', '$7,906', '$8,143'],
         gross_income_yearly: ['$486,000', '$500,580', '$518,100', '$533,643', '$549,653'],
         vacancy_rate_monthly: '$2,100',
+        vacancy_rate_percentage: '5.0%',
         net_rental_income_monthly: '$39,900',
         other_income_monthly: '$600',
         gross_income_monthly: '$40,500'
@@ -307,6 +308,7 @@ class Expectations
         other_income_yearly: ['$0', '$0', '$0', '$0', '$0'],
         gross_income_yearly: ['$32,969', '$33,958', '$35,146', '$36,201', '$37,287'],
         vacancy_rate_monthly: '145',
+        vacancy_rate_percentage: '5.0%',
         net_rental_income_monthly: '$2,747',
         other_income_monthly: '$0',
         gross_income_monthly: '$2,747'
@@ -345,9 +347,11 @@ class Expectations
       expect(section.find('.row', text: 'Gross Income')).to have_content income
     end
     expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_monthly]
+    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_percentage]
     expect(section.find('.row', text: 'Net Rental Income')).to have_content details[:net_rental_income_monthly]
     expect(section.find('.row', text: 'Other Income')).to have_content details[:other_income_monthly]
     expect(section.find('.row', text: 'Gross Income')).to have_content details[:gross_income_monthly]
+    expect(section.find('.row', text: 'Gross Income')).to have_content '100%'
   end
 
   def assert_operating_expense_projections(projections)
