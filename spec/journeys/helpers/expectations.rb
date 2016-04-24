@@ -493,7 +493,7 @@ class Expectations
 
   def assert_property_details(details)
     assumptions = page.find('#financing-and-income-assumptions')
-    inputs = page.find('#valuation-inputs')
+    inputs = page.find('#property-and-loan-information')
 
     expect(assumptions).to have_content 'Financing and Income Assumptions'
     expect(inputs).to have_content 'Inputs'
