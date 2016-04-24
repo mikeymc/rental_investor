@@ -32,12 +32,12 @@ angular.module('rentals').directive('financingAssumptions', function(cost_and_re
       }
 
       function closing_costs(property) {
-        return cost_and_revenue_assumptions_service.get_closing_costs(property.closing_cost);
+        return cost_and_revenue_assumptions_service.get_closing_costs(property);
       }
 
       function total_cost(property) {
         var s = cost_and_revenue_assumptions_service;
-        var closing_cost = s.get_closing_costs(property.closing_cost);
+        var closing_cost = s.get_closing_costs(property);
         return s.get_total_cost(closing_cost, property.financing_and_income_assumption);
       }
 

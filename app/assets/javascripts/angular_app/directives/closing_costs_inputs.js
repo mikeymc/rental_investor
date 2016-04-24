@@ -23,7 +23,7 @@ angular.module('rentals').directive('closingCostsInputs', function(cost_and_reve
       }
 
       function closing_costs(property) {
-        return cost_and_revenue_assumptions_service.get_closing_costs(property.closing_cost);
+        return cost_and_revenue_assumptions_service.get_closing_costs(property);
       }
     }
   }

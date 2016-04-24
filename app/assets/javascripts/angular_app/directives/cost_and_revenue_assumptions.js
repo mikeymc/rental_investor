@@ -9,7 +9,7 @@ angular.module('rentals').directive('costAndRevenueAssumptions', function(cost_a
           return;
         }
         if ($scope.rental_property.closing_cost && $scope.rental_property.financing_and_income_assumption) {
-          $scope.total_closing_costs = s.get_closing_costs($scope.rental_property.closing_cost);
+          $scope.total_closing_costs = s.get_closing_costs($scope.rental_property);
           $scope.gross_monthly_rent = s.get_gross_monthly_rent(
             $scope.rental_property.financing_and_income_assumption
           );

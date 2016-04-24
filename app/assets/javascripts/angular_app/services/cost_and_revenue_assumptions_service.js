@@ -7,12 +7,12 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
     get_projected_average_rents: get_projected_average_rents
   };
 
-  function get_closing_costs(individual_costs) {
-    if(!individual_costs) {
+  function get_closing_costs(property) {
+    if(!property) {
       return 0;
     }
 
-    var costs_copy = angular.copy(individual_costs);
+    var costs_copy = angular.copy(property.closing_cost);
     costs_copy.id = 0;
     costs_copy.rental_property_id = 0;
 
