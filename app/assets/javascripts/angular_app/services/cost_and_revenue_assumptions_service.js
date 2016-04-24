@@ -45,7 +45,8 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
       parseFloat(financing_and_income_assumptions.improvements);
   }
 
-  function get_projected_average_rents(property, rent_increases) {
+  function get_projected_average_rents(property) {
+    var rent_increases = property.income_and_cost_projection.rent_increases;
     var rent = property.financing_and_income_assumption.average_monthly_rent_per_unit;
     var average_rents = [];
     _.each(rent_increases, function(increase) {

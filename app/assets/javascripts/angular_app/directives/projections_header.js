@@ -9,7 +9,7 @@ angular.module('rentals').directive('projectionsHeader', function(cost_and_reven
         }
 
         $scope.rent_increases = rent_increases($scope.rental_property);
-        $scope.average_rents = cost_and_revenue_assumptions_service.get_projected_average_rents($scope.rental_property, $scope.rent_increases);
+        $scope.average_rents = cost_and_revenue_assumptions_service.get_projected_average_rents($scope.rental_property);
         $scope.operating_expenses = operating_expenses($scope.rental_property);
       }, true);
 
