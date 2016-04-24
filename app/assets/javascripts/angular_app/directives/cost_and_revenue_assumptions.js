@@ -15,10 +15,7 @@ angular.module('rentals').directive('costAndRevenueAssumptions', function(cost_a
             $scope.total_closing_costs,
             $scope.rental_property.financing_and_income_assumption
           );
-          $scope.total_gross_monthly_income = s.get_total_gross_monthly_income(
-            $scope.gross_monthly_rent,
-            $scope.rental_property.financing_and_income_assumption
-          );
+          $scope.total_gross_monthly_income = s.get_total_gross_monthly_income($scope.rental_property);
         }
       }, true);
     }
