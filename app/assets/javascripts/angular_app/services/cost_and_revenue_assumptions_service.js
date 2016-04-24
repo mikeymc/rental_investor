@@ -3,7 +3,8 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
     get_closing_costs: get_closing_costs,
     get_total_gross_monthly_income: get_total_gross_monthly_income,
     get_total_cost: get_total_cost,
-    get_gross_monthly_rent: get_gross_monthly_rent
+    get_gross_monthly_rent: get_gross_monthly_rent,
+    get_projected_average_rents: get_projected_average_rents
   };
 
   function get_closing_costs(individual_costs) {
@@ -36,5 +37,16 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
       parseFloat(financing_and_income_assumptions.land_cost) +
       parseFloat(financing_and_income_assumptions.building_cost) +
       parseFloat(financing_and_income_assumptions.improvements);
+  }
+
+  function get_projected_average_rents(property, rent_increases) {
+    var rent = property.financing_and_income_assumption.average_monthly_rent_per_unit;
+    var average_rents = [];
+    _.each(rent_increases, function(increase) {
+      var new_rent = rent * (1 + (increase / 100));
+      rent = new_rent;
+      average_rents.push(new_rent);
+    });
+    return average_rents;
   }
 });
