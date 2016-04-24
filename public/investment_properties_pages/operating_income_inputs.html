@@ -4,7 +4,12 @@
   </div>
   <div id="vacancy-rate" class="row">
     <span class="col-md-18">Vacancy Rate</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage:1}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="vacancy-rate-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.operating_expenses_assumption.vacancy_rate"/>
   </div>
   <div id="repairs-and-maintenance" class="row">
     <span class="col-md-18">Repairs and Maintenance</span>

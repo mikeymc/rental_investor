@@ -15,6 +15,7 @@ class Api::RentalPropertiesController < ApplicationController
     @rental_property = RentalProperty.find(params[:rental_property][:id])
 
     finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
+    operating_expenses_assumption = params[:rental_property][:operating_expenses_assumption]
     @rental_property.financing_and_income_assumption.update({
       land_cost: finance_and_income_assumptions[:land_cost],
       building_cost: finance_and_income_assumptions[:building_cost],
@@ -26,6 +27,9 @@ class Api::RentalPropertiesController < ApplicationController
       loan_interest_rate: finance_and_income_assumptions[:loan_interest_rate],
       amortization_period_in_years: finance_and_income_assumptions[:amortization_period_in_years],
       total_square_feet: finance_and_income_assumptions[:total_square_feet]
+    })
+    @rental_property.operating_expenses_assumption.update({
+      vacancy_rate: operating_expenses_assumption[:vacancy_rate]
     })
     render json: serialize(@rental_property)
   end

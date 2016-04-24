@@ -281,6 +281,10 @@ class Expectations
       closing_costs: '$35,420',
       other_income: '$1,000'
     })
+
+    assert_updated_operating_revenues({
+      rent_income: ['$48,800', '$585,600', '$603,168', '$624,279', '$643,007', '$662,297']
+    })
   end
 
   def to_see_the_rental_increase_projections(property)
@@ -328,6 +332,12 @@ class Expectations
   end
 
   private
+
+  def assert_updated_operating_revenues(details)
+    details[:rent_income].each do |income|
+      expect(page.find('#operating-revenues .row', text: 'Gross Scheduled Rent Income')).to have_content income
+    end
+  end
 
   def assert_updated_financing_assumptions(details)
     expect(page.find('#financing-assumptions .row', text: 'Total Purchase')).to have_content details[:total_cost]
@@ -520,7 +530,7 @@ class Expectations
     inputs = page.find('#operating-expenses-inputs')
 
     expect(inputs).to have_content 'Monthly Operating Expenses'
-    expect(inputs.find('#vacancy-rate', text: 'Vacancy Rate')).to have_content details[:vacancy_rate]
+    expect(inputs.find_field('vacancy-rate-input').value).to eq details[:vacancy_rate]
     expect(inputs.find('#repairs-and-maintenance', text: 'Repairs and Maintenance')).to have_content details[:repairs_and_maintenance]
     expect(inputs.find('#property-management-fees', text: 'Property Management Fees')).to have_content details[:property_management_fees]
     expect(inputs.find('#taxes', text: 'Taxes')).to have_content details[:taxes]
