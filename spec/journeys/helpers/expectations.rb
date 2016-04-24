@@ -247,7 +247,29 @@ class Expectations
   end
 
   def to_see_updated_values
-    assert_updated_values({
+    assert_updated_key_rent_ratios({
+      total_square_feet: '53,500',
+      avg_sq_ft_per_unit: '877.05',
+      avg_rent_per_sq_ft: '$0.91',
+      total_cost_per_sq_ft: '$60.48',
+      cost_per_unit: '$53,039.92'
+    })
+
+    assert_updated_financing_assumptions({
+      total_cost: '$3,235,435',
+      equity_percentage: '20%',
+      balance_to_finance: '$2,588,348.00',
+      down_payment: '$647,087.00',
+      loan_to_value_percentage: '80%',
+      loan_interest_rate_annual: '6.750%',
+      loan_interest_rate_monthly: '0.563%',
+      amortization_period_in_years: '30',
+      amortization_period_in_months: '360',
+      loan_payment_monthly: '$16,787.98',
+      loan_payment_yearly: '$201,455.71',
+    })
+
+    assert_updated_cost_and_revenue_assumptions({
       land_cost: '$600,000',
       building_cost: '$2,600,000',
       improvements: '$15',
@@ -256,19 +278,8 @@ class Expectations
       average_monthly_rent: '$800',
       gross_monthly_rent: '$48,800',
       gross_monthly_income: '$49,800',
-      total_closing_costs: '$35,420',
-      down_payment: '$647,087.00',
-      balance_to_finance: '$2,588,348.00',
-      equity_percentage: '20%',
-      loan_interest_rate: '6.750%',
-      loan_payment_monthly: '$16,787.98',
-      amortization_period_in_years: '30',
-      amortization_period_in_months: '360',
-      avg_sq_ft_per_unit: '877.05',
-      total_square_feet: '53,500',
-      avg_rent_per_sq_ft: '$0.91',
-      total_cost_per_sq_ft: '$57.78',
-      cost_per_unit: '$53,039.92'
+      closing_costs: '$35,420',
+      other_income: '$1,000'
     })
   end
 
@@ -318,6 +329,42 @@ class Expectations
 
   private
 
+  def assert_updated_financing_assumptions(details)
+    expect(page.find('#financing-assumptions .row', text: 'Total Purchase')).to have_content details[:total_cost]
+    expect(page.find('#financing-assumptions .row', text: 'Total Purchase')).to have_content '100%'
+    expect(page.find('#financing-assumptions .row', text: 'Owner\'s Equity')).to have_content details[:equity_percentage]
+    expect(page.find('#financing-assumptions .row', text: 'Owner\'s Equity')).to have_content details[:down_payment]
+    expect(page.find('#financing-assumptions .row', text: 'Balance to Finance')).to have_content details[:balance_to_finance]
+    expect(page.find('#financing-assumptions .row', text: 'Balance to Finance')).to have_content details[:loan_to_value_percentage]
+    expect(page.find('#financing-assumptions .row', text: 'Interest Rate')).to have_content details[:loan_interest_rate_annual]
+    expect(page.find('#financing-assumptions .row', text: 'Interest Rate')).to have_content details[:loan_interest_rate_monthly]
+    expect(page.find('#financing-assumptions .row', text: 'Amortization Period')).to have_content details[:amortization_period_in_years]
+    expect(page.find('#financing-assumptions .row', text: 'Amortization Period')).to have_content details[:amortization_period_in_months]
+    expect(page.find('#financing-assumptions .row', text: 'Payment')).to have_content details[:loan_payment_monthly]
+    expect(page.find('#financing-assumptions .row', text: 'Payment')).to have_content details[:loan_payment_yearly]
+  end
+
+  def assert_updated_cost_and_revenue_assumptions(details)
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content details[:land_cost]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content details[:building_cost]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content details[:improvements]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content details[:improvements]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Closing Costs')).to have_content details[:closing_costs]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content details[:number_of_units]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content details[:average_monthly_rent]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content details[:gross_monthly_rent]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content details[:gross_monthly_income]
+    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Other Income')).to have_content details[:other_income]
+  end
+
+  def assert_updated_key_rent_ratios(details)
+    expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_square_feet]
+    expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
+    expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
+    expect(page.find('#key-rent-ratios .row', text: 'Total Cost/Sq Ft')).to have_content details[:total_cost_per_sq_ft]
+    expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
+  end
+
   def assert_operating_revenues(details)
     section = page.find('#operating-revenues')
 
@@ -325,7 +372,7 @@ class Expectations
     expect(section).to have_content 'Actual Monthly'
     expect(section).to have_content 'Projected'
 
-    (1..5).each {|year| expect(section).to have_content "Year #{year}"}
+    (1..5).each { |year| expect(section).to have_content "Year #{year}" }
 
     expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content details[:gross_scheduled_rental_income_monthly]
     details[:gross_scheduled_rental_income_yearly].each do |income|
@@ -391,31 +438,6 @@ class Expectations
     expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
     expect(page.find('#key-rent-ratios .row', text: 'Total Cost/Sq Ft')).to have_content details[:total_cost_per_sq_ft]
     expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
-  end
-
-  def assert_updated_values(details)
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content details[:land_cost]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content details[:building_cost]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content details[:improvements]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Total Cost')).to have_content details[:total_cost]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content details[:number_of_units]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content details[:average_monthly_rent]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content details[:gross_monthly_rent]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content details[:gross_monthly_income]
-    expect(page.find('#total-purchase')).to have_content details[:total_cost]
-    expect(page.find('#total-closing-costs')).to have_content details[:total_closing_costs]
-    expect(page.find('#down-payment')).to have_content details[:down_payment]
-    expect(page.find('#down-payment')).to have_content details[:equity_percentage]
-    expect(page.find('#balance-to-finance')).to have_content details[:balance_to_finance]
-    expect(page.find('#interest-rate')).to have_content details[:loan_interest_rate]
-    expect(page.find('#amortization-period')).to have_content details[:amortization_period_in_years]
-    expect(page.find('#amortization-period')).to have_content details[:amortization_period_in_months]
-    expect(page.find('#loan-payment')).to have_content details[:loan_payment_monthly]
-    expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
-    expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_square_feet]
-    expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
-    expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
-
   end
 
   def assert_financing_assumptions(details)
