@@ -59,14 +59,16 @@ class Expectations
         total_area_in_sq_ft: '52,500',
         avg_sq_ft_per_unit: '875.00',
         avg_rent_per_sq_ft: '$0.80',
-        total_cost_per_sq_ft: '$57.78'
+        total_cost_per_sq_ft: '$57.78',
+        cost_per_unit: '$50,557.00'
       })
     elsif property[:name] == 'sesame'
       assert_key_rent_ratios({
         total_area_in_sq_ft: '3,311',
         avg_sq_ft_per_unit: '551.83',
         avg_rent_per_sq_ft: '$0.87',
-        total_cost_per_sq_ft: '$92.24'
+        total_cost_per_sq_ft: '$92.24',
+        cost_per_unit: '$50,901.67'
       })
     end
   end
@@ -265,7 +267,8 @@ class Expectations
       avg_sq_ft_per_unit: '877.05',
       total_square_feet: '53,500',
       avg_rent_per_sq_ft: '$0.91',
-      total_cost_per_sq_ft: '$57.78'
+      total_cost_per_sq_ft: '$57.78',
+      cost_per_unit: '$53,039.92'
     })
   end
 
@@ -279,6 +282,7 @@ class Expectations
     expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
     expect(page.find('#key-rent-ratios .row', text: 'Total Cost/Sq Ft')).to have_content details[:total_cost_per_sq_ft]
+    expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
   end
 
   def assert_updated_values(details)
@@ -302,6 +306,8 @@ class Expectations
     expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
     expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_square_feet]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
+    expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
+
   end
 
   def assert_financing_assumptions(details)
