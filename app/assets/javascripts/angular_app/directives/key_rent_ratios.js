@@ -7,11 +7,30 @@ angular.module('rentals').directive('keyRentRatios', function(cost_and_revenue_a
         if(!$scope.rental_property) {
           return;
         }
-        var assumptions = $scope.rental_property.financing_and_income_assumption;
-        $scope.avg_sq_ft_per_unit = assumptions.total_square_feet / assumptions.number_of_units;
-        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(assumptions);
-        $scope.avg_rent_per_sq_ft = gross_rent / assumptions.total_square_feet;
+        $scope.avg_sq_ft_per_unit = avg_sq_ft_per_unit($scope.rental_property)
+        $scope.avg_rent_per_sq_ft = avg_rent_per_sq_ft($scope.rental_property);
+        $scope.total_cost_per_sq_ft = total_cost_per_sq_ft($scope.rental_property);
       }, true);
+
+      /* --- Private --- */
+
+      function avg_sq_ft_per_unit() {
+        var assumptions = $scope.rental_property.financing_and_income_assumption;
+        return assumptions.total_square_feet / assumptions.number_of_units;
+      }
+
+      function total_cost_per_sq_ft(property) {
+        var assumptions = property.financing_and_income_assumption;
+        var closing_costs = cost_and_revenue_assumptions_service.get_closing_costs(property.closing_cost);
+        var total_cost = cost_and_revenue_assumptions_service.get_total_cost(closing_costs, assumptions);
+        return total_cost / assumptions.total_square_feet;
+      }
+
+      function avg_rent_per_sq_ft(property) {
+        var assumptions = property.financing_and_income_assumption;
+        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(assumptions);
+        return gross_rent / assumptions.total_square_feet;
+      }
     }
   }
 });
