@@ -38,6 +38,11 @@ input:focus {
   border-bottom: thin black solid;
 }
 
+.double-height {
+  position: absolute !important;
+  height: 32px;
+}
+
 .container {
   width: 1275px;
   $grid-columns: 24;
@@ -45,6 +50,10 @@ input:focus {
 
 .align-right {
   text-align: right;
+}
+
+.align-center {
+  text-align: center;
 }
 
 .grid-24-across {
