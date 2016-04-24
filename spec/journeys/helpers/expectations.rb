@@ -57,12 +57,14 @@ class Expectations
     if property[:name] == 'moroni'
       assert_key_rent_ratios({
         total_area_in_sq_ft: '52,500',
-        avg_sq_ft_per_unit: '875.00'
+        avg_sq_ft_per_unit: '875.00',
+        avg_rent_per_sq_ft: '$0.80'
       })
     elsif property[:name] == 'sesame'
       assert_key_rent_ratios({
         total_area_in_sq_ft: '3,311',
-        avg_sq_ft_per_unit: '551.83'
+        avg_sq_ft_per_unit: '551.83',
+        avg_rent_per_sq_ft: '$0.87'
       })
     end
   end
@@ -259,7 +261,8 @@ class Expectations
       amortization_period_in_years: '30',
       amortization_period_in_months: '360',
       avg_sq_ft_per_unit: '877.05',
-      total_square_feet: '53,500'
+      total_square_feet: '53,500',
+      avg_rent_per_sq_ft: '$0.91'
     })
   end
 
@@ -271,6 +274,7 @@ class Expectations
     expect(ratios).to have_content 'Key Rent Ratios'
     expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_area_in_sq_ft]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
+    expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
   end
 
   def assert_updated_values(details)
@@ -293,6 +297,7 @@ class Expectations
     expect(page.find('#loan-payment')).to have_content details[:loan_payment_monthly]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
     expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_square_feet]
+    expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
   end
 
   def assert_financing_assumptions(details)
