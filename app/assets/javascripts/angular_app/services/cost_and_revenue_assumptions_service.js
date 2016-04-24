@@ -4,8 +4,18 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
     get_total_gross_monthly_income: get_total_gross_monthly_income,
     get_total_cost: get_total_cost,
     get_gross_monthly_rent: get_gross_monthly_rent,
-    get_projected_average_rents: get_projected_average_rents
+    get_projected_average_rents: get_projected_average_rents,
+    get_loan_origination_fee: get_loan_origination_fee
   };
+
+  /* --- Private --- */
+
+  function get_loan_origination_fee(property) {
+    var land_cost = parseFloat(property.financing_and_income_assumption.land_cost);
+    var building_cost = parseFloat(property.financing_and_income_assumption.building_cost);
+
+    return 0.01 * (land_cost + building_cost);
+  }
 
   function get_closing_costs(property) {
     if(!property) {

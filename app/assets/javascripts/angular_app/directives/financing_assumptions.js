@@ -25,6 +25,8 @@ angular.module('rentals').directive('financingAssumptions', function(cost_and_re
         $scope.annual_loan_payment = $scope.monthly_loan_payment * 12;
       }, true);
 
+      /* --- Private --- */
+
       function monthly_loan_payment(principal, interest_rate, num_payments) {
         var i = interest_rate / 100;
         var mortgage = principal * i * Math.pow(1 + i, num_payments) / (Math.pow(1 + i, num_payments) - 1);
