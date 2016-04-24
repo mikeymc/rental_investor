@@ -272,7 +272,46 @@ class Expectations
     })
   end
 
+  def to_see_the_rental_increase_projections(property)
+    if property[:name] == 'moroni'
+      assert_rental_increase_projections(['0.00%', '3.00%', '3.50%', '3.00%', '3.00%'])
+      assert_average_monthly_rents_each_year(['$700', '$721', '$746', '$769', '$792'])
+      assert_operating_expense_projections(['0.00%', '-2.00%', '-1.00%', '1.50%', '2.00%'])
+    elsif property[:name] == 'sesame'
+      assert_rental_increase_projections(['0.00%', '3.00%', '3.50%', '3.00%', '3.00%'])
+      assert_average_monthly_rents_each_year(['$482', '$496', '$514', '$529', '$545'])
+      assert_operating_expense_projections(['0.00%', '-2.00%', '-1.00%', '1.50%', '2.00%'])
+    end
+  end
+
   private
+
+  def assert_operating_expense_projections(projections)
+    section = page.find('#operating-expense-projections')
+
+    expect(section).to have_content 'Operating Expense Projections'
+    projections.each do |projection|
+      expect(section.find('.row')).to have_content projection
+    end
+  end
+
+  def assert_average_monthly_rents_each_year(projections)
+    section = page.find('#average-monthly-rents-each-year')
+
+    expect(section).to have_content 'Average Monthly Rent'
+    projections.each do |projection|
+      expect(section.find('.row')).to have_content projection
+    end
+  end
+
+  def assert_rental_increase_projections(projections)
+    section = page.find('#rental-increase-projections')
+
+    expect(section).to have_content 'Rental Increase Projections'
+    projections.each do |projection|
+      expect(section.find('.row')).to have_content projection
+    end
+  end
 
   def assert_key_rent_ratios(details)
     ratios = page.find('#key-rent-ratios')
