@@ -30,6 +30,7 @@
       <div class="col-md-6">Net Rental Income</div>
       <div class="col-md-1"></div>
       <div class="col-md-2 align-right">{{net_rental_income | currency:"$":0}}</div>
+      <div class="col-md-3 align-right" ng-repeat="income in projected_annual_net_rental_incomes track by $index">{{income | currency:"$":0}}</div>
     </div>
     <div class="row">
       <div class="col-md-6">Other Income</div>
