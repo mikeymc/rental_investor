@@ -42,6 +42,7 @@
       <div class="col-md-6">Gross Income</div>
       <div class="col-md-1"></div>
       <div class="col-md-2 align-right">{{gross_income | currency:"$":0}}</div>
+      <div class="col-md-3 align-right" ng-repeat="income in projected_gross_incomes track by $index">{{income | currency:"$":0}}</div>
     </div>
   </div>
 </div>
