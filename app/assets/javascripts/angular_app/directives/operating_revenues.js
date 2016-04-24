@@ -22,9 +22,19 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
         $scope.gross_income = gross_income($scope.net_rental_income, $scope.other_income);
 
         $scope.projected_gross_annual_rents = projected_gross_annual_rents($scope.rental_property);
+        $scope.projected_annual_vacancy_costs = projected_annual_vacancy_costs($scope.rental_property);
       }, true);
 
       /* --- Private --- */
+
+      function projected_annual_vacancy_costs(property) {
+        var rents = projected_gross_annual_rents(property);
+        var vacancy_rate = property.operating_expenses_assumption.vacancy_rate / 100;
+
+        return _.map(rents, function(rent) {
+          return rent * vacancy_rate;
+        })
+      }
 
       function projected_gross_annual_rents(property) {
         var projected_average_monthly_rents = cost_and_revenue_assumptions_service.get_projected_average_rents(property);

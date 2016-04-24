@@ -289,6 +289,7 @@ class Expectations
       assert_operating_revenues({
         gross_scheduled_rental_income_monthly: '$42,000',
         gross_scheduled_rental_income_yearly: ['$504,000', '$519,120', '$537,289', '$553,408', '$570,010'],
+        vacancy_cost_yearly: ['$25,200', '$25,956', '$26,864', '$27,670', '$28,501'],
         vacancy_rate_monthly: '$2,100',
         net_rental_income_monthly: '$39,900',
         other_income_monthly: '$600',
@@ -298,6 +299,7 @@ class Expectations
       assert_operating_revenues({
         gross_scheduled_rental_income_monthly: '$2,892',
         gross_scheduled_rental_income_yearly: ['$34,704', '$35,745', '$36,996', '$38,106', '$39,249'],
+        vacancy_cost_yearly: ['$1,735', '$1,787', '$1,850', '$1,905', '$1,962'],
         vacancy_rate_monthly: '145',
         net_rental_income_monthly: '$2,747',
         other_income_monthly: '$0',
@@ -323,6 +325,9 @@ class Expectations
     expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content details[:gross_scheduled_rental_income_monthly]
     details[:gross_scheduled_rental_income_yearly].each do |income|
       expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content income
+    end
+    details[:vacancy_cost_yearly].each do |cost|
+      expect(section.find('.row', text: 'Vacancy Rate')).to have_content cost
     end
     expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_monthly]
     expect(section.find('.row', text: 'Net Rental Income')).to have_content details[:net_rental_income_monthly]

@@ -24,6 +24,7 @@
       <div class="col-md-6">Vacancy Rate</div>
       <div class="col-md-1"></div>
       <div class="col-md-2 align-right add-border-bottom">{{vacancy | currency:"$":0}}</div>
+      <div class="col-md-3 align-right" ng-repeat="cost in projected_annual_vacancy_costs track by $index">{{cost | currency:"$":0}}</div>
     </div>
     <div class="row">
       <div class="col-md-6">Net Rental Income</div>
