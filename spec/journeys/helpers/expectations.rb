@@ -324,34 +324,35 @@ class Expectations
     expect(section).to have_content 'Operating Revenues'
     expect(section).to have_content 'Actual Monthly'
     expect(section).to have_content 'Projected'
-    expect(section).to have_content 'Year 1'
-    expect(section).to have_content 'Year 2'
-    expect(section).to have_content 'Year 3'
-    expect(section).to have_content 'Year 4'
-    expect(section).to have_content 'Year 5'
+
+    (1..5).each {|year| expect(section).to have_content "Year #{year}"}
 
     expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content details[:gross_scheduled_rental_income_monthly]
     details[:gross_scheduled_rental_income_yearly].each do |income|
       expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content income
     end
+
+    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_monthly]
+    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_percentage]
     details[:vacancy_cost_yearly].each do |cost|
       expect(section.find('.row', text: 'Vacancy Rate')).to have_content cost
     end
+
+    expect(section.find('.row', text: 'Net Rental Income')).to have_content details[:net_rental_income_monthly]
     details[:net_rental_income_yearly].each do |income|
       expect(section.find('.row', text: 'Net Rental Income')).to have_content income
     end
+
+    expect(section.find('.row', text: 'Other Income')).to have_content details[:other_income_monthly]
     details[:other_income_yearly].each do |income|
       expect(section.find('.row', text: 'Other Income')).to have_content income
     end
+
+    expect(section.find('.row', text: 'Gross Income')).to have_content details[:gross_income_monthly]
+    expect(section.find('.row', text: 'Gross Income')).to have_content '100%'
     details[:gross_income_yearly].each do |income|
       expect(section.find('.row', text: 'Gross Income')).to have_content income
     end
-    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_monthly]
-    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_percentage]
-    expect(section.find('.row', text: 'Net Rental Income')).to have_content details[:net_rental_income_monthly]
-    expect(section.find('.row', text: 'Other Income')).to have_content details[:other_income_monthly]
-    expect(section.find('.row', text: 'Gross Income')).to have_content details[:gross_income_monthly]
-    expect(section.find('.row', text: 'Gross Income')).to have_content '100%'
   end
 
   def assert_operating_expense_projections(projections)

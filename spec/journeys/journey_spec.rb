@@ -25,7 +25,6 @@ RSpec.describe 'the rental investment tool' do
     go_home
     select_property(name: 'moroni')
     see_updated_values
-    go_home
   end
 
   private
