@@ -23,7 +23,8 @@ angular.module('rentals').service('cost_and_revenue_assumptions_service', functi
     return total_costs;
   }
 
-  function get_gross_monthly_rent(assumptions) {
+  function get_gross_monthly_rent(property) {
+    var assumptions = property.financing_and_income_assumption;
     return assumptions.number_of_units * assumptions.average_monthly_rent_per_unit;
   }
 

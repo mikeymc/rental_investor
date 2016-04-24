@@ -8,7 +8,7 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
           return;
         }
         $scope.monthly_gross_scheduled_rent_income = cost_and_revenue_assumptions_service.get_gross_monthly_rent(
-          $scope.rental_property.financing_and_income_assumption
+          $scope.rental_property
         );
         $scope.vacancy = vacancy(
           $scope.monthly_gross_scheduled_rent_income,

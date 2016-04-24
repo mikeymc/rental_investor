@@ -36,7 +36,7 @@ angular.module('rentals').directive('keyRentRatios', function(cost_and_revenue_a
 
       function avg_rent_per_sq_ft(property) {
         var assumptions = property.financing_and_income_assumption;
-        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(assumptions);
+        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(property);
         return gross_rent / assumptions.total_square_feet;
       }
     }
