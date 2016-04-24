@@ -18,6 +18,7 @@
       <div class="col-md-6">Gross Scheduled Rent Income</div>
       <div class="col-md-1"></div>
       <div class="col-md-2 align-right">{{monthly_gross_scheduled_rent_income | currency:"$":0}}</div>
+      <div class="col-md-3 align-right" ng-repeat="rent in projected_gross_annual_rents track by $index">{{rent | currency:"$":0}}</div>
     </div>
     <div class="row">
       <div class="col-md-6">Vacancy Rate</div>
