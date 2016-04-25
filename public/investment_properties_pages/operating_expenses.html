@@ -8,4 +8,10 @@
     <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.repairs_and_maintenance | currency:"$":2}}</div>
     <div class="col-md-3 align-right" ng-repeat="cost in projected_annual_maintenance_costs track by $index">{{cost | currency:"$":0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">Property Management Fees</div>
+    <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.property_management_fees | percentage:4}}</div>
+    <div class="col-md-2 align-right">{{monthly_property_management_fees | currency:"$":2}}</div>
+    <div class="col-md-3 align-right" ng-repeat="cost in annual_property_management_fees track by $index">{{cost | currency:"$":0}}</div>
+  </div>
 </div>
