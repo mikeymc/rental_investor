@@ -50,4 +50,10 @@
     <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.trash_removal | currency:"$":2}}</div>
     <div class="col-md-3 align-right" ng-repeat="cost in annual_trash_removal_costs track by $index">{{cost | currency:"$":0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">Professional Fees</div>
+    <div class="col-md-2 align-right">{{monthly_professional_fees_percentage | percentage:4}}</div>
+    <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.professional_fees | currency:"$":2}}</div>
+    <div class="col-md-3 align-right" ng-repeat="cost in annual_professional_fees_costs track by $index">{{cost | currency:"$":0}}</div>
+  </div>
 </div>

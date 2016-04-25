@@ -341,7 +341,8 @@ class Expectations
         salaries_and_wages: %w(4.4445% $1,800.02 $21,600 $21,168 $20,957 $21,271 $21,696),
         utilities: %w(5.2345% $2,119.97 $25,440 $24,931 $24,682 $25,052 $25,553),
         water_and_sewer: %w(0.0123% $5.00 $60 $59 $58 $59 $60),
-        trash_removal: %w(0.3087% $125.02 $1,500 $1,470 $1,456 $1,477 $1,507)
+        trash_removal: %w(0.3087% $125.02 $1,500 $1,470 $1,456 $1,477 $1,507),
+        professional_fees: %w(0.7407% $299.98 $3,600 $3,528 $3,492 $3,545 $3,616)
       })
     elsif property[:name] == 'sesame'
       assert_operating_expenses({
@@ -352,7 +353,8 @@ class Expectations
         salaries_and_wages: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
         utilities: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
         water_and_sewer: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        trash_removal: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507)
+        trash_removal: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507),
+        professional_fees: %w(0.0000% $0.00 $0 $0 $0 $0 $0)
       })
     end
   end
@@ -386,6 +388,9 @@ class Expectations
     end
     details[:trash_removal].each do |cost|
       expect(expenses.find('.row', text: 'Trash Removal')).to have_content cost
+    end
+    details[:professional_fees].each do |cost|
+      expect(expenses.find('.row', text: 'Professional Fees')).to have_content cost
     end
   end
 
