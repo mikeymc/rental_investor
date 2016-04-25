@@ -337,14 +337,16 @@ class Expectations
         repairs_and_maintenance: %w(13.0000% $5,265 $63,180 $61,916 $61,297 $62,217 $63,461),
         property_management_fees: %w(3.5000% $1,417.50 $17,010 $16,670 $16,503 $16,751 $17,086),
         taxes: %w(7.9013% $3,200.03 $38,400 $37,632 $37,256 $37,815 $38,571),
-        insurance: %w(2.0050% $812.03 $9,744 $9,549 $9,454 $9,596 $9,788)
+        insurance: %w(2.0050% $812.03 $9,744 $9,549 $9,454 $9,596 $9,788),
+        salaries_and_wages: %w(4.4445% $1,800.02 $21,600 $21,168 $20,957 $21,271 $21,696)
       })
     elsif property[:name] == 'sesame'
       assert_operating_expenses({
         repairs_and_maintenance: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507),
         property_management_fees: %w(10.0000% $274.74 $3,297 $3,231 $3,199 $3,247 $3,312),
         taxes: %w(4.4042% $121.00 $1,452 $1,423 $1,409 $1,430 $1,458),
-        insurance: %w(5.4597% $150.00 $1,800 $1,764 $1,746 $1,773 $1,808)
+        insurance: %w(5.4597% $150.00 $1,800 $1,764 $1,746 $1,773 $1,808),
+        salaries_and_wages: %w(0.0000% $0.00 $0 $0 $0 $0 $0)
       })
     end
   end
@@ -366,6 +368,9 @@ class Expectations
     end
     details[:insurance].each do |cost|
       expect(expenses.find('.row', text: 'Insurance')).to have_content cost
+    end
+    details[:salaries_and_wages].each do |cost|
+      expect(expenses.find('.row', text: 'Salaries and Wages')).to have_content cost
     end
   end
 

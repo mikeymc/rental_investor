@@ -1,4 +1,4 @@
-angular.module('rentals').directive('operatingExpenses', function(property_service) {
+angular.module('rentals').directive('operatingExpenses', function(property_service, $filter) {
   return {
     templateUrl: 'investment_properties_pages/operating_expenses.html',
     restrict: 'E',
@@ -16,9 +16,19 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_taxes = annual_taxes($scope.rental_property);
         $scope.monthly_insurance_percentage = monthly_insurance_percentage($scope.rental_property);
         $scope.annual_insurance_costs = annual_insurance($scope.rental_property);
+        $scope.monthly_salaries_and_wages_percentage = monthly_salaries_and_wages_percentage($scope.rental_property);
+        $scope.annual_salaries_and_wages = annual_salaries_and_wages($scope.rental_property);
+        $scope.annual_salaries_and_wages = annual_salaries_and_wages($scope.rental_property);
       }, true);
 
       /* --- Private --- */
+
+      function monthly_salaries_and_wages_percentage(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var monthly_salaries_and_wages = property.operating_expenses_assumption.salaries_and_wages;
+
+        return 100 * monthly_salaries_and_wages / monthly_income
+      }
 
       function monthly_insurance_percentage(property) {
         var monthly_income = property_service.get_gross_operating_income(property);
@@ -56,6 +66,17 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_taxes = property.operating_expenses_assumption.taxes;
 
         var cost = monthly_taxes * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_salaries_and_wages(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+        var monthly_salaries_and_wages = property.operating_expenses_assumption.salaries_and_wages;
+
+        var cost = monthly_salaries_and_wages * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;

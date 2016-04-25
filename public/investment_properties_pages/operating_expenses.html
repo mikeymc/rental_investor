@@ -26,4 +26,10 @@
     <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.insurance | currency:"$":2}}</div>
     <div class="col-md-3 align-right" ng-repeat="cost in annual_insurance_costs track by $index">{{cost | currency:"$":0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">Salaries and Wages</div>
+    <div class="col-md-2 align-right">{{monthly_salaries_and_wages_percentage | percentage:4}}</div>
+    <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.salaries_and_wages | currency:"$":2}}</div>
+    <div class="col-md-3 align-right" ng-repeat="cost in annual_salaries_and_wages track by $index">{{cost | currency:"$":0}}</div>
+  </div>
 </div>

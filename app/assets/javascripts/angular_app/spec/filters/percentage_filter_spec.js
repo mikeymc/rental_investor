@@ -53,6 +53,14 @@ describe('percentage', function() {
           this.$scope.number = '15.52164902';
           view = this.render_template('<div>{{number | percentage:3}}</div>', this.$scope);
           expect(view.find('div').text().trim()).toEqual('15.522%');
+
+          this.$scope.number = '0';
+          view = this.render_template('<div>{{number | percentage:4}}</div>', this.$scope);
+          expect(view.find('div').text().trim()).toEqual('0.0000%');
+
+          this.$scope.number = 0;
+          view = this.render_template('<div>{{number | percentage:4}}</div>', this.$scope);
+          expect(view.find('div').text().trim()).toEqual('0.0000%');
         });
       });
     });
