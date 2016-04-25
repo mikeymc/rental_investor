@@ -21,9 +21,18 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_salaries_and_wages = annual_salaries_and_wages($scope.rental_property);
         $scope.monthly_utilities_percentage = monthly_utilities_percentage($scope.rental_property);
         $scope.annual_utilities = annual_utilities($scope.rental_property);
+        $scope.monthly_water_and_sewer_percentage = monthly_water_and_sewer_percentage($scope.rental_property);
+        $scope.annual_water_and_sewer_costs = annual_water_and_sewer_costs($scope.rental_property);
       }, true);
 
       /* --- Private --- */
+
+      function monthly_water_and_sewer_percentage(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var monthly_water_and_sewer = property.operating_expenses_assumption.water_and_sewer;
+
+        return 100 * monthly_water_and_sewer / monthly_income
+      }
 
       function monthly_salaries_and_wages_percentage(property) {
         var monthly_income = property_service.get_gross_operating_income(property);
@@ -75,6 +84,17 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_taxes = property.operating_expenses_assumption.taxes;
 
         var cost = monthly_taxes * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_water_and_sewer_costs(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+        var monthly_water_and_sewer = property.operating_expenses_assumption.water_and_sewer;
+
+        var cost = monthly_water_and_sewer * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;
