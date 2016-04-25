@@ -2,11 +2,11 @@
   <div>
     <div class="row">
       <div class="col-md-2 col-md-offset-7 subsection-header align-center double-height">Actual Monthly</div>
-      <div class="col-md-15 col-md-offset-9 subsection-header">Projected</div>
+      <div class="col-md-25 col-md-offset-9 subsection-header">Projected</div>
     </div>
     <div class="row">
-      <div class="col-md-6 subsection-header">Operating Revenues</div>
-      <div class="col-md-1"></div>
+      <div class="col-md-5 subsection-header">Operating Revenues</div>
+      <div class="col-md-2"></div>
       <div class="col-md-2 align-center"></div>
       <div class="col-md-3 subsection-header align-center">Year 1</div>
       <div class="col-md-3 subsection-header align-center">Year 2</div>
@@ -15,32 +15,32 @@
       <div class="col-md-3 subsection-header align-center">Year 5</div>
     </div>
     <div class="row">
-      <div class="col-md-6">Gross Scheduled Rent Income</div>
-      <div class="col-md-1"></div>
+      <div class="col-md-5">Gross Scheduled Rent Income</div>
+      <div class="col-md-2"></div>
       <div class="col-md-2 align-right">{{monthly_gross_scheduled_rent_income | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="rent in projected_gross_annual_rents track by $index">{{rent | currency:"$":0}}</div>
     </div>
     <div class="row">
-      <div class="col-md-6">Vacancy Rate</div>
-      <div class="col-md-1 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage:1}}</div>
+      <div class="col-md-5">Vacancy Rate</div>
+      <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage:1}}</div>
       <div class="col-md-2 align-right add-border-bottom">{{vacancy | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="cost in projected_annual_vacancy_costs track by $index">{{cost | currency:"$":0}}</div>
     </div>
     <div class="row">
-      <div class="col-md-6">Net Rental Income</div>
-      <div class="col-md-1"></div>
+      <div class="col-md-5">Net Rental Income</div>
+      <div class="col-md-2"></div>
       <div class="col-md-2 align-right">{{net_rental_income | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="income in projected_annual_net_rental_incomes track by $index">{{income | currency:"$":0}}</div>
     </div>
     <div class="row">
-      <div class="col-md-6">Other Income</div>
-      <div class="col-md-1"></div>
+      <div class="col-md-5">Other Income</div>
+      <div class="col-md-2"></div>
       <div class="col-md-2 align-right add-border-bottom">{{other_income | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="income in projected_other_incomes track by $index">{{income | currency:"$":0}}</div>
     </div>
     <div class="row">
-      <div class="col-md-6">Gross Income</div>
-      <div class="col-md-1 align-right">100%</div>
+      <div class="col-md-5">Gross Income</div>
+      <div class="col-md-2 align-right">100%</div>
       <div class="col-md-2 align-right">{{gross_income | currency:"$":0}}</div>
       <div class="col-md-3 align-right" ng-repeat="income in projected_gross_incomes track by $index">{{income | currency:"$":0}}</div>
     </div>

@@ -1,0 +1,11 @@
+<div id="operating-expenses">
+  <div class="row">
+    <div class="col-md-5 align-center subsection-header">Operating Expenses</div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">Repairs and Maintenance</div>
+    <div class="col-md-2 align-right">{{repairs_and_maintenance_percentage | percentage:4}}</div>
+    <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.repairs_and_maintenance | currency:"$":2}}</div>
+    <div class="col-md-3 align-right" ng-repeat="cost in projected_annual_maintenance_costs track by $index">{{cost | currency:"$":0}}</div>
+  </div>
+</div>

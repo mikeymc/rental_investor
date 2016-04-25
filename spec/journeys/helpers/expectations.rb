@@ -168,11 +168,11 @@ class Expectations
     end
   end
 
-  def to_see_the_operating_expenses(property)
+  def to_see_the_operating_expenses_inputs(property)
     if property[:name] == 'moroni'
-      assert_operating_expenses({
+      assert_operating_expenses_inputs({
         vacancy_rate: '5.0%',
-        repairs_and_maintenance: '$5,625',
+        repairs_and_maintenance: '$5,265',
         property_management_fees: '3.5%',
         taxes: '$3,200.03',
         insurance: '$812.03',
@@ -189,7 +189,7 @@ class Expectations
         income_tax_rate: '0%'
       })
     elsif property[:name] == 'sesame'
-      assert_operating_expenses({
+      assert_operating_expenses_inputs({
         vacancy_rate: '5.0%',
         repairs_and_maintenance: '$125',
         property_management_fees: '10.0%',
@@ -331,7 +331,28 @@ class Expectations
     end
   end
 
+  def to_see_the_operating_expenses(property)
+    if property[:name] == 'moroni'
+      assert_operating_expenses({
+        repairs_and_maintenance: %w(13.0000% $5,265 $63,180 $61,916 $61,297 $62,217 $63,461)
+      })
+    elsif property[:name] == 'sesame'
+      assert_operating_expenses({
+        repairs_and_maintenance: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507)
+      })
+    end
+  end
+
   private
+
+  def assert_operating_expenses(details)
+    expenses = page.find('#operating-expenses')
+    expect(expenses).to have_content 'Operating Expenses'
+
+    details[:repairs_and_maintenance].each do |expense|
+      expect(expenses.find('.row', text: 'Repairs and Maintenance')).to have_content expense
+    end
+  end
 
   def assert_updated_operating_revenues(details)
     details[:rent_income].each do |income|
@@ -526,7 +547,7 @@ class Expectations
     expect(assumptions.find('div', text: 'Total Gross Monthly Income')).to have_content details[:total_gross_monthly_income]
   end
 
-  def assert_operating_expenses(details)
+  def assert_operating_expenses_inputs(details)
     inputs = page.find('#operating-expenses-inputs')
 
     expect(inputs).to have_content 'Monthly Operating Expenses'

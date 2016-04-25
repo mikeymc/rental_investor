@@ -74,7 +74,7 @@ RSpec.describe 'the rental investment tool' do
 
   def evaluate_property(property)
     then_expect.to_see_the_property_details(property)
-    then_expect.to_see_the_operating_expenses(property)
+    then_expect.to_see_the_operating_expenses_inputs(property)
     then_expect.to_see_the_closing_costs(property)
     then_expect.to_see_the_income_and_cost_projections
     then_expect.to_see_the_cost_and_revenue_assumptions(property)
@@ -82,5 +82,6 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_the_key_rent_ratios(property)
     then_expect.to_see_the_rental_increase_projections(property)
     then_expect.to_see_the_operating_revenues(property)
+    then_expect.to_see_the_operating_expenses(property)
   end
 end

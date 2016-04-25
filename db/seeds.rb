@@ -40,7 +40,7 @@ FinancingAndIncomeAssumption.create!(
 OperatingExpensesAssumption.create!(
   id: 1,
   vacancy_rate: 5,
-  repairs_and_maintenance: 5625,
+  repairs_and_maintenance: 5265,
   property_management_fees: 3.5,
   taxes: 3200.03,
   insurance: 812.03,
