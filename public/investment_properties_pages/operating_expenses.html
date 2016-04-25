@@ -68,4 +68,10 @@
     <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.landscaping | currency:"$":2}}</div>
     <div class="col-md-3 align-right" ng-repeat="cost in annual_landscaping_fees track by $index">{{cost | currency:"$":0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">CapEx</div>
+    <div class="col-md-2 align-right">{{rental_property.operating_expenses_assumption.capex | percentage:4}}</div>
+    <div class="col-md-2 align-right">{{monthly_capex_cost | currency:"$":2}}</div>
+    <div class="col-md-3 align-right" ng-repeat="cost in annual_capex_cost track by $index">{{cost | currency:"$":0}}</div>
+  </div>
 </div>

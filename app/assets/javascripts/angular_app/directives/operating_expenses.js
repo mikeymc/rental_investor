@@ -31,9 +31,18 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_advertising_fees = annual_advertising_fees($scope.rental_property);
         $scope.monthly_landscaping_fees_percentage = monthly_landscaping_fees_percentage($scope.rental_property);
         $scope.annual_landscaping_fees = annual_landscaping_fees($scope.rental_property);
+        $scope.monthly_capex_cost = monthly_capex_cost($scope.rental_property);
+        $scope.annual_capex_cost = annual_capex_cost($scope.rental_property);
       }, true);
 
       /* --- Private --- */
+
+      function monthly_capex_cost(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var monthly_capex = property.operating_expenses_assumption.capex;
+
+        return monthly_capex * monthly_income / 100;
+      }
 
       function monthly_landscaping_fees_percentage(property) {
         var monthly_income = property_service.get_gross_operating_income(property);
@@ -109,6 +118,16 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var expense_increases = property.income_and_cost_projection.operating_expense_increases;
 
         var cost = monthly_property_management_fee(property) * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_capex_cost(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+
+        var cost = monthly_capex_cost(property) * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;
