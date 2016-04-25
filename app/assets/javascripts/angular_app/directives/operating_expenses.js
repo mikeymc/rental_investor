@@ -1,4 +1,4 @@
-angular.module('rentals').directive('operatingExpenses', function(property_service, $filter) {
+angular.module('rentals').directive('operatingExpenses', function(property_service) {
   return {
     templateUrl: 'investment_properties_pages/operating_expenses.html',
     restrict: 'E',
@@ -9,35 +9,78 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         }
 
         $scope.repairs_and_maintenance_percentage = repairs_and_maintenance_percentage($scope.rental_property);
-        $scope.projected_annual_maintenance_costs = projected_annual_maintenance_costs($scope.rental_property);
-        $scope.monthly_property_management_fees = monthly_property_management_fee($scope.rental_property);
-        $scope.annual_property_management_fees = annual_property_management_fees($scope.rental_property);
         $scope.monthly_taxes_percentage = monthly_taxes_percentage($scope.rental_property);
-        $scope.annual_taxes = annual_taxes($scope.rental_property);
         $scope.monthly_insurance_percentage = monthly_insurance_percentage($scope.rental_property);
-        $scope.annual_insurance_costs = annual_insurance($scope.rental_property);
         $scope.monthly_salaries_and_wages_percentage = monthly_salaries_and_wages_percentage($scope.rental_property);
-        $scope.annual_salaries_and_wages = annual_salaries_and_wages($scope.rental_property);
-        $scope.annual_salaries_and_wages = annual_salaries_and_wages($scope.rental_property);
         $scope.monthly_utilities_percentage = monthly_utilities_percentage($scope.rental_property);
-        $scope.annual_utilities = annual_utilities($scope.rental_property);
         $scope.monthly_water_and_sewer_percentage = monthly_water_and_sewer_percentage($scope.rental_property);
-        $scope.annual_water_and_sewer_costs = annual_water_and_sewer_costs($scope.rental_property);
         $scope.monthly_trash_removal_percentage = monthly_trash_removal_percentage($scope.rental_property);
-        $scope.annual_trash_removal_costs = annual_trash_removal_costs($scope.rental_property);
         $scope.monthly_professional_fees_percentage = monthly_professional_fees_percentage($scope.rental_property);
-        $scope.annual_professional_fees_costs = annual_professional_fees_costs($scope.rental_property);
         $scope.monthly_advertising_fees_percentage = monthly_advertising_fees_percentage($scope.rental_property);
-        $scope.annual_advertising_fees = annual_advertising_fees($scope.rental_property);
         $scope.monthly_landscaping_fees_percentage = monthly_landscaping_fees_percentage($scope.rental_property);
-        $scope.annual_landscaping_fees = annual_landscaping_fees($scope.rental_property);
-        $scope.monthly_capex_cost = monthly_capex_cost($scope.rental_property);
-        $scope.annual_capex_cost = annual_capex_cost($scope.rental_property);
         $scope.monthly_other_expenses_percentage = monthly_other_expenses_percentage($scope.rental_property);
+
+        $scope.monthly_property_management_fees = monthly_property_management_fee($scope.rental_property);
+        $scope.monthly_capex_cost = monthly_capex_cost($scope.rental_property);
+
+        $scope.projected_annual_maintenance_costs = projected_annual_maintenance_costs($scope.rental_property);
+        $scope.annual_property_management_fees = annual_property_management_fees($scope.rental_property);
+        $scope.annual_taxes = annual_taxes($scope.rental_property);
+        $scope.annual_insurance_costs = annual_insurance($scope.rental_property);
+        $scope.annual_salaries_and_wages = annual_salaries_and_wages($scope.rental_property);
+        $scope.annual_utilities = annual_utilities($scope.rental_property);
+        $scope.annual_water_and_sewer_costs = annual_water_and_sewer_costs($scope.rental_property);
+        $scope.annual_trash_removal_costs = annual_trash_removal_costs($scope.rental_property);
+        $scope.annual_professional_fees_costs = annual_professional_fees_costs($scope.rental_property);
+        $scope.annual_advertising_fees = annual_advertising_fees($scope.rental_property);
+        $scope.annual_landscaping_fees = annual_landscaping_fees($scope.rental_property);
+        $scope.annual_capex_cost = annual_capex_cost($scope.rental_property);
         $scope.annual_other_operating_expenses = annual_other_operating_expenses($scope.rental_property);
+        $scope.total_operating_expenses_percentage = total_monthly_expenses_percentage($scope.rental_property);
+        $scope.total_operating_expenses = total_operating_expenses($scope.rental_property);
+        $scope.total_annual_operating_expenses_projections = total_annual_operating_expenses_projections($scope.rental_property);
       }, true);
 
       /* --- Private --- */
+
+      function total_annual_operating_expenses_projections(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+
+        var cost = total_operating_expenses($scope.rental_property) * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function total_operating_expenses(property) {
+        var gross_income = property_service.get_gross_operating_income(property);
+        var total_expenses_percentage = total_monthly_expenses_percentage($scope.rental_property);
+
+        var number = total_expenses_percentage / 100 * gross_income;
+        return number;
+      }
+
+      function total_monthly_expenses_percentage(property) {
+        var percentages = [];
+        percentages.push(repairs_and_maintenance_percentage($scope.rental_property));
+        percentages.push(property.operating_expenses_assumption.property_management_fees);
+        percentages.push(monthly_taxes_percentage($scope.rental_property));
+        percentages.push(monthly_insurance_percentage($scope.rental_property));
+        percentages.push(monthly_salaries_and_wages_percentage($scope.rental_property));
+        percentages.push(monthly_utilities_percentage($scope.rental_property));
+        percentages.push(monthly_water_and_sewer_percentage($scope.rental_property));
+        percentages.push(monthly_trash_removal_percentage($scope.rental_property));
+        percentages.push(monthly_professional_fees_percentage($scope.rental_property));
+        percentages.push(monthly_advertising_fees_percentage($scope.rental_property));
+        percentages.push(monthly_landscaping_fees_percentage($scope.rental_property));
+        percentages.push(property.operating_expenses_assumption.capex);
+        percentages.push(monthly_other_expenses_percentage($scope.rental_property));
+
+        return _.reduce(percentages, function(memo, item) {
+          return memo + parseFloat(item);
+        }, 0);
+      }
 
       function monthly_capex_cost(property) {
         var monthly_income = property_service.get_gross_operating_income(property);

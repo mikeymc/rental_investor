@@ -346,7 +346,8 @@ class Expectations
         advertising: %w(1.2346% $500.01 $6,000 $5,880 $5,821 $5,909 $6,027),
         landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
         capex: %w(7.0000% $2,835.00 $34,020 $33,340 $33,006 $33,501 $34,171),
-        other_expenses: %w(2.4691% $999.99 $12,000 $11,760 $11,642 $11,817 $12,053)
+        other_expenses: %w(2.4691% $999.99 $12,000 $11,760 $11,642 $11,817 $12,053),
+        total: %w(47.8507% $19,379.55 $232,555 $227,904 $225,624 $229,009 $233,589)
       })
     elsif property[:name] == 'sesame'
       assert_operating_expenses({
@@ -362,7 +363,8 @@ class Expectations
         advertising: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
         landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
         capex: %w(7.0000% $192.32 $2,308 $2,262 $2,239 $2,273 $2,318),
-        other_expenses: %w(0.0000% $0.00 $0 $0 $0 $0 $0)
+        other_expenses: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        total: %w(35.9634% $988 $11,857 $11,620 $11,503 $11,676 $11,909)
       })
     end
   end
@@ -411,6 +413,9 @@ class Expectations
     end
     details[:other_expenses].each do |cost|
       expect(expenses.find('.row', text: 'Other')).to have_content cost
+    end
+    details[:total].each do |cost|
+      expect(expenses.find('.row', text: 'Total Operating Expenses')).to have_content cost
     end
   end
 
