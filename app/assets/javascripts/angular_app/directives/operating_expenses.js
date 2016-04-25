@@ -27,6 +27,8 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_trash_removal_costs = annual_trash_removal_costs($scope.rental_property);
         $scope.monthly_professional_fees_percentage = monthly_professional_fees_percentage($scope.rental_property);
         $scope.annual_professional_fees_costs = annual_professional_fees_costs($scope.rental_property);
+        $scope.monthly_advertising_fees_percentage = monthly_advertising_fees_percentage($scope.rental_property);
+        $scope.annual_advertising_fees = annual_advertising_fees($scope.rental_property);
       }, true);
 
       /* --- Private --- */
@@ -36,6 +38,13 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_professional_fees = property.operating_expenses_assumption.professional_fees;
 
         return 100 * monthly_professional_fees / monthly_income
+      }
+
+      function monthly_advertising_fees_percentage(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var monthly_advertising_fees = property.operating_expenses_assumption.advertising;
+
+        return 100 * monthly_advertising_fees / monthly_income
       }
 
       function monthly_water_and_sewer_percentage(property) {
@@ -113,6 +122,17 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_taxes = property.operating_expenses_assumption.taxes;
 
         var cost = monthly_taxes * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_advertising_fees(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+        var monthly_advertising_fees = property.operating_expenses_assumption.advertising;
+
+        var cost = monthly_advertising_fees * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;
