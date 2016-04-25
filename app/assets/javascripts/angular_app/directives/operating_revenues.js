@@ -1,4 +1,4 @@
-angular.module('rentals').directive('operatingRevenues', function(cost_and_revenue_assumptions_service) {
+angular.module('rentals').directive('operatingRevenues', function(property_service) {
   return {
     templateUrl: 'investment_properties_pages/operating_revenues.html',
     restrict: 'E',
@@ -7,7 +7,7 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
         if (!$scope.rental_property) {
           return;
         }
-        $scope.monthly_gross_scheduled_rent_income = cost_and_revenue_assumptions_service.get_gross_monthly_rent($scope.rental_property);
+        $scope.monthly_gross_scheduled_rent_income = property_service.get_gross_monthly_rent($scope.rental_property);
         $scope.vacancy = vacancy($scope.rental_property);
         $scope.net_rental_income = net_rental_income($scope.rental_property);
         $scope.other_income = $scope.rental_property.financing_and_income_assumption.other_monthly_income;
@@ -29,12 +29,12 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
 
       function vacancy(property) {
         var vacancy_rate = property.operating_expenses_assumption.vacancy_rate;
-        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(property);
+        var gross_rent = property_service.get_gross_monthly_rent(property);
         return gross_rent * vacancy_rate / 100;
       }
 
       function net_rental_income(property) {
-        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(property);
+        var gross_rent = property_service.get_gross_monthly_rent(property);
         var vacancy_cost = vacancy(property);
         return gross_rent - vacancy_cost;
       }
@@ -77,7 +77,7 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
       }
 
       function projected_gross_annual_rents(property) {
-        var projected_average_monthly_rents = cost_and_revenue_assumptions_service.get_projected_average_rents(property);
+        var projected_average_monthly_rents = property_service.get_projected_average_rents(property);
         var number_of_units = property.financing_and_income_assumption.number_of_units;
 
         return _.map(projected_average_monthly_rents, function(rent) {

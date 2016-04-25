@@ -1,4 +1,4 @@
-angular.module('rentals').service('cost_and_revenue_assumptions_service', function() {
+angular.module('rentals').service('property_service', function() {
   return {
     get_closing_costs: get_closing_costs,
     get_total_gross_monthly_income: get_total_gross_monthly_income,

@@ -1,9 +1,9 @@
-describe('cost_and_revenue_assumptions_service', function() {
+describe('property_service', function() {
   var subject;
 
   beforeEach(function() {
-    this.inject_dependencies('cost_and_revenue_assumptions_service');
-    subject = this.cost_and_revenue_assumptions_service;
+    this.inject_dependencies('property_service');
+    subject = this.property_service;
   });
 
   it('returns the sum of costs', function() {

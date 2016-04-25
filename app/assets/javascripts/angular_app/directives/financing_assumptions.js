@@ -1,4 +1,4 @@
-angular.module('rentals').directive('financingAssumptions', function(cost_and_revenue_assumptions_service) {
+angular.module('rentals').directive('financingAssumptions', function(property_service) {
   return {
     templateUrl: 'investment_properties_pages/financing_assumptions.html',
     restrict: 'E',
@@ -34,11 +34,11 @@ angular.module('rentals').directive('financingAssumptions', function(cost_and_re
       }
 
       function closing_costs(property) {
-        return cost_and_revenue_assumptions_service.get_closing_costs(property);
+        return property_service.get_closing_costs(property);
       }
 
       function total_cost(property) {
-        return cost_and_revenue_assumptions_service.get_total_cost(property);
+        return property_service.get_total_cost(property);
       }
 
       function down_payment(total_cost, equity_percentage) {
