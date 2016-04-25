@@ -7,20 +7,11 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
         if (!$scope.rental_property) {
           return;
         }
-        $scope.monthly_gross_scheduled_rent_income = cost_and_revenue_assumptions_service.get_gross_monthly_rent(
-          $scope.rental_property
-        );
-        $scope.vacancy = vacancy(
-          $scope.monthly_gross_scheduled_rent_income,
-          $scope.rental_property.operating_expenses_assumption.vacancy_rate
-        );
-        $scope.net_rental_income = net_rental_income(
-          $scope.monthly_gross_scheduled_rent_income,
-          $scope.vacancy
-        );
+        $scope.monthly_gross_scheduled_rent_income = cost_and_revenue_assumptions_service.get_gross_monthly_rent($scope.rental_property);
+        $scope.vacancy = vacancy($scope.rental_property);
+        $scope.net_rental_income = net_rental_income($scope.rental_property);
         $scope.other_income = $scope.rental_property.financing_and_income_assumption.other_monthly_income;
-        $scope.gross_income = gross_income($scope.net_rental_income, $scope.other_income);
-
+        $scope.gross_income = gross_income($scope.rental_property);
         $scope.projected_gross_annual_rents = projected_gross_annual_rents($scope.rental_property);
         $scope.projected_annual_vacancy_costs = projected_annual_vacancy_costs($scope.rental_property);
         $scope.projected_annual_net_rental_incomes = projected_annual_net_rental_incomes($scope.rental_property);
@@ -29,6 +20,24 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
       }, true);
 
       /* --- Private --- */
+
+      function gross_income(property) {
+        var net_income = net_rental_income(property);
+        var other_income = property.financing_and_income_assumption.other_monthly_income;
+        return net_income + parseFloat(other_income)
+      }
+
+      function vacancy(property) {
+        var vacancy_rate = property.operating_expenses_assumption.vacancy_rate;
+        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(property);
+        return gross_rent * vacancy_rate / 100;
+      }
+
+      function net_rental_income(property) {
+        var gross_rent = cost_and_revenue_assumptions_service.get_gross_monthly_rent(property);
+        var vacancy_cost = vacancy(property);
+        return gross_rent - vacancy_cost;
+      }
 
       function projected_gross_incomes(property) {
         var projected_nets = projected_annual_net_rental_incomes(property);
@@ -74,18 +83,6 @@ angular.module('rentals').directive('operatingRevenues', function(cost_and_reven
         return _.map(projected_average_monthly_rents, function(rent) {
           return rent * 12 * number_of_units;
         })
-      }
-
-      function gross_income(net_income, other_income) {
-        return net_income + parseFloat(other_income)
-      }
-
-      function vacancy(gross_rent, vacancy_rate) {
-        return gross_rent * vacancy_rate / 100;
-      }
-
-      function net_rental_income(gross_rent, vacancy) {
-        return gross_rent - vacancy;
       }
     }
   }
