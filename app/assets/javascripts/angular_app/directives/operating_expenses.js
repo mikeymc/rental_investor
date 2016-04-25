@@ -14,9 +14,18 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_property_management_fees = annual_property_management_fees($scope.rental_property);
         $scope.monthly_taxes_percentage = monthly_taxes_percentage($scope.rental_property);
         $scope.annual_taxes = annual_taxes($scope.rental_property);
+        $scope.monthly_insurance_percentage = monthly_insurance_percentage($scope.rental_property);
+        $scope.annual_insurance_costs = annual_insurance($scope.rental_property);
       }, true);
 
       /* --- Private --- */
+
+      function monthly_insurance_percentage(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var insurance = property.operating_expenses_assumption.insurance;
+
+        return insurance / monthly_income * 100;
+      }
 
       function monthly_taxes_percentage(property) {
         var monthly_taxes = property.operating_expenses_assumption.taxes;
@@ -47,6 +56,17 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_taxes = property.operating_expenses_assumption.taxes;
 
         var cost = monthly_taxes * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_insurance(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+        var monthly_insurance = property.operating_expenses_assumption.insurance;
+
+        var cost = monthly_insurance * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;
