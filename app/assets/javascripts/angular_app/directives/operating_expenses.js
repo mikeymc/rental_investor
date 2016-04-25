@@ -33,6 +33,8 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_landscaping_fees = annual_landscaping_fees($scope.rental_property);
         $scope.monthly_capex_cost = monthly_capex_cost($scope.rental_property);
         $scope.annual_capex_cost = annual_capex_cost($scope.rental_property);
+        $scope.monthly_other_expenses_percentage = monthly_other_expenses_percentage($scope.rental_property);
+        $scope.annual_other_operating_expenses = annual_other_operating_expenses($scope.rental_property);
       }, true);
 
       /* --- Private --- */
@@ -42,6 +44,13 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_capex = property.operating_expenses_assumption.capex;
 
         return monthly_capex * monthly_income / 100;
+      }
+
+      function monthly_other_expenses_percentage(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var monthly_capex = property.operating_expenses_assumption.other_expenses;
+
+        return 100 * monthly_capex / monthly_income;
       }
 
       function monthly_landscaping_fees_percentage(property) {
@@ -172,6 +181,17 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_advertising_fees = property.operating_expenses_assumption.advertising;
 
         var cost = monthly_advertising_fees * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_other_operating_expenses(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+        var monthly_other_expenses = property.operating_expenses_assumption.other_expenses;
+
+        var cost = monthly_other_expenses * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;
