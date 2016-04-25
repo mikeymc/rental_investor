@@ -283,19 +283,19 @@ class Expectations
     })
 
     assert_updated_operating_revenues({
-      rent_income: ['$48,800', '$585,600', '$603,168', '$624,279', '$643,007', '$662,297']
+      rent_income: %w($48,800 $585,600 $603,168 $624,279 $643,007 $662,297)
     })
   end
 
   def to_see_the_rental_increase_projections(property)
     if property[:name] == 'moroni'
-      assert_rental_increase_projections(['0.00%', '3.00%', '3.50%', '3.00%', '3.00%'])
-      assert_average_monthly_rents_each_year(['$700', '$721', '$746', '$769', '$792'])
-      assert_operating_expense_projections(['0.00%', '-2.00%', '-1.00%', '1.50%', '2.00%'])
+      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
+      assert_average_monthly_rents_each_year(%w($700 $721 $746 $769 $792))
+      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
     elsif property[:name] == 'sesame'
-      assert_rental_increase_projections(['0.00%', '3.00%', '3.50%', '3.00%', '3.00%'])
-      assert_average_monthly_rents_each_year(['$482', '$496', '$514', '$529', '$545'])
-      assert_operating_expense_projections(['0.00%', '-2.00%', '-1.00%', '1.50%', '2.00%'])
+      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
+      assert_average_monthly_rents_each_year(%w($482 $496 $514 $529 $545))
+      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
     end
   end
 
@@ -303,11 +303,11 @@ class Expectations
     if property[:name] == 'moroni'
       assert_operating_revenues({
         gross_scheduled_rental_income_monthly: '$42,000',
-        gross_scheduled_rental_income_yearly: ['$504,000', '$519,120', '$537,289', '$553,408', '$570,010'],
-        vacancy_cost_yearly: ['$25,200', '$25,956', '$26,864', '$27,670', '$28,501'],
-        net_rental_income_yearly: ['$478,800', '$493,164', '$510,425', '$525,737', '$541,510'],
-        other_income_yearly: ['$7,200', '$7,416', '$7,676', '$7,906', '$8,143'],
-        gross_income_yearly: ['$486,000', '$500,580', '$518,100', '$533,643', '$549,653'],
+        gross_scheduled_rental_income_yearly: %w($504,000 $519,120 $537,289 $553,408 $570,010),
+        vacancy_cost_yearly: %w($25,200 $25,956 $26,864 $27,670 $28,501),
+        net_rental_income_yearly: %w($478,800 $493,164 $510,425 $525,737 $541,510),
+        other_income_yearly: %w($7,200 $7,416 $7,676 $7,906 $8,143),
+        gross_income_yearly: %w($486,000 $500,580 $518,100 $533,643 $549,653),
         vacancy_rate_monthly: '$2,100',
         vacancy_rate_percentage: '5.0%',
         net_rental_income_monthly: '$39,900',
@@ -317,11 +317,11 @@ class Expectations
     elsif property[:name] == 'sesame'
       assert_operating_revenues({
         gross_scheduled_rental_income_monthly: '$2,892',
-        gross_scheduled_rental_income_yearly: ['$34,704', '$35,745', '$36,996', '$38,106', '$39,249'],
-        vacancy_cost_yearly: ['$1,735', '$1,787', '$1,850', '$1,905', '$1,962'],
-        net_rental_income_yearly: ['$32,969', '$33,958', '$35,146', '$36,201', '$37,287'],
-        other_income_yearly: ['$0', '$0', '$0', '$0', '$0'],
-        gross_income_yearly: ['$32,969', '$33,958', '$35,146', '$36,201', '$37,287'],
+        gross_scheduled_rental_income_yearly: %w($34,704 $35,745 $36,996 $38,106 $39,249),
+        vacancy_cost_yearly: %w($1,735 $1,787 $1,850 $1,905 $1,962),
+        net_rental_income_yearly: %W($32,969 $33,958 $35,146 $36,201 $37,287),
+        other_income_yearly: %w($0 $0 $0 $0 $0),
+        gross_income_yearly: %w($32,969 $33,958 $35,146 $36,201 $37,287),
         vacancy_rate_monthly: '145',
         vacancy_rate_percentage: '5.0%',
         net_rental_income_monthly: '$2,747',
