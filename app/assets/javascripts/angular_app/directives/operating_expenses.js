@@ -23,6 +23,8 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         $scope.annual_utilities = annual_utilities($scope.rental_property);
         $scope.monthly_water_and_sewer_percentage = monthly_water_and_sewer_percentage($scope.rental_property);
         $scope.annual_water_and_sewer_costs = annual_water_and_sewer_costs($scope.rental_property);
+        $scope.monthly_trash_removal_percentage = monthly_trash_removal_percentage($scope.rental_property);
+        $scope.annual_trash_removal_costs = annual_trash_removal_costs($scope.rental_property);
       }, true);
 
       /* --- Private --- */
@@ -32,6 +34,13 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var monthly_water_and_sewer = property.operating_expenses_assumption.water_and_sewer;
 
         return 100 * monthly_water_and_sewer / monthly_income
+      }
+
+      function monthly_trash_removal_percentage(property) {
+        var monthly_income = property_service.get_gross_operating_income(property);
+        var monthly_trash_removal = property.operating_expenses_assumption.trash_removal;
+
+        return 100 * monthly_trash_removal / monthly_income
       }
 
       function monthly_salaries_and_wages_percentage(property) {
@@ -73,6 +82,17 @@ angular.module('rentals').directive('operatingExpenses', function(property_servi
         var expense_increases = property.income_and_cost_projection.operating_expense_increases;
 
         var cost = monthly_property_management_fee(property) * 12;
+        return _.map(expense_increases, function(increase) {
+          cost = (1 + ((increase / 100))) * cost;
+          return cost;
+        });
+      }
+
+      function annual_trash_removal_costs(property) {
+        var expense_increases = property.income_and_cost_projection.operating_expense_increases;
+        var monthly_trash_removal = property.operating_expenses_assumption.trash_removal;
+
+        var cost = monthly_trash_removal * 12;
         return _.map(expense_increases, function(increase) {
           cost = (1 + ((increase / 100))) * cost;
           return cost;
