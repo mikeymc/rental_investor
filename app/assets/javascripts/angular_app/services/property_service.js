@@ -21,10 +21,25 @@ angular.module('rentals').service('property_service', function() {
     monthly_loan_payment: monthly_loan_payment,
     down_payment: down_payment,
     percent_to_finance: percent_to_finance,
-    balance_to_finance: balance_to_finance
+    balance_to_finance: balance_to_finance,
+    get_net_operating_income: get_net_operating_income,
+    get_net_annual_operating_incomes: get_net_annual_operating_incomes
   };
 
   /* --- Private --- */
+
+  function get_net_annual_operating_incomes(property, expenses) {
+    var incomes = get_projected_annual_gross_operating_incomes(property);
+    return _.map(incomes, function(income, index) {
+      return income - expenses.total.yearly_costs[index];
+    });
+  }
+
+  function get_net_operating_income(property, expenses) {
+    var gross_income = get_gross_operating_income(property);
+    var total_monthly_expenses = expenses.total.monthly_cost;
+    return gross_income - total_monthly_expenses;
+  }
 
   function balance_to_finance(property) {
     var total_cost = get_total_cost(property);
