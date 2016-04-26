@@ -83,5 +83,6 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_the_rental_increase_projections(property)
     then_expect.to_see_the_operating_revenues(property)
     then_expect.to_see_the_operating_expenses(property)
+    then_expect.to_see_the_net_operating_income(property)
   end
 end
