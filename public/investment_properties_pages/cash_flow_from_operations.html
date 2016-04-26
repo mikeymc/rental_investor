@@ -5,9 +5,9 @@
   <div class="row">
     <div class="col-md-5">Total Cash Available for Loan Servicing</div>
     <div class="col-md-2"></div>
-    <div class="col-md-2 align-right">{{cash_available_for_loan_servicing | currency:'$':2}}</div>
+    <div class="col-md-2 align-right">{{cash_available | currency:'$':2}}</div>
     <div class="col-md-3 align-right"
-         ng-repeat="cash in annual_cash_available_for_loan_servicing track by $index">
+         ng-repeat="cash in annual_cash_available track by $index">
       {{cash | currency:'$':0}}
     </div>
   </div>
@@ -20,5 +20,14 @@
     <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':2}}</div>
     <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':2}}</div>
     <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':2}}</div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">Remaining Cash Flow from Operations</div>
+    <div class="col-md-2"></div>
+    <div class="col-md-3 align-right">{{monthly_cf_remaining | currency:'$':0}}</div>
+    <div class="col-md-3 align-right"
+         ng-repeat="cash in annual_cfs_remaining track by $index">
+      {{cash | currency:'$':0}}
+    </div>
   </div>
 </div>

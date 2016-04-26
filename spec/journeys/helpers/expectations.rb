@@ -387,12 +387,14 @@ class Expectations
     if property[:name] == 'moroni'
       assert_cash_flow_from_operations({
         debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06),
-        cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064)
+        cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
+        remaining_cash_flow_from_operations: %w($5,281 $63,374 $82,605 $102,405 $114,563 $125,993)
       })
     elsif property[:name] == 'sesame'
       assert_cash_flow_from_operations({
         debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51),
-        cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377)
+        cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
+        remaining_cash_flow_from_operations: %w($593 $7,115 $8,341 $9,646 $10,527 $11,380)
       })
     end
   end
@@ -408,6 +410,9 @@ class Expectations
     end
     details[:cash_available_for_loan_servicing].each do |item|
       expect(cash_flow.find('.row', text: 'Cash Available for Loan Servicing')).to have_content item
+    end
+    details[:remaining_cash_flow_from_operations].each do |item|
+      expect(cash_flow.find('.row', text: 'Remaining Cash Flow from Operations')).to have_content item
     end
   end
 
