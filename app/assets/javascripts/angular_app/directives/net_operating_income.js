@@ -15,7 +15,6 @@ angular.module('rentals').directive('netOperatingIncome', function(operating_exp
 
         $scope.monthly_building_depreciation = $scope.rental_property.financing_and_income_assumption.building_cost/27.5/12;
         $scope.annual_building_depreciation = $scope.monthly_building_depreciation * 12;
-
       }, true);
 
       /* --- Private --- */

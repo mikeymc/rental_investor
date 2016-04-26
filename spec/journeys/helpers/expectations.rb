@@ -383,7 +383,28 @@ class Expectations
     end
   end
 
+  def to_see_the_cash_flow_from_operations(property)
+    if property[:name] == 'moroni'
+      assert_cash_flow_from_operations({
+        debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06)
+      })
+    elsif property[:name] == 'sesame'
+      assert_cash_flow_from_operations({
+        debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51)
+      })
+    end
+  end
+
   private
+
+  def assert_cash_flow_from_operations(details)
+    cash_flow = page.find('#cash-flow-from-operations')
+    expect(cash_flow).to have_content 'Cash Flow from Operations'
+
+    details[:debt_service].each do |item|
+      expect(cash_flow.find('.row', text: 'Debt Service')).to have_content item
+    end
+  end
 
   def assert_net_operating_income(details)
     income = page.find('#net-operating-income')
