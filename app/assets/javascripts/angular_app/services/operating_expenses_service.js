@@ -11,7 +11,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
         label: 'Repairs and Maintenance',
         percentage: repairs_and_maintenance_percentage(property),
         monthly_cost: property.operating_expenses_assumption.repairs_and_maintenance,
-        yearly_costs: projected_annual_maintenance_costs(property)
+        yearly_costs: annual_repairs_and_maintenance(property)
       },
       {
         label: 'Property Management Fees',
@@ -21,189 +21,189 @@ angular.module('rentals').service('operating_expenses_service', function(propert
       },
       {
         label: 'Taxes',
-        percentage: monthly_taxes_percentage(property),
+        percentage: taxes_percentage(property),
         monthly_cost: property.operating_expenses_assumption.taxes,
         yearly_costs: annual_taxes(property)
       },
       {
         label: 'Insurance',
-        percentage: monthly_insurance_percentage(property),
+        percentage: insurance_percentage(property),
         monthly_cost: property.operating_expenses_assumption.insurance,
         yearly_costs: annual_insurance(property)
       },
       {
         label: 'Salaries and Wages',
-        percentage: monthly_salaries_and_wages_percentage(property),
+        percentage: salaries_and_wages_percentage(property),
         monthly_cost: property.operating_expenses_assumption.salaries_and_wages,
         yearly_costs: annual_salaries_and_wages(property)
       },
       {
         label: 'Utilities',
-        percentage: monthly_utilities_percentage(property),
+        percentage: utilities_percentage(property),
         monthly_cost: property.operating_expenses_assumption.utilities,
         yearly_costs: annual_utilities(property)
       },
       {
         label: 'Water and Sewer',
-        percentage: monthly_water_and_sewer_percentage(property),
+        percentage: water_and_sewer_percentage(property),
         monthly_cost: property.operating_expenses_assumption.water_and_sewer,
-        yearly_costs: annual_water_and_sewer_costs(property)
+        yearly_costs: annual_water_and_sewer(property)
       },
       {
         label: 'Trash Removal',
-        percentage: monthly_trash_removal_percentage(property),
+        percentage: trash_removal_percentage(property),
         monthly_cost: property.operating_expenses_assumption.trash_removal,
-        yearly_costs: annual_trash_removal_costs(property)
+        yearly_costs: annual_trash_removal(property)
       },
       {
         label: 'Professional Fees',
-        percentage: monthly_professional_fees_percentage(property),
+        percentage: professional_fees_percentage(property),
         monthly_cost: property.operating_expenses_assumption.professional_fees,
-        yearly_costs: annual_professional_fees_costs(property)
+        yearly_costs: annual_professional_fees(property)
       },
       {
         label: 'Advertising',
-        percentage: monthly_advertising_fees_percentage(property),
+        percentage: advertising_percentage(property),
         monthly_cost: property.operating_expenses_assumption.advertising,
-        yearly_costs: annual_advertising_fees(property)
+        yearly_costs: annual_advertising(property)
       },
       {
         label: 'Landscaping',
-        percentage: monthly_landscaping_fees_percentage(property),
+        percentage: landscaping_percentage(property),
         monthly_cost: property.operating_expenses_assumption.landscaping,
-        yearly_costs: annual_landscaping_fees(property)
+        yearly_costs: annual_landscaping(property)
       },
       {
         label: 'CapEx',
         percentage: property.operating_expenses_assumption.capex,
-        monthly_cost: monthly_capex_cost(property),
-        yearly_costs: annual_capex_cost(property)
+        monthly_cost: monthly_capex(property),
+        yearly_costs: annual_capex(property)
       },
       {
         label: 'Other',
-        percentage: monthly_other_expenses_percentage(property),
+        percentage: other_percentage(property),
         monthly_cost: property.operating_expenses_assumption.other_expenses,
-        yearly_costs: annual_other_operating_expenses(property)
+        yearly_costs: annual_other(property)
       },
       {
         label: 'Total Operating Expenses',
-        percentage: total_monthly_expenses_percentage(property),
-        monthly_cost: total_operating_expenses(property),
-        yearly_costs: total_annual_operating_expenses_projections(property)
+        percentage: total_percentage(property),
+        monthly_cost: total_monthly(property),
+        yearly_costs: total_annual(property)
       }
     ];
   }
 
-  function total_annual_operating_expenses_projections(property) {
+  function total_annual(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
 
-    var cost = total_operating_expenses(property) * 12;
+    var cost = total_monthly(property) * 12;
     return _.map(expense_increases, function(increase) {
       cost = (1 + ((increase / 100))) * cost;
       return cost;
     });
   }
 
-  function total_operating_expenses(property) {
+  function total_monthly(property) {
     var gross_income = property_service.get_gross_operating_income(property);
-    var total_expenses_percentage = total_monthly_expenses_percentage(property);
+    var total_expenses_percentage = total_percentage(property);
 
     var number = total_expenses_percentage / 100 * gross_income;
     return number;
   }
 
-  function total_monthly_expenses_percentage(property) {
+  function total_percentage(property) {
     var percentages = [];
     percentages.push(repairs_and_maintenance_percentage(property));
     percentages.push(property.operating_expenses_assumption.property_management_fees);
-    percentages.push(monthly_taxes_percentage(property));
-    percentages.push(monthly_insurance_percentage(property));
-    percentages.push(monthly_salaries_and_wages_percentage(property));
-    percentages.push(monthly_utilities_percentage(property));
-    percentages.push(monthly_water_and_sewer_percentage(property));
-    percentages.push(monthly_trash_removal_percentage(property));
-    percentages.push(monthly_professional_fees_percentage(property));
-    percentages.push(monthly_advertising_fees_percentage(property));
-    percentages.push(monthly_landscaping_fees_percentage(property));
+    percentages.push(taxes_percentage(property));
+    percentages.push(insurance_percentage(property));
+    percentages.push(salaries_and_wages_percentage(property));
+    percentages.push(utilities_percentage(property));
+    percentages.push(water_and_sewer_percentage(property));
+    percentages.push(trash_removal_percentage(property));
+    percentages.push(professional_fees_percentage(property));
+    percentages.push(advertising_percentage(property));
+    percentages.push(landscaping_percentage(property));
     percentages.push(property.operating_expenses_assumption.capex);
-    percentages.push(monthly_other_expenses_percentage(property));
+    percentages.push(other_percentage(property));
 
     return _.reduce(percentages, function(memo, item) {
       return memo + parseFloat(item);
     }, 0);
   }
 
-  function monthly_capex_cost(property) {
+  function monthly_capex(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_capex = property.operating_expenses_assumption.capex;
 
     return monthly_capex * monthly_income / 100;
   }
 
-  function monthly_other_expenses_percentage(property) {
+  function other_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_capex = property.operating_expenses_assumption.other_expenses;
 
     return 100 * monthly_capex / monthly_income;
   }
 
-  function monthly_landscaping_fees_percentage(property) {
+  function landscaping_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_landscaping_fees = property.operating_expenses_assumption.landscaping;
 
     return 100 * monthly_landscaping_fees / monthly_income
   }
 
-  function monthly_professional_fees_percentage(property) {
+  function professional_fees_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_professional_fees = property.operating_expenses_assumption.professional_fees;
 
     return 100 * monthly_professional_fees / monthly_income
   }
 
-  function monthly_advertising_fees_percentage(property) {
+  function advertising_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_advertising_fees = property.operating_expenses_assumption.advertising;
 
     return 100 * monthly_advertising_fees / monthly_income
   }
 
-  function monthly_water_and_sewer_percentage(property) {
+  function water_and_sewer_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_water_and_sewer = property.operating_expenses_assumption.water_and_sewer;
 
     return 100 * monthly_water_and_sewer / monthly_income
   }
 
-  function monthly_trash_removal_percentage(property) {
+  function trash_removal_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_trash_removal = property.operating_expenses_assumption.trash_removal;
 
     return 100 * monthly_trash_removal / monthly_income
   }
 
-  function monthly_salaries_and_wages_percentage(property) {
+  function salaries_and_wages_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_salaries_and_wages = property.operating_expenses_assumption.salaries_and_wages;
 
     return 100 * monthly_salaries_and_wages / monthly_income
   }
 
-  function monthly_utilities_percentage(property) {
+  function utilities_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var monthly_utilities = property.operating_expenses_assumption.utilities;
 
     return 100 * monthly_utilities / monthly_income
   }
 
-  function monthly_insurance_percentage(property) {
+  function insurance_percentage(property) {
     var monthly_income = property_service.get_gross_operating_income(property);
     var insurance = property.operating_expenses_assumption.insurance;
 
     return insurance / monthly_income * 100;
   }
 
-  function monthly_taxes_percentage(property) {
+  function taxes_percentage(property) {
     var monthly_taxes = property.operating_expenses_assumption.taxes;
     var monthly_income = property_service.get_gross_operating_income(property);
 
@@ -227,17 +227,17 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function annual_capex_cost(property) {
+  function annual_capex(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
 
-    var cost = monthly_capex_cost(property) * 12;
+    var cost = monthly_capex(property) * 12;
     return _.map(expense_increases, function(increase) {
       cost = (1 + ((increase / 100))) * cost;
       return cost;
     });
   }
 
-  function annual_trash_removal_costs(property) {
+  function annual_trash_removal(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var monthly_trash_removal = property.operating_expenses_assumption.trash_removal;
 
@@ -248,7 +248,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function annual_landscaping_fees(property) {
+  function annual_landscaping(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var monthly_landscaping = property.operating_expenses_assumption.landscaping;
 
@@ -270,7 +270,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function annual_advertising_fees(property) {
+  function annual_advertising(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var monthly_advertising_fees = property.operating_expenses_assumption.advertising;
 
@@ -281,7 +281,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function annual_other_operating_expenses(property) {
+  function annual_other(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var monthly_other_expenses = property.operating_expenses_assumption.other_expenses;
 
@@ -292,7 +292,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function annual_water_and_sewer_costs(property) {
+  function annual_water_and_sewer(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var monthly_water_and_sewer = property.operating_expenses_assumption.water_and_sewer;
 
@@ -314,7 +314,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function annual_professional_fees_costs(property) {
+  function annual_professional_fees(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var monthly_professional_fees = property.operating_expenses_assumption.professional_fees;
 
@@ -347,7 +347,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
     });
   }
 
-  function projected_annual_maintenance_costs(property) {
+  function annual_repairs_and_maintenance(property) {
     var expense_increases = property.income_and_cost_projection.operating_expense_increases;
     var repairs_and_maintenance_cost = property.operating_expenses_assumption.repairs_and_maintenance;
 
