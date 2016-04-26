@@ -9,49 +9,19 @@ angular.module('rentals').directive('financingAssumptions', function(property_se
         }
 
         var property = $scope.rental_property;
+
         $scope.equity_percentage = property.financing_and_income_assumption.equity_percentage;
-
-        $scope.total_closing_costs = closing_costs(property);
-        $scope.total_cost = total_cost(property);
-        $scope.down_payment = down_payment($scope.total_cost, $scope.equity_percentage);
-        $scope.balance_to_finance_percentage = percent_to_finance($scope.equity_percentage);
-        $scope.balance_to_finance = balance_to_finance($scope.total_cost, $scope.down_payment);
+        $scope.total_closing_costs = property_service.get_closing_costs(property);
+        $scope.total_cost = property_service.get_total_cost(property);
+        $scope.down_payment = property_service.down_payment(property);
+        $scope.balance_to_finance_percentage = property_service.percent_to_finance(property);
+        $scope.balance_to_finance = property_service.balance_to_finance(property);
         $scope.monthly_interest_rate = property.financing_and_income_assumption.loan_interest_rate / 12;
-        $scope.amortization_period_in_months = property.financing_and_income_assumption.amortization_period_in_years*12;
-        $scope.monthly_loan_payment = monthly_loan_payment(
-          $scope.balance_to_finance,
-          $scope.monthly_interest_rate,
-          $scope.amortization_period_in_months);
+        $scope.amortization_period_in_months = property.financing_and_income_assumption.amortization_period_in_years * 12;
+        $scope.monthly_loan_payment = property_service.monthly_loan_payment(property);
         $scope.annual_loan_payment = $scope.monthly_loan_payment * 12;
+
       }, true);
-
-      /* --- Private --- */
-
-      function monthly_loan_payment(principal, interest_rate, num_payments) {
-        var i = interest_rate / 100;
-        var mortgage = principal * i * Math.pow(1 + i, num_payments) / (Math.pow(1 + i, num_payments) - 1);
-        return mortgage;
-      }
-
-      function closing_costs(property) {
-        return property_service.get_closing_costs(property);
-      }
-
-      function total_cost(property) {
-        return property_service.get_total_cost(property);
-      }
-
-      function down_payment(total_cost, equity_percentage) {
-        return total_cost * equity_percentage / 100;
-      }
-
-      function percent_to_finance(equity_percentage) {
-        return 100 - equity_percentage;
-      }
-
-      function balance_to_finance(total_cost, down_payment) {
-        return total_cost - down_payment;
-      }
     }
   }
 });

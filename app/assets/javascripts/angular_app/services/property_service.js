@@ -17,10 +17,40 @@ angular.module('rentals').service('property_service', function() {
     get_projected_gross_annual_rents: get_projected_gross_annual_rents,
     get_projected_annual_vacancy_costs: get_projected_annual_vacancy_costs,
     get_projected_annual_net_rental_incomes: get_projected_annual_net_rental_incomes,
-    get_projected_annual_gross_operating_incomes: get_projected_annual_gross_operating_incomes
+    get_projected_annual_gross_operating_incomes: get_projected_annual_gross_operating_incomes,
+    monthly_loan_payment: monthly_loan_payment,
+    down_payment: down_payment,
+    percent_to_finance: percent_to_finance,
+    balance_to_finance: balance_to_finance
   };
 
   /* --- Private --- */
+
+  function balance_to_finance(property) {
+    var total_cost = get_total_cost(property);
+    var amount_down = down_payment(property);
+
+    return total_cost - amount_down;
+  }
+
+  function percent_to_finance(property) {
+    return 100 - property.financing_and_income_assumption.equity_percentage;
+  }
+
+  function down_payment(property) {
+    var equity_percentage = property.financing_and_income_assumption.equity_percentage;
+    return get_total_cost(property) * equity_percentage / 100;
+  }
+
+  function monthly_loan_payment(property) {
+    var principal = balance_to_finance(property);
+    var interest_rate = property.financing_and_income_assumption.loan_interest_rate / 12;
+    var num_payments = property.financing_and_income_assumption.amortization_period_in_years * 12;
+
+    var i = interest_rate / 100;
+    var mortgage = principal * i * Math.pow(1 + i, num_payments) / (Math.pow(1 + i, num_payments) - 1);
+    return mortgage;
+  }
 
   function get_projected_annual_gross_operating_incomes(property) {
     var projected_nets = get_projected_annual_net_rental_incomes(property);
