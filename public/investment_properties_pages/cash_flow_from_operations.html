@@ -25,9 +25,14 @@
     <div class="col-md-5">Remaining Cash Flow from Operations</div>
     <div class="col-md-2"></div>
     <div class="col-md-2 align-right">{{monthly_cf_remaining | currency:'$':0}}</div>
-    <div class="col-md-3 align-right"
-         ng-repeat="cash in annual_cfs_remaining track by $index">
+    <div class="col-md-3 align-right" ng-repeat="cash in annual_cfs_remaining track by $index">
       {{cash | currency:'$':0}}
     </div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">Plus Principal Reduction</div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2 align-right">{{monthly_principal_reduction | currency:'$':0}}</div>
+    <div class="col-md-3 align-right" ng-repeat="year in yearly_principal_reductions track by $index">{{year | currency:'$':0}}</div>
   </div>
 </div>

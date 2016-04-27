@@ -19,6 +19,7 @@ angular.module('rentals').service('property_service', function() {
     get_projected_annual_net_rental_incomes: get_projected_annual_net_rental_incomes,
     get_projected_annual_gross_operating_incomes: get_projected_annual_gross_operating_incomes,
     monthly_loan_payment: monthly_loan_payment,
+    get_monthly_interest_rate: get_monthly_interest_rate,
     down_payment: down_payment,
     percent_to_finance: percent_to_finance,
     balance_to_finance: balance_to_finance,
@@ -27,6 +28,10 @@ angular.module('rentals').service('property_service', function() {
   };
 
   /* --- Private --- */
+
+  function get_monthly_interest_rate(property) {
+    return property.financing_and_income_assumption.loan_interest_rate / 12;
+  }
 
   function get_net_annual_operating_incomes(property, expenses) {
     var incomes = get_projected_annual_gross_operating_incomes(property);
