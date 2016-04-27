@@ -20,10 +20,18 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
         $scope.monthly_cf_remaining = monthly_cash_flow_remaining($scope.rental_property);
         $scope.annual_cfs_remaining = annual_cash_flows_remaining($scope.rental_property);
         $scope.monthly_principal_reduction = cum_princ(monthly_interest_rate, number_of_payments, balance_to_finance, 1, 1, 0);
-        $scope.monthly_principal_reduction = cum_princ(monthly_interest_rate, number_of_payments, balance_to_finance, 1, 1, 0);
         $scope.yearly_principal_reductions = yearly_cum_princ(monthly_interest_rate, number_of_payments, balance_to_finance);
+        $scope.monthly_total_return = monthly_cash_flow_remaining($scope.rental_property) + $scope.monthly_principal_reduction;
+        $scope.annual_total_returns = get_annual_total_returns($scope.rental_property, $scope.yearly_principal_reductions);
 
         /* --- Private --- */
+
+        function get_annual_total_returns(property, yearly_principal_reductions) {
+          var yearly_cf_remaining = annual_cash_flows_remaining(property);
+          return _.map(yearly_principal_reductions, function(reduction, index) {
+            return reduction + yearly_cf_remaining[index];
+          });
+        }
 
         function yearly_cum_princ(rate, num_payments, balance) {
           var start = 1;

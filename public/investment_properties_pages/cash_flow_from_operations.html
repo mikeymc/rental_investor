@@ -35,4 +35,10 @@
     <div class="col-md-2 align-right">{{monthly_principal_reduction | currency:'$':0}}</div>
     <div class="col-md-3 align-right" ng-repeat="year in yearly_principal_reductions track by $index">{{year | currency:'$':0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">Total Return</div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2 align-right">{{monthly_total_return | currency:'$':0}}</div>
+    <div class="col-md-3 align-right" ng-repeat="year in annual_total_returns track by $index">{{year | currency:'$':0}}</div>
+  </div>
 </div>
