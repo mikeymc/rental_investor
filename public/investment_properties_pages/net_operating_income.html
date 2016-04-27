@@ -21,4 +21,10 @@
     <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
     <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">Net Income Before Taxes</div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2 align-right">{{monthly_net_income_before_taxes | currency:'$':0}}</div>
+    <div class="col-md-3 align-right" ng-repeat="income in annual_net_income_before_taxes track by $index">{{income | currency:'$':0}}</div>
+  </div>
 </div>

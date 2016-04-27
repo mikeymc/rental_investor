@@ -17,9 +17,29 @@ angular.module('rentals').directive('netOperatingIncome', function(operating_exp
         $scope.monthly_interest_on_loan_percentage = monthly_interest_on_loan_percentage($scope.rental_property);
         $scope.monthly_interest_on_loan = monthly_interest_on_loan($scope.rental_property);
         $scope.annual_interest_on_loan = get_annual_interest_on_loan($scope.rental_property);
+        $scope.monthly_net_income_before_taxes = monthly_net_income_before_taxes($scope.rental_property, expenses);
+        $scope.annual_net_income_before_taxes = annual_net_income_before_taxes($scope.rental_property, expenses);
+
       }, true);
 
       /* --- Private --- */
+
+      function monthly_net_income_before_taxes(property, expenses) {
+        var income = net_monthly_income(property, expenses);
+        var interest = monthly_interest_on_loan(property);
+        var depreciation = get_monthly_building_depreciation(property);
+        return income - interest - depreciation;
+      }
+
+      function annual_net_income_before_taxes(property, expenses) {
+        var incomes = net_annual_incomes(property, expenses);
+        var depreciation = get_annual_building_depreciation(property);
+        var interest = get_annual_interest_on_loan(property);
+
+        return _.map(incomes, function(income, index) {
+          return income - depreciation - interest[index];
+        })
+      }
 
       function get_annual_building_depreciation(property) {
         return 12 * get_monthly_building_depreciation(property);

@@ -394,13 +394,15 @@ class Expectations
       assert_net_operating_income({
         interest_on_loan: %w(29.8% $12,064.16 $143,556.82	$140,810.63 $137,902.30	$134,822.27	$131,560.39),
         net_operating_income: %w(52.15% $21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
-        building_depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909)
+        building_depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
+        net_income_before_taxes: %w($1,481 $18,979 $40,957 $63,664 $78,903 $93,594)
       })
     elsif property[:name] == 'sesame'
       assert_net_operating_income({
         interest_on_loan: %w(29.6% $814.43 $9,694.81 $9,519.51 $9,337.07 $9,147.19 $8,949.58),
         net_operating_income: %w(64.04% $1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
-        building_depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873)
+        building_depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
+        net_income_before_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555)
       })
     end
   end
@@ -411,6 +413,9 @@ class Expectations
     income = page.find('#net-operating-income')
     expect(income).to have_content 'Net Operating Income'
 
+    details[:net_income_before_taxes].each do |item|
+      expect(income.find('.row', text: 'Net Income Before Taxes')).to have_content item
+    end
     details[:interest_on_loan].each do |item|
       expect(income.find('.row', text: 'Interest on Loan')).to have_content item
     end
