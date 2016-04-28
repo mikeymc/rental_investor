@@ -85,5 +85,6 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_the_operating_expenses(property)
     then_expect.to_see_the_net_operating_income(property)
     then_expect.to_see_the_cash_flow_from_operations(property)
+    then_expect.to_see_the_roi(property)
   end
 end

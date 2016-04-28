@@ -1,0 +1,8 @@
+<div id="return-on-investment" class="top-padded">
+  <div class="row">
+    <div class="col-md-5 align-center subsection-header">Net Operating Income ROI</div>
+    <div class="col-md-2 align-right"></div>
+    <div class="col-md-2 align-right"></div>
+    <div class="col-md-3 align-right" ng-repeat="roi in noi_roi track by $index">{{roi | percentage:2}}</div>
+  </div>
+</div>
