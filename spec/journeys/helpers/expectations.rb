@@ -376,7 +376,8 @@ class Expectations
         cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
         remaining_cash_flow_from_operations: %w($5,281 $63,374 $82,605 $102,405 $114,563 $125,993),
         principal_reduction: %w($3,775 $46,514 $49,260 $52,169 $55,249 $58,511),
-        total_return: %w($9,056 $109,889 $131,866 $154,574 $169,812 $184,503)
+        total_return: %w($9,056 $109,889 $131,866 $154,574 $169,812 $184,503),
+        cf_to_debt_servicing_ratio: %w(133.34% 133.34% 143.46% 153.88% 160.27% 166.29%)
       })
     elsif property[:name] == 'sesame'
       assert_cash_flow_from_operations({
@@ -384,7 +385,8 @@ class Expectations
         cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
         remaining_cash_flow_from_operations: %w($593 $7,115 $8,341 $9,646 $10,527 $11,380),
         principal_reduction: %w($352 $4,303 $4,478 $4,660 $4,850 $5,048),
-        total_return: %w($945 $11,417 $12,819 $14,306 $15,378 $16,428)
+        total_return: %w($945 $11,417 $12,819 $14,306 $15,378 $16,428),
+        cf_to_debt_servicing_ratio: %w(150.83% 150.83% 159.59% 168.91% 175.21% 181.30%)
       })
     end
   end
@@ -445,6 +447,9 @@ class Expectations
     end
     details[:total_return].each do |item|
       expect(cash_flow.find('.row', text: 'Total Return')).to have_content item
+    end
+    details[:cf_to_debt_servicing_ratio].each do |item|
+      expect(cash_flow.find('.row', text: 'CF/Debt Servicing Ratio')).to have_content item
     end
   end
 

@@ -34,13 +34,25 @@ input:focus {
   border-bottom: thin solid;
 }
 
+.no-bottom-border {
+  border-bottom: none;
+}
+
 .add-border-bottom {
   border-bottom: thin black solid;
 }
 
+.add-border-top {
+  border-top: thin black solid;
+}
+
 .double-height {
   position: absolute !important;
-  height: 32px;
+  height: 31px;
+}
+
+.top-padded {
+  margin-top: 15px;
 }
 
 .container {

@@ -20,6 +20,28 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
         $scope.yearly_principal_reductions = cash_flow_service.yearly_cum_princ($scope.rental_property);
         $scope.monthly_total_return = cash_flow_service.get_monthly_total_return($scope.rental_property);
         $scope.annual_total_returns = cash_flow_service.get_annual_total_returns($scope.rental_property);
+        $scope.monthly_cf_debt_servicing_ratio = monthly_cf_debt_servicing_ratio($scope.rental_property);
+        $scope.annual_cf_debt_servicing_ratio = annual_cf_debt_servicing_ratio($scope.rental_property);
+
+        /* --- Private --- */
+
+        function annual_cf_debt_servicing_ratio(property) {
+          var expenses = operating_expenses_service.all_operating_expenses(property);
+          var annual_cash_available = property_service.get_net_annual_operating_incomes(property, expenses);
+          var annual_debt_service = cash_flow_service.annual_debt_service(property);
+
+          return _.map(annual_cash_available, function(cash) {
+            return 100 * cash / annual_debt_service;
+          });
+        }
+
+        function monthly_cf_debt_servicing_ratio(property) {
+          var expenses = operating_expenses_service.all_operating_expenses(property);
+          var monthly_debt_service = property_service.monthly_loan_payment(property);
+          var cash_available = property_service.get_net_operating_income(property, expenses);
+
+          return 100 * cash_available / monthly_debt_service;
+        }
       }, true);
     }
   }
