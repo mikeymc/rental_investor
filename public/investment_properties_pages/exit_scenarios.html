@@ -1,0 +1,15 @@
+<div id="exit-scenarios" class="top-padded">
+  <div class="row">
+    <div class="col-md-7 align-right"></div>
+    <div class="col-md-2 align-right">Exit Price</div>
+    <div class="col-md-3 align-right">Gain on Sale</div>
+    <div class="col-md-3 align-right">Cap Rate</div>
+  </div>
+  <div class="row">
+    <div class="col-md-5 align-center subsection-header">Est Exit Price/Gain on Sale - 1 Yr</div>
+    <div class="col-md-2 align-right"></div>
+    <div class="col-md-2 align-right">{{first_year_exit_price | currency:'$':0}}</div>
+    <div class="col-md-3 align-right">{{first_year_gain_on_sale | currency:'$':0}}</div>
+    <div class="col-md-3 align-right">{{cap_rate | percentage:2}}</div>
+  </div>
+</div>
