@@ -9,7 +9,7 @@ angular.module('rentals').directive('netCashFlows', function(property_service, c
         }
 
         $scope.monthly_cash_flow = -1 * property_service.down_payment($scope.rental_property);
-        $scope.one_year_exit_net = -1 * one_year_exit_net($scope.rental_property);
+        $scope.one_year_exit_net = one_year_exit_net($scope.rental_property);
         $scope.three_year_exit_nets = three_year_exit_nets($scope.rental_property);
 
         /* --- Private --- */
@@ -24,12 +24,15 @@ angular.module('rentals').directive('netCashFlows', function(property_service, c
 
         function three_year_exit_nets(property) {
           function three_year_exit_gain(property) {
-            var values = [];
-            values.push(cash_flow_service.get_annual_total_returns(property)[2]);
-            values.push(cash_flow_service.yearly_cum_princ(property)[0]);
-            values.push(cash_flow_service.yearly_cum_princ(property)[1]);
-            values.push(property_service.down_payment(property));
-            values.push(exit_scenarios_service.third_year_gain_on_sale(property));
+            var annual_principal_reductions = cash_flow_service.yearly_cum_princ(property);
+
+            var values = [
+              cash_flow_service.get_annual_total_returns(property)[2],
+              annual_principal_reductions[0],
+              annual_principal_reductions[1],
+              property_service.down_payment(property),
+              exit_scenarios_service.third_year_gain_on_sale(property)
+            ];
 
             return _.reduce(values, function(memo, item) {
               return memo + parseFloat(item);
@@ -44,7 +47,6 @@ angular.module('rentals').directive('netCashFlows', function(property_service, c
 
           return cfs;
         }
-
       });
     }
   }
