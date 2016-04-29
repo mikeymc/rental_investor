@@ -62,7 +62,8 @@ class Expectations
         total_cost_per_sq_ft: '$57.78',
         cost_per_unit: '$50,557.00',
         cap_rate: '8.36%',
-        gross_rent_multiplier: '6.02'
+        gross_rent_multiplier: '6.02',
+        operational_efficiency: '4.43'
       })
     elsif property[:name] == 'sesame'
       assert_key_rent_ratios({
@@ -72,7 +73,8 @@ class Expectations
         total_cost_per_sq_ft: '$92.24',
         cost_per_unit: '$50,901.67',
         cap_rate: '6.91%',
-        gross_rent_multiplier: '8.80'
+        gross_rent_multiplier: '8.80',
+        operational_efficiency: '3.58'
       })
     end
   end
@@ -653,6 +655,7 @@ class Expectations
     expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
     expect(page.find('#key-rent-ratios .row', text: 'Capitalization Rate')).to have_content details[:cap_rate]
     expect(page.find('#key-rent-ratios .row', text: 'Gross Rent Multiplier')).to have_content details[:gross_rent_multiplier]
+    expect(page.find('#key-rent-ratios .row', text: 'Expenses/Sq Ft (Op Efficiency)')).to have_content details[:operational_efficiency]
   end
 
   def assert_financing_assumptions(details)

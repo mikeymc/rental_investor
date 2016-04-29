@@ -14,8 +14,16 @@ angular.module('rentals').directive('keyRentRatios', function(property_service, 
         $scope.cost_per_unit = service.get_cost_per_unit($scope.rental_property);
         $scope.cap_rate = get_cap_rate($scope.rental_property);
         $scope.gross_rent_multiplier = get_gross_rent_multiplier($scope.rental_property);
+        $scope.operating_efficiency = get_operating_efficiency($scope.rental_property);
 
         /* --- Private --- */
+
+        function get_operating_efficiency(property) {
+          var expenses = operating_expenses_service.all_operating_expenses(property).total.yearly_costs[0];
+          var area = property.financing_and_income_assumption.total_square_feet;
+
+          return expenses / area;
+        }
 
         function get_cap_rate(property) {
           var expenses = operating_expenses_service.all_operating_expenses(property);
