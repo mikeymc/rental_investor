@@ -412,11 +412,13 @@ class Expectations
   def to_see_the_roi(property)
     if property[:name] == 'moroni'
       assert_roi({
-        noi_roi: %w(3.68% 7.94% 12.35% 15.30% 18.15%)
+        noi_roi: %w(3.68% 7.94% 12.35% 15.30% 18.15%),
+        cash_roi: %w(12.29% 16.02% 19.86% 22.22% 24.43%)
       })
     elsif property[:name] == 'sesame'
       assert_roi({
-        noi_roi: %w(0.89% 3.19% 5.62% 7.38% 9.09%)
+        noi_roi: %w(0.89% 3.19% 5.62% 7.38% 9.09%),
+        cash_roi: %w(11.65% 13.66% 15.79% 17.23% 18.63%)
       })
     end
   end
@@ -429,6 +431,9 @@ class Expectations
 
     details[:noi_roi].each do |item|
       expect(income.find('.row', text: 'Net Operating Income ROI')).to have_content item
+    end
+    details[:cash_roi].each do |item|
+      expect(income.find('.row', text: 'Cash ROI')).to have_content item
     end
   end
 
