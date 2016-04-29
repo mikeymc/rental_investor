@@ -13,6 +13,7 @@ angular.module('rentals').directive('keyRentRatios', function(property_service, 
         $scope.total_cost_per_sq_ft = service.get_total_cost_per_sq_ft($scope.rental_property);
         $scope.cost_per_unit = service.get_cost_per_unit($scope.rental_property);
         $scope.cap_rate = get_cap_rate($scope.rental_property);
+        $scope.gross_rent_multiplier = get_gross_rent_multiplier($scope.rental_property);
 
         /* --- Private --- */
 
@@ -22,6 +23,13 @@ angular.module('rentals').directive('keyRentRatios', function(property_service, 
           var cost = property_service.get_total_cost(property);
 
           return 100 * noi / cost;
+        }
+
+        function get_gross_rent_multiplier(property) {
+          var first_year_rents = property_service.get_projected_gross_annual_rents(property)[0];
+          var cost = property_service.get_total_cost(property);
+
+          return cost / first_year_rents;
         }
       }, true);
     }
