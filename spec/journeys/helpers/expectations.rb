@@ -424,7 +424,8 @@ class Expectations
         cash_roi: %w(12.29% 16.02% 19.86% 22.22% 24.43%),
         total_roi: %w(21.31% 25.57% 29.97% 32.93% 35.78%),
         one_year_exit_net_cfs: %w(-$515,681 $625,570),
-        one_year_exit_price_gain: %w($3,033,420 $0 8.36%)
+        one_year_exit_price_gain: %w($3,033,420 $0 8.36%),
+        three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%)
       })
     elsif property[:name] == 'sesame'
       assert_roi({
@@ -432,7 +433,8 @@ class Expectations
         cash_roi: %w(11.65% 13.66% 15.79% 17.23% 18.63%),
         total_roi: %w(18.69% 20.99% 23.42% 25.18% 26.89%),
         one_year_exit_net_cfs: %w(-$61,082 $72,499),
-        one_year_exit_price_gain: %w($305,410 $0 6.91%)
+        one_year_exit_price_gain: %w($305,410 $0 6.91%),
+        three_year_exit_price_gain: %w($342,023 $36,613 6.91%)
       })
     end
   end
@@ -464,6 +466,9 @@ class Expectations
     expect(exits).to have_content 'Cap Rate'
     details[:one_year_exit_price_gain].each do |item|
       expect(exits.find('.row', text: 'Est Exit Price/Gain on Sale - 1 Yr')).to have_content item
+    end
+    details[:three_year_exit_price_gain].each do |item|
+      expect(exits.find('.row', text: 'Est Exit Price/Gain on Sale - 3 Yr')).to have_content item
     end
   end
 
