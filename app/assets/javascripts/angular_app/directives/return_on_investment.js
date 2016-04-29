@@ -10,6 +10,7 @@ angular.module('rentals').directive('returnOnInvestment', function(cash_flow_ser
 
         $scope.noi_roi = annual_noi_roi($scope.rental_property);
         $scope.cash_roi = cash_roi($scope.rental_property);
+        $scope.total_roi = total_roi($scope.rental_property);
       });
 
       /* --- Private --- */
@@ -32,6 +33,16 @@ angular.module('rentals').directive('returnOnInvestment', function(cash_flow_ser
 
         return _.map(remaining_cf, function(cf) {
           return 100 * cf / down_payment;
+        });
+      }
+
+      function total_roi(property) {
+        var remaining_cf = cash_flow_service.annual_cash_flows_remaining(property);
+        var yearly_cum_princ = cash_flow_service.yearly_cum_princ(property);
+        var down_payment = property_service.down_payment(property);
+
+        return _.map(remaining_cf, function(cf, index) {
+          return 100 * (cf + yearly_cum_princ[index]) / down_payment;
         });
       }
     }
