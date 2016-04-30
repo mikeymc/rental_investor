@@ -10,8 +10,10 @@ angular.module('rentals').directive('exitScenarios', function(property_service, 
 
         $scope.first_year_exit_price = exit_scenarios_service.first_year_exit_price($scope.rental_property);
         $scope.third_year_exit_price = exit_scenarios_service.third_year_exit_price($scope.rental_property);
-        $scope.third_year_gain_on_sale = exit_scenarios_service.third_year_gain_on_sale($scope.rental_property);
+        $scope.fifth_year_exit_price = exit_scenarios_service.fifth_year_exit_price($scope.rental_property);
         $scope.first_year_gain_on_sale = exit_scenarios_service.first_year_gain_on_sale($scope.rental_property);
+        $scope.third_year_gain_on_sale = exit_scenarios_service.third_year_gain_on_sale($scope.rental_property);
+        $scope.fifth_year_gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale($scope.rental_property);
         $scope.cap_rate = key_rent_ratios_service.get_cap_rate($scope.rental_property);
 
       });
