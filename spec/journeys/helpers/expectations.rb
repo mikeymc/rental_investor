@@ -430,7 +430,8 @@ class Expectations
         three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%),
         five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%),
         one_year_annualized_irr: '21.31%',
-        three_year_annualized_irr: '42.06%'
+        three_year_annualized_irr: '42.06%',
+        five_year_annualized_irr: '36.32%'
       })
     elsif property[:name] == 'sesame'
       assert_roi({
@@ -444,7 +445,8 @@ class Expectations
         three_year_exit_price_gain: %w($342,023 $36,613 6.91%),
         five_year_exit_price_gain: %w($367,112 $61,702 6.91%),
         one_year_annualized_irr: '18.69%',
-        three_year_annualized_irr: '33.25%'
+        three_year_annualized_irr: '33.25%',
+        five_year_annualized_irr: '29.91%'
       })
     end
   end
@@ -493,6 +495,7 @@ class Expectations
     irr = page.find('#irr')
     expect(irr.find('.row', text: 'Annualized IRR - 1 Yr')).to have_content details[:one_year_annualized_irr]
     expect(irr.find('.row', text: 'Annualized IRR - 3 Yr')).to have_content details[:three_year_annualized_irr]
+    expect(irr.find('.row', text: 'Annualized IRR - 5 Yr')).to have_content details[:five_year_annualized_irr]
   end
 
   def assert_net_operating_income(details)

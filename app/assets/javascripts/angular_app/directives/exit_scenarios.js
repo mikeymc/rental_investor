@@ -18,6 +18,7 @@ angular.module('rentals').directive('exitScenarios', function(property_service, 
 
         $scope.one_year_irr = calculate_one_year_irr($scope.rental_property);
         $scope.three_year_irr = calculate_three_year_irr($scope.rental_property);
+        $scope.five_year_irr = calculate_five_year_irr($scope.rental_property);
 
         /* --- Private --- */
 
@@ -35,6 +36,15 @@ angular.module('rentals').directive('exitScenarios', function(property_service, 
           three_year_nets.unshift(first_month);
 
           return irr_service.calculate_irr(three_year_nets);
+        }
+
+        function calculate_five_year_irr(property) {
+          var first_month = -1 * property_service.down_payment(property);
+          var gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale(property);
+          var five_year_nets = cash_flow_service.five_year_exit_nets(property, gain_on_sale);
+          five_year_nets.unshift(first_month);
+
+          return irr_service.calculate_irr(five_year_nets);
         }
       });
     }
