@@ -428,7 +428,8 @@ class Expectations
         five_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $102,405 $114,563 $1,652,837),
         one_year_exit_price_gain: %w($3,033,420 $0 8.36%),
         three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%),
-        five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%)
+        five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%),
+        one_year_annualized_irr: '21.31%'
       })
     elsif property[:name] == 'sesame'
       assert_roi({
@@ -440,7 +441,8 @@ class Expectations
         five_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $9,646 $10,527 $157,503),
         one_year_exit_price_gain: %w($305,410 $0 6.91%),
         three_year_exit_price_gain: %w($342,023 $36,613 6.91%),
-        five_year_exit_price_gain: %w($367,112 $61,702 6.91%)
+        five_year_exit_price_gain: %w($367,112 $61,702 6.91%),
+        one_year_annualized_irr: '18.69%'
       })
     end
   end
@@ -485,6 +487,9 @@ class Expectations
     details[:five_year_exit_price_gain].each do |item|
       expect(exits.find('.row', text: 'Est Exit Price/Gain on Sale - 5 Yr')).to have_content item
     end
+
+    irr = page.find('#irr')
+    expect(irr.find('.row', text: 'Annualized IRR - 1 Yr')).to have_content details[:one_year_annualized_irr]
   end
 
   def assert_net_operating_income(details)

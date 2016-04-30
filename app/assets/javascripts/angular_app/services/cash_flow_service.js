@@ -6,10 +6,18 @@ angular.module('rentals').service('cash_flow_service', function(property_service
     yearly_cum_princ: yearly_cum_princ,
     annual_debt_service: annual_debt_service,
     monthly_cash_flow_remaining: monthly_cash_flow_remaining,
-    annual_cash_flows_remaining: annual_cash_flows_remaining
+    annual_cash_flows_remaining: annual_cash_flows_remaining,
+    one_year_exit_net: one_year_exit_net
   };
 
   /* --- Private --- */
+
+  function one_year_exit_net(property) {
+    var down_payment = property_service.down_payment(property);
+    var total_return = get_annual_total_returns(property)[0];
+
+    return down_payment + total_return;
+  }
 
   function get_monthly_total_return(property) {
     return monthly_cash_flow_remaining(property) + monthly_cum_princ(property);
