@@ -7,10 +7,37 @@ angular.module('rentals').service('cash_flow_service', function(property_service
     annual_debt_service: annual_debt_service,
     monthly_cash_flow_remaining: monthly_cash_flow_remaining,
     annual_cash_flows_remaining: annual_cash_flows_remaining,
-    one_year_exit_net: one_year_exit_net
+    one_year_exit_net: one_year_exit_net,
+    three_year_exit_nets: three_year_exit_nets
   };
 
   /* --- Private --- */
+
+  function three_year_exit_nets(property, gain_on_sale) {
+    function three_year_exit_gain(property) {
+      var annual_principal_reductions = yearly_cum_princ(property);
+
+      var values = [
+        get_annual_total_returns(property)[2],
+        annual_principal_reductions[0],
+        annual_principal_reductions[1],
+        property_service.down_payment(property),
+        gain_on_sale
+      ];
+
+      return _.reduce(values, function(memo, item) {
+        return memo + parseFloat(item);
+      }, 0);
+    }
+
+    var cfs = [];
+    var annual_remaining_cash_flows = annual_cash_flows_remaining(property);
+    cfs.push(annual_remaining_cash_flows[0]);
+    cfs.push(annual_remaining_cash_flows[1]);
+    cfs.push(three_year_exit_gain(property));
+
+    return cfs;
+  }
 
   function one_year_exit_net(property) {
     var down_payment = property_service.down_payment(property);

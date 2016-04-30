@@ -16,29 +16,8 @@ angular.module('rentals').directive('netCashFlows', function(property_service, c
         /* --- Private --- */
 
         function three_year_exit_nets(property) {
-          function three_year_exit_gain(property) {
-            var annual_principal_reductions = cash_flow_service.yearly_cum_princ(property);
-
-            var values = [
-              cash_flow_service.get_annual_total_returns(property)[2],
-              annual_principal_reductions[0],
-              annual_principal_reductions[1],
-              property_service.down_payment(property),
-              exit_scenarios_service.third_year_gain_on_sale(property)
-            ];
-
-            return _.reduce(values, function(memo, item) {
-              return memo + parseFloat(item);
-            }, 0);
-          }
-
-          var cfs = [];
-          var annual_remaining_cash_flows = cash_flow_service.annual_cash_flows_remaining(property);
-          cfs.push(annual_remaining_cash_flows[0]);
-          cfs.push(annual_remaining_cash_flows[1]);
-          cfs.push(three_year_exit_gain(property));
-
-          return cfs;
+          var gain_on_sale = exit_scenarios_service.third_year_gain_on_sale(property);
+          return cash_flow_service.three_year_exit_nets(property, gain_on_sale);
         }
 
         function five_year_exit_nets(property) {
