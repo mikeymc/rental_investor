@@ -8,7 +8,7 @@
   </div>
   <div id="avg-square-feet-per-unit" class="row">
     <span class="col-md-18">Avg Sq Ft/Unit</span>
-    <span class="col-md-6 align-right">{{avg_sq_ft_per_unit | number:2}}</span>
+    <span class="col-md-6 align-right">{{avg_sq_ft_per_unit | number:0}}</span>
   </div>
   <div id="avg-rent-per-sq-ft" class="row">
     <span class="col-md-18">Avg Rent/Sq Ft</span>
@@ -16,11 +16,11 @@
   </div>
   <div id="total-cost-per-sq-ft" class="row">
     <span class="col-md-18">Total Cost/Sq Ft</span>
-    <span class="col-md-6 align-right">{{total_cost_per_sq_ft | currency}}</span>
+    <span class="col-md-6 align-right">{{total_cost_per_sq_ft | currency:'$':0}}</span>
   </div>
   <div id="total-cost-per-unit" class="row">
     <span class="col-md-18">Cost per Unit</span>
-    <span class="col-md-6 align-right">{{cost_per_unit | currency}}</span>
+    <span class="col-md-6 align-right">{{cost_per_unit | currency:'$':0}}</span>
   </div>
   <div id="cap-rate" class="row">
     <span class="col-md-18">Capitalization Rate</span>

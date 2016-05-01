@@ -57,10 +57,10 @@ class Expectations
     if property[:name] == 'moroni'
       assert_key_rent_ratios({
         total_area_in_sq_ft: '52,500',
-        avg_sq_ft_per_unit: '875.00',
+        avg_sq_ft_per_unit: '875',
         avg_rent_per_sq_ft: '$0.80',
-        total_cost_per_sq_ft: '$57.78',
-        cost_per_unit: '$50,557.00',
+        total_cost_per_sq_ft: '$58',
+        cost_per_unit: '$50,557',
         cap_rate: '8.36%',
         gross_rent_multiplier: '6.02',
         operational_efficiency: '4.43',
@@ -69,10 +69,10 @@ class Expectations
     elsif property[:name] == 'sesame'
       assert_key_rent_ratios({
         total_area_in_sq_ft: '3,311',
-        avg_sq_ft_per_unit: '551.83',
+        avg_sq_ft_per_unit: '552',
         avg_rent_per_sq_ft: '$0.87',
-        total_cost_per_sq_ft: '$92.24',
-        cost_per_unit: '$50,901.67',
+        total_cost_per_sq_ft: '$92',
+        cost_per_unit: '$50,902',
         cap_rate: '6.91%',
         gross_rent_multiplier: '8.80',
         operational_efficiency: '3.58',
@@ -257,10 +257,10 @@ class Expectations
   def to_see_updated_values
     assert_updated_key_rent_ratios({
       total_square_feet: '53,500',
-      avg_sq_ft_per_unit: '877.05',
+      avg_sq_ft_per_unit: '877',
       avg_rent_per_sq_ft: '$0.91',
-      total_cost_per_sq_ft: '$60.48',
-      cost_per_unit: '$53,039.92'
+      total_cost_per_sq_ft: '$60',
+      cost_per_unit: '$53,040'
     })
 
     assert_updated_financing_assumptions({
