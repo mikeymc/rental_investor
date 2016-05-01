@@ -31,6 +31,15 @@
     </div>
   </div>
   <div class="row">
+    <div class="col-md-5">Interest on Loan</div>
+    <div class="col-md-2"></div>
+    <div class="col-md-2 align-right">{{monthly_interest_on_loan | currency:'$':2}}</div>
+    <div class="col-md-3 align-right"
+         ng-repeat="interest in annual_interest_on_loan track by $index">
+      {{interest | currency:'$':2}}
+    </div>
+  </div>
+  <div class="row">
     <div class="col-md-5">Debt Service</div>
     <div class="col-md-2"></div>
     <div class="col-md-2 align-right">{{monthly_debt_service | currency:'$':2}}</div>
