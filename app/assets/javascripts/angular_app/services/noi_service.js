@@ -1,14 +1,18 @@
 angular.module('rentals').service('noi_service', function(property_service, cash_flow_service) {
   return {
     monthly_net_income_before_taxes: monthly_net_income_before_taxes,
+    monthly_net_income_after_taxes: monthly_net_income_after_taxes,
     annual_net_income_before_taxes: annual_net_income_before_taxes,
+    annual_net_income_after_taxes: annual_net_income_after_taxes,
     get_annual_building_depreciation: get_annual_building_depreciation,
     get_monthly_building_depreciation: get_monthly_building_depreciation,
     get_annual_interest_on_loan: get_annual_interest_on_loan,
     monthly_interest_on_loan_percentage: monthly_interest_on_loan_percentage,
     monthly_interest_on_loan: monthly_interest_on_loan,
     net_monthly_income: net_monthly_income,
-    net_annual_incomes: net_annual_incomes
+    net_annual_incomes: net_annual_incomes,
+    annual_taxes: annual_taxes,
+    monthly_taxes: monthly_taxes
   };
 
   function monthly_net_income_before_taxes(property, expenses) {
@@ -18,6 +22,13 @@ angular.module('rentals').service('noi_service', function(property_service, cash
     return income - interest - depreciation;
   }
 
+  function monthly_net_income_after_taxes(property, expenses) {
+    var before_taxes = monthly_net_income_before_taxes(property, expenses);
+    var taxes = monthly_taxes(property, expenses);
+
+    return before_taxes - taxes;
+  }
+
   function annual_net_income_before_taxes(property, expenses) {
     var incomes = net_annual_incomes(property, expenses);
     var depreciation = get_annual_building_depreciation(property);
@@ -25,6 +36,15 @@ angular.module('rentals').service('noi_service', function(property_service, cash
 
     return _.map(incomes, function(income, index) {
       return income - depreciation - interest[index];
+    })
+  }
+
+  function annual_net_income_after_taxes(property, expenses) {
+    var incomes = annual_net_income_before_taxes(property, expenses);
+    var taxes = annual_taxes(property, expenses);
+
+    return _.map(incomes, function(income, index) {
+      return income - taxes[index];
     })
   }
 
@@ -63,6 +83,22 @@ angular.module('rentals').service('noi_service', function(property_service, cash
     var incomes = property_service.get_projected_annual_gross_operating_incomes(property);
     return _.map(incomes, function(income, index) {
       return income - expenses.total.yearly_costs[index];
+    });
+  }
+
+  function monthly_taxes(property, expenses) {
+    var tax_rate = property.operating_expenses_assumption.income_tax_rate / 100;
+    var income_before_taxes = monthly_net_income_before_taxes(property, expenses);
+
+    return tax_rate * income_before_taxes;
+  }
+
+  function annual_taxes(property, expenses) {
+    var tax_rate = property.operating_expenses_assumption.income_tax_rate / 100;
+    var income_before_taxes = annual_net_income_before_taxes(property, expenses);
+
+    return _.map(income_before_taxes, function(income) {
+      return tax_rate * income;
     });
   }
 });

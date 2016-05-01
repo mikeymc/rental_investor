@@ -339,7 +339,8 @@ class Expectations
         net_operating_income: %w(52.15% $21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
         building_depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
         net_income_before_taxes: %w($1,481 $18,979 $40,957 $63,664 $78,903 $93,594),
-        income_tax_rate: %w(1% $15 $190 $410 $637 $789 $936)
+        income_tax_rate: %w(1% $15 $190 $410 $637 $789 $936),
+        net_income_after_taxes: %w($1,466 $18,790 $40,547 $63,028 $78,114 $92,658)
       })
     elsif property[:name] == 'sesame'
       assert_net_operating_income({
@@ -347,7 +348,8 @@ class Expectations
         net_operating_income: %w(64.04% $1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
         building_depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
         net_income_before_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555),
-        income_tax_rate: %w(0% $0 $0 $0 $0 $0 $0)
+        income_tax_rate: %w(0% $0 $0 $0 $0 $0 $0),
+        net_income_after_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555)
       })
     end
   end
@@ -392,7 +394,8 @@ class Expectations
       net_operating_income: %w(56.80% $26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
       building_depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
       net_income_before_taxes: %w($4,185 $51,065 $74,719 $99,432 $116,081 $132,174),
-      income_tax_rate: %w(1% $42 $511 $747 $994 $1,161 $1,322)
+      income_tax_rate: %w(1% $42 $511 $747 $994 $1,161 $1,322),
+      net_income_after_taxes: %w($4,143 $50,554 $73,972 $98,437 $114,921 $130,853)
     })
 
     assert_roi({
@@ -588,6 +591,9 @@ class Expectations
 
     details[:net_income_before_taxes].each do |item|
       expect(income.find('.row', text: 'Net Income Before Taxes')).to have_content item
+    end
+    details[:net_income_after_taxes].each do |item|
+      expect(income.find('.row', text: 'Net Income After Taxes')).to have_content item
     end
     details[:income_tax_rate].each do |item|
       expect(income.find('.row', text: 'Income Tax Rate')).to have_content item

@@ -18,30 +18,14 @@ angular.module('rentals').directive('netOperatingIncome', function(operating_exp
         $scope.monthly_interest_on_loan = noi_service.monthly_interest_on_loan($scope.rental_property);
         $scope.annual_interest_on_loan = noi_service.get_annual_interest_on_loan($scope.rental_property);
         $scope.monthly_net_income_before_taxes = noi_service.monthly_net_income_before_taxes($scope.rental_property, expenses);
+        $scope.monthly_net_income_after_taxes = noi_service.monthly_net_income_after_taxes($scope.rental_property, expenses);
         $scope.annual_net_income_before_taxes = noi_service.annual_net_income_before_taxes($scope.rental_property, expenses);
+        $scope.annual_net_income_after_taxes = noi_service.annual_net_income_after_taxes($scope.rental_property, expenses);
         $scope.income_tax_rate = $scope.rental_property.operating_expenses_assumption.income_tax_rate;
-        $scope.monthly_taxes = monthly_taxes($scope.rental_property, expenses);
-        $scope.annual_taxes = annual_taxes($scope.rental_property, expenses);
+        $scope.monthly_taxes = noi_service.monthly_taxes($scope.rental_property, expenses);
+        $scope.annual_taxes = noi_service.annual_taxes($scope.rental_property, expenses);
 
       }, true);
-
-      /* --- Private --- */
-
-      function monthly_taxes(property, expenses) {
-        var tax_rate = property.operating_expenses_assumption.income_tax_rate / 100;
-        var income_before_taxes = noi_service.monthly_net_income_before_taxes(property, expenses);
-
-        return tax_rate * income_before_taxes;
-      }
-
-      function annual_taxes(property, expenses) {
-        var tax_rate = property.operating_expenses_assumption.income_tax_rate / 100;
-        var income_before_taxes = noi_service.annual_net_income_before_taxes(property, expenses);
-
-        return _.map(income_before_taxes, function(income) {
-          return tax_rate * income;
-        });
-      }
     }
   }
 });
