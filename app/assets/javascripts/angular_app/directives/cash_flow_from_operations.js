@@ -1,4 +1,4 @@
-angular.module('rentals').directive('cashFlowFromOperations', function(property_service, operating_expenses_service, cash_flow_service) {
+angular.module('rentals').directive('cashFlowFromOperations', function(property_service, operating_expenses_service, cash_flow_service, noi_service) {
   return {
     templateUrl: 'investment_properties_pages/cash_flow_from_operations.html',
     restrict: 'E',
@@ -22,6 +22,8 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
         $scope.annual_total_returns = cash_flow_service.get_annual_total_returns($scope.rental_property);
         $scope.monthly_cf_debt_servicing_ratio = monthly_cf_debt_servicing_ratio($scope.rental_property);
         $scope.annual_cf_debt_servicing_ratio = annual_cf_debt_servicing_ratio($scope.rental_property);
+        $scope.monthly_net_income_after_taxes = noi_service.monthly_net_income_after_taxes($scope.rental_property, expenses);
+        $scope.annual_net_income_after_taxes = noi_service.annual_net_income_after_taxes($scope.rental_property, expenses);
 
         /* --- Private --- */
 

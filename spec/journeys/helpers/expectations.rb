@@ -313,6 +313,7 @@ class Expectations
   def to_see_the_cash_flow_from_operations(property)
     if property[:name] == 'moroni'
       assert_cash_flow_from_operations({
+        net_income_after_taxes: %w($1,466 $18,790 $40,547 $63,028 $78,114 $92,658),
         debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06),
         cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
         remaining_cash_flow_from_operations: %w($5,281 $63,374 $82,605 $102,405 $114,563 $125,993),
@@ -322,6 +323,7 @@ class Expectations
       })
     elsif property[:name] == 'sesame'
       assert_cash_flow_from_operations({
+        net_income_after_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555),
         debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51),
         cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
         remaining_cash_flow_from_operations: %w($593 $7,115 $8,341 $9,646 $10,527 $11,380),
@@ -414,6 +416,7 @@ class Expectations
     })
 
     assert_cash_flow_from_operations({
+      net_income_after_taxes: %w($4,143 $50,554 $73,972 $98,437 $114,921 $130,853),
       debt_service: %w($16,787.98 $201,455.71 $201,455.71 $201,455.71 $201,455.71 $201,455.71),
       cash_available_for_loan_servicing: %w($26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
       remaining_cash_flow_from_operations: %w($9,835 $118,025 $139,759 $162,417 $176,869 $190,611),
@@ -613,6 +616,9 @@ class Expectations
     cash_flow = page.find('#cash-flow-from-operations')
     expect(cash_flow).to have_content 'Cash Flow from Operations'
 
+    details[:net_income_after_taxes].each do |item|
+      expect(cash_flow.find('.row', text: 'Net Income After Taxes')).to have_content item
+    end
     details[:debt_service].each do |item|
       expect(cash_flow.find('.row', text: 'Debt Service')).to have_content item
     end
