@@ -54,7 +54,7 @@ OperatingExpensesAssumption.create!(
   capex: 7,
   other_expenses: 999.99,
   equipment_depreciation: 0,
-  income_tax_rate: 0,
+  income_tax_rate: 1,
   rental_property_id: 1
 )
 

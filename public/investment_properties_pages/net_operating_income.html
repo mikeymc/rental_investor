@@ -27,4 +27,10 @@
     <div class="col-md-2 align-right">{{monthly_net_income_before_taxes | currency:'$':0}}</div>
     <div class="col-md-3 align-right" ng-repeat="income in annual_net_income_before_taxes track by $index">{{income | currency:'$':0}}</div>
   </div>
+  <div class="row">
+    <div class="col-md-5">Income Tax Rate</div>
+    <div class="col-md-2">{{income_tax_rate | percentage:0}}</div>
+    <div class="col-md-2 align-right">{{monthly_taxes | currency:'$':0}}</div>
+    <div class="col-md-3 align-right" ng-repeat="taxes in annual_taxes track by $index">{{taxes | currency:'$':0}}</div>
+  </div>
 </div>

@@ -194,7 +194,7 @@ class Expectations
         capital_expenditures: '7.0%',
         other_expenses: '$999.99',
         equipment_depreciation: '$0',
-        income_tax_rate: '0%'
+        income_tax_rate: '1%'
       })
     elsif property[:name] == 'sesame'
       assert_operating_expenses_inputs({
@@ -240,12 +240,159 @@ class Expectations
     end
   end
 
+  def to_see_the_rental_increase_projections(property)
+    if property[:name] == 'moroni'
+      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
+      assert_average_monthly_rents_each_year(%w($700 $721 $746 $769 $792))
+      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
+    elsif property[:name] == 'sesame'
+      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
+      assert_average_monthly_rents_each_year(%w($482 $496 $514 $529 $545))
+      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
+    end
+  end
+
+  def to_see_the_operating_revenues(property)
+    if property[:name] == 'moroni'
+      assert_operating_revenues({
+        gross_scheduled_rental_income: %w($42,000 $504,000 $519,120 $537,289 $553,408 $570,010),
+        vacancy: %w(5.0% $2,100 $25,200 $25,956 $26,864 $27,670 $28,501),
+        net_rental_income: %w($39,900 $478,800 $493,164 $510,425 $525,737 $541,510),
+        other_income: %w($600 $7,200 $7,416 $7,676 $7,906 $8,143),
+        gross_income: %w(100% $40,500 $486,000 $500,580 $518,100 $533,643 $549,653)
+      })
+    elsif property[:name] == 'sesame'
+      assert_operating_revenues({
+        gross_scheduled_rental_income: %w($2,892 $34,704 $35,745 $36,996 $38,106 $39,249),
+        vacancy: %w(5.0% $145 $1,735 $1,787 $1,850 $1,905 $1,962),
+        net_rental_income: %W($2,747 $32,969 $33,958 $35,146 $36,201 $37,287),
+        other_income: %w($0 $0 $0 $0 $0 $0),
+        gross_income: %w(100% $2,747 $32,969 $33,958 $35,146 $36,201 $37,287)
+      })
+    end
+  end
+
+  def to_see_the_operating_expenses(property)
+    if property[:name] == 'moroni'
+      assert_operating_expenses({
+        repairs_and_maintenance: %w(13.0000% $5,265 $63,180 $61,916 $61,297 $62,217 $63,461),
+        property_management_fees: %w(3.5000% $1,417.50 $17,010 $16,670 $16,503 $16,751 $17,086),
+        taxes: %w(7.9013% $3,200.03 $38,400 $37,632 $37,256 $37,815 $38,571),
+        insurance: %w(2.0050% $812.03 $9,744 $9,549 $9,454 $9,596 $9,788),
+        salaries_and_wages: %w(4.4445% $1,800.02 $21,600 $21,168 $20,957 $21,271 $21,696),
+        utilities: %w(5.2345% $2,119.97 $25,440 $24,931 $24,682 $25,052 $25,553),
+        water_and_sewer: %w(0.0123% $5.00 $60 $59 $58 $59 $60),
+        trash_removal: %w(0.3087% $125.02 $1,500 $1,470 $1,456 $1,477 $1,507),
+        professional_fees: %w(0.7407% $299.98 $3,600 $3,528 $3,492 $3,545 $3,616),
+        advertising: %w(1.2346% $500.01 $6,000 $5,880 $5,821 $5,909 $6,027),
+        landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        capex: %w(7.0000% $2,835.00 $34,020 $33,340 $33,006 $33,501 $34,171),
+        other_expenses: %w(2.4691% $999.99 $12,000 $11,760 $11,642 $11,817 $12,053),
+        total: %w(47.8507% $19,379.55 $232,555 $227,904 $225,624 $229,009 $233,589)
+      })
+    elsif property[:name] == 'sesame'
+      assert_operating_expenses({
+        repairs_and_maintenance: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507),
+        property_management_fees: %w(10.0000% $274.74 $3,297 $3,231 $3,199 $3,247 $3,312),
+        taxes: %w(4.4042% $121.00 $1,452 $1,423 $1,409 $1,430 $1,458),
+        insurance: %w(5.4597% $150.00 $1,800 $1,764 $1,746 $1,773 $1,808),
+        salaries_and_wages: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        utilities: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        water_and_sewer: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        trash_removal: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507),
+        professional_fees: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        advertising: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        capex: %w(7.0000% $192.32 $2,308 $2,262 $2,239 $2,273 $2,318),
+        other_expenses: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+        total: %w(35.9634% $988 $11,857 $11,620 $11,503 $11,676 $11,909)
+      })
+    end
+  end
+
+  def to_see_the_cash_flow_from_operations(property)
+    if property[:name] == 'moroni'
+      assert_cash_flow_from_operations({
+        debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06),
+        cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
+        remaining_cash_flow_from_operations: %w($5,281 $63,374 $82,605 $102,405 $114,563 $125,993),
+        principal_reduction: %w($3,775 $46,514 $49,260 $52,169 $55,249 $58,511),
+        total_return: %w($9,056 $109,889 $131,866 $154,574 $169,812 $184,503),
+        cf_to_debt_servicing_ratio: %w(133.34% 133.34% 143.46% 153.88% 160.27% 166.29%)
+      })
+    elsif property[:name] == 'sesame'
+      assert_cash_flow_from_operations({
+        debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51),
+        cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
+        remaining_cash_flow_from_operations: %w($593 $7,115 $8,341 $9,646 $10,527 $11,380),
+        principal_reduction: %w($352 $4,303 $4,478 $4,660 $4,850 $5,048),
+        total_return: %w($945 $11,417 $12,819 $14,306 $15,378 $16,428),
+        cf_to_debt_servicing_ratio: %w(150.83% 150.83% 159.59% 168.91% 175.21% 181.30%)
+      })
+    end
+  end
+
+  def to_see_the_net_operating_income(property)
+    if property[:name] == 'moroni'
+      assert_net_operating_income({
+        interest_on_loan: %w(29.8% $12,064.16 $143,556.82	$140,810.63 $137,902.30	$134,822.27	$131,560.39),
+        net_operating_income: %w(52.15% $21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
+        building_depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
+        net_income_before_taxes: %w($1,481 $18,979 $40,957 $63,664 $78,903 $93,594),
+        income_tax_rate: %w(1% $15 $190 $410 $637 $789 $936)
+      })
+    elsif property[:name] == 'sesame'
+      assert_net_operating_income({
+        interest_on_loan: %w(29.6% $814.43 $9,694.81 $9,519.51 $9,337.07 $9,147.19 $8,949.58),
+        net_operating_income: %w(64.04% $1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
+        building_depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
+        net_income_before_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555),
+        income_tax_rate: %w(0% $0 $0 $0 $0 $0 $0)
+      })
+    end
+  end
+
+  def to_see_the_roi(property)
+    if property[:name] == 'moroni'
+      assert_roi({
+        noi_roi: %w(3.68% 7.94% 12.35% 15.30% 18.15%),
+        cash_roi: %w(12.29% 16.02% 19.86% 22.22% 24.43%),
+        total_roi: %w(21.31% 25.57% 29.97% 32.93% 35.78%),
+        one_year_exit_net_cfs: %w(-$515,681 $625,570),
+        three_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $1,233,174),
+        five_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $102,405 $114,563 $1,652,837),
+        one_year_exit_price_gain: %w($3,033,420 $0 8.36%),
+        three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%),
+        five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%),
+        one_year_annualized_irr: '21.31%',
+        three_year_annualized_irr: '42.06%',
+        five_year_annualized_irr: '36.32%'
+      })
+    elsif property[:name] == 'sesame'
+      assert_roi({
+        noi_roi: %w(0.89% 3.19% 5.62% 7.38% 9.09%),
+        cash_roi: %w(11.65% 13.66% 15.79% 17.23% 18.63%),
+        total_roi: %w(18.69% 20.99% 23.42% 25.18% 26.89%),
+        one_year_exit_net_cfs: %w(-$61,082 $72,499),
+        three_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $120,781),
+        five_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $9,646 $10,527 $157,503),
+        one_year_exit_price_gain: %w($305,410 $0 6.91%),
+        three_year_exit_price_gain: %w($342,023 $36,613 6.91%),
+        five_year_exit_price_gain: %w($367,112 $61,702 6.91%),
+        one_year_annualized_irr: '18.69%',
+        three_year_annualized_irr: '33.25%',
+        five_year_annualized_irr: '29.91%'
+      })
+    end
+  end
+
   def to_see_updated_values
     assert_net_operating_income({
       interest_on_loan: %w(31.1% $14,559.46 $173,870.44 $171,949.74 $169,895.30 $167,697.81 $165,347.32),
       net_operating_income: %w(56.80% $26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
       building_depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
-      net_income_before_taxes: %w($4,185 $51,065 $74,719 $99,432 $116,081 $132,174)
+      net_income_before_taxes: %w($4,185 $51,065 $74,719 $99,432 $116,081 $132,174),
+      income_tax_rate: %w(1% $42 $511 $747 $994 $1,161 $1,322)
     })
 
     assert_roi({
@@ -384,152 +531,8 @@ class Expectations
       capital_expenditures: '7.0%',
       other_expenses: '$999.99',
       equipment_depreciation: '$0',
-      income_tax_rate: '0%'
+      income_tax_rate: '1%'
     })
-  end
-
-  def to_see_the_rental_increase_projections(property)
-    if property[:name] == 'moroni'
-      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
-      assert_average_monthly_rents_each_year(%w($700 $721 $746 $769 $792))
-      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
-    elsif property[:name] == 'sesame'
-      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
-      assert_average_monthly_rents_each_year(%w($482 $496 $514 $529 $545))
-      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
-    end
-  end
-
-  def to_see_the_operating_revenues(property)
-    if property[:name] == 'moroni'
-      assert_operating_revenues({
-        gross_scheduled_rental_income: %w($42,000 $504,000 $519,120 $537,289 $553,408 $570,010),
-        vacancy: %w(5.0% $2,100 $25,200 $25,956 $26,864 $27,670 $28,501),
-        net_rental_income: %w($39,900 $478,800 $493,164 $510,425 $525,737 $541,510),
-        other_income: %w($600 $7,200 $7,416 $7,676 $7,906 $8,143),
-        gross_income: %w(100% $40,500 $486,000 $500,580 $518,100 $533,643 $549,653)
-      })
-    elsif property[:name] == 'sesame'
-      assert_operating_revenues({
-        gross_scheduled_rental_income: %w($2,892 $34,704 $35,745 $36,996 $38,106 $39,249),
-        vacancy: %w(5.0% $145 $1,735 $1,787 $1,850 $1,905 $1,962),
-        net_rental_income: %W($2,747 $32,969 $33,958 $35,146 $36,201 $37,287),
-        other_income: %w($0 $0 $0 $0 $0 $0),
-        gross_income: %w(100% $2,747 $32,969 $33,958 $35,146 $36,201 $37,287)
-      })
-    end
-  end
-
-  def to_see_the_operating_expenses(property)
-    if property[:name] == 'moroni'
-      assert_operating_expenses({
-        repairs_and_maintenance: %w(13.0000% $5,265 $63,180 $61,916 $61,297 $62,217 $63,461),
-        property_management_fees: %w(3.5000% $1,417.50 $17,010 $16,670 $16,503 $16,751 $17,086),
-        taxes: %w(7.9013% $3,200.03 $38,400 $37,632 $37,256 $37,815 $38,571),
-        insurance: %w(2.0050% $812.03 $9,744 $9,549 $9,454 $9,596 $9,788),
-        salaries_and_wages: %w(4.4445% $1,800.02 $21,600 $21,168 $20,957 $21,271 $21,696),
-        utilities: %w(5.2345% $2,119.97 $25,440 $24,931 $24,682 $25,052 $25,553),
-        water_and_sewer: %w(0.0123% $5.00 $60 $59 $58 $59 $60),
-        trash_removal: %w(0.3087% $125.02 $1,500 $1,470 $1,456 $1,477 $1,507),
-        professional_fees: %w(0.7407% $299.98 $3,600 $3,528 $3,492 $3,545 $3,616),
-        advertising: %w(1.2346% $500.01 $6,000 $5,880 $5,821 $5,909 $6,027),
-        landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        capex: %w(7.0000% $2,835.00 $34,020 $33,340 $33,006 $33,501 $34,171),
-        other_expenses: %w(2.4691% $999.99 $12,000 $11,760 $11,642 $11,817 $12,053),
-        total: %w(47.8507% $19,379.55 $232,555 $227,904 $225,624 $229,009 $233,589)
-      })
-    elsif property[:name] == 'sesame'
-      assert_operating_expenses({
-        repairs_and_maintenance: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507),
-        property_management_fees: %w(10.0000% $274.74 $3,297 $3,231 $3,199 $3,247 $3,312),
-        taxes: %w(4.4042% $121.00 $1,452 $1,423 $1,409 $1,430 $1,458),
-        insurance: %w(5.4597% $150.00 $1,800 $1,764 $1,746 $1,773 $1,808),
-        salaries_and_wages: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        utilities: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        water_and_sewer: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        trash_removal: %w(4.5498% $125.00 $1,500 $1,470 $1,455 $1,477 $1,507),
-        professional_fees: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        advertising: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        capex: %w(7.0000% $192.32 $2,308 $2,262 $2,239 $2,273 $2,318),
-        other_expenses: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-        total: %w(35.9634% $988 $11,857 $11,620 $11,503 $11,676 $11,909)
-      })
-    end
-  end
-
-  def to_see_the_cash_flow_from_operations(property)
-    if property[:name] == 'moroni'
-      assert_cash_flow_from_operations({
-        debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06),
-        cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
-        remaining_cash_flow_from_operations: %w($5,281 $63,374 $82,605 $102,405 $114,563 $125,993),
-        principal_reduction: %w($3,775 $46,514 $49,260 $52,169 $55,249 $58,511),
-        total_return: %w($9,056 $109,889 $131,866 $154,574 $169,812 $184,503),
-        cf_to_debt_servicing_ratio: %w(133.34% 133.34% 143.46% 153.88% 160.27% 166.29%)
-      })
-    elsif property[:name] == 'sesame'
-      assert_cash_flow_from_operations({
-        debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51),
-        cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
-        remaining_cash_flow_from_operations: %w($593 $7,115 $8,341 $9,646 $10,527 $11,380),
-        principal_reduction: %w($352 $4,303 $4,478 $4,660 $4,850 $5,048),
-        total_return: %w($945 $11,417 $12,819 $14,306 $15,378 $16,428),
-        cf_to_debt_servicing_ratio: %w(150.83% 150.83% 159.59% 168.91% 175.21% 181.30%)
-      })
-    end
-  end
-
-  def to_see_the_net_operating_income(property)
-    if property[:name] == 'moroni'
-      assert_net_operating_income({
-        interest_on_loan: %w(29.8% $12,064.16 $143,556.82	$140,810.63 $137,902.30	$134,822.27	$131,560.39),
-        net_operating_income: %w(52.15% $21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
-        building_depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
-        net_income_before_taxes: %w($1,481 $18,979 $40,957 $63,664 $78,903 $93,594)
-      })
-    elsif property[:name] == 'sesame'
-      assert_net_operating_income({
-        interest_on_loan: %w(29.6% $814.43 $9,694.81 $9,519.51 $9,337.07 $9,147.19 $8,949.58),
-        net_operating_income: %w(64.04% $1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
-        building_depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
-        net_income_before_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555)
-      })
-    end
-  end
-
-  def to_see_the_roi(property)
-    if property[:name] == 'moroni'
-      assert_roi({
-        noi_roi: %w(3.68% 7.94% 12.35% 15.30% 18.15%),
-        cash_roi: %w(12.29% 16.02% 19.86% 22.22% 24.43%),
-        total_roi: %w(21.31% 25.57% 29.97% 32.93% 35.78%),
-        one_year_exit_net_cfs: %w(-$515,681 $625,570),
-        three_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $1,233,174),
-        five_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $102,405 $114,563 $1,652,837),
-        one_year_exit_price_gain: %w($3,033,420 $0 8.36%),
-        three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%),
-        five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%),
-        one_year_annualized_irr: '21.31%',
-        three_year_annualized_irr: '42.06%',
-        five_year_annualized_irr: '36.32%'
-      })
-    elsif property[:name] == 'sesame'
-      assert_roi({
-        noi_roi: %w(0.89% 3.19% 5.62% 7.38% 9.09%),
-        cash_roi: %w(11.65% 13.66% 15.79% 17.23% 18.63%),
-        total_roi: %w(18.69% 20.99% 23.42% 25.18% 26.89%),
-        one_year_exit_net_cfs: %w(-$61,082 $72,499),
-        three_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $120,781),
-        five_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $9,646 $10,527 $157,503),
-        one_year_exit_price_gain: %w($305,410 $0 6.91%),
-        three_year_exit_price_gain: %w($342,023 $36,613 6.91%),
-        five_year_exit_price_gain: %w($367,112 $61,702 6.91%),
-        one_year_annualized_irr: '18.69%',
-        three_year_annualized_irr: '33.25%',
-        five_year_annualized_irr: '29.91%'
-      })
-    end
   end
 
   private
@@ -585,6 +588,9 @@ class Expectations
 
     details[:net_income_before_taxes].each do |item|
       expect(income.find('.row', text: 'Net Income Before Taxes')).to have_content item
+    end
+    details[:income_tax_rate].each do |item|
+      expect(income.find('.row', text: 'Income Tax Rate')).to have_content item
     end
     details[:interest_on_loan].each do |item|
       expect(income.find('.row', text: 'Interest on Loan')).to have_content item
