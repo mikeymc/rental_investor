@@ -289,10 +289,6 @@ class Expectations
       closing_costs: '$35,420',
       other_income: '$1,000'
     })
-
-    assert_updated_operating_revenues({
-      rent_income: %w($48,800 $585,600 $603,168 $624,279 $643,007 $662,297)
-    })
   end
 
   def to_see_the_rental_increase_projections(property)
@@ -310,31 +306,19 @@ class Expectations
   def to_see_the_operating_revenues(property)
     if property[:name] == 'moroni'
       assert_operating_revenues({
-        gross_scheduled_rental_income_monthly: '$42,000',
-        gross_scheduled_rental_income_yearly: %w($504,000 $519,120 $537,289 $553,408 $570,010),
-        vacancy_cost_yearly: %w($25,200 $25,956 $26,864 $27,670 $28,501),
-        net_rental_income_yearly: %w($478,800 $493,164 $510,425 $525,737 $541,510),
-        other_income_yearly: %w($7,200 $7,416 $7,676 $7,906 $8,143),
-        gross_income_yearly: %w($486,000 $500,580 $518,100 $533,643 $549,653),
-        vacancy_rate_monthly: '$2,100',
-        vacancy_rate_percentage: '5.0%',
-        net_rental_income_monthly: '$39,900',
-        other_income_monthly: '$600',
-        gross_income_monthly: '$40,500'
+        gross_scheduled_rental_income: %w($42,000 $504,000 $519,120 $537,289 $553,408 $570,010),
+        vacancy: %w(5.0% $2,100 $25,200 $25,956 $26,864 $27,670 $28,501),
+        net_rental_income: %w($39,900 $478,800 $493,164 $510,425 $525,737 $541,510),
+        other_income: %w($600 $7,200 $7,416 $7,676 $7,906 $8,143),
+        gross_income: %w(100% $40,500 $486,000 $500,580 $518,100 $533,643 $549,653)
       })
     elsif property[:name] == 'sesame'
       assert_operating_revenues({
-        gross_scheduled_rental_income_monthly: '$2,892',
-        gross_scheduled_rental_income_yearly: %w($34,704 $35,745 $36,996 $38,106 $39,249),
-        vacancy_cost_yearly: %w($1,735 $1,787 $1,850 $1,905 $1,962),
-        net_rental_income_yearly: %W($32,969 $33,958 $35,146 $36,201 $37,287),
-        other_income_yearly: %w($0 $0 $0 $0 $0),
-        gross_income_yearly: %w($32,969 $33,958 $35,146 $36,201 $37,287),
-        vacancy_rate_monthly: '145',
-        vacancy_rate_percentage: '5.0%',
-        net_rental_income_monthly: '$2,747',
-        other_income_monthly: '$0',
-        gross_income_monthly: '$2,747'
+        gross_scheduled_rental_income: %w($2,892 $34,704 $35,745 $36,996 $38,106 $39,249),
+        vacancy: %w(5.0% $145 $1,735 $1,787 $1,850 $1,905 $1,962),
+        net_rental_income: %W($2,747 $32,969 $33,958 $35,146 $36,201 $37,287),
+        other_income: %w($0 $0 $0 $0 $0 $0),
+        gross_income: %w(100% $2,747 $32,969 $33,958 $35,146 $36,201 $37,287)
       })
     end
   end
@@ -639,30 +623,19 @@ class Expectations
 
     (1..5).each { |year| expect(section).to have_content "Year #{year}" }
 
-    expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content details[:gross_scheduled_rental_income_monthly]
-    details[:gross_scheduled_rental_income_yearly].each do |income|
+    details[:gross_scheduled_rental_income].each do |income|
       expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content income
     end
-
-    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_monthly]
-    expect(section.find('.row', text: 'Vacancy Rate')).to have_content details[:vacancy_rate_percentage]
-    details[:vacancy_cost_yearly].each do |cost|
+    details[:vacancy].each do |cost|
       expect(section.find('.row', text: 'Vacancy Rate')).to have_content cost
     end
-
-    expect(section.find('.row', text: 'Net Rental Income')).to have_content details[:net_rental_income_monthly]
-    details[:net_rental_income_yearly].each do |income|
+    details[:net_rental_income].each do |income|
       expect(section.find('.row', text: 'Net Rental Income')).to have_content income
     end
-
-    expect(section.find('.row', text: 'Other Income')).to have_content details[:other_income_monthly]
-    details[:other_income_yearly].each do |income|
+    details[:other_income].each do |income|
       expect(section.find('.row', text: 'Other Income')).to have_content income
     end
-
-    expect(section.find('.row', text: 'Gross Income')).to have_content details[:gross_income_monthly]
-    expect(section.find('.row', text: 'Gross Income')).to have_content '100%'
-    details[:gross_income_yearly].each do |income|
+    details[:gross_income].each do |income|
       expect(section.find('.row', text: 'Gross Income')).to have_content income
     end
   end
