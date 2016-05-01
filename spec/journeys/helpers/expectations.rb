@@ -263,38 +263,13 @@ class Expectations
       five_year_annualized_irr: '36.20%'
     })
 
-    assert_financing_assumptions({
-      total_purchase: %w(100% $3,235,435),
-      down_payment: %w(20% $647,087),
-      loan_amount: %w(80% $2,588,348.00),
-      interest_rate: %w(6.750% 0.563%),
-      amortization_period: %w(30 360),
-      loan_payment: %w($16,787.98 $201,455.71)
-    })
-
-    assert_cost_and_revenue_assumptions({
-      land: '$600,000',
-      building: '$2,600,000',
-      improvements: '$15',
-      closing_costs: '$35,420',
-      total_cost: '$3,235,435',
-      number_of_units: '61',
-      average_monthly_rent: '$800',
-      other_income: '$1,000',
-      gross_monthly_rent: '$48,800',
-      total_gross_monthly_income: '$49,800'
-    })
-
-    assert_key_rent_ratios({
-      total_area_in_sq_ft: '53,500',
-      avg_sq_ft_per_unit: '877',
-      avg_rent_per_sq_ft: '$0.91',
-      total_cost_per_sq_ft: '$60',
-      cost_per_unit: '$53,040',
-      cap_rate: '9.87%',
-      gross_rent_multiplier: '5.52',
-      operational_efficiency: '4.54',
-      expenses_per_unit: '$3,983'
+    assert_cash_flow_from_operations({
+      debt_service: %w($16,787.98 $201,455.71 $201,455.71 $201,455.71 $201,455.71 $201,455.71),
+      cash_available_for_loan_servicing: %w($26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
+      remaining_cash_flow_from_operations: %w($9,835 $118,025 $139,759 $162,417 $176,869 $190,611),
+      principal_reduction: %w($2,229 $27,585 $29,506 $31,560 $33,758 $36,108),
+      total_return: %w($12,064 $145,610 $169,265 $193,977 $210,627 $226,720),
+      cf_to_debt_servicing_ratio: %w(158.59% 158.59% 169.37% 180.62% 187.80% 194.62%)
     })
 
     assert_operating_expenses({
@@ -322,7 +297,95 @@ class Expectations
       gross_income: %w(100% $46,872 $562,464 $579,338 $599,615 $617,603 $636,131)
     })
 
+    assert_rental_increase_projections %w(0.00% 3.00% 3.50% 3.00% 3.00%)
+    assert_average_monthly_rents_each_year %w($800 $824 $853 $878 $905)
+    assert_operating_expense_projections %w(0.00% -2.00% -1.00% 1.50% 2.00%)
 
+    assert_key_rent_ratios({
+      total_area_in_sq_ft: '53,500',
+      avg_sq_ft_per_unit: '877',
+      avg_rent_per_sq_ft: '$0.91',
+      total_cost_per_sq_ft: '$60',
+      cost_per_unit: '$53,040',
+      cap_rate: '9.87%',
+      gross_rent_multiplier: '5.52',
+      operational_efficiency: '4.54',
+      expenses_per_unit: '$3,983'
+    })
+
+    assert_financing_assumptions({
+      total_purchase: %w(100% $3,235,435),
+      down_payment: %w(20% $647,087),
+      loan_amount: %w(80% $2,588,348.00),
+      interest_rate: %w(6.750% 0.563%),
+      amortization_period: %w(30 360),
+      loan_payment: %w($16,787.98 $201,455.71)
+    })
+
+    assert_closing_costs({
+      origination_fee: '$32,000',
+      processing_fee: '$400',
+      discount_points: '0',
+      underwriting_fee: '$500',
+      appraisal: '$425',
+      credit_report: '$35',
+      flood_certificate: '$0',
+      tax_services: '$75',
+      title_insurance: '$175',
+      title_fees: '$180',
+      survey: '$175',
+      government_recording_charges: '$125',
+      transfer_taxes: '$0',
+      homeowners_insurance: '$1,100',
+      settlement_company_charges: '$175',
+      wire_charges: '$55',
+      total: '$35,420'
+    })
+
+    assert_property_details({
+      land_cost: '$600,000',
+      building_cost: '$2,600,000',
+      improvements: '$15',
+      total_square_feet: '53,500',
+      number_of_units: '61',
+      average_monthly_rent: '$800.00',
+      other_income: '$1,000.00',
+      equity_percentage: '20%',
+      loan_interest_rate: '6.750%',
+      amortization_period_in_years: '30'
+    })
+
+    assert_cost_and_revenue_assumptions({
+      land: '$600,000',
+      building: '$2,600,000',
+      improvements: '$15',
+      closing_costs: '$35,420',
+      total_cost: '$3,235,435',
+      number_of_units: '61',
+      average_monthly_rent: '$800',
+      other_income: '$1,000',
+      gross_monthly_rent: '$48,800',
+      total_gross_monthly_income: '$49,800'
+    })
+
+    assert_operating_expenses_inputs({
+      vacancy_rate: '6.0%',
+      repairs_and_maintenance: '$5,465',
+      property_management_fees: '3.5%',
+      taxes: '$3,200.03',
+      insurance: '$812.03',
+      salaries_and_wages: '$1,800.02',
+      water_and_sewer: '$5',
+      utilities: '$2,119.97',
+      trash_removal: '$125.02',
+      professional_fees: '$299.98',
+      advertising: '$500.01',
+      landscaping: '$0',
+      capital_expenditures: '7.0%',
+      other_expenses: '$999.99',
+      equipment_depreciation: '$0',
+      income_tax_rate: '0%'
+    })
   end
 
   def to_see_the_rental_increase_projections(property)
