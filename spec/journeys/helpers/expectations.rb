@@ -24,9 +24,9 @@ class Expectations
   def to_see_the_property_details(property)
     if property[:name] == 'moroni'
       assert_property_details({
-        land_cost: '$500,000.00',
-        building_cost: '$2,500,000.00',
-        improvements: '$0.00',
+        land_cost: '$500,000',
+        building_cost: '$2,500,000',
+        improvements: '$0',
         total_square_feet: '52,500',
         number_of_units: '60',
         average_monthly_rent: '$700.00',
@@ -38,9 +38,9 @@ class Expectations
       })
     elsif property[:name] == 'sesame'
       assert_property_details({
-        land_cost: '$0.00',
-        building_cost: '$299,000.00',
-        improvements: '$0.00',
+        land_cost: '$0',
+        building_cost: '$299,000',
+        improvements: '$0',
         total_square_feet: '3,311',
         number_of_units: '6',
         average_monthly_rent: '$482.00',
