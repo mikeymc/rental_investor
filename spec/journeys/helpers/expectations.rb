@@ -626,7 +626,7 @@ class Expectations
       expect(cash_flow.find('.row', text: 'Cash Available for Loan Servicing')).to have_content item
     end
     details[:remaining_cash_flow_from_operations].each do |item|
-      expect(cash_flow.find('.row', text: 'Remaining Cash Flow from Operations')).to have_content item
+      expect(cash_flow.find('.row', text: 'Remaining CF from Operations')).to have_content item
     end
     details[:principal_reduction].each do |item|
       expect(cash_flow.find('.row', text: 'Plus Principal Reduction')).to have_content item

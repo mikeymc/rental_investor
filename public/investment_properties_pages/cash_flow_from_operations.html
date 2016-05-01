@@ -31,7 +31,7 @@
     <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':2}}</div>
   </div>
   <div class="row">
-    <div class="col-md-5">Remaining Cash Flow from Operations</div>
+    <div class="col-md-5">Remaining CF from Operations</div>
     <div class="col-md-2"></div>
     <div class="col-md-2 align-right">{{monthly_cf_remaining | currency:'$':0}}</div>
     <div class="col-md-3 align-right" ng-repeat="cash in annual_cfs_remaining track by $index">
