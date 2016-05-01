@@ -221,74 +221,108 @@ class Expectations
   def to_see_the_financing_assumptions(property)
     if property[:name] == 'moroni'
       assert_financing_assumptions({
-        total_purchase_value: '$3,033,420',
-        total_purchase_percentage: '100%',
-        owners_equity_value: '$515,681',
-        owners_equity_percentage: '17%',
-        balance_to_finance_value: '$2,517,738.60',
-        balance_to_finance_percentage: '83%',
-        interest_rate: '5.750%',
-        interest_rate_monthly: '0.479%',
-        amortization_period: '25',
-        amortization_period_in_months: '300',
-        annual_loan_payment: '$190,071',
-        monthly_loan_payment: '$15,839',
-        annual_label: 'Annual',
-        monthly_label: 'Monthly'
+        total_purchase: %w(100% $3,033,420),
+        down_payment: %w(17% $515,681),
+        loan_amount: %w(83% $2,517,738.60),
+        interest_rate: %w(5.750% 0.479%),
+        amortization_period: %w(25 300),
+        loan_payment: %w($15,839 $190,071)
       })
     elsif property[:name] == 'sesame'
       assert_financing_assumptions({
-        total_purchase_value: '$305,410',
-        total_purchase_percentage: '100%',
-        owners_equity_value: '$61,082',
-        owners_equity_percentage: '20%',
-        balance_to_finance_value: '$244,328',
-        balance_to_finance_percentage: '80%',
-        interest_rate: '4.000%',
-        interest_rate_monthly: '0.333%',
-        amortization_period: '30',
-        amortization_period_in_months: '360',
-        annual_loan_payment: '$13,997',
-        monthly_loan_payment: '$1,166'
+        total_purchase: %w(100% $305,410),
+        down_payment: %w(20% $61,082),
+        loan_amount: %w(80% $244,328),
+        interest_rate: %w(4.000% 0.333%),
+        amortization_period: %w(30 360),
+        loan_payment: %w($1,166 $13,997)
       })
     end
   end
 
   def to_see_updated_values
-    assert_updated_key_rent_ratios({
-      total_square_feet: '53,500',
-      avg_sq_ft_per_unit: '877',
-      avg_rent_per_sq_ft: '$0.91',
-      total_cost_per_sq_ft: '$60',
-      cost_per_unit: '$53,040'
+    assert_net_operating_income({
+      interest_on_loan: %w(31.1% $14,559.46 $173,870.44 $171,949.74 $169,895.30 $167,697.81 $165,347.32),
+      net_operating_income: %w(56.80% $26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
+      building_depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
+      net_income_before_taxes: %w($4,185 $51,065 $74,719 $99,432 $116,081 $132,174)
     })
 
-    assert_updated_financing_assumptions({
-      total_cost: '$3,235,435',
-      equity_percentage: '20%',
-      balance_to_finance: '$2,588,348.00',
-      down_payment: '$647,087.00',
-      loan_to_value_percentage: '80%',
-      loan_interest_rate_annual: '6.750%',
-      loan_interest_rate_monthly: '0.563%',
-      amortization_period_in_years: '30',
-      amortization_period_in_months: '360',
-      loan_payment_monthly: '$16,787.98',
-      loan_payment_yearly: '$201,455.71',
+    assert_roi({
+      noi_roi: %w(7.89% 11.55% 15.37% 17.94% 20.43%),
+      cash_roi: %w(18.24% 21.60% 25.10% 27.33% 29.46%),
+      total_roi: %w(22.50% 26.16% 29.98% 32.55% 35.04%),
+      one_year_exit_net_cfs: %w(-$647,087 $792,697),
+      three_year_exit_net_cfs: %w(-$647,087 $118,025 $139,759 $1,347,717),
+      five_year_exit_net_cfs: %w(-$647,087 $118,025 $139,759 $162,417 $176,869 $1,731,312),
+      one_year_exit_price_gain: %w($3,235,435 $0 9.87%),
+      three_year_exit_price_gain: %w($3,684,997 $449,562 9.87%),
+      five_year_exit_price_gain: %w($3,970,531 $735,096 9.87%),
+      one_year_annualized_irr: '22.50%',
+      three_year_annualized_irr: '39.97%',
+      five_year_annualized_irr: '36.20%'
     })
 
-    assert_updated_cost_and_revenue_assumptions({
-      land_cost: '$600,000',
-      building_cost: '$2,600,000',
+    assert_financing_assumptions({
+      total_purchase: %w(100% $3,235,435),
+      down_payment: %w(20% $647,087),
+      loan_amount: %w(80% $2,588,348.00),
+      interest_rate: %w(6.750% 0.563%),
+      amortization_period: %w(30 360),
+      loan_payment: %w($16,787.98 $201,455.71)
+    })
+
+    assert_cost_and_revenue_assumptions({
+      land: '$600,000',
+      building: '$2,600,000',
       improvements: '$15',
+      closing_costs: '$35,420',
       total_cost: '$3,235,435',
       number_of_units: '61',
       average_monthly_rent: '$800',
+      other_income: '$1,000',
       gross_monthly_rent: '$48,800',
-      gross_monthly_income: '$49,800',
-      closing_costs: '$35,420',
-      other_income: '$1,000'
+      total_gross_monthly_income: '$49,800'
     })
+
+    assert_key_rent_ratios({
+      total_area_in_sq_ft: '53,500',
+      avg_sq_ft_per_unit: '877',
+      avg_rent_per_sq_ft: '$0.91',
+      total_cost_per_sq_ft: '$60',
+      cost_per_unit: '$53,040',
+      cap_rate: '9.87%',
+      gross_rent_multiplier: '5.52',
+      operational_efficiency: '4.54',
+      expenses_per_unit: '$3,983'
+    })
+
+    assert_operating_expenses({
+      repairs_and_maintenance: %w(11.6594% $5,465.00 $65,580 $64,268 $63,626 $64,580 $65,872),
+      property_management_fees: %w(3.5000% $1,640.52 $19,686 $19,293 $19,100 $19,386 $19,774),
+      taxes: %w(6.8272% $3,200.03 $38,400 $37,632 $37,256 $37,815 $38,571),
+      insurance: %w(1.7324% $812.03 $9,744 $9,549 $9,454 $9,596 $9,788),
+      salaries_and_wages: %w(3.8403% $1,800.02 $21,600 $21,168 $20,957 $21,271 $21,696),
+      utilities: %w(4.5229% $2,119.97 $25,440 $24,931 $24,682 $25,052 $25,553),
+      water_and_sewer: %w(0.0107% $5.00 $60 $59 $58 $59 $60),
+      trash_removal: %w(0.2667% $125.02 $1,500 $1,470 $1,456 $1,477 $1,507),
+      professional_fees: %w(0.6400% $299.98 $3,600 $3,528 $3,492 $3,545 $3,616),
+      advertising: %w(1.0668% $500.01 $6,000 $5,880 $5,821 $5,909 $6,027),
+      landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
+      capex: %w(7.0000% $3,281.04 $39,372 $38,585 $38,199 $38,772 $39,548),
+      other_expenses: %w(2.1334% $999.99 $12,000 $11,760 $11,642 $11,817 $12,053),
+      total: %w(43.1998% $20,248.61 $242,983 $238,124 $235,742 $239,279 $244,064)
+    })
+
+    assert_operating_revenues({
+      gross_scheduled_rental_income: %w($48,800 $585,600 $603,168 $624,279 $643,007 $662,297),
+      vacancy: %w(6.0% $2,928 $35,136 $36,190 $37,457 $38,580 $39,738),
+      net_rental_income: %w($45,872 $550,464 $566,978 $586,822 $604,427 $622,560),
+      other_income: %w($1,000 $12,000 $12,360 $12,793 $13,176 $13,572),
+      gross_income: %w(100% $46,872 $562,464 $579,338 $599,615 $617,603 $636,131)
+    })
+
+
   end
 
   def to_see_the_rental_increase_projections(property)
@@ -572,48 +606,6 @@ class Expectations
     end
   end
 
-  def assert_updated_operating_revenues(details)
-    details[:rent_income].each do |income|
-      expect(page.find('#operating-revenues .row', text: 'Gross Scheduled Rent Income')).to have_content income
-    end
-  end
-
-  def assert_updated_financing_assumptions(details)
-    expect(page.find('#financing-assumptions .row', text: 'Total Purchase')).to have_content details[:total_cost]
-    expect(page.find('#financing-assumptions .row', text: 'Total Purchase')).to have_content '100%'
-    expect(page.find('#financing-assumptions .row', text: 'Owner\'s Equity')).to have_content details[:equity_percentage]
-    expect(page.find('#financing-assumptions .row', text: 'Owner\'s Equity')).to have_content details[:down_payment]
-    expect(page.find('#financing-assumptions .row', text: 'Balance to Finance')).to have_content details[:balance_to_finance]
-    expect(page.find('#financing-assumptions .row', text: 'Balance to Finance')).to have_content details[:loan_to_value_percentage]
-    expect(page.find('#financing-assumptions .row', text: 'Interest Rate')).to have_content details[:loan_interest_rate_annual]
-    expect(page.find('#financing-assumptions .row', text: 'Interest Rate')).to have_content details[:loan_interest_rate_monthly]
-    expect(page.find('#financing-assumptions .row', text: 'Amortization Period')).to have_content details[:amortization_period_in_years]
-    expect(page.find('#financing-assumptions .row', text: 'Amortization Period')).to have_content details[:amortization_period_in_months]
-    expect(page.find('#financing-assumptions .row', text: 'Payment')).to have_content details[:loan_payment_monthly]
-    expect(page.find('#financing-assumptions .row', text: 'Payment')).to have_content details[:loan_payment_yearly]
-  end
-
-  def assert_updated_cost_and_revenue_assumptions(details)
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Land')).to have_content details[:land_cost]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Building')).to have_content details[:building_cost]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content details[:improvements]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Improvements')).to have_content details[:improvements]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Closing Costs')).to have_content details[:closing_costs]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Number of Units')).to have_content details[:number_of_units]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Average Monthly Rent')).to have_content details[:average_monthly_rent]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Rent')).to have_content details[:gross_monthly_rent]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Gross Monthly Income')).to have_content details[:gross_monthly_income]
-    expect(page.find('#cost-and-revenue-assumptions .row', text: 'Other Income')).to have_content details[:other_income]
-  end
-
-  def assert_updated_key_rent_ratios(details)
-    expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_square_feet]
-    expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
-    expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
-    expect(page.find('#key-rent-ratios .row', text: 'Total Cost/Sq Ft')).to have_content details[:total_cost_per_sq_ft]
-    expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
-  end
-
   def assert_operating_revenues(details)
     section = page.find('#operating-revenues')
 
@@ -685,20 +677,27 @@ class Expectations
   def assert_financing_assumptions(details)
     closing_costs = page.find('#financing-assumptions')
     expect(closing_costs).to have_content 'Financing Assumptions'
-    expect(closing_costs.find('#total-purchase', text: 'Total Purchase')).to have_content details[:total_purchase_value]
-    expect(closing_costs.find('#total-purchase', text: 'Total Purchase')).to have_content details[:total_purchase_percentage]
-    expect(closing_costs.find('#down-payment', text: 'Owner\'s Equity')).to have_content details[:owners_equity_value]
-    expect(closing_costs.find('#down-payment', text: 'Owner\'s Equity')).to have_content details[:owners_equity_percentage]
-    expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content details[:balance_to_finance_value]
-    expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content details[:balance_to_finance_percentage]
-    expect(closing_costs.find('#interest-rate', text: 'Interest Rate')).to have_content details[:interest_rate]
-    expect(closing_costs.find('#interest-rate', text: 'Interest Rate')).to have_content details[:interest_rate_monthly]
-    expect(closing_costs.find('#amortization-period', text: 'Amortization Period')).to have_content details[:amortization_period]
-    expect(closing_costs.find('#amortization-period', text: 'Amortization Period')).to have_content details[:amortization_period_in_months]
-    expect(closing_costs.find('#loan-payment', text: 'Payment')).to have_content details[:annual_loan_payment]
-    expect(closing_costs.find('#loan-payment', text: 'Payment')).to have_content details[:monthly_loan_payment]
-    expect(closing_costs).to have_content details[:annual_label]
-    expect(closing_costs).to have_content details[:monthly_label]
+    expect(closing_costs).to have_content 'Annual'
+    expect(closing_costs).to have_content 'Monthly'
+
+    details[:total_purchase].each do |item|
+      expect(closing_costs.find('#total-purchase', text: 'Total Purchase')).to have_content item
+    end
+    details[:down_payment].each do |item|
+      expect(closing_costs.find('#down-payment', text: 'Owner\'s Equity')).to have_content item
+    end
+    details[:loan_amount].each do |item|
+      expect(closing_costs.find('#balance-to-finance', text: 'Balance to Finance')).to have_content item
+    end
+    details[:interest_rate].each do |item|
+      expect(closing_costs.find('#interest-rate', text: 'Interest Rate')).to have_content item
+    end
+    details[:amortization_period].each do |item|
+      expect(closing_costs.find('#amortization-period', text: 'Amortization Period')).to have_content item
+    end
+    details[:loan_payment].each do |item|
+      expect(closing_costs.find('#loan-payment', text: 'Payment')).to have_content item
+    end
   end
 
   def assert_closing_costs(details)
@@ -763,7 +762,7 @@ class Expectations
 
     expect(inputs).to have_content 'Monthly Operating Expenses'
     expect(inputs.find_field('vacancy-rate-input').value).to eq details[:vacancy_rate]
-    expect(inputs.find('#repairs-and-maintenance', text: 'Repairs and Maintenance')).to have_content details[:repairs_and_maintenance]
+    expect(inputs.find_field('repairs-and-maintenance-input').value).to eq details[:repairs_and_maintenance]
     expect(inputs.find('#property-management-fees', text: 'Property Management Fees')).to have_content details[:property_management_fees]
     expect(inputs.find('#taxes', text: 'Taxes')).to have_content details[:taxes]
     expect(inputs.find('#insurance', text: 'Insurance')).to have_content details[:insurance]

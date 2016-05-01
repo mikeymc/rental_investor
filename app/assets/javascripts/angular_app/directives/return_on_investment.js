@@ -11,7 +11,7 @@ angular.module('rentals').directive('returnOnInvestment', function(cash_flow_ser
         $scope.noi_roi = annual_noi_roi($scope.rental_property);
         $scope.cash_roi = cash_roi($scope.rental_property);
         $scope.total_roi = total_roi($scope.rental_property);
-      });
+      }, true);
 
       /* --- Private --- */
 

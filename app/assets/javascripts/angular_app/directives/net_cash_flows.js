@@ -12,19 +12,19 @@ angular.module('rentals').directive('netCashFlows', function(property_service, c
         $scope.one_year_exit_net = cash_flow_service.one_year_exit_net($scope.rental_property);
         $scope.three_year_exit_nets = three_year_exit_nets($scope.rental_property);
         $scope.five_year_exit_nets = five_year_exit_nets($scope.rental_property);
+      }, true);
 
-        /* --- Private --- */
+      /* --- Private --- */
 
-        function three_year_exit_nets(property) {
-          var gain_on_sale = exit_scenarios_service.third_year_gain_on_sale(property);
-          return cash_flow_service.three_year_exit_nets(property, gain_on_sale);
-        }
+      function three_year_exit_nets(property) {
+        var gain_on_sale = exit_scenarios_service.third_year_gain_on_sale(property);
+        return cash_flow_service.three_year_exit_nets(property, gain_on_sale);
+      }
 
-        function five_year_exit_nets(property) {
-          var gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale(property);
-          return cash_flow_service.five_year_exit_nets(property, gain_on_sale);
-        }
-      });
+      function five_year_exit_nets(property) {
+        var gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale(property);
+        return cash_flow_service.five_year_exit_nets(property, gain_on_sale);
+      }
     }
   }
 });

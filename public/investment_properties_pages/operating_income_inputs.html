@@ -13,7 +13,13 @@
   </div>
   <div id="repairs-and-maintenance" class="row">
     <span class="col-md-18">Repairs and Maintenance</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.repairs_and_maintenance | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="repairs-and-maintenance-input"
+           format="currency"
+           symbol="$"
+           decimals="0"
+           ng-model="rental_property.operating_expenses_assumption.repairs_and_maintenance"/>
   </div>
   <div id="property-management-fees" class="row">
     <span class="col-md-18">Property Management Fees</span>

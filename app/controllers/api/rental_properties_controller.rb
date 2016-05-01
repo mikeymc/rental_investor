@@ -29,7 +29,8 @@ class Api::RentalPropertiesController < ApplicationController
       total_square_feet: finance_and_income_assumptions[:total_square_feet]
     })
     @rental_property.operating_expenses_assumption.update({
-      vacancy_rate: operating_expenses_assumption[:vacancy_rate]
+      vacancy_rate: operating_expenses_assumption[:vacancy_rate],
+      repairs_and_maintenance: operating_expenses_assumption[:repairs_and_maintenance]
     })
     render json: serialize(@rental_property)
   end
