@@ -889,7 +889,5 @@ class Expectations
     expect(inputs.find_field('capital-expenditures-input').value).to eq details[:capital_expenditures]
     expect(inputs.find_field('other-expenses-input').value).to eq details[:other_expenses]
     expect(inputs.find_field('income-tax-rate-input').value).to eq details[:income_tax_rate]
-
-    expect(inputs.find('#equipment-depreciation', 'Equipment Depreciation')).to have_content details[:equipment_depreciation]
   end
 end
