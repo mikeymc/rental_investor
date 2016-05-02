@@ -315,6 +315,7 @@ class Expectations
       assert_cash_flow_from_operations({
         net_income_after_taxes: %w($1,466 $18,790 $40,547 $63,028 $78,114 $92,658),
         depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
+        total_cf_from_operations: %w($9,041 $109,699 $131,456 $153,937 $169,023 $183,567),
         interest_on_loan: %w($12,064.16 $143,556.82 $140,810.63 $137,902.30 $134,822.27 $131,560.39),
         debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06),
         cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
@@ -327,6 +328,7 @@ class Expectations
       assert_cash_flow_from_operations({
         net_income_after_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555),
         depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
+        total_cf_from_operations: %w($945 $11,417 $12,819 $14,306 $15,378 $16,428),
         interest_on_loan: %w($814.43 $9,694.81 $9,519.51 $9,337.07 $9,147.19 $8,949.58),
         debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51),
         cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
@@ -422,6 +424,7 @@ class Expectations
     assert_cash_flow_from_operations({
       net_income_after_taxes: %w($4,143 $50,554 $73,972 $98,437 $114,921 $130,853),
       depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
+      total_cf_from_operations: %w($12,022 $145,100 $168,517 $192,983 $209,466 $225,398),
       interest_on_loan: %w($14,559.46 $173,870.44 $171,949.74 $169,895.30 $167,697.81 $165,347.32),
       debt_service: %w($16,787.98 $201,455.71 $201,455.71 $201,455.71 $201,455.71 $201,455.71),
       cash_available_for_loan_servicing: %w($26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
@@ -627,6 +630,9 @@ class Expectations
     end
     details[:depreciation_expenses].each do |item|
       expect(cash_flow.find('.row', text: 'Depreciation Expenses')).to have_content item
+    end
+    details[:total_cf_from_operations].each do |item|
+      expect(cash_flow.find('.row', text: 'Total CF from Operations')).to have_content item
     end
     details[:interest_on_loan].each do |item|
       expect(cash_flow.find('.row', text: 'Interest on Loan')).to have_content item

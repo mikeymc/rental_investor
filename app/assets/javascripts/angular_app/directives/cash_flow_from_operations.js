@@ -28,8 +28,26 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
         $scope.annual_building_depreciation = noi_service.get_annual_building_depreciation($scope.rental_property);
         $scope.monthly_interest_on_loan = noi_service.monthly_interest_on_loan($scope.rental_property);
         $scope.annual_interest_on_loan = noi_service.get_annual_interest_on_loan($scope.rental_property);
+        $scope.monthly_total_cf_from_operations = monthly_total_cf_from_operations($scope.rental_property, expenses);
+        $scope.annual_total_cf_from_operations = annual_total_cf_from_operations($scope.rental_property, expenses);
 
         /* --- Private --- */
+
+        function monthly_total_cf_from_operations(property, expenses) {
+          var depreciation = noi_service.get_monthly_building_depreciation(property);
+          var income_after_taxes = noi_service.monthly_net_income_after_taxes(property, expenses);
+
+          return depreciation + income_after_taxes;
+        }
+
+        function annual_total_cf_from_operations(property, expenses) {
+          var depreciation = noi_service.get_annual_building_depreciation(property);
+          var income_after_taxes = noi_service.annual_net_income_after_taxes(property, expenses);
+
+          return _.map(income_after_taxes, function(income) {
+            return depreciation + income;
+          });
+        }
 
         function annual_cf_debt_servicing_ratio(property) {
           var expenses = operating_expenses_service.all_operating_expenses(property);
