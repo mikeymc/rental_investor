@@ -16,6 +16,7 @@ class Api::RentalPropertiesController < ApplicationController
 
     finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
     operating_expenses_assumption = params[:rental_property][:operating_expenses_assumption]
+    income_and_cost_projection = params[:rental_property][:income_and_cost_projection]
     @rental_property.financing_and_income_assumption.update({
       land_cost: finance_and_income_assumptions[:land_cost],
       building_cost: finance_and_income_assumptions[:building_cost],
@@ -30,7 +31,24 @@ class Api::RentalPropertiesController < ApplicationController
     })
     @rental_property.operating_expenses_assumption.update({
       vacancy_rate: operating_expenses_assumption[:vacancy_rate],
-      repairs_and_maintenance: operating_expenses_assumption[:repairs_and_maintenance]
+      repairs_and_maintenance: operating_expenses_assumption[:repairs_and_maintenance],
+      property_management_fees: operating_expenses_assumption[:property_management_fees],
+      taxes: operating_expenses_assumption[:taxes],
+      insurance: operating_expenses_assumption[:insurance],
+      salaries_and_wages: operating_expenses_assumption[:salaries_and_wages],
+      utilities: operating_expenses_assumption[:utilities],
+      water_and_sewer: operating_expenses_assumption[:water_and_sewer],
+      trash_removal: operating_expenses_assumption[:trash_removal],
+      professional_fees: operating_expenses_assumption[:professional_fees],
+      advertising: operating_expenses_assumption[:advertising],
+      landscaping: operating_expenses_assumption[:landscaping],
+      capex: operating_expenses_assumption[:capex],
+      other_expenses: operating_expenses_assumption[:other_expenses],
+      income_tax_rate: operating_expenses_assumption[:income_tax_rate]
+    })
+    @rental_property.income_and_cost_projection.update({
+      rent_increases: income_and_cost_projection[:rent_increases],
+      operating_expense_increases: income_and_cost_projection[:operating_expense_increases],
     })
     render json: serialize(@rental_property)
   end

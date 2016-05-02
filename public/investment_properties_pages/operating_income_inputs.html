@@ -23,51 +23,101 @@
   </div>
   <div id="property-management-fees" class="row">
     <span class="col-md-18">Property Management Fees</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.property_management_fees | percentage:1}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="property-management-fees-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.operating_expenses_assumption.property_management_fees"/>
   </div>
   <div id="utilities" class="row">
     <span class="col-md-18">Utilities</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.utilities | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="utilities-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.utilities"/>
   </div>
   <div id="taxes" class="row">
     <span class="col-md-18">Taxes</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.taxes | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="taxes-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.taxes"/>
   </div>
   <div id="insurance" class="row">
     <span class="col-md-18">Insurance</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.insurance | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="insurance-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.insurance"/>
   </div>
   <div id="salaries-and-wages" class="row">
     <span class="col-md-18">Salaries and Wages</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.salaries_and_wages | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="salaries-and-wages-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.salaries_and_wages"/>
   </div>
   <div id="water-and-sewer" class="row">
     <span class="col-md-18">Water and Sewer</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.water_and_sewer | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="water-and-sewer-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.water_and_sewer"/>
   </div>
   <div id="trash-removal" class="row">
     <span class="col-md-18">Trash Removal</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.trash_removal | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="trash-removal-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.trash_removal"/>
   </div>
   <div id="professional-fees" class="row">
     <span class="col-md-18">Professional Fees</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.professional_fees | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="professional-fees-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.professional_fees"/>
   </div>
   <div id="advertising" class="row">
     <span class="col-md-18">Advertising</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.advertising | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="advertising-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.advertising"/>
   </div>
   <div id="landscaping" class="row">
     <span class="col-md-18">Landscaping</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.landscaping | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="landscaping-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.landscaping"/>
   </div>
   <div id="capital-expenditures" class="row">
     <span class="col-md-18">CapEx</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.capex | percentage:1}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="capital-expenditures-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.operating_expenses_assumption.capex"/>
   </div>
   <div id="other-expenses" class="row">
     <span class="col-md-18">Other Expenses</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.other_expenses | currency}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="other-expenses-input"
+           format="currency"
+           ng-model="rental_property.operating_expenses_assumption.other_expenses"/>
   </div>
   <div id="equipment-depreciation" class="row">
     <span class="col-md-18">Equipment Depreciation</span>
@@ -75,6 +125,10 @@
   </div>
   <div id="income-tax-rate" class="row">
     <span class="col-md-18">Income Tax Rate</span>
-    <span class="col-md-6 align-right">{{rental_property.operating_expenses_assumption.income_tax_rate | percentage}}</span>
+    <input class="col-md-6 align-right"
+           type="text"
+           name="income-tax-rate-input"
+           format="percentage"
+           ng-model="rental_property.operating_expenses_assumption.income_tax_rate"/>
   </div>
 </div>

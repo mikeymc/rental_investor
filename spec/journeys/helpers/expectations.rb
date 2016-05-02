@@ -111,25 +111,18 @@ class Expectations
     end
   end
 
-  def to_see_the_income_and_cost_projections
-    projections = page.find('#income-and-cost-projections')
-    expect(projections).to have_content 'Income and Cost Projections'
-
-    rent_increases = projections.find('#rent-increases')
-    expect(rent_increases).to have_content 'Rent Increases'
-    expect(rent_increases.all('li', count: 5)[0]).to have_content '0.0%'
-    expect(rent_increases.all('li', count: 5)[1]).to have_content '3.0%'
-    expect(rent_increases.all('li', count: 5)[2]).to have_content '3.5%'
-    expect(rent_increases.all('li', count: 5)[3]).to have_content '3.0%'
-    expect(rent_increases.all('li', count: 5)[4]).to have_content '3.0%'
-
-    operating_expense_increases = projections.find('#operating-expense-increases')
-    expect(operating_expense_increases).to have_content 'Op Exp Increases'
-    expect(operating_expense_increases.all('li', count: 5)[0]).to have_content '0.0%'
-    expect(operating_expense_increases.all('li', count: 5)[1]).to have_content '-2.0%'
-    expect(operating_expense_increases.all('li', count: 5)[2]).to have_content '-1.0%'
-    expect(operating_expense_increases.all('li', count: 5)[3]).to have_content '1.5%'
-    expect(operating_expense_increases.all('li', count: 5)[4]).to have_content '2.0%'
+  def to_see_the_income_and_cost_projections(property)
+    if property[:name] == 'moroni'
+      assert_income_and_cost_projections({
+        rent_increases: %w(0.0% 3.0% 3.5% 3.0% 3.0%),
+        operating_expenses_increases: %w(0.0% -2.0% -1.0% 1.5% 2.0%)
+      })
+    elsif property[:name] == 'sesame'
+      assert_income_and_cost_projections({
+        rent_increases: %w(0.0% 3.0% 3.5% 3.0% 3.0%),
+        operating_expenses_increases: %w(0.0% -2.0% -1.0% 1.5% 2.0%)
+      })
+    end
   end
 
   def to_see_the_closing_costs(property)
@@ -185,12 +178,12 @@ class Expectations
         taxes: '$3,200.03',
         insurance: '$812.03',
         salaries_and_wages: '$1,800.02',
-        water_and_sewer: '$5',
+        water_and_sewer: '$5.00',
         utilities: '$2,119.97',
         trash_removal: '$125.02',
         professional_fees: '$299.98',
         advertising: '$500.01',
-        landscaping: '$0',
+        landscaping: '$0.00',
         capital_expenditures: '7.0%',
         other_expenses: '$999.99',
         equipment_depreciation: '$0',
@@ -201,17 +194,17 @@ class Expectations
         vacancy_rate: '5.0%',
         repairs_and_maintenance: '$125',
         property_management_fees: '10.0%',
-        taxes: '$121',
-        insurance: '$150',
-        salaries_and_wages: '$0',
-        water_and_sewer: '$0',
-        utilities: '$0',
-        trash_removal: '$125',
-        professional_fees: '$0',
-        advertising: '$0',
-        landscaping: '$0',
+        taxes: '$121.00',
+        insurance: '$150.00',
+        salaries_and_wages: '$0.00',
+        water_and_sewer: '$0.00',
+        utilities: '$0.00',
+        trash_removal: '$125.00',
+        professional_fees: '$0.00',
+        advertising: '$0.00',
+        landscaping: '$0.00',
         capital_expenditures: '7.0%',
-        other_expenses: '$0',
+        other_expenses: '$0.00',
         equipment_depreciation: '$0',
         income_tax_rate: '0%'
       })
@@ -317,7 +310,7 @@ class Expectations
         depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
         total_cf_from_operations: %w($9,041 $109,699 $131,456 $153,937 $169,023 $183,567),
         interest_on_loan: %w($12,064 $143,557 $140,811 $137,902 $134,822 $131,560),
-        debt_service: %w($15,839.25 $190,071.06 $190,071.06 $190,071.06 $190,071.06 $190,071.06),
+        debt_service: %w($15,839 $190,071 $190,071 $190,071 $190,071 $190,071),
         cash_available_for_loan_servicing: %w($21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
         remaining_cash_flow_from_operations: %w($5,281 $63,374 $82,605 $102,405 $114,563 $125,993),
         principal_reduction: %w($3,775 $46,514 $49,260 $52,169 $55,249 $58,511),
@@ -330,7 +323,7 @@ class Expectations
         depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
         total_cf_from_operations: %w($945 $11,417 $12,819 $14,306 $15,378 $16,428),
         interest_on_loan: %w($814 $9,695 $9,520 $9,337 $9,147 $8,950),
-        debt_service: %w($1,166.46 $13,997.51 $13,997.51 $13,997.51 $13,997.51 $13,997.51),
+        debt_service: %w($1,166 $13,998 $13,998 $13,998 $13,998 $13,998),
         cash_available_for_loan_servicing: %w($1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
         remaining_cash_flow_from_operations: %w($593 $7,115 $8,341 $9,646 $10,527 $11,380),
         principal_reduction: %w($352 $4,303 $4,478 $4,660 $4,850 $5,048),
@@ -397,71 +390,71 @@ class Expectations
   end
 
   def to_see_updated_values
-    assert_net_operating_income({
-      interest_on_loan: %w(31.1% $14,559 $173,870 $171,950 $169,895 $167,698 $165,347),
-      net_operating_income: %w(56.80% $26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
-      building_depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
-      net_income_before_taxes: %w($4,185 $51,065 $74,719 $99,432 $116,081 $132,174),
-      income_tax_rate: %w(1% $42 $511 $747 $994 $1,161 $1,322),
-      net_income_after_taxes: %w($4,143 $50,554 $73,972 $98,437 $114,921 $130,853)
-    })
-
-    assert_roi({
-      noi_roi: %w(7.89% 11.55% 15.37% 17.94% 20.43%),
-      cash_roi: %w(18.24% 21.60% 25.10% 27.33% 29.46%),
-      total_roi: %w(22.50% 26.16% 29.98% 32.55% 35.04%),
-      one_year_exit_net_cfs: %w(-$647,087 $792,697),
-      three_year_exit_net_cfs: %w(-$647,087 $118,025 $139,759 $1,347,717),
-      five_year_exit_net_cfs: %w(-$647,087 $118,025 $139,759 $162,417 $176,869 $1,731,312),
-      one_year_exit_price_gain: %w($3,235,435 $0 9.87%),
-      three_year_exit_price_gain: %w($3,684,997 $449,562 9.87%),
-      five_year_exit_price_gain: %w($3,970,531 $735,096 9.87%),
-      one_year_annualized_irr: '22.50%',
-      three_year_annualized_irr: '39.97%',
-      five_year_annualized_irr: '36.20%'
-    })
-
-    assert_cash_flow_from_operations({
-      net_income_after_taxes: %w($4,143 $50,554 $73,972 $98,437 $114,921 $130,853),
-      depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
-      total_cf_from_operations: %w($12,022 $145,100 $168,517 $192,983 $209,466 $225,398),
-      interest_on_loan: %w($14,559 $173,870 $171,950 $169,895 $167,698 $165,347),
-      debt_service: %w($16,787.98 $201,455.71 $201,455.71 $201,455.71 $201,455.71 $201,455.71),
-      cash_available_for_loan_servicing: %w($26,623 $319,481 $341,214 $363,872 $378,325 $392,067),
-      remaining_cash_flow_from_operations: %w($9,835 $118,025 $139,759 $162,417 $176,869 $190,611),
-      principal_reduction: %w($2,229 $27,585 $29,506 $31,560 $33,758 $36,108),
-      total_return: %w($12,064 $145,610 $169,265 $193,977 $210,627 $226,720),
-      cf_to_debt_servicing_ratio: %w(158.59% 158.59% 169.37% 180.62% 187.80% 194.62%)
+    assert_operating_revenues({
+      gross_scheduled_rental_income: %w($48,800 $591,456 $603,285 $625,003 $648,129 $668,220),
+      vacancy: %w(6.0% $2,928 $35,487 $36,197 $37,500 $38,888 $40,093),
+      net_rental_income: %w($45,872 $555,969 $567,088 $587,503 $609,241 $628,127),
+      other_income: %w($1,000 $12,120 $12,362 $12,807 $13,281 $13,693),
+      gross_income: %w(100% $46,872 $568,089 $579,450 $600,311 $622,522 $641,820)
     })
 
     assert_operating_expenses({
-      repairs_and_maintenance: %w(11.6594% $5,465.00 $65,580 $64,268 $63,626 $64,580 $65,872),
-      property_management_fees: %w(3.5000% $1,640.52 $19,686 $19,293 $19,100 $19,386 $19,774),
-      taxes: %w(6.8272% $3,200.03 $38,400 $37,632 $37,256 $37,815 $38,571),
-      insurance: %w(1.7324% $812.03 $9,744 $9,549 $9,454 $9,596 $9,788),
-      salaries_and_wages: %w(3.8403% $1,800.02 $21,600 $21,168 $20,957 $21,271 $21,696),
-      utilities: %w(4.5229% $2,119.97 $25,440 $24,931 $24,682 $25,052 $25,553),
-      water_and_sewer: %w(0.0107% $5.00 $60 $59 $58 $59 $60),
-      trash_removal: %w(0.2667% $125.02 $1,500 $1,470 $1,456 $1,477 $1,507),
-      professional_fees: %w(0.6400% $299.98 $3,600 $3,528 $3,492 $3,545 $3,616),
-      advertising: %w(1.0668% $500.01 $6,000 $5,880 $5,821 $5,909 $6,027),
-      landscaping: %w(0.0000% $0.00 $0 $0 $0 $0 $0),
-      capex: %w(7.0000% $3,281.04 $39,372 $38,585 $38,199 $38,772 $39,548),
-      other_expenses: %w(2.1334% $999.99 $12,000 $11,760 $11,642 $11,817 $12,053),
-      total: %w(43.1998% $20,248.61 $242,983 $238,124 $235,742 $239,279 $244,064)
+      repairs_and_maintenance: %w(11.6594% $5,465.00 $66,236 $64,845 $64,132 $65,158 $66,526),
+      property_management_fees: %w(4.5000% $2,109.24 $25,564 $25,027 $24,752 $25,148 $25,676),
+      taxes: %w(7.0405% $3,300.03 $39,996 $39,156 $38,726 $39,345 $40,172),
+      insurance: %w(1.7538% $822.03 $9,963 $9,754 $9,646 $9,801 $10,007),
+      salaries_and_wages: %w(4.0536% $1,900.02 $23,028 $22,545 $22,297 $22,653 $23,129),
+      utilities: %w(4.7362% $2,219.97 $26,906 $26,341 $26,051 $26,468 $27,024),
+      water_and_sewer: %w(0.0128% $6.00 $73 $71 $70 $72 $73),
+      trash_removal: %w(0.2881% $135.02 $1,636 $1,602 $1,584 $1,610 $1,644),
+      professional_fees: %w(0.6613% $309.98 $3,757 $3,678 $3,638 $3,696 $3,773),
+      advertising: %w(1.0881% $510.01 $6,181 $6,052 $5,985 $6,081 $6,208),
+      landscaping: %w(0.0224% $10.50 $127 $125 $123 $125 $128),
+      capex: %w(8.0000% $3,749.76 $45,447 $44,493 $44,003 $44,707 $45,646),
+      other_expenses: %w(2.2407% $1,050.25 $12,729 $12,462 $12,325 $12,522 $12,785),
+      total: %w(46.0569% $21,587.81 $261,644 $256,150 $253,332 $257,385 $262,790)
     })
 
-    assert_operating_revenues({
-      gross_scheduled_rental_income: %w($48,800 $585,600 $603,168 $624,279 $643,007 $662,297),
-      vacancy: %w(6.0% $2,928 $35,136 $36,190 $37,457 $38,580 $39,738),
-      net_rental_income: %w($45,872 $550,464 $566,978 $586,822 $604,427 $622,560),
-      other_income: %w($1,000 $12,000 $12,360 $12,793 $13,176 $13,572),
-      gross_income: %w(100% $46,872 $562,464 $579,338 $599,615 $617,603 $636,131)
+    assert_net_operating_income({
+      net_operating_income: %w(53.94% $25,284 $306,444 $323,301 $346,979 $365,137 $379,030),
+      interest_on_loan: %w(31.1% $14,559.46 $173,870 $171,950 $169,895 $167,698 $165,347),
+      building_depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
+      net_income_before_taxes: %w($2,846 $38,028 $56,805 $82,538 $102,893 $119,137),
+      income_tax_rate: %w(10% $285 $3,803 $5,681 $8,254 $10,289 $11,914),
+      net_income_after_taxes: %w($2,561 $34,226 $51,125 $74,284 $92,604 $107,223)
     })
 
-    assert_rental_increase_projections %w(0.00% 3.00% 3.50% 3.00% 3.00%)
-    assert_average_monthly_rents_each_year %w($800 $824 $853 $878 $905)
-    assert_operating_expense_projections %w(0.00% -2.00% -1.00% 1.50% 2.00%)
+    assert_cash_flow_from_operations({
+      net_income_after_taxes: %w($2,561 $34,226 $51,125 $74,284 $92,604 $107,223),
+      depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
+      total_cf_from_operations: %w($10,440 $128,771 $145,670 $168,829 $187,150 $201,769),
+      interest_on_loan: %w($14,559 $173,870 $171,950 $169,895 $167,698 $165,347),
+      cash_available_for_loan_servicing: %w($25,284 $306,444 $323,301 $346,979 $365,137 $379,030),
+      debt_service: %w($16,788 $201,456 $201,456 $201,456 $201,456 $201,456),
+      remaining_cash_flow_from_operations: %w($8,496 $104,989 $121,845 $145,523 $163,681 $177,574),
+      principal_reduction: %w($2,229 $27,585 $29,506 $31,560 $33,758 $36,108),
+      total_return: %w($10,725 $132,574 $151,351 $177,083 $197,439 $213,683),
+      cf_to_debt_servicing_ratio: %w(150.61% 152.12% 160.48% 172.24% 181.25% 188.15%)
+    })
+
+    assert_roi({
+      noi_roi: %w(5.88% 8.78% 12.76% 15.90% 18.41%),
+      cash_roi: %w(16.22% 18.83% 22.49% 25.30% 27.44%),
+      total_roi: %w(20.49% 23.39% 27.37% 30.51% 33.02%),
+      one_year_exit_net_cfs: %w(-$647,087 $779,661),
+      three_year_exit_net_cfs: %w(-$647,087 $104,989 $121,845 $1,309,221),
+      five_year_exit_net_cfs: %w(-$647,087 $104,989 $121,845 $145,523 $163,681 $1,749,535),
+      one_year_exit_price_gain: %w($3,235,435 $0 9.47%),
+      three_year_exit_price_gain: %w($3,663,394 $427,959 9.47%),
+      five_year_exit_price_gain: %w($4,001,791 $766,356 9.47%),
+      one_year_annualized_irr: '20.49%',
+      three_year_annualized_irr: '37.29%',
+      five_year_annualized_irr: '34.80%'
+    })
+
+    assert_rental_increase_projections %w(1.00% 2.00% 3.60% 3.70% 3.10%)
+    assert_average_monthly_rents_each_year %w($808 $824 $854 $885 $913)
+    assert_operating_expense_projections %w(1.00% -2.10% -1.10% 1.60% 2.10%)
 
     assert_key_rent_ratios({
       total_area_in_sq_ft: '53,500',
@@ -469,10 +462,10 @@ class Expectations
       avg_rent_per_sq_ft: '$0.91',
       total_cost_per_sq_ft: '$60',
       cost_per_unit: '$53,040',
-      cap_rate: '9.87%',
-      gross_rent_multiplier: '5.52',
-      operational_efficiency: '4.54',
-      expenses_per_unit: '$3,983'
+      cap_rate: '9.47%',
+      gross_rent_multiplier: '5.47',
+      operational_efficiency: '4.89',
+      expenses_per_unit: '$4,289'
     })
 
     assert_financing_assumptions({
@@ -533,24 +526,45 @@ class Expectations
     assert_operating_expenses_inputs({
       vacancy_rate: '6.0%',
       repairs_and_maintenance: '$5,465',
-      property_management_fees: '3.5%',
-      taxes: '$3,200.03',
-      insurance: '$812.03',
-      salaries_and_wages: '$1,800.02',
-      water_and_sewer: '$5',
-      utilities: '$2,119.97',
-      trash_removal: '$125.02',
-      professional_fees: '$299.98',
-      advertising: '$500.01',
-      landscaping: '$0',
-      capital_expenditures: '7.0%',
-      other_expenses: '$999.99',
+      property_management_fees: '4.5%',
+      taxes: '$3,300.03',
+      insurance: '$822.03',
+      salaries_and_wages: '$1,900.02',
+      utilities: '$2,219.97',
+      water_and_sewer: '$6.00',
+      trash_removal: '$135.02',
+      professional_fees: '$309.98',
+      advertising: '$510.01',
+      landscaping: '$10.50',
+      capital_expenditures: '8.0%',
+      other_expenses: '$1,050.25',
       equipment_depreciation: '$0',
-      income_tax_rate: '1%'
+      income_tax_rate: '10%'
     })
   end
 
   private
+
+  def assert_income_and_cost_projections(property)
+    projections = page.find('#income-and-cost-projections')
+    expect(projections).to have_content 'Income and Cost Projections'
+
+    rent_increases = projections.find('#rent-increases')
+    expect(rent_increases).to have_content 'Rent Increases'
+    expect(rent_increases.find_field('year-one-rent-increases-input').value).to eq property[:rent_increases][0]
+    expect(rent_increases.find_field('year-two-rent-increases-input').value).to eq property[:rent_increases][1]
+    expect(rent_increases.find_field('year-three-rent-increases-input').value).to eq property[:rent_increases][2]
+    expect(rent_increases.find_field('year-four-rent-increases-input').value).to eq property[:rent_increases][3]
+    expect(rent_increases.find_field('year-five-rent-increases-input').value).to eq property[:rent_increases][4]
+
+    operating_expense_increases = projections.find('#operating-expense-increases')
+    expect(operating_expense_increases).to have_content 'Op Exp Increases'
+    expect(operating_expense_increases.find_field('year-one-operating-expenses-increases-input').value).to eq property[:operating_expenses_increases][0]
+    expect(operating_expense_increases.find_field('year-two-operating-expenses-increases-input').value).to eq property[:operating_expenses_increases][1]
+    expect(operating_expense_increases.find_field('year-three-operating-expenses-increases-input').value).to eq property[:operating_expenses_increases][2]
+    expect(operating_expense_increases.find_field('year-four-operating-expenses-increases-input').value).to eq property[:operating_expenses_increases][3]
+    expect(operating_expense_increases.find_field('year-five-operating-expenses-increases-input').value).to eq property[:operating_expenses_increases][4]
+  end
 
   def assert_roi(details)
     income = page.find('#return-on-investment')
@@ -862,19 +876,20 @@ class Expectations
     expect(inputs).to have_content 'Monthly Operating Expenses'
     expect(inputs.find_field('vacancy-rate-input').value).to eq details[:vacancy_rate]
     expect(inputs.find_field('repairs-and-maintenance-input').value).to eq details[:repairs_and_maintenance]
-    expect(inputs.find('#property-management-fees', text: 'Property Management Fees')).to have_content details[:property_management_fees]
-    expect(inputs.find('#taxes', text: 'Taxes')).to have_content details[:taxes]
-    expect(inputs.find('#insurance', text: 'Insurance')).to have_content details[:insurance]
-    expect(inputs.find('#salaries-and-wages', text: 'Salaries and Wages')).to have_content details[:salaries_and_wages]
-    expect(inputs.find('#water-and-sewer', text: 'Water and Sewer')).to have_content details[:water_and_sewer]
-    expect(inputs.find('#utilities', text: 'Utilities')).to have_content details[:utilities]
-    expect(inputs.find('#trash-removal', text: 'Trash Removal')).to have_content details[:trash_removal]
-    expect(inputs.find('#professional-fees', text: 'Professional Fees')).to have_content details[:professional_fees]
-    expect(inputs.find('#advertising', text: 'Advertising')).to have_content details[:advertising]
-    expect(inputs.find('#landscaping', text: 'Landscaping')).to have_content details[:landscaping]
-    expect(inputs.find('#capital-expenditures', text: 'CapEx')).to have_content details[:capital_expenditures]
-    expect(inputs.find('#other-expenses', text: 'Other Expenses')).to have_content details[:other_expenses]
-    expect(inputs.find('#equipment-depreciation', text: 'Equipment Depreciation')).to have_content details[:equipment_depreciation]
-    expect(inputs.find('#income-tax-rate', text: 'Income Tax Rate')).to have_content details[:income_tax_rate]
+    expect(inputs.find_field('property-management-fees-input').value).to eq details[:property_management_fees]
+    expect(inputs.find_field('taxes-input').value).to eq details[:taxes]
+    expect(inputs.find_field('insurance-input').value).to eq details[:insurance]
+    expect(inputs.find_field('salaries-and-wages-input').value).to eq details[:salaries_and_wages]
+    expect(inputs.find_field('water-and-sewer-input').value).to eq details[:water_and_sewer]
+    expect(inputs.find_field('utilities-input').value).to eq details[:utilities]
+    expect(inputs.find_field('trash-removal-input').value).to eq details[:trash_removal]
+    expect(inputs.find_field('professional-fees-input').value).to eq details[:professional_fees]
+    expect(inputs.find_field('advertising-input').value).to eq details[:advertising]
+    expect(inputs.find_field('landscaping-input').value).to eq details[:landscaping]
+    expect(inputs.find_field('capital-expenditures-input').value).to eq details[:capital_expenditures]
+    expect(inputs.find_field('other-expenses-input').value).to eq details[:other_expenses]
+    expect(inputs.find_field('income-tax-rate-input').value).to eq details[:income_tax_rate]
+
+    expect(inputs.find('#equipment-depreciation', 'Equipment Depreciation')).to have_content details[:equipment_depreciation]
   end
 end

@@ -4,10 +4,68 @@
   </div>
   <div id="rent-increases" class="row">
     <div class="col-md-9">Rent Increases</div>
-    <li class="col-md-3 align-right" ng-repeat="increase in rental_property.income_and_cost_projection.rent_increases track by $index">{{increase | percentage:1}}</li>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-one-rent-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.rent_increases[0]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-two-rent-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.rent_increases[1]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-three-rent-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.rent_increases[2]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-four-rent-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.rent_increases[3]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-five-rent-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.rent_increases[4]"/>
   </div>
   <div id="operating-expense-increases" class="row">
     <div class="col-md-9">Op Exp Increases</div>
-    <li class="col-md-3 align-right" ng-repeat="increase in rental_property.income_and_cost_projection.operating_expense_increases track by $index">{{increase | percentage:1}}</li>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-one-operating-expenses-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.operating_expense_increases[0]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-two-operating-expenses-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.operating_expense_increases[1]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-three-operating-expenses-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.operating_expense_increases[2]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-four-operating-expenses-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.operating_expense_increases[3]"/>
+    <input class="col-md-3 align-right"
+           type="text"
+           name="year-five-operating-expenses-increases-input"
+           format="percentage"
+           decimals="1"
+           ng-model="rental_property.income_and_cost_projection.operating_expense_increases[4]"/>
   </div>
 </div>

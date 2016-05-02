@@ -59,6 +59,31 @@ RSpec.describe 'the rental investment tool' do
     fill_in('total-square-feet-input', with: '53500')
     fill_in('vacancy-rate-input', with: '6.0')
     fill_in('repairs-and-maintenance-input', with: '5465')
+    fill_in('property-management-fees-input', with: '4.5')
+    fill_in('taxes-input', with: '3300.03')
+    fill_in('insurance-input', with: '822.03')
+    fill_in('salaries-and-wages-input', with: '1900.02')
+    fill_in('utilities-input', with: '2219.97')
+    fill_in('water-and-sewer-input', with: '6.00')
+    fill_in('trash-removal-input', with: '135.02')
+    fill_in('professional-fees-input', with: '309.98')
+    fill_in('advertising-input', with: '510.01')
+    fill_in('landscaping-input', with: '10.50')
+    fill_in('capital-expenditures-input', with: '8.0')
+    fill_in('other-expenses-input', with: '1050.25')
+    fill_in('income-tax-rate-input', with: '10')
+
+    fill_in('year-one-rent-increases-input', with: '1')
+    fill_in('year-two-rent-increases-input', with: '2')
+    fill_in('year-three-rent-increases-input', with: '3.6')
+    fill_in('year-four-rent-increases-input', with: '3.7')
+    fill_in('year-five-rent-increases-input', with: '3.1')
+
+    fill_in('year-one-operating-expenses-increases-input', with: '1')
+    fill_in('year-two-operating-expenses-increases-input', with: '-2.1')
+    fill_in('year-three-operating-expenses-increases-input', with: '-1.1')
+    fill_in('year-four-operating-expenses-increases-input', with: '1.6')
+    fill_in('year-five-operating-expenses-increases-input', with: '2.1')
   end
 
   def see_updated_values
@@ -77,7 +102,7 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_the_property_details(property)
     then_expect.to_see_the_operating_expenses_inputs(property)
     then_expect.to_see_the_closing_costs(property)
-    then_expect.to_see_the_income_and_cost_projections
+    then_expect.to_see_the_income_and_cost_projections(property)
     then_expect.to_see_the_cost_and_revenue_assumptions(property)
     then_expect.to_see_the_financing_assumptions(property)
     then_expect.to_see_the_key_rent_ratios(property)
