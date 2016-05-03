@@ -9,14 +9,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr class="row rental-property-summary"
-        ng-repeat="rental_property in rental_properties"
-        ng-click="goToProperty(rental_property.id)">
-      <td class="col-md-2 align-left">{{rental_property.street}}</td>
-      <td class="col-md-1 align-left">{{rental_property.city}}</td>
-      <td class="col-md-1 align-left">{{rental_property.state}}</td>
-      <td class="col-md-1 align-left">{{rental_property.zip_code}}</td>
-    </tr>
+    <tr rental-property-summary="property" ng-repeat="property in rental_properties"></tr>
     </tbody>
   </table>
 </div>

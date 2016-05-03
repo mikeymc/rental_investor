@@ -1,16 +1,17 @@
-angular.module('rentals').directive('operatingExpenses', function(operating_expenses_service) {
+angular.module('rentals').directive('rentalPropertySummary', function($state) {
   return {
-    templateUrl: 'investment_properties_pages/operating_expenses.html',
-    restrict: 'E',
+    templateUrl: 'investment_properties_pages/rental_property_summary.html',
+    restrict: 'A',
+    replace: true,
+    scope: {
+      rentalPropertySummary: '='
+    },
     link: function($scope) {
-      $scope.$watch('rental_property', function() {
-        if (!$scope.rental_property) {
-          return;
-        }
+      $scope.property = $scope.rentalPropertySummary;
 
-        $scope.expenses = _.values(operating_expenses_service.all_operating_expenses($scope.rental_property));
-
-      }, true);
+      $scope.goToProperty = function(id) {
+        $state.go('rental_property', {rental_id: id});
+      };
     }
   }
 });
