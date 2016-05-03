@@ -92,9 +92,9 @@ RSpec.describe 'the rental investment tool' do
 
   def select_property(property)
     if property[:name] == 'moroni'
-      page.find('div.rental-property-summary', text: '421 Moroni Blvd').click
+      page.find('tr.rental-property-summary', text: '421 Moroni Blvd').click
     elsif property[:name] == 'sesame'
-      page.find('div.rental-property-summary', text: '123 Sesame St').click
+      page.find('tr.rental-property-summary', text: '123 Sesame St').click
     end
   end
 

@@ -1,14 +1,22 @@
-<div>
-  <span>Street</span>
-  <span>City</span>
-  <span>State</span>
-  <span>Zip Code</span>
-  <div ng-repeat="rental_property in rental_properties">
-    <div ng-click="goToProperty(rental_property.id)" class="rental-property-summary">
-      <span>{{rental_property.street}}</span>
-      <span>{{rental_property.city}}</span>
-      <span>{{rental_property.state}}</span>
-      <span>{{rental_property.zip_code}}</span>
-    </div>
-  </div>
+<div class="container">
+  <table class="table table-striped table-hover">
+    <thead>
+    <tr class="row">
+      <td class="col-md-2 subsection-header align-left">Street</td>
+      <td class="col-md-1 subsection-header align-left">City</td>
+      <td class="col-md-1 subsection-header align-left">State</td>
+      <td class="col-md-1 subsection-header align-left">Zip Code</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="row rental-property-summary"
+        ng-repeat="rental_property in rental_properties"
+        ng-click="goToProperty(rental_property.id)">
+      <td class="col-md-2 align-left">{{rental_property.street}}</td>
+      <td class="col-md-1 align-left">{{rental_property.city}}</td>
+      <td class="col-md-1 align-left">{{rental_property.state}}</td>
+      <td class="col-md-1 align-left">{{rental_property.zip_code}}</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
