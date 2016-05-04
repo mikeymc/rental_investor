@@ -22,7 +22,31 @@ input {
   background-color: #f3f3f3;
 }
 
+#new-property-row {
+  input {
+    border: thin solid lightgray;
+    text-align: left;
+    background-color: white;
+  }
+
+  .less-spaced {
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+
+  .btn-sm {
+    padding: 5px 15px;
+    font-size: 10px;
+    line-height: 7px;
+    border-radius: 6px;
+  }
+}
+
 input:focus {
+  outline: none;
+}
+
+button:focus {
   outline: none;
 }
 
@@ -59,6 +83,10 @@ input:focus {
   margin-top: 15px;
 }
 
+.bottom-padded {
+  padding-bottom: 5px;
+}
+
 .container {
   width: 1175px;
   $grid-columns: 24;
@@ -78,4 +106,8 @@ input:focus {
 
 .grid-24-across {
   @include column-adjust(24, $grid-gutter-width);
+}
+
+.dark-gray {
+  color: #676767;
 }

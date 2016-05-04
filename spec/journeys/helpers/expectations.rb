@@ -50,6 +50,20 @@ class Expectations
         amortization_period_in_years: '30',
         total_square_feet: '3,311'
       })
+    elsif property[:name] == 'banana'
+      assert_property_details({
+        land_cost: '$0',
+        building_cost: '$0',
+        improvements: '$0',
+        total_square_feet: '0',
+        number_of_units: '0',
+        average_monthly_rent: '$0.00',
+        other_income: '$0.00',
+        equity_percentage: '0%',
+        loan_interest_rate: '0.000%',
+        amortization_period_in_years: '0',
+        total_square_feet: '0'
+      })
     end
   end
 

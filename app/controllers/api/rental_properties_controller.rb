@@ -11,6 +11,69 @@ class Api::RentalPropertiesController < ApplicationController
     render json: serialize(@rental_property)
   end
 
+  def create
+    property = params[:rental_property]
+    RentalProperty.new({
+      street: property[:street],
+      city: property[:city],
+      state: property[:state],
+      zip_code: property[:zip_code],
+      financing_and_income_assumption: FinancingAndIncomeAssumption.new(
+        land_cost: 0,
+        building_cost: 0,
+        improvements: 0,
+        total_square_feet: 0,
+        number_of_units: 0,
+        average_monthly_rent_per_unit: 0,
+        other_monthly_income: 00,
+        equity_percentage: 0,
+        loan_interest_rate: 0,
+        amortization_period_in_years: 0
+      ),
+      operating_expenses_assumption: OperatingExpensesAssumption.new(
+        vacancy_rate: 0,
+        repairs_and_maintenance: 0,
+        property_management_fees: 0,
+        taxes: 0,
+        insurance: 0,
+        salaries_and_wages: 0,
+        utilities: 0,
+        water_and_sewer: 0,
+        trash_removal: 0,
+        professional_fees: 0,
+        advertising: 0,
+        landscaping: 0,
+        capex: 0,
+        other_expenses: 0,
+        equipment_depreciation: 0,
+        income_tax_rate: 0
+      ),
+      closing_cost: ClosingCost.new(
+        origination_fee: 0,
+        processing_fee:	400,
+        discount_points: 0,
+        underwriting_fee:	500,
+        appraisal:	425,
+        credit_report:	35,
+        flood_certificate: 0,
+        tax_services:	75,
+        title_insurance: 175,
+        title_fees: 180,
+        survey:	175,
+        government_recording_charges: 125,
+        transfer_taxes:	0,
+        homeowners_insurance:	1100,
+        settlement_company_charges:	175,
+        wire_charges: 55,
+      ),
+      income_and_cost_projection: IncomeAndCostProjection.new(
+        rent_increases: [0,0,0,0,0],
+        operating_expense_increases: [0,0,0,0,0]
+      )
+    }).save!
+    render json: RentalProperty.all
+  end
+
   def update
     @rental_property = RentalProperty.find(params[:rental_property][:id])
 

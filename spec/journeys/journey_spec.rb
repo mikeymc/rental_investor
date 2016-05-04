@@ -25,9 +25,29 @@ RSpec.describe 'the rental investment tool' do
     go_home
     select_property(name: 'moroni')
     see_updated_values
+
+    go_home
+    add_new_property
+    go_to_new_property
+    evaluate_property(name: 'banana')
   end
 
   private
+
+  def go_to_new_property
+    select_property(name: 'banana')
+  end
+
+  def add_new_property
+    expect(page.all('tr.rental-property-summary').size).to eq(2)
+    click_on('New Property')
+    expect(page.all('tr.rental-property-summary').size).to eq(3)
+    fill_in('new_property_street', with: '666 Banana St')
+    fill_in('new_property_city', with: 'Fruitvale')
+    fill_in('new_property_state', with: 'CA')
+    fill_in('new_property_zip', with: '12345')
+    click_on('Create')
+  end
 
   def save_the_document
     click_on('Save')
@@ -95,6 +115,8 @@ RSpec.describe 'the rental investment tool' do
       page.find('tr.rental-property-summary', text: '421 Moroni Blvd').click
     elsif property[:name] == 'sesame'
       page.find('tr.rental-property-summary', text: '123 Sesame St').click
+    elsif property[:name] == 'banana'
+      page.find('tr.rental-property-summary', text: '666 Banana St').click
     end
   end
 

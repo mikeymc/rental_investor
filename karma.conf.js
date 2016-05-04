@@ -21,10 +21,16 @@ module.exports = function(config) {
       'app/assets/javascripts/angular_app/spec/helpers/scope.js',
       'app/assets/javascripts/angular_app/spec/helpers/inject_dependencies.js',
       'app/assets/javascripts/angular_app/spec/helpers/render_template.js',
-      'app/assets/javascripts/angular_app/spec/**/*_spec.js'
+      'app/assets/javascripts/angular_app/spec/**/*_spec.js',
+      'public/investment_properties_pages/**/*.html'
     ],
     exclude: [],
     preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'public/',
+      moduleName: 'rentals'
     },
     reporters: ['progress'],
     port: 9876,

@@ -3,8 +3,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('/', {
     url: '/',
-    templateUrl: 'investment_properties_pages/rental_properties.html',
-    controller: 'RentalPropertiesListController'
+    templateUrl: 'investment_properties_pages/rental_properties.html'
   });
 
   $stateProvider.state('rental_property', {
