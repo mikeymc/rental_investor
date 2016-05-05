@@ -1,6 +1,7 @@
-<tr class="row rental-property-summary" ng-click="goToProperty(property.id)">
-  <td class="col-md-2 align-left">{{property.street}}</td>
-  <td class="col-md-1 align-left">{{property.city}}</td>
-  <td class="col-md-1 align-left">{{property.state}}</td>
-  <td class="col-md-1 align-left">{{property.zip_code}}</td>
+<tr class="row rental-property-summary">
+  <td class="col-md-2 align-left" ng-click="goToProperty(property.id)">{{property.street}}</td>
+  <td class="col-md-1 align-left" ng-click="goToProperty(property.id)">{{property.city}}</td>
+  <td class="col-md-1 align-left" ng-click="goToProperty(property.id)">{{property.state}}</td>
+  <td class="col-md-1 align-left" ng-click="goToProperty(property.id)">{{property.zip_code}}</td>
+  <td><span class="glyphicon glyphicon-remove delete-property" ng-click="remove({id: property.id})"></span></td>
 </tr>

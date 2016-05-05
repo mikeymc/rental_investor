@@ -4,7 +4,8 @@ angular.module('rentals').directive('rentalPropertySummary', function($state) {
     restrict: 'A',
     replace: true,
     scope: {
-      rentalPropertySummary: '='
+      rentalPropertySummary: '=',
+      remove: '&'
     },
     link: function($scope) {
       $scope.property = $scope.rentalPropertySummary;

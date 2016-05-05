@@ -116,6 +116,11 @@ class Api::RentalPropertiesController < ApplicationController
     render json: serialize(@rental_property)
   end
 
+  def destroy
+    RentalProperty.destroy(params[:id])
+    render json: RentalProperty.all
+  end
+
   private
 
   def serialize(object)

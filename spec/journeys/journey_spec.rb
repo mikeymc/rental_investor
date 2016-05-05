@@ -10,29 +10,47 @@ RSpec.describe 'the rental investment tool' do
 
   it 'enables the user to evaluate investment properties' do
     go_home
+    then_expect.to_see_a_list_of_properties
     select_property(name: 'moroni')
     evaluate_property(name: 'moroni')
 
     go_home
+    then_expect.to_see_a_list_of_properties
     select_property(name: 'sesame')
     evaluate_property(name: 'sesame')
 
     go_home
+    then_expect.to_see_a_list_of_properties
     select_property(name: 'moroni')
     update_property
     see_updated_values
     save_the_document
     go_home
+    then_expect.to_see_a_list_of_properties
     select_property(name: 'moroni')
     see_updated_values
 
     go_home
+    then_expect.to_see_a_list_of_properties
     add_new_property
     go_to_new_property
     evaluate_property(name: 'banana')
+
+    go_home
+    then_expect.to_see_a_list_of_properties
+    delete_property
   end
 
   private
+
+  def delete_property
+    expect(page.all('tr.rental-property-summary', minimum: 3, maximum: 3).size).to eq(3)
+
+    moroni_property = page.find('tr.rental-property-summary', text: 'Moroni')
+    moroni_property.find('.delete-property').click
+
+    expect(page.all('.rental-property-summary', minimum: 2, maximum: 2).size).to eq(2)
+  end
 
   def go_to_new_property
     select_property(name: 'banana')
@@ -59,7 +77,6 @@ RSpec.describe 'the rental investment tool' do
 
   def go_home
     visit '/'
-    then_expect.to_see_a_list_of_properties
   end
 
   def check_property(property)

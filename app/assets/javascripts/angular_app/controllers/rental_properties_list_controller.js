@@ -20,4 +20,10 @@ angular.module('rentals').controller('RentalPropertiesListController', function(
   $scope.cancel = function() {
     $scope.show_new_property_row = false;
   };
+
+  $scope.remove = function(id) {
+    $http.delete('/api/rental_properties/' + id).then(function(response) {
+      $scope.rental_properties = response.data;
+    });
+  }
 });
