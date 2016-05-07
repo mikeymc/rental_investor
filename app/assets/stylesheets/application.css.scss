@@ -54,7 +54,8 @@ input {
 }
 
 input:focus {
-  outline: none;
+  outline-color: #333333;
+  outline-width: thin;
 }
 
 button:focus {

@@ -3,6 +3,7 @@ angular.module('rentals').directive('format', ['$filter', function($filter) {
     require: '?ngModel',
     link: function(scope, elem, attrs, ctrl) {
       if (!ctrl) return;
+      var plainNumber, shouldResetValue;
 
       ctrl.$formatters.unshift(function() {
         if (attrs.symbol) {
@@ -12,12 +13,35 @@ angular.module('rentals').directive('format', ['$filter', function($filter) {
       });
 
       elem.bind('focus', function() {
-        var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
-        elem.val(plainNumber);
+        plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
+        shouldResetValue = true;
+      });
+
+      elem.bind('keypress', function(e) {
+        if (shouldResetValue === true) {
+          elem.val('');
+          shouldResetValue = false;
+        }
+      });
+
+      elem.bind('keyup', function(e) {
+        var ENTER = 27;
+        var ESC = 13;
+        if (e.keyCode === ENTER) {
+          elem.val(plainNumber);
+          elem.change();
+          elem.blur();
+        } else if (e.keyCode === ESC) {
+          elem.blur();
+        }
       });
 
       elem.bind('blur', function() {
-        var plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
+        if (elem.val() === '') {
+          elem.val(plainNumber);
+        }
+        plainNumber = elem.val().replace(/[^\d|\-+|\.+]/g, '');
+        shouldResetValue = false;
         if (attrs.symbol) {
           return elem.val($filter(attrs.format)(plainNumber, attrs.symbol, attrs.decimals));
         }
