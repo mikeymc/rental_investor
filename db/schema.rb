@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160417061633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "closing_costs", force: true do |t|
+  create_table "closing_costs", force: :cascade do |t|
     t.decimal "origination_fee"
     t.decimal "processing_fee"
     t.decimal "discount_points"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20160417061633) do
 
   add_index "closing_costs", ["rental_property_id"], name: "index_closing_costs_on_rental_property_id", using: :btree
 
-  create_table "financing_and_income_assumptions", force: true do |t|
+  create_table "financing_and_income_assumptions", force: :cascade do |t|
     t.decimal "land_cost"
     t.decimal "building_cost"
     t.decimal "improvements"
@@ -54,15 +54,15 @@ ActiveRecord::Schema.define(version: 20160417061633) do
 
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
-  create_table "income_and_cost_projections", force: true do |t|
-    t.decimal "rent_increases",              default: [#<BigDecimal:7f8939fea758,'0.0',9(18)>, #<BigDecimal:7f8939fea708,'0.0',9(18)>, #<BigDecimal:7f8939fea6b8,'0.0',9(18)>, #<BigDecimal:7f8939fea668,'0.0',9(18)>, #<BigDecimal:7f8939fea618,'0.0',9(18)>], array: true
-    t.decimal "operating_expense_increases", default: [#<BigDecimal:7f8939fe9e48,'0.0',9(18)>, #<BigDecimal:7f8939fe9df8,'0.0',9(18)>, #<BigDecimal:7f8939fe9da8,'0.0',9(18)>, #<BigDecimal:7f8939fe9d58,'0.0',9(18)>, #<BigDecimal:7f8939fe9d08,'0.0',9(18)>], array: true
+  create_table "income_and_cost_projections", force: :cascade do |t|
+    t.decimal "rent_increases",              default: [#<BigDecimal:7fc726de3790,'0.0',9(18)>, #<BigDecimal:7fc726de3718,'0.0',9(18)>, #<BigDecimal:7fc726de36a0,'0.0',9(18)>, #<BigDecimal:7fc726de3628,'0.0',9(18)>, #<BigDecimal:7fc726de35b0,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fc726de2cf0,'0.0',9(18)>, #<BigDecimal:7fc726de2c78,'0.0',9(18)>, #<BigDecimal:7fc726de2c00,'0.0',9(18)>, #<BigDecimal:7fc726de2b88,'0.0',9(18)>, #<BigDecimal:7fc726de2b10,'0.0',9(18)>], array: true
     t.integer "rental_property_id"
   end
 
   add_index "income_and_cost_projections", ["rental_property_id"], name: "index_income_and_cost_projections_on_rental_property_id", using: :btree
 
-  create_table "operating_expenses_assumptions", force: true do |t|
+  create_table "operating_expenses_assumptions", force: :cascade do |t|
     t.decimal "vacancy_rate"
     t.decimal "repairs_and_maintenance"
     t.decimal "property_management_fees"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(version: 20160417061633) do
 
   add_index "operating_expenses_assumptions", ["rental_property_id"], name: "index_operating_expenses_assumptions_on_rental_property_id", using: :btree
 
-  create_table "rental_properties", force: true do |t|
+  create_table "rental_properties", force: :cascade do |t|
     t.string "street"
     t.string "city"
     t.string "state"
