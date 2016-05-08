@@ -8,7 +8,9 @@ angular.module('rentals').directive('operatingExpenses', function(operating_expe
           return;
         }
 
-        $scope.expenses = _.values(operating_expenses_service.all_operating_expenses($scope.rental_property));
+        var expenses = _.values(operating_expenses_service.all_operating_expenses($scope.rental_property));
+        $scope.total_expenses = expenses.pop();
+        $scope.individual_expenses = expenses;
 
       }, true);
     }

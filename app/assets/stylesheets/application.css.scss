@@ -8,7 +8,7 @@
 @import "mixins";
 
 body {
-  font-size: 10px;
+  font-size: 9px;
 }
 
 li {
@@ -20,6 +20,53 @@ input {
   border: none;
   text-align: right;
   background-color: #f3f3f3;
+}
+
+input:focus {
+  outline-color: #333333;
+  outline-width: thin;
+}
+
+button:focus {
+  outline: none;
+}
+
+.container {
+  width: 1125px;
+  $grid-columns: 24;
+}
+
+.margin-top-sm {
+  margin-top: 3px;
+}
+
+.top-padded {
+  margin-top: 15px;
+}
+
+.bottom-padded {
+  padding-bottom: 5px;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.grid-24-across {
+  @include column-adjust(24, $grid-gutter-width);
+}
+
+.notification {
+  float: right;
+  color: white;
 }
 
 #new-property-row {
@@ -44,7 +91,50 @@ input {
 
 .btn-sm {
   font-size: 10px;
-  padding: 5px 5px;
+  background-color: white;
+  border-radius: 0;
+  font-weight: 500;
+  border: 1px solid #5894b9;
+  color: #5894b9;
+  text-align: center;
+  width: 273px;
+  padding: 1px 10px;
+}
+
+.btn-sm:focus {
+  outline: none;
+  font-size: 10px;
+  background-color: white;
+  border-radius: 0;
+  font-weight: 500;
+  border: 1px solid #5894b9;
+  color: #5894b9;
+
+}
+
+.btn-sm:active {
+  background-color: #5894b9;
+  color: white;
+  box-shadow: none;
+  border: 1px solid white;
+}
+
+.btn-sm:active:focus {
+  background-color: #5894b9;
+  color: white;
+  box-shadow: none;
+  border: 1px solid white;
+  outline: 1px auto white;
+}
+
+.btn-sm:hover {
+  outline: none;
+  font-size: 10px;
+  background-color: white;
+  border-radius: 0;
+  font-weight: 500;
+  border: 1px solid #5894b9;
+  color: #5894b9;
 }
 
 .delete-property {
@@ -53,21 +143,11 @@ input {
   color: #676767;
 }
 
-input:focus {
-  outline-color: #333333;
-  outline-width: thin;
-}
-
-button:focus {
-  outline: none;
-}
-
 .subsection-header {
   font-weight: bold;
   text-align: center;
-  background-color: #d9d9d9;
-  border-top: thin solid;
-  border-bottom: thin solid;
+  background-color: #5894b9;
+  color: white;
 }
 
 .column-header {
@@ -79,45 +159,17 @@ button:focus {
 }
 
 .add-border-bottom {
-  border-bottom: thin black solid;
+  border-bottom: thin #BDBDBD solid;
 }
 
 .add-border-top {
-  border-top: thin black solid;
+  border-top: thin #BDBDBD solid;
 }
 
 .double-height {
   position: absolute !important;
-  height: 31px;
-}
-
-.top-padded {
-  margin-top: 15px;
-}
-
-.bottom-padded {
-  padding-bottom: 5px;
-}
-
-.container {
-  width: 1175px;
-  $grid-columns: 24;
-}
-
-.align-right {
-  text-align: right;
-}
-
-.align-left {
-  text-align: left;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.grid-24-across {
-  @include column-adjust(24, $grid-gutter-width);
+  height: 28.5px;
+  padding-right: 1px !important;
 }
 
 .dark-gray {

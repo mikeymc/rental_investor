@@ -1,4 +1,6 @@
 angular.module('rentals').controller('RentalPropertyController', function($scope, $http, $stateParams, $timeout) {
+  $scope.persistence_state = 'Save';
+
   $http.get('/api/rental_properties/' + $stateParams.rental_id).then(function(response) {
     $scope.rental_property = response.data;
   });
@@ -21,9 +23,9 @@ angular.module('rentals').controller('RentalPropertyController', function($scope
 
   function toggleSaved(flag) {
     if (flag) {
-      $scope.persistenceState = 'Saved!';
+      $scope.persistence_state = 'Saved!';
     } else {
-      $scope.persistenceState = '';
+      $scope.persistence_state = 'Save';
     }
     $timeout(function() {
       $scope.$apply();

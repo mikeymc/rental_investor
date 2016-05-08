@@ -11,12 +11,12 @@
   <div class="row">
     <div class="col-md-5">Depreciation Expenses</div>
     <div class="col-md-2"></div>
-    <div class="col-md-2 align-right">{{monthly_building_depreciation | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-md-2 align-right add-border-bottom">{{monthly_building_depreciation | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-md-5">Total CF from Operations</div>
@@ -27,24 +27,24 @@
   <div class="row">
     <div class="col-md-5">Interest on Loan</div>
     <div class="col-md-2"></div>
-    <div class="col-md-2 align-right">{{monthly_interest_on_loan | currency:'$':0}}</div>
-    <div class="col-md-3 align-right" ng-repeat="interest in annual_interest_on_loan track by $index"> {{interest | currency:'$':0}}</div>
+    <div class="col-md-2 align-right add-border-bottom">{{monthly_interest_on_loan | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom" ng-repeat="interest in annual_interest_on_loan track by $index"> {{interest | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-md-5">Cash Available for Loan Servicing</div>
     <div class="col-md-2"></div>
-    <div class="col-md-2 align-right">{{cash_available | currency:'$':2}}</div>
+    <div class="col-md-2 align-right">{{cash_available | currency:'$':0}}</div>
     <div class="col-md-3 align-right" ng-repeat="cash in annual_cash_available track by $index"> {{cash | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-md-5">Debt Service</div>
     <div class="col-md-2"></div>
-    <div class="col-md-2 align-right">{{monthly_debt_service | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-md-3 align-right">{{annual_debt_service | currency:'$':0}}</div>
+    <div class="col-md-2 align-right add-border-bottom">{{monthly_debt_service | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-md-5">Remaining CF from Operations</div>
@@ -55,8 +55,8 @@
   <div class="row">
     <div class="col-md-5">Plus Principal Reduction</div>
     <div class="col-md-2"></div>
-    <div class="col-md-2 align-right">{{monthly_principal_reduction | currency:'$':0}}</div>
-    <div class="col-md-3 align-right" ng-repeat="year in yearly_principal_reductions track by $index">{{year | currency:'$':0}}</div>
+    <div class="col-md-2 align-right add-border-bottom">{{monthly_principal_reduction | currency:'$':0}}</div>
+    <div class="col-md-3 align-right add-border-bottom" ng-repeat="year in yearly_principal_reductions track by $index">{{year | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-md-5">Total Return</div>

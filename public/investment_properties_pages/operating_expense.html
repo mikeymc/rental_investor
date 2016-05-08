@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-5">{{expense.label}}</div>
-  <div class="col-md-2 align-right">{{expense.percentage | percentage:4}}</div>
-  <div class="col-md-2 align-right">{{expense.monthly_cost | currency:"$":2}}</div>
-  <div class="col-md-3 align-right" ng-repeat="cost in expense.yearly_costs track by $index">{{cost | currency:"$":0}}</div>
+  <div class="col-md-2 align-right" ng-class="border_style">{{expense.percentage | percentage:4}}</div>
+  <div class="col-md-2 align-right" ng-class="border_style">{{expense.monthly_cost | currency:"$":2}}</div>
+  <div class="col-md-3 align-right" ng-class="border_style" ng-repeat="cost in expense.yearly_costs track by $index">{{cost | currency:"$":0}}</div>
 </div>

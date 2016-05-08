@@ -737,7 +737,7 @@ class Expectations
     section = page.find('#operating-revenues')
 
     expect(section).to have_content 'Operating Revenues'
-    expect(section).to have_content 'Actual Monthly'
+    expect(section).to have_content 'Monthly'
     expect(section).to have_content 'Projected'
 
     (1..5).each { |year| expect(section).to have_content "Year #{year}" }
@@ -850,11 +850,9 @@ class Expectations
   end
 
   def assert_property_details(details)
-    assumptions = page.find('#financing-and-income-assumptions')
     inputs = page.find('#property-and-loan-information')
 
-    expect(assumptions).to have_content 'Financing and Income Assumptions'
-    expect(inputs).to have_content 'Inputs'
+    expect(inputs).to have_content 'Property and Loan Information'
 
     expect(inputs.find_field('land-cost-input').value).to eq details[:land_cost]
     expect(inputs.find_field('building-cost-input').value).to eq details[:building_cost]
