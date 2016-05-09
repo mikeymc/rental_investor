@@ -8,12 +8,21 @@ RSpec.describe 'the rental investment tool' do
 
   let(:then_expect) { Expectations.new }
 
+  it 'lets a user register and go straight to using app' do
+    go_home
+    see_choice_to_login_or_register
+    register
+    then_expect.to_see_a_list_of_properties
+    select_property(name: 'moroni')
+    evaluate_property(name: 'moroni')
+    logout
+  end
+
   it 'enables the user to evaluate investment properties' do
     go_home
-    see_login_page
+    see_choice_to_login_or_register
     try_going_to_a_property
-    see_login_page
-
+    see_choice_to_login_or_register
     login
 
     then_expect.to_see_a_list_of_properties
@@ -48,10 +57,24 @@ RSpec.describe 'the rental investment tool' do
     delete_property
 
     logout
-    see_login_page
+    see_choice_to_login_or_register
   end
 
   private
+
+  def see_choice_to_login_or_register
+    expect(page.find('button', text: 'Sign In')).to have_content 'Sign In'
+    expect(page.find('button', text: 'Sign Up')).to have_content 'Sign Up'
+  end
+
+  def register
+    find('button', text: 'Sign Up').click
+    fill_in 'Email', with: 'bonobo@ape.com'
+    fill_in 'Password', with: '4bananas'
+    fill_in 'Confirm Password', with: '4bananas'
+    find('button', text: 'Register').click
+    expect(page).to have_content 'Sign Out'
+  end
 
   def try_going_to_a_property
     visit '/#/rental_property/1'
@@ -62,10 +85,11 @@ RSpec.describe 'the rental investment tool' do
   end
 
   def logout
-    page.find('a', text: 'Sign Out').click
+    page.find('button', text: 'Sign Out').click
   end
 
   def login
+    find('button', text: 'Sign In').click
     fill_in 'Email', with: 'monkey@ape.com'
     fill_in 'Password', with: '4bananas'
     find('button', text: 'Sign In').click

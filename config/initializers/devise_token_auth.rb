@@ -1,5 +1,6 @@
 Devise.setup do |config|
-  config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
+  config.allow_unconfirmed_access_for = nil
+  config.email_regexp = /\A[^@\s]+@([^@\s]+\.)+[^@\W]+\z/
 end
 
 DeviseTokenAuth.setup do |config|
