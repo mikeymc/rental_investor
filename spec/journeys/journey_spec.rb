@@ -10,6 +10,12 @@ RSpec.describe 'the rental investment tool' do
 
   it 'enables the user to evaluate investment properties' do
     go_home
+    see_login_page
+    try_going_to_a_property
+    see_login_page
+
+    login
+
     then_expect.to_see_a_list_of_properties
     select_property(name: 'moroni')
     evaluate_property(name: 'moroni')
@@ -40,9 +46,38 @@ RSpec.describe 'the rental investment tool' do
     go_home
     then_expect.to_see_a_list_of_properties
     delete_property
+
+    logout
+    see_login_page
   end
 
   private
+
+  def try_going_to_a_property
+    visit '/#/rental_property/1'
+  end
+
+  def go_to_login_page
+    visit '/#/sign_in'
+  end
+
+  def logout
+    page.find('a', text: 'Sign Out').click
+  end
+
+  def login
+    fill_in 'Email', with: 'monkey@ape.com'
+    fill_in 'Password', with: '4bananas'
+    find('button', text: 'Sign In').click
+
+    expect(page).to have_content 'Sign Out'
+  end
+
+  def see_login_page
+    expect(page.find('div', text: 'Email')).to have_content 'Email'
+    expect(page.find('div', text: 'Password')).to have_content 'Password'
+    expect(page.find('button')).to have_content 'Sign In'
+  end
 
   def delete_property
     expect(page.all('tr.rental-property-summary', minimum: 3, maximum: 3).size).to eq(3)

@@ -115,3 +115,10 @@ RentalProperty.create!(
     operating_expense_increases: [0, -2, -1, 1.5, 2]
   )
 )
+
+User.create!(
+  email: 'monkey@ape.com',
+  password: '4bananas',
+  password_confirmation: '4bananas',
+  confirmed_at: Time.zone.now
+)

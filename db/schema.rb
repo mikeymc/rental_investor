@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160417061633) do
+ActiveRecord::Schema.define(version: 20160508160559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20160417061633) do
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
   create_table "income_and_cost_projections", force: :cascade do |t|
-    t.decimal "rent_increases",              default: [#<BigDecimal:7fc726de3790,'0.0',9(18)>, #<BigDecimal:7fc726de3718,'0.0',9(18)>, #<BigDecimal:7fc726de36a0,'0.0',9(18)>, #<BigDecimal:7fc726de3628,'0.0',9(18)>, #<BigDecimal:7fc726de35b0,'0.0',9(18)>], array: true
-    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fc726de2cf0,'0.0',9(18)>, #<BigDecimal:7fc726de2c78,'0.0',9(18)>, #<BigDecimal:7fc726de2c00,'0.0',9(18)>, #<BigDecimal:7fc726de2b88,'0.0',9(18)>, #<BigDecimal:7fc726de2b10,'0.0',9(18)>], array: true
+    t.decimal "rent_increases",              default: [#<BigDecimal:7f998026e118,'0.0',9(18)>, #<BigDecimal:7f998026e0a0,'0.0',9(18)>, #<BigDecimal:7f998026e028,'0.0',9(18)>, #<BigDecimal:7f998026dfb0,'0.0',9(18)>, #<BigDecimal:7f998026df38,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7f998026d5b0,'0.0',9(18)>, #<BigDecimal:7f998026d538,'0.0',9(18)>, #<BigDecimal:7f998026d4c0,'0.0',9(18)>, #<BigDecimal:7f998026d448,'0.0',9(18)>, #<BigDecimal:7f998026d3d0,'0.0',9(18)>], array: true
     t.integer "rental_property_id"
   end
 
@@ -90,5 +90,34 @@ ActiveRecord::Schema.define(version: 20160417061633) do
     t.string "state"
     t.string "zip_code"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider",               default: "email", null: false
+    t.string   "uid",                    default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,       null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.string   "name"
+    t.string   "nickname"
+    t.string   "image"
+    t.string   "email"
+    t.json     "tokens"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
 end

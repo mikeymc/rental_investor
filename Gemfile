@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.0.0'
+ruby '2.2.0'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -14,6 +14,8 @@ gem 'will_paginate', '~> 3.0'
 gem 'mechanize'
 gem 'webmock'
 gem 'clockwork'
+gem 'devise_token_auth'
+gem 'omniauth'
 
 group :production do
   gem 'pg'

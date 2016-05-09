@@ -1,6 +1,8 @@
 //= require jquery/dist/jquery.js
 //= require angular/angular.js
 //= require angular-ui-router/release/angular-ui-router.js
+//= require angular-cookie/angular-cookie.js
+//= require ng-token-auth/dist/ng-token-auth.js
 //= require underscore/underscore.js
 //= require bootstrap-sprockets
 //= require_tree ./angular_app/modules
