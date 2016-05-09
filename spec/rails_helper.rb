@@ -6,7 +6,6 @@ require 'webmock/rspec'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'rspec/rails'
-require 'factory_girl_rails'
 require 'capybara/poltergeist'
 require 'selenium-webdriver'
 require 'database_cleaner'
@@ -24,7 +23,6 @@ end
 
 RSpec.configure do |configuration|
   configuration.include Capybara::DSL
-  configuration.include FactoryGirl::Syntax::Methods
   configuration.infer_spec_type_from_file_location!
 
   DatabaseCleaner.strategy = :truncation
