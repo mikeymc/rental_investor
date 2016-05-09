@@ -1,6 +1,10 @@
-<div class="container" ng-controller="RentalPropertiesListController">
-  <li><a ng-click="signOut()">Sign Out</a></li>
-  <table class="table table-striped table-hover">
+<div id="rental-properties"
+     class="container flexbox-parent"
+     ng-controller="RentalPropertiesListController">
+  <li>
+    <a ng-click="signOut()">Sign Out</a>
+  </li>
+  <table class="table table-striped table-hover flexbox-item-grow">
     <thead>
     <tr class="row">
       <th class="col-md-2 subsection-header align-left">Street</th>

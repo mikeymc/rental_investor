@@ -1,23 +1,27 @@
-<form ng-submit="submitLogin(login_form)" role="form" ng-init="login_form = {}">
-  <div class="form-group">
-    <label for="email">Email</label>
-    <input type="email"
-           name="email"
-           id="email"
-           ng-model="login_form.email"
-           required="required"
-           class="form-control">
-  </div>
+<div id="sign-in-form">
+  <form ng-submit="submitLogin(login_form)" role="form" ng-init="login_form = {}">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email"
+             name="email"
+             id="email"
+             ng-model="login_form.email"
+             required="required"
+             class="form-control">
+    </div>
 
-  <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password"
-           name="password"
-           id="password"
-           ng-model="login_form.password"
-           required="required"
-           class="form-control">
-  </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password"
+             name="password"
+             id="password"
+             ng-model="login_form.password"
+             required="required"
+             class="form-control">
+    </div>
 
-  <button type="submit" class="btn btn-primary btn-lg">Sign In</button>
-</form>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-sm sign-in-btn">Sign In</button>
+    </div>
+  </form>
+</div>
