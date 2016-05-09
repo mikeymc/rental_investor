@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Valuenvestor::Application.config.secret_key_base = 'c8ca82aa30b30a59d380c18744ff806634c51adf9e6985245b3074f9a03eb5492e432a3fb9f3afe01903d599e7666c773dd7757a968ebcf2a9414b99a8d5a018'
+Rentals::Application.config.secret_key_base = 'c8ca82aa30b30a59d380c18744ff806634c51adf9e6985245b3074f9a03eb5492e432a3fb9f3afe01903d599e7666c773dd7757a968ebcf2a9414b99a8d5a018'

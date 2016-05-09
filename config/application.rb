@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module Valuenvestor
+module Rentals
   class Application < Rails::Application
     Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     Rails.application.config.assets.compile = true

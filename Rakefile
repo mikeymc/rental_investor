@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Valuenvestor::Application.load_tasks
+Rentals::Application.load_tasks

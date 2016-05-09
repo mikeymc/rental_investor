@@ -1,4 +1,4 @@
-Valuenvestor::Application.routes.draw do
+Rentals::Application.routes.draw do
   root 'rental_properties#index'
   resources :rental_properties
 
