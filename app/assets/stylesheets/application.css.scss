@@ -87,14 +87,28 @@ button:focus {
   color: white;
 }
 
-.auth-form {
-  margin: auto;
+.faux-modal {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600px;
   margin-top: 100px;
-  width: 380px;
   height: 200px;
-  background-color: #5894b9;
-  padding-top: 25px;
-  color: white;
+  background-color: white;
+  color: #5894b9;
+
+  .centered {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    padding-top: 25px;
+  }
+
+  .centered.sign-in {
+    margin-left: auto;
+    margin-right: auto;
+    width: 92%;
+    padding-top: 45px;
+  }
 
   .form-group {
     margin: auto;
@@ -107,9 +121,13 @@ button:focus {
 
   input {
     height: 20px;
-    text-align: center;
+
+    padding: 10px;
+    border: solid 1px #5894b9;
+    transition: border 0.3s;
+
+    text-align: left;
     border-radius: 0;
-    border: none;
     margin-bottom: 10px;
   }
 
