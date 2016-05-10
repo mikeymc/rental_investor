@@ -1,13 +1,11 @@
-User.create!(
-  id: 1,
+@user_one = User.create!(
   email: 'monkey@ape.com',
   password: '4bananas',
   password_confirmation: '4bananas',
   confirmed_at: Time.zone.now
 )
 
-User.create!(
-  id: 2,
+@user_two = User.create!(
   email: 'carp@fish.com',
   password: '4earthworms',
   password_confirmation: '4earthworms',
@@ -15,7 +13,7 @@ User.create!(
 )
 
 RentalProperty.new(
-  user_id: 1,
+  user_id: @user_one.id,
   street: '421 Moroni Blvd',
   city: 'Salt Lake City',
   state: 'UT',
@@ -75,7 +73,7 @@ RentalProperty.new(
 ).save!
 
 RentalProperty.create!(
-  user_id: 1,
+  user_id: @user_one.id,
   street: '123 Sesame St',
   city: 'Buffalo',
   state: 'NY',
@@ -135,7 +133,7 @@ RentalProperty.create!(
 )
 
 RentalProperty.create!(
-  user_id: 2,
+  user_id: @user_two.id,
   street: '456 Seaside Ln',
   city: 'San Diego',
   state: 'CA',

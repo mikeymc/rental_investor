@@ -4,11 +4,15 @@ class Expectations
   include ::RSpec::Matchers
   include Capybara::DSL
 
-  def to_see_a_list_of_properties
+  def to_be_on_properties_list_page
     expect(page).to have_content 'Street'
     expect(page).to have_content 'City'
     expect(page).to have_content 'State'
     expect(page).to have_content 'Zip Code'
+  end
+
+  def to_see_a_list_of_properties
+    to_be_on_properties_list_page
 
     expect(page.all('.rental-property-summary', minimum: 2).size).to eq 2
 
@@ -23,11 +27,26 @@ class Expectations
     expect(page).to have_content '67890'
   end
 
+  def to_see_more_properties
+    to_be_on_properties_list_page
+
+    expect(page.all('.rental-property-summary', minimum: 3).size).to eq 3
+
+    expect(page).to have_content '421 Moroni Blvd'
+    expect(page).to have_content 'Salt Lake City'
+    expect(page).to have_content 'UT'
+    expect(page).to have_content '12345'
+
+    expect(page).to have_content '123 Sesame St'
+    expect(page).to have_content 'Buffalo'
+    expect(page).to have_content 'NY'
+    expect(page).to have_content '67890'
+
+    expect(page).to have_content '666 Banana St'
+  end
+
   def to_see_fish_properties
-    expect(page).to have_content 'Street'
-    expect(page).to have_content 'City'
-    expect(page).to have_content 'State'
-    expect(page).to have_content 'Zip Code'
+    to_be_on_properties_list_page
 
     expect(page.all('.rental-property-summary', minimum: 1).size).to eq 1
 
@@ -37,12 +56,8 @@ class Expectations
     expect(page).to have_content '90909'
   end
 
-  def to_see_the_monkey_signed_in
-    expect(page.find('navbar')).to have_content 'monkey@ape.com'
-  end
-
-  def to_see_the_fish_signed_in
-    expect(page.find('navbar')).to have_content 'carp@fish.com'
+  def to_be_signed_in_as(email)
+    expect(page.find('navbar')).to have_content email
   end
 
   def to_see_the_property_details(property)

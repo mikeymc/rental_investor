@@ -17,6 +17,7 @@ group :development, :test do
   gem 'byebug'
   gem 'capybara', '>=0'
   gem 'database_cleaner'
+  gem 'launchy'
   gem 'poltergeist'
   gem 'rspec', '>=0'
   gem 'rspec-rails'

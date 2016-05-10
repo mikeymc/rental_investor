@@ -1,5 +1,6 @@
 require 'rails_helper'
 require_relative 'helpers/expectations'
+require_relative 'helpers/journey_steps'
 
 RSpec.describe 'the rental investment tool' do
   before(:each) do
@@ -7,27 +8,26 @@ RSpec.describe 'the rental investment tool' do
   end
 
   let(:then_expect) { Expectations.new }
+  let(:now) { JourneySteps.new }
 
-  it 'lets a user register and go straight to using app' do
+  it 'lets a user register and go straight to using app', js: true do
     go_home
     see_choice_to_login_or_register
-    register
-    then_expect.to_see_a_list_of_properties
-    select_property(name: 'moroni')
-    evaluate_property(name: 'moroni')
+    now.register
+    then_expect.to_be_on_properties_list_page
     logout
   end
 
   it 'shows a user only his properties' do
     go_home
     login
-    then_expect.to_see_the_monkey_signed_in
+    then_expect.to_be_signed_in_as('monkey@ape.com')
     then_expect.to_see_a_list_of_properties
     logout
 
     go_home
     login_as_fish
-    then_expect.to_see_the_fish_signed_in
+    then_expect.to_be_signed_in_as('carp@fish.com')
     then_expect.to_see_fish_properties
     logout
   end
@@ -67,7 +67,7 @@ RSpec.describe 'the rental investment tool' do
     evaluate_property(name: 'banana')
 
     go_home
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_more_properties
     delete_property
 
     logout
@@ -79,15 +79,6 @@ RSpec.describe 'the rental investment tool' do
   def see_choice_to_login_or_register
     expect(page.find('button', text: 'Sign In')).to have_content 'Sign In'
     expect(page.find('button', text: 'Sign Up')).to have_content 'Sign Up'
-  end
-
-  def register
-    find('button', text: 'Sign Up').click
-    fill_in 'Email', with: 'bonobo@ape.com'
-    fill_in 'Password', with: '4bananas'
-    fill_in 'Confirm Password', with: '4bananas'
-    find('button', text: 'Register').click
-    expect(page).to have_content 'Sign Out'
   end
 
   def try_going_to_a_property
