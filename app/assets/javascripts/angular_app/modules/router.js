@@ -6,12 +6,6 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'user_sessions/new.html'
   });
 
-  $stateProvider.state('welcome', {
-    url: '/welcome',
-    templateUrl: 'investment_properties_pages/welcome.html',
-    controller: 'WelcomeController'
-  });
-
   $stateProvider.state('sign_up', {
     url: '/sign_up',
     templateUrl: 'user_registrations/new.html',
@@ -24,7 +18,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
-          $state.go('welcome')
+          $state.go('sign_in')
         });
       }
     }
@@ -37,7 +31,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
-          $state.go('welcome')
+          $state.go('sign_in')
         });
       }
     }

@@ -89,7 +89,6 @@ RSpec.describe 'the rental investment tool' do
   end
 
   def login
-    find('button', text: 'Sign In').click
     fill_in 'Email', with: 'monkey@ape.com'
     fill_in 'Password', with: '4bananas'
     find('button', text: 'Sign In').click
