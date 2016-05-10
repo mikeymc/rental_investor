@@ -17,6 +17,7 @@
 
 /node_modules/*
 /vendor/assets/bower_components/*
+/vendor/bundle/*
 
 /public/assets/*.js
 /public/assets/*.json
