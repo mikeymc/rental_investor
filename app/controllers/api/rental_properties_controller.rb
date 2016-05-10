@@ -2,7 +2,7 @@ class Api::RentalPropertiesController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @rental_properties = RentalProperty.all
+    @rental_properties = current_user.rental_properties
     render json: @rental_properties
   end
 
@@ -14,6 +14,7 @@ class Api::RentalPropertiesController < ApplicationController
   def create
     property = params[:rental_property]
     RentalProperty.new({
+      user_id: current_user.id,
       street: property[:street],
       city: property[:city],
       state: property[:state],
@@ -71,7 +72,7 @@ class Api::RentalPropertiesController < ApplicationController
         operating_expense_increases: [0,0,0,0,0]
       )
     }).save!
-    render json: RentalProperty.all
+    render json: current_user.rental_properties
   end
 
   def update
@@ -118,7 +119,7 @@ class Api::RentalPropertiesController < ApplicationController
 
   def destroy
     RentalProperty.destroy(params[:id])
-    render json: RentalProperty.all
+    render json: current_user.rental_properties
   end
 
   private

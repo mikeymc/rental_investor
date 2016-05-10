@@ -18,6 +18,18 @@ RSpec.describe 'the rental investment tool' do
     logout
   end
 
+  it 'shows a user only his properties' do
+    go_home
+    login
+    then_expect.to_see_a_list_of_properties
+    logout
+
+    go_home
+    login_as_fish
+    then_expect.to_see_fish_properties
+    logout
+  end
+
   it 'enables the user to evaluate investment properties' do
     go_home
     see_choice_to_login_or_register
@@ -91,6 +103,14 @@ RSpec.describe 'the rental investment tool' do
   def login
     fill_in 'Email', with: 'monkey@ape.com'
     fill_in 'Password', with: '4bananas'
+    find('button', text: 'Sign In').click
+
+    expect(page).to have_content 'Sign Out'
+  end
+
+  def login_as_fish
+    fill_in 'Email', with: 'carp@fish.com'
+    fill_in 'Password', with: '4earthworms'
     find('button', text: 'Sign In').click
 
     expect(page).to have_content 'Sign Out'

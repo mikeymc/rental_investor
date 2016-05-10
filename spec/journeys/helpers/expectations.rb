@@ -10,6 +10,8 @@ class Expectations
     expect(page).to have_content 'State'
     expect(page).to have_content 'Zip Code'
 
+    expect(page.all('.rental-property-summary', minimum: 2).size).to eq 2
+
     expect(page).to have_content '421 Moroni Blvd'
     expect(page).to have_content 'Salt Lake City'
     expect(page).to have_content 'UT'
@@ -19,6 +21,20 @@ class Expectations
     expect(page).to have_content 'Buffalo'
     expect(page).to have_content 'NY'
     expect(page).to have_content '67890'
+  end
+
+  def to_see_fish_properties
+    expect(page).to have_content 'Street'
+    expect(page).to have_content 'City'
+    expect(page).to have_content 'State'
+    expect(page).to have_content 'Zip Code'
+
+    expect(page.all('.rental-property-summary', minimum: 1).size).to eq 1
+
+    expect(page).to have_content '456 Seaside Ln'
+    expect(page).to have_content 'San Diego'
+    expect(page).to have_content 'CA'
+    expect(page).to have_content '90909'
   end
 
   def to_see_the_property_details(property)
