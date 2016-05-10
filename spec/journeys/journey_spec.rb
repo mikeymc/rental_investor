@@ -20,13 +20,13 @@ RSpec.describe 'the rental investment tool' do
 
   it 'shows a user only his properties' do
     now.go_home
-    now.login
+    now.login_as(:monkey)
     then_expect.to_be_signed_in_as('monkey@ape.com')
     then_expect.to_see_a_list_of_properties
     now.logout
 
     now.go_home
-    now.login_as_fish
+    now.login_as(:fish)
     then_expect.to_be_signed_in_as('carp@fish.com')
     then_expect.to_see_fish_properties
     now.logout
@@ -37,7 +37,7 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_choice_to_login_or_register
     now.try_going_to_a_property
     then_expect.to_see_choice_to_login_or_register
-    now.login
+    now.login_as(:monkey)
 
     then_expect.to_see_a_list_of_properties
     now.select_property(name: 'moroni')

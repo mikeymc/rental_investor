@@ -73,6 +73,7 @@ class Expectations
 
   def to_be_signed_in_as(email)
     expect(page.find('navbar')).to have_content email
+    expect(page).to have_content 'Sign Out'
   end
 
   def to_see_the_correct_values_for_the_property(property)

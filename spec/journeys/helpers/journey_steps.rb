@@ -12,20 +12,15 @@ class JourneySteps
     visit '/#/sign_in'
   end
 
-  def login
-    fill_in 'Email', with: 'monkey@ape.com'
-    fill_in 'Password', with: '4bananas'
+  def login_as(user)
+    if (user == :monkey)
+      fill_in 'Email', with: 'monkey@ape.com'
+      fill_in 'Password', with: '4bananas'
+    elsif (user == :fish)
+      fill_in 'Email', with: 'carp@fish.com'
+      fill_in 'Password', with: '4earthworms'
+    end
     find('button', text: 'Sign In').click
-
-    expect(page).to have_content 'Sign Out'
-  end
-
-  def login_as_fish
-    fill_in 'Email', with: 'carp@fish.com'
-    fill_in 'Password', with: '4earthworms'
-    find('button', text: 'Sign In').click
-
-    expect(page).to have_content 'Sign Out'
   end
 
   def logout
