@@ -212,9 +212,17 @@ button:focus {
   min-height: 20px;
   margin-bottom: 5px;
 
-  button {
+  .float-right {
     float: right;
+  }
+
+  button {
     width: 90px;
+  }
+
+  .logged-in-user {
+    vertical-align: middle;
+    padding-right: 5px;
   }
 }
 

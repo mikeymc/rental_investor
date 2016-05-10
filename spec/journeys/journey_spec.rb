@@ -21,11 +21,13 @@ RSpec.describe 'the rental investment tool' do
   it 'shows a user only his properties' do
     go_home
     login
+    then_expect.to_see_the_monkey_signed_in
     then_expect.to_see_a_list_of_properties
     logout
 
     go_home
     login_as_fish
+    then_expect.to_see_the_fish_signed_in
     then_expect.to_see_fish_properties
     logout
   end

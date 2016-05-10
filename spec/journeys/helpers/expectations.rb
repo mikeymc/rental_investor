@@ -37,6 +37,14 @@ class Expectations
     expect(page).to have_content '90909'
   end
 
+  def to_see_the_monkey_signed_in
+    expect(page.find('navbar')).to have_content 'monkey@ape.com'
+  end
+
+  def to_see_the_fish_signed_in
+    expect(page.find('navbar')).to have_content 'carp@fish.com'
+  end
+
   def to_see_the_property_details(property)
     if property[:name] == 'moroni'
       assert_property_details({
