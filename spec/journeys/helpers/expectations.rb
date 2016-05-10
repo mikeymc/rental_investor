@@ -4,6 +4,14 @@ class Expectations
   include ::RSpec::Matchers
   include Capybara::DSL
 
+  def to_see_choice_to_login_or_register
+    expect(page.find('label', text: 'Email')).to have_content 'Email'
+    expect(page.find('label', text: 'Password')).to have_content 'Password'
+
+    expect(page.find('button', text: 'Sign In')).to have_content 'Sign In'
+    expect(page.find('button', text: 'Sign Up')).to have_content 'Sign Up'
+  end
+
   def to_be_on_properties_list_page
     expect(page).to have_content 'Street'
     expect(page).to have_content 'City'
@@ -437,6 +445,22 @@ class Expectations
         five_year_annualized_irr: '29.91%'
       })
     end
+  end
+
+  def to_see_the_correct_initial_values_for_the_property(property)
+    to_see_the_property_details(property)
+    to_see_the_operating_expenses_inputs(property)
+    to_see_the_closing_costs(property)
+    to_see_the_income_and_cost_projections(property)
+    to_see_the_cost_and_revenue_assumptions(property)
+    to_see_the_financing_assumptions(property)
+    to_see_the_key_rent_ratios(property)
+    to_see_the_rental_increase_projections(property)
+    to_see_the_operating_revenues(property)
+    to_see_the_operating_expenses(property)
+    to_see_the_net_operating_income(property)
+    to_see_the_cash_flow_from_operations(property)
+    to_see_the_roi(property)
   end
 
   def to_see_updated_values
