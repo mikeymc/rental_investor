@@ -119,6 +119,12 @@ button:focus {
     }
   }
 
+  .invalid-credentials {
+    padding-top: 30px;
+    float: right;
+    color: red;
+  }
+
   input {
     height: 20px;
 

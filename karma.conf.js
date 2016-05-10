@@ -1,6 +1,3 @@
-// Karma configuration
-// Generated on Sun Apr 17 2016 19:13:43 GMT-0700 (PDT)
-
 module.exports = function(config) {
   config.set({
     basePath: '',
@@ -12,6 +9,8 @@ module.exports = function(config) {
       'vendor/assets/bower_components/angular-mocks/angular-mocks.js',
       'vendor/assets/bower_components/angular-ui-router/release/angular-ui-router.js',
       'vendor/assets/bower_components/jasmine-jquery/lib/jasmine-jquery.js',
+      'vendor/assets/bower_components/ng-token-auth/dist/ng-token-auth.js',
+      'vendor/assets/bower_components/angular-cookie/angular-cookie.js',
       'app/assets/javascripts/angular_app/modules/**/*.js',
       'app/assets/javascripts/angular_app/controllers/**/*.js',
       'app/assets/javascripts/angular_app/directives/**/*.js',
@@ -22,7 +21,7 @@ module.exports = function(config) {
       'app/assets/javascripts/angular_app/spec/helpers/inject_dependencies.js',
       'app/assets/javascripts/angular_app/spec/helpers/render_template.js',
       'app/assets/javascripts/angular_app/spec/**/*_spec.js',
-      'public/investment_properties_pages/**/*.html'
+      'public/**/*.html'
     ],
     exclude: [],
     preprocessors: {

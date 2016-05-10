@@ -3,8 +3,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('sign_in', {
     url: '/sign_in',
-    templateUrl: 'user_sessions/new.html',
-    controller: 'UserSessionsController'
+    templateUrl: 'user_sessions/new.html'
   });
 
   $stateProvider.state('welcome', {
