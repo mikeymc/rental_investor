@@ -119,5 +119,8 @@ class JourneySteps
     page.find('#year-three-operating-expenses-increases-input').send_keys('-1.1')
     page.find('#year-four-operating-expenses-increases-input').send_keys('1.6')
     page.find('#year-five-operating-expenses-increases-input').send_keys('2.1')
+
+    # just click away from the inputs
+    page.find('.navbar').click
   end
 end
