@@ -29,13 +29,14 @@ RSpec.describe 'the rental investment tool' do
     now.login_as(:fish)
     then_expect.to_be_signed_in_as('carp@fish.com')
     then_expect.to_see_properties([:seaside])
-    now.logout
+    now.go_to_property(2)
+    expect(page).to have_content "The page you were looking for doesn't exist"
   end
 
   it 'enables the user to evaluate investment properties' do
     now.go_home
     then_expect.to_see_choice_to_login_or_register
-    now.try_going_to_a_property
+    now.go_to_property(1)
     then_expect.to_see_choice_to_login_or_register
     now.login_as(:monkey)
 

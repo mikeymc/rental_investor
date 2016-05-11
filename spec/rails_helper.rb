@@ -16,7 +16,7 @@ WebMock.allow_net_connect!
 Capybara.configure do |configuration|
   configuration.run_server = true
   configuration.server_port = 8888
-  configuration.default_driver = :poltergeist
+  configuration.default_driver = :poltergeist # :selenium
   configuration.app_host = 'http://localhost:8888'
   configuration.default_max_wait_time = 3
 end

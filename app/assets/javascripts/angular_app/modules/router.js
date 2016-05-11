@@ -36,4 +36,9 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
       }
     }
   });
+
+  $stateProvider.state('404', {
+    url: '/404',
+    templateUrl: '404.html'
+  });
 });

@@ -36,8 +36,8 @@ class JourneySteps
     expect(page).to have_content 'Sign Out'
   end
 
-  def try_going_to_a_property
-    visit '/#/rental_property/1'
+  def go_to_property(id)
+    visit '/#/rental_property/' + id.to_s
   end
 
   def select_property(property)

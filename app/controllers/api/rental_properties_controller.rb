@@ -1,5 +1,6 @@
 class Api::RentalPropertiesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_user!
 
   def index
     @rental_properties = current_user.rental_properties
@@ -7,8 +8,12 @@ class Api::RentalPropertiesController < ApplicationController
   end
 
   def show
-    @rental_property = RentalProperty.find(params[:id])
-    render json: serialize(@rental_property)
+    begin
+      @rental_property = RentalProperty.where("user_id = #{current_user.id}").find(params[:id])
+      render json: serialize(@rental_property)
+    rescue
+      render json: {}, status: 404
+    end
   end
 
   def create
@@ -51,31 +56,36 @@ class Api::RentalPropertiesController < ApplicationController
       ),
       closing_cost: ClosingCost.new(
         origination_fee: 0,
-        processing_fee:	400,
+        processing_fee: 400,
         discount_points: 0,
-        underwriting_fee:	500,
-        appraisal:	425,
-        credit_report:	35,
+        underwriting_fee: 500,
+        appraisal: 425,
+        credit_report: 35,
         flood_certificate: 0,
-        tax_services:	75,
+        tax_services: 75,
         title_insurance: 175,
         title_fees: 180,
-        survey:	175,
+        survey: 175,
         government_recording_charges: 125,
-        transfer_taxes:	0,
-        homeowners_insurance:	1100,
-        settlement_company_charges:	175,
+        transfer_taxes: 0,
+        homeowners_insurance: 1100,
+        settlement_company_charges: 175,
         wire_charges: 55,
       ),
       income_and_cost_projection: IncomeAndCostProjection.new(
-        rent_increases: [0,0,0,0,0],
-        operating_expense_increases: [0,0,0,0,0]
+        rent_increases: [0, 0, 0, 0, 0],
+        operating_expense_increases: [0, 0, 0, 0, 0]
       )
     }).save!
     render json: current_user.rental_properties
   end
 
   def update
+    if params[:rental_property][:id].to_s != current_user[:id].to_s
+      render json: {}, status: 403
+      return
+    end
+
     @rental_property = RentalProperty.find(params[:rental_property][:id])
 
     finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
@@ -118,6 +128,11 @@ class Api::RentalPropertiesController < ApplicationController
   end
 
   def destroy
+    if params[:id].to_s != current_user[:id].to_s
+      render json: {}, status: 403
+      return
+    end
+
     RentalProperty.destroy(params[:id])
     render json: current_user.rental_properties
   end

@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20160510054241) do
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
   create_table "income_and_cost_projections", force: :cascade do |t|
-    t.decimal "rent_increases",              default: [#<BigDecimal:7fd92b7c5798,'0.0',9(18)>, #<BigDecimal:7fd92b7c56d0,'0.0',9(18)>, #<BigDecimal:7fd92b7c5540,'0.0',9(18)>, #<BigDecimal:7fd92b7c5090,'0.0',9(18)>, #<BigDecimal:7fd92b7c4f78,'0.0',9(18)>], array: true
-    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fd92b7bf6b8,'0.0',9(18)>, #<BigDecimal:7fd92b7bf640,'0.0',9(18)>, #<BigDecimal:7fd92b7bf5a0,'0.0',9(18)>, #<BigDecimal:7fd92b7bf500,'0.0',9(18)>, #<BigDecimal:7fd92b7bf3e8,'0.0',9(18)>], array: true
+    t.decimal "rent_increases",              default: [#<BigDecimal:7fc04603a800,'0.0',9(18)>, #<BigDecimal:7fc04603a5f8,'0.0',9(18)>, #<BigDecimal:7fc04603a3c8,'0.0',9(18)>, #<BigDecimal:7fc04603a2d8,'0.0',9(18)>, #<BigDecimal:7fc046039c20,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fc046032c18,'0.0',9(18)>, #<BigDecimal:7fc046032790,'0.0',9(18)>, #<BigDecimal:7fc046032588,'0.0',9(18)>, #<BigDecimal:7fc046032218,'0.0',9(18)>, #<BigDecimal:7fc046031d90,'0.0',9(18)>], array: true
     t.integer "rental_property_id"
   end
 
