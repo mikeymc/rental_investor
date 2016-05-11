@@ -22,13 +22,13 @@ RSpec.describe 'the rental investment tool' do
     now.go_home
     now.login_as(:monkey)
     then_expect.to_be_signed_in_as('monkey@ape.com')
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_properties([:moroni, :sesame])
     now.logout
 
     now.go_home
     now.login_as(:fish)
     then_expect.to_be_signed_in_as('carp@fish.com')
-    then_expect.to_see_fish_properties
+    then_expect.to_see_properties([:seaside])
     now.logout
   end
 
@@ -39,35 +39,35 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_choice_to_login_or_register
     now.login_as(:monkey)
 
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'moroni')
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni')
 
     now.go_home
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'sesame')
     then_expect.to_see_the_correct_values_for_the_property(name: 'sesame')
 
     now.go_home
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'moroni')
     now.update_property
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni', updated: true)
     now.save_the_document
 
     now.go_home
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'moroni')
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni', updated: true)
 
     now.go_home
-    then_expect.to_see_a_list_of_properties
+    then_expect.to_see_properties([:moroni, :sesame])
     now.add_new_property
     now.select_property(name: 'banana')
     then_expect.to_see_the_correct_values_for_the_property(name: 'banana')
 
     now.go_home
-    then_expect.to_see_more_properties
+    then_expect.to_see_properties([:moroni, :sesame, :banana])
     now.delete_property
 
     now.logout

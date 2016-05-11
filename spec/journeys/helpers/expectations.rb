@@ -26,49 +26,39 @@ class Expectations
     expect(page).to have_content 'Zip Code'
   end
 
-  def to_see_a_list_of_properties
+  def to_see_properties(names)
+    num_properties = names.size
+    properties = {
+      moroni: {
+        street: '421 Moroni Blvd',
+        city: 'Salt Lake City',
+        state: 'UT',
+        zip: '12345'
+      },
+      sesame: {
+        street: '123 Sesame St',
+        city: 'Buffalo',
+        state: 'NY',
+        zip: '67890'
+      },
+      seaside: {
+        street: '456 Seaside Ln',
+        city: 'San Diego',
+        state: 'CA',
+        zip: '90909'
+      },
+      banana: {
+        street: '666 Banana St'
+      }
+    }
+
+    expect(page.all('.rental-property-summary', minimum: num_properties).size).to eq num_properties
     to_be_on_properties_list_page
-
-    expect(page.all('.rental-property-summary', minimum: 2).size).to eq 2
-
-    expect(page).to have_content '421 Moroni Blvd'
-    expect(page).to have_content 'Salt Lake City'
-    expect(page).to have_content 'UT'
-    expect(page).to have_content '12345'
-
-    expect(page).to have_content '123 Sesame St'
-    expect(page).to have_content 'Buffalo'
-    expect(page).to have_content 'NY'
-    expect(page).to have_content '67890'
-  end
-
-  def to_see_more_properties
-    to_be_on_properties_list_page
-
-    expect(page.all('.rental-property-summary', minimum: 3).size).to eq 3
-
-    expect(page).to have_content '421 Moroni Blvd'
-    expect(page).to have_content 'Salt Lake City'
-    expect(page).to have_content 'UT'
-    expect(page).to have_content '12345'
-
-    expect(page).to have_content '123 Sesame St'
-    expect(page).to have_content 'Buffalo'
-    expect(page).to have_content 'NY'
-    expect(page).to have_content '67890'
-
-    expect(page).to have_content '666 Banana St'
-  end
-
-  def to_see_fish_properties
-    to_be_on_properties_list_page
-
-    expect(page.all('.rental-property-summary', minimum: 1).size).to eq 1
-
-    expect(page).to have_content '456 Seaside Ln'
-    expect(page).to have_content 'San Diego'
-    expect(page).to have_content 'CA'
-    expect(page).to have_content '90909'
+    names.each do |name|
+      properties[name].values.each do |v|
+        expect(page).to have_content v
+      end
+    end
   end
 
   def to_be_signed_in_as(email)
