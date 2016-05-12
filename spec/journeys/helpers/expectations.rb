@@ -66,6 +66,16 @@ class Expectations
     expect(page).to have_content 'Sign Out'
   end
 
+  def to_be_on_the_property_page_for(property)
+    if(property[:name] == 'moroni')
+      expect(page.find('navbar')).to have_content '421 Moroni Blvd, Salt Lake City, UT 12345'
+    elsif(property[:name] == 'sesame')
+      expect(page.find('navbar')).to have_content '123 Sesame St, Buffalo, NY 67890'
+    elsif(property[:name] == 'banana')
+      expect(page.find('navbar')).to have_content '666 Banana St, Fruitvale, CA 12345'
+    end
+  end
+
   def to_see_the_correct_values_for_the_property(property)
     property_numbers_evaluator.verify_the_property_details(property)
     property_numbers_evaluator.verify_the_operating_expenses_inputs(property)

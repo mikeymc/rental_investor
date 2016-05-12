@@ -42,29 +42,34 @@ RSpec.describe 'the rental investment tool' do
 
     then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'moroni')
+    then_expect.to_be_on_the_property_page_for(name: 'moroni')
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni')
 
     now.go_home
     then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'sesame')
+    then_expect.to_be_on_the_property_page_for(name: 'sesame')
     then_expect.to_see_the_correct_values_for_the_property(name: 'sesame')
 
     now.go_home
     then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'moroni')
     now.update_property
+    then_expect.to_be_on_the_property_page_for(name: 'moroni')
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni', updated: true)
     now.save_the_document
 
     now.go_home
     then_expect.to_see_properties([:moroni, :sesame])
     now.select_property(name: 'moroni')
+    then_expect.to_be_on_the_property_page_for(name: 'moroni')
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni', updated: true)
 
     now.go_home
     then_expect.to_see_properties([:moroni, :sesame])
     now.add_new_property
     now.select_property(name: 'banana')
+    then_expect.to_be_on_the_property_page_for(name: 'banana')
     then_expect.to_see_the_correct_values_for_the_property(name: 'banana')
 
     now.go_home
