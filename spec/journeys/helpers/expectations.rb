@@ -19,11 +19,22 @@ class Expectations
     expect(page.find('button', text: 'Sign Up')).to have_content 'Sign Up'
   end
 
+  def to_be_on_the_registration_page
+    expect(page).to have_content 'Email'
+    expect(page).to have_content 'Password'
+    expect(page).to have_content 'Confirm Password'
+    expect(page).to have_button 'Register'
+  end
+
   def to_be_on_properties_list_page
     expect(page).to have_content 'Street'
     expect(page).to have_content 'City'
     expect(page).to have_content 'State'
     expect(page).to have_content 'Zip Code'
+  end
+
+  def to_see(text)
+    expect(page).to have_content text
   end
 
   def to_see_properties(names)
@@ -67,11 +78,11 @@ class Expectations
   end
 
   def to_be_on_the_property_page_for(property)
-    if(property[:name] == 'moroni')
+    if (property[:name] == 'moroni')
       expect(page.find('navbar')).to have_content '421 Moroni Blvd, Salt Lake City, UT 12345'
-    elsif(property[:name] == 'sesame')
+    elsif (property[:name] == 'sesame')
       expect(page.find('navbar')).to have_content '123 Sesame St, Buffalo, NY 67890'
-    elsif(property[:name] == 'banana')
+    elsif (property[:name] == 'banana')
       expect(page.find('navbar')).to have_content '666 Banana St, Fruitvale, CA 12345'
     end
   end

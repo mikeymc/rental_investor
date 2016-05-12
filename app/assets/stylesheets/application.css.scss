@@ -95,12 +95,13 @@ button:focus {
   height: 200px;
   background-color: white;
   color: #5894b9;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 
   .centered {
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     width: 92%;
-    padding-top: 25px;
   }
 
   .centered.sign-in {
@@ -120,9 +121,9 @@ button:focus {
   }
 
   .invalid-credentials {
-    padding-top: 30px;
     float: right;
     color: red;
+    align-self: flex-end;
   }
 
   input {

@@ -15,8 +15,8 @@ describe('signing in', function() {
       this.$httpBackend.expectPOST('/api/auth/sign_in').respond(200, {});
       view = this.render_template('user_sessions/new.html', this.$scope);
       view.find('input[name=email]').val('bob@bob.com');
-      view.find('input[name=password]').val('bobs-password');
-      view.find('button').click();
+      view.find('input[name=password]').val('bobspassword');
+      view.find('button:contains(Sign In)').click();
     });
 
     it('makes a request to the auth service', function() {
@@ -37,7 +37,7 @@ describe('signing in', function() {
 
       view.find('input[name=email]').val('bob@bob.com');
       view.find('input[name=password]').val('bobs-password');
-      view.find('button').click();
+      view.find('button:contains(Sign In)').click();
 
       this.$httpBackend.flush();
 

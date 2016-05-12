@@ -15,7 +15,22 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_choice_to_login_or_register
     now.register
     then_expect.to_be_on_properties_list_page
+    then_expect.to_be_signed_in_as('bonobo@ape.com')
     now.logout
+  end
+
+  it 'shows if a user has already registered' do
+    now.go_home
+    then_expect.to_see_choice_to_login_or_register
+    now.register
+    then_expect.to_be_on_properties_list_page
+    now.logout
+
+    now.go_home
+    then_expect.to_see_choice_to_login_or_register
+    now.register
+    then_expect.to_be_on_the_registration_page
+    then_expect.to_see('Email already in use')
   end
 
   it 'shows a user only his properties' do

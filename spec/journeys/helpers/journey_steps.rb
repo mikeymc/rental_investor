@@ -33,7 +33,6 @@ class JourneySteps
     fill_in 'Password', with: '4bananas'
     fill_in 'Confirm Password', with: '4bananas'
     find('button', text: 'Register').click
-    expect(page).to have_content 'Sign Out'
   end
 
   def go_to_property(id)
