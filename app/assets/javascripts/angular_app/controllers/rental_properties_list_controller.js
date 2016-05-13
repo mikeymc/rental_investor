@@ -1,7 +1,7 @@
-angular.module('rentals').controller('RentalPropertiesListController', function($scope, $http, $state) {
+angular.module('rentals').controller('RentalPropertiesListController', function($scope, $http, $state, property_repository) {
   $scope.adding_new_property = false;
 
-  $http.get('/api/rental_properties').then(function(response) {
+  property_repository.all().then(function(response) {
     $scope.rental_properties = response.data;
   });
 
@@ -15,7 +15,7 @@ angular.module('rentals').controller('RentalPropertiesListController', function(
   };
 
   $scope.save_new_property = function() {
-    $http.post('/api/rental_properties', $scope.new_property).then(function(response) {
+    property_repository.create($scope.new_property).then(function(response) {
       $scope.rental_properties = response.data;
       $scope.show_new_property_row = false;
     });
@@ -25,8 +25,8 @@ angular.module('rentals').controller('RentalPropertiesListController', function(
     $scope.show_new_property_row = false;
   };
 
-  $scope.remove = function(id) {
-    $http.delete('/api/rental_properties/' + id).then(function(response) {
+  $scope.remove = function(property_id) {
+    property_repository.remove(property_id).then(function(response) {
       $scope.rental_properties = response.data;
     });
   }

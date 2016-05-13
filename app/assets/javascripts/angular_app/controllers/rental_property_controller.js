@@ -1,14 +1,14 @@
-angular.module('rentals').controller('RentalPropertyController', function($scope, $http, $stateParams, $timeout, $state) {
+angular.module('rentals').controller('RentalPropertyController', function($scope, $http, $stateParams, $timeout, $state, property_repository) {
   $scope.persistence_state = 'Save';
 
-  $http.get('/api/rental_properties/' + $stateParams.rental_id).then(function(response) {
+  property_repository.find($stateParams.rental_id).then(function(response) {
     $scope.rental_property = response.data;
   }, function() {
     $state.go('404');
   });
 
   $scope.save = function() {
-    $http.put('/api/rental_properties/' + $stateParams.rental_id, {rental_property: $scope.rental_property}).then(function(response) {
+    property_repository.update($stateParams.rental_id, $scope.rental_property).then(function(response) {
       $scope.rental_property = response.data;
       displaySavedFlag();
     });
