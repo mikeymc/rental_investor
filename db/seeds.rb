@@ -1,15 +1,13 @@
 @user_one = User.create!(
   email: 'monkey@ape.com',
   password: '4bananas',
-  password_confirmation: '4bananas',
-  confirmed_at: Time.zone.now
+  password_confirmation: '4bananas'
 )
 
 @user_two = User.create!(
   email: 'carp@fish.com',
   password: '4earthworms',
-  password_confirmation: '4earthworms',
-  confirmed_at: Time.zone.now
+  password_confirmation: '4earthworms'
 )
 
 RentalProperty.new(

@@ -4,9 +4,11 @@ class User < ActiveRecord::Base
           :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
+  before_save :skip_confirmation
+
   has_many :rental_properties
 
-  def confirmation_required?
-    false
+  def skip_confirmation
+    self.skip_confirmation!
   end
 end
