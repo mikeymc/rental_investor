@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.0'
+ruby '2.3.0'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
@@ -15,11 +15,11 @@ gem 'webmock'
 
 group :development, :test do
   gem 'byebug'
-  gem 'capybara', '>=0'
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'
-  gem 'rspec', '>=0'
+  gem 'rspec'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
