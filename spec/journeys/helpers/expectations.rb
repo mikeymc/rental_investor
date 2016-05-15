@@ -58,6 +58,12 @@ class Expectations
         state: 'CA',
         zip: '90909'
       },
+      sample: {
+        street: '123 Sample St',
+        city: 'Atlanta',
+        state: 'GA',
+        zip: '12345'
+      },
       banana: {
         street: '666 Banana St'
       }

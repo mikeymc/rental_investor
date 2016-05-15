@@ -16,6 +16,7 @@ RSpec.describe 'the rental investment tool' do
     now.register
     then_expect.to_be_on_properties_list_page
     then_expect.to_be_signed_in_as('bonobo@ape.com')
+    then_expect.to_see_properties([:sample])
     now.logout
   end
 
