@@ -5,4 +5,8 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 
   has_many :rental_properties
+
+  def confirmation_required?
+    false
+  end
 end
