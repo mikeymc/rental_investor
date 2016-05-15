@@ -81,12 +81,12 @@ class Api::RentalPropertiesController < ApplicationController
   end
 
   def update
-    if params[:rental_property][:id].to_s != current_user[:id].to_s
+    @rental_property = RentalProperty.find(params[:rental_property][:id])
+
+    if @rental_property.user_id.to_s != current_user[:id].to_s
       render json: {}, status: 403
       return
     end
-
-    @rental_property = RentalProperty.find(params[:rental_property][:id])
 
     finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
     operating_expenses_assumption = params[:rental_property][:operating_expenses_assumption]

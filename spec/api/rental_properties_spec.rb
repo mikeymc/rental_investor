@@ -119,9 +119,9 @@ describe 'rental_properties' do
       describe 'when the user is updating his own property' do
         it 'returns a 200' do
           allow_any_instance_of(Api::RentalPropertiesController).to receive(:current_user).and_return(@user)
-          put '/api/rental_properties/1', {
+          put '/api/rental_properties/2', {
             rental_property: {
-              id: 1,
+              id: 2,
               financing_and_income_assumption: {foo: 'bar'},
               operating_expenses_assumption: {foo: 'bar'},
               income_and_cost_projection: {foo: 'bar'}
