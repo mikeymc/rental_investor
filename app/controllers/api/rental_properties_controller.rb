@@ -128,7 +128,9 @@ class Api::RentalPropertiesController < ApplicationController
   end
 
   def destroy
-    if params[:id].to_s != current_user[:id].to_s
+    @rental_property = RentalProperty.find(params[:id])
+
+    if @rental_property.user_id.to_s != current_user[:id].to_s
       render json: {}, status: 403
       return
     end

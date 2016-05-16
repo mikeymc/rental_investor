@@ -149,11 +149,11 @@ describe 'rental_properties' do
       end
     end
 
-    describe '#update' do
+    describe '#destroy' do
       describe 'when the user is updating his own property' do
         it 'returns a 200' do
           allow_any_instance_of(Api::RentalPropertiesController).to receive(:current_user).and_return(@user)
-          delete '/api/rental_properties/1'
+          delete '/api/rental_properties/2'
 
           expect(response.status).to eq(200)
         end
