@@ -1,4 +1,7 @@
 <div class="navbar navbar-default navbar-static-top">
+  <li class="property-address" ng-if="show_home_button()">
+    <a href="#" ng-click="go_home()">All Properties</a>
+  </li>
   <li class="property-address">{{address}}</li>
   <li class="float-right">
     <span class="logged-in-user">{{logged_in_user}}</span>

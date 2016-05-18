@@ -69,6 +69,7 @@ class Expectations
       }
     }
 
+    expect(page.find('.navbar')).not_to have_content 'All Properties'
     expect(page.all('.rental-property-summary', minimum: num_properties).size).to eq num_properties
     to_be_on_properties_list_page
     names.each do |name|

@@ -1,4 +1,4 @@
-angular.module('rentals').directive('navbar', function() {
+angular.module('rentals').directive('navbar', function($state) {
   return {
     templateUrl: 'investment_properties_pages/navbar.html',
     restrict: 'E',
@@ -14,6 +14,14 @@ angular.module('rentals').directive('navbar', function() {
 
         $scope.address = full_address($scope.rental_property);
       });
+
+      $scope.show_home_button = function() {
+        return $state.current.name != '/rental_properties';
+      };
+
+      $scope.go_home = function() {
+        $state.go('/rental_properties');
+      };
 
       /* --- Private --- */
 

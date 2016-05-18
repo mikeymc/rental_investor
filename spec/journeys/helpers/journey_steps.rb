@@ -12,6 +12,10 @@ class JourneySteps
     visit '/#/sign_in'
   end
 
+  def go_back_to_properties_list
+    find('navbar a', text: 'All Properties').click
+  end
+
   def login_as(user)
     if (user == :monkey)
       fill_in 'Email', with: 'monkey@ape.com'

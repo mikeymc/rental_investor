@@ -213,6 +213,10 @@ button:focus {
   min-height: 20px;
   margin-bottom: 5px;
 
+  a {
+    color: #5894b9;
+  }
+
   .float-right {
     float: right;
   }
@@ -224,6 +228,7 @@ button:focus {
   .property-address {
     float: left;
     padding-top: 4px;
+    margin-right: 5px;
   }
 
   button {
