@@ -15,7 +15,7 @@ class PropertyNumbersEvaluator
           number_of_units: '61',
           average_monthly_rent: '$800.00',
           other_income: '$1,000.00',
-          equity_percentage: '20%',
+          equity_percentage: '20.0%',
           loan_interest_rate: '6.750%',
           amortization_period_in_years: '30'
         })
@@ -27,7 +27,7 @@ class PropertyNumbersEvaluator
           number_of_units: '60',
           average_monthly_rent: '$700.00',
           other_income: '$600.00',
-          equity_percentage: '17%',
+          equity_percentage: '17.0%',
           loan_interest_rate: '5.750%',
           amortization_period_in_years: '25',
           total_square_feet: '52,500'
@@ -41,7 +41,7 @@ class PropertyNumbersEvaluator
         number_of_units: '6',
         average_monthly_rent: '$482.00',
         other_income: '$0.00',
-        equity_percentage: '20%',
+        equity_percentage: '20.0%',
         loan_interest_rate: '4.000%',
         amortization_period_in_years: '30',
         total_square_feet: '3,311'
@@ -54,7 +54,7 @@ class PropertyNumbersEvaluator
         number_of_units: '0',
         average_monthly_rent: '$0.00',
         other_income: '$0.00',
-        equity_percentage: '0%',
+        equity_percentage: '0.0%',
         loan_interest_rate: '0.000%',
         amortization_period_in_years: '0',
         total_square_feet: '0'
