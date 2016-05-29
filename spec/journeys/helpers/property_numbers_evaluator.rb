@@ -747,7 +747,6 @@ class PropertyNumbersEvaluator
 
     expect(section).to have_content 'Operating Revenues'
     expect(section).to have_content 'Monthly'
-    expect(section).to have_content 'Projected'
 
     (1..5).each { |year| expect(section).to have_content "Year #{year}" }
 
@@ -798,7 +797,7 @@ class PropertyNumbersEvaluator
   def assert_key_rent_ratios(details)
     ratios = page.find('#key-rent-ratios')
 
-    expect(ratios).to have_content 'Key Rent Ratios'
+    expect(ratios).to have_content 'Key Numbers'
     expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_area_in_sq_ft]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
     expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
@@ -812,7 +811,7 @@ class PropertyNumbersEvaluator
 
   def assert_financing_assumptions(details)
     closing_costs = page.find('#financing-assumptions')
-    expect(closing_costs).to have_content 'Financing Assumptions'
+    expect(closing_costs).to have_content 'Financing'
     expect(closing_costs).to have_content 'Annual'
     expect(closing_costs).to have_content 'Monthly'
 
@@ -878,7 +877,7 @@ class PropertyNumbersEvaluator
 
   def assert_cost_and_revenue_assumptions(details)
     assumptions = page.find('#cost-and-revenue-assumptions')
-    expect(assumptions).to have_content 'Cost and Revenue Assumptions'
+    expect(assumptions).to have_content 'Cost and Revenue'
     expect(assumptions.find('div', text: 'Land')).to have_content details[:land]
     expect(assumptions.find('div', text: 'Building')).to have_content details[:building]
     expect(assumptions.find('div', text: 'Improvements')).to have_content details[:improvements]
