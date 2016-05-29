@@ -9,13 +9,16 @@
   }
   @include make-grid-columns();
   // @include make-grid(xs);
-  @media (min-width: $screen-sm-min) {
+  @media (min-width: $screen-xs-min) {
+    @include make-grid(xs);
+  }
+  @media (min-width: 0) {
     @include make-grid(sm);
   }
-  @media (min-width: $screen-md-min) {
+  @media (min-width: 0) {
     @include make-grid(md);
   }
-  @media (min-width: $screen-lg-min) {
+  @media (min-width: 0) {
     @include make-grid(lg);
   }
 

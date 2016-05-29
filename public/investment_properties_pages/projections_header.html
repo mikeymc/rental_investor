@@ -1,23 +1,23 @@
 <div class="top-padded">
   <div id="rental-increase-projections">
     <div class="row">
-      <div class="col-md-5 subsection-header align-center no-bottom-border">Rental Increase Projections</div>
-      <div class="col-md-4"></div>
-      <div class="col-md-3 align-right" ng-repeat="increase in rent_increases track by $index">{{increase | percentage:2}}</div>
+      <div class="col-sm-5 subsection-header align-center no-bottom-border">Rental Increase Projections</div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-3 align-right" ng-repeat="increase in rent_increases track by $index">{{increase | percentage:2}}</div>
     </div>
   </div>
   <div id="average-monthly-rents-each-year">
     <div class="row">
-      <div class="col-md-5 subsection-header align-center no-bottom-border">Average Monthly Rent</div>
-      <div class="col-md-4"></div>
-      <div class="col-md-3 align-right" ng-repeat="average_rent in average_rents track by $index">{{average_rent | currency:"$":0}}</div>
+      <div class="col-sm-5 subsection-header align-center no-bottom-border">Average Monthly Rent</div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-3 align-right" ng-repeat="average_rent in average_rents track by $index">{{average_rent | currency:"$":0}}</div>
     </div>
   </div>
   <div id="operating-expense-projections">
     <div class="row">
-      <div class="col-md-5 subsection-header align-center">Operating Expense Projections</div>
-      <div class="col-md-4"></div>
-      <div class="col-md-3 align-right" ng-repeat="expense in operating_expenses track by $index">{{expense | percentage:2}}</div>
+      <div class="col-sm-5 subsection-header align-center">Operating Expense Projections</div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-3 align-right" ng-repeat="expense in operating_expenses track by $index">{{expense | percentage:2}}</div>
     </div>
   </div>
 </div>
