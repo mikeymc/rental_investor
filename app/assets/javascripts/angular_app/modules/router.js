@@ -14,7 +14,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('/rental_properties', {
     url: '/rental_properties',
-    templateUrl: 'investment_properties_pages/rental_properties.html',
+    templateUrl: 'investment_properties_pages/properties_list/rental_properties.html',
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
@@ -26,7 +26,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('rental_property', {
     url: '/rental_property/:rental_id',
-    templateUrl: 'investment_properties_pages/rental_property.html',
+    templateUrl: 'investment_properties_pages/financials/rental_property.html',
     controller: 'RentalPropertyController',
     resolve: {
       auth: function($auth, $state) {

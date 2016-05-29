@@ -1,6 +1,6 @@
 angular.module('rentals').directive('netOperatingIncome', function(operating_expenses_service, noi_service) {
   return {
-    templateUrl: 'investment_properties_pages/financials/net_operating_income.html',
+    templateUrl: 'investment_properties_pages/financials/outputs/net_operating_income.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {

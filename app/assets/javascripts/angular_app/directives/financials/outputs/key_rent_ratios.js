@@ -1,6 +1,6 @@
 angular.module('rentals').directive('keyRentRatios', function(property_service, key_rent_ratios_service) {
   return {
-    templateUrl: 'investment_properties_pages/financials/key_rent_ratios.html',
+    templateUrl: 'investment_properties_pages/financials/outputs/key_rent_ratios.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {

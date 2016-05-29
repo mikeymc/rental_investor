@@ -4,7 +4,7 @@ describe('the properties list view', function() {
   beforeEach(function() {
     this.inject_dependencies('$scope', 'render_template', '$httpBackend');
     this.$httpBackend.expectGET('/api/rental_properties').respond(200, [{}, {}]);
-    view = this.render_template('investment_properties_pages/rental_properties.html', this.$scope);
+    view = this.render_template('investment_properties_pages/properties_list/rental_properties.html', this.$scope);
     this.$httpBackend.flush();
   });
 

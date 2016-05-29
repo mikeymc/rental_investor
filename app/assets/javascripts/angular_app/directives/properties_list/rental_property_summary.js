@@ -1,6 +1,6 @@
 angular.module('rentals').directive('rentalPropertySummary', function($state) {
   return {
-    templateUrl: 'investment_properties_pages/rental_property_summary.html',
+    templateUrl: 'investment_properties_pages/properties_list/rental_property_summary.html',
     restrict: 'A',
     replace: true,
     scope: {
