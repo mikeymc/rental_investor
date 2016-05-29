@@ -6,6 +6,7 @@
 @import "bootstrap";
 @import "vars";
 @import "mixins";
+@import "faux-modal";
 
 html, body {
   height: 100%
@@ -84,63 +85,6 @@ button:focus {
 .notification {
   float: right;
   color: white;
-}
-
-.faux-modal {
-  margin-left: auto;
-  margin-right: auto;
-  width: 600px;
-  margin-top: 100px;
-  height: 200px;
-  background-color: white;
-  color: #5894b9;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-
-  .centered {
-    margin: auto;
-    width: 92%;
-  }
-
-  .centered.sign-in {
-    margin-left: auto;
-    margin-right: auto;
-    width: 92%;
-    padding-top: 45px;
-  }
-
-  .form-group {
-    margin: auto;
-    width: 60%;
-
-    label {
-      margin-bottom: 0;
-    }
-  }
-
-  .invalid-credentials {
-    float: right;
-    color: red;
-    align-self: flex-end;
-  }
-
-  input {
-    height: 20px;
-
-    padding: 10px;
-    border: solid 1px #5894b9;
-    transition: border 0.3s;
-
-    text-align: left;
-    border-radius: 0;
-    margin-bottom: 10px;
-  }
-
-  .sign-in-btn {
-    margin: auto;
-    width: 100px;
-  }
 }
 
 #rental-properties {
