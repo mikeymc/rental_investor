@@ -5,17 +5,17 @@
   <div class="row" id="total-purchase">
     <span class="col-sm-12">Total Purchase</span>
     <span class="col-sm-6 align-right">100%</span>
-    <span class="col-sm-6 align-right">{{total_cost | currency}}</span>
+    <span class="col-sm-6 align-right">{{total_cost | currency:'$':0}}</span>
   </div>
   <div class="row" id="down-payment">
     <span class="col-sm-12">Owner's Equity</span>
     <span class="col-sm-6 align-right">{{equity_percentage | percentage:0}}</span>
-    <span class="col-sm-6 align-right">{{down_payment | currency}}</span>
+    <span class="col-sm-6 align-right">{{down_payment | currency:'$':0}}</span>
   </div>
   <div class="row" id="balance-to-finance">
     <span class="col-sm-12">Balance to Finance</span>
     <span class="col-sm-6 align-right">{{balance_to_finance_percentage | percentage}}</span>
-    <span class="col-sm-6 align-right">{{balance_to_finance | currency}}</span>
+    <span class="col-sm-6 align-right">{{balance_to_finance | currency:'$':0}}</span>
   </div>
   <div class="row" id="interest-rate">
     <span class="col-sm-12">Interest Rate</span>
@@ -35,7 +35,7 @@
   </div>
   <div class="row" id="loan-payment">
     <span class="col-sm-12">Payment</span>
-    <span class="col-sm-6 align-right">{{annual_loan_payment | currency}}</span>
-    <span class="col-sm-6 align-right">{{monthly_loan_payment | currency}}</span>
+    <span class="col-sm-6 align-right">{{annual_loan_payment | currency:'$':0}}</span>
+    <span class="col-sm-6 align-right">{{monthly_loan_payment | currency:'$':0}}</span>
   </div>
 </div>
