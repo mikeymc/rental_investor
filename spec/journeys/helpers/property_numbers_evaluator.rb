@@ -597,10 +597,10 @@ class PropertyNumbersEvaluator
 
   def assert_roi(details)
     income = page.find('#return-on-investment')
-    expect(income).to have_content 'Net Operating Income ROI'
+    expect(income).to have_content 'Return on Investment'
 
     details[:noi_roi].each do |item|
-      expect(income.find('.row', text: 'Net Operating Income ROI')).to have_content item
+      expect(income.find('.row', text: 'Net Operating Income')).to have_content item
     end
     details[:cash_roi].each do |item|
       expect(income.find('.row', text: 'Cash ROI')).to have_content item
