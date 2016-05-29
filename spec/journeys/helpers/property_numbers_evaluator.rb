@@ -296,6 +296,25 @@ class PropertyNumbersEvaluator
         equipment_depreciation: '$0',
         income_tax_rate: '0%'
       })
+    elsif property[:name] == 'banana'
+      assert_operating_expenses_inputs({
+        vacancy_rate: '0.0%',
+        repairs_and_maintenance: '$0',
+        property_management_fees: '10.0%',
+        utilities: '$0.00',
+        taxes: '$0.00',
+        insurance: '$0.00',
+        salaries_and_wages: '$0.00',
+        water_and_sewer: '$0.00',
+        trash_removal: '$0.00',
+        professional_fees: '$0.00',
+        advertising: '$0.00',
+        landscaping: '$0.00',
+        capital_expenditures: '0.0%',
+        other_expenses: '$0.00',
+        equipment_depreciation: '$0',
+        income_tax_rate: '0%'
+      })
     end
   end
 

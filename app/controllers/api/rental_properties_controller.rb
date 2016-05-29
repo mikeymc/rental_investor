@@ -39,7 +39,7 @@ class Api::RentalPropertiesController < ApplicationController
       operating_expenses_assumption: OperatingExpensesAssumption.new(
         vacancy_rate: 0,
         repairs_and_maintenance: 0,
-        property_management_fees: 0,
+        property_management_fees: 10,
         taxes: 0,
         insurance: 0,
         salaries_and_wages: 0,
