@@ -73,7 +73,7 @@ class Api::RentalPropertiesController < ApplicationController
         wire_charges: 55,
       ),
       income_and_cost_projection: IncomeAndCostProjection.new(
-        rent_increases: [0, 0, 0, 0, 0],
+        rent_increases: [0, 2, 2, 2, 2],
         operating_expense_increases: [0, 0, 0, 0, 0]
       )
     }).save!

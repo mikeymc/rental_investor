@@ -167,6 +167,11 @@ class PropertyNumbersEvaluator
         rent_increases: %w(0.0% 3.0% 3.5% 3.0% 3.0%),
         operating_expenses_increases: %w(0.0% -2.0% -1.0% 1.5% 2.0%)
       })
+    elsif property[:name] == 'banana'
+      assert_income_and_cost_projections({
+        rent_increases: %w(0.0% 2.0% 2.0% 2.0% 2.0%),
+        operating_expenses_increases: %w(0.0% 0.0% 0.0% 0.0% 0.0%)
+      })
     end
   end
 
