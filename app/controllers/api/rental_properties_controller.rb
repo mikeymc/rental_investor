@@ -33,8 +33,8 @@ class Api::RentalPropertiesController < ApplicationController
         average_monthly_rent_per_unit: 0,
         other_monthly_income: 00,
         equity_percentage: 0,
-        loan_interest_rate: 0,
-        amortization_period_in_years: 0
+        loan_interest_rate: 3.25,
+        amortization_period_in_years: 30
       ),
       operating_expenses_assumption: OperatingExpensesAssumption.new(
         vacancy_rate: 0,

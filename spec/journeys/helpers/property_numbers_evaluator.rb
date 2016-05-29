@@ -55,8 +55,8 @@ class PropertyNumbersEvaluator
         average_monthly_rent: '$0.00',
         other_income: '$0.00',
         equity_percentage: '0.0%',
-        loan_interest_rate: '0.000%',
-        amortization_period_in_years: '0',
+        loan_interest_rate: '3.250%',
+        amortization_period_in_years: '30',
         total_square_feet: '0'
       })
     end
