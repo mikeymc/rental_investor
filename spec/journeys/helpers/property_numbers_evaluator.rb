@@ -493,7 +493,7 @@ class PropertyNumbersEvaluator
       if (property[:updated])
         assert_net_operating_income({
           net_operating_income: %w(53.94% $25,284 $306,444 $323,301 $346,979 $365,137 $379,030),
-          interest_on_loan: %w(31.1% $14,559.46 $173,870 $171,950 $169,895 $167,698 $165,347),
+          interest_on_loan: %w(31.1% $14,559 $173,870 $171,950 $169,895 $167,698 $165,347),
           building_depreciation_expenses: %w($7,879 $94,545 $94,545 $94,545 $94,545 $94,545),
           net_income_before_taxes: %w($2,846 $38,028 $56,805 $82,538 $102,893 $119,137),
           income_tax_rate: %w(10% $285 $3,803 $5,681 $8,254 $10,289 $11,914),
@@ -501,7 +501,7 @@ class PropertyNumbersEvaluator
         })
       else
         assert_net_operating_income({
-          interest_on_loan: %w(29.8% $12,064.16 $143,557 $140,811 $137,902 $134,822 $131,560),
+          interest_on_loan: %w(29.8% $12,064 $143,557 $140,811 $137,902 $134,822 $131,560),
           net_operating_income: %w(52.15% $21,120 $253,445 $272,676 $292,476 $304,634 $316,064),
           building_depreciation_expenses: %w($7,576 $90,909 $90,909 $90,909 $90,909 $90,909),
           net_income_before_taxes: %w($1,481 $18,979 $40,957 $63,664 $78,903 $93,594),
@@ -511,7 +511,7 @@ class PropertyNumbersEvaluator
       end
     elsif property[:name] == 'sesame'
       assert_net_operating_income({
-        interest_on_loan: %w(29.6% $814.43 $9,695 $9,520 $9,337 $9,147 $8,950),
+        interest_on_loan: %w(29.6% $814 $9,695 $9,520 $9,337 $9,147 $8,950),
         net_operating_income: %w(64.04% $1,759 $21,112 $22,338 $23,643 $24,525 $25,377),
         building_depreciation_expenses: %w($906 $10,873 $10,873 $10,873 $10,873 $10,873),
         net_income_before_taxes: %w($39 $545 $1,946 $3,433 $4,505 $5,555),

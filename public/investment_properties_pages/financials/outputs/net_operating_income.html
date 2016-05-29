@@ -8,7 +8,7 @@
   <div class="row">
     <div class="col-sm-5">Interest on Loan</div>
     <div class="col-sm-2 align-right">{{monthly_interest_on_loan_percentage | percentage:1}}</div>
-    <div class="col-sm-2 align-right">{{monthly_interest_on_loan | currency}}</div>
+    <div class="col-sm-2 align-right">{{monthly_interest_on_loan | currency:'$':0}}</div>
     <div class="col-sm-3 align-right" ng-repeat="interest_payment in annual_interest_on_loan track by $index">{{interest_payment | currency:'$':0}}</div>
   </div>
   <div class="row">
