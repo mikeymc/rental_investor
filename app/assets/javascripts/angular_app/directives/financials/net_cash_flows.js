@@ -1,6 +1,6 @@
 angular.module('rentals').directive('netCashFlows', function(property_service, cash_flow_service, exit_scenarios_service) {
   return {
-    templateUrl: 'investment_properties_pages/net_cash_flows.html',
+    templateUrl: 'investment_properties_pages/financials/net_cash_flows.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {

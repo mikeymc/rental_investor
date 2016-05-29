@@ -1,6 +1,6 @@
 angular.module('rentals').directive('projectionsHeader', function(property_service) {
   return {
-    templateUrl: 'investment_properties_pages/projections_header.html',
+    templateUrl: 'investment_properties_pages/financials/projections_header.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {

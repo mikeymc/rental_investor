@@ -1,6 +1,6 @@
 angular.module('rentals').directive('cashFlowFromOperations', function(property_service, operating_expenses_service, cash_flow_service, noi_service) {
   return {
-    templateUrl: 'investment_properties_pages/cash_flow_from_operations.html',
+    templateUrl: 'investment_properties_pages/financials/cash_flow_from_operations.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {

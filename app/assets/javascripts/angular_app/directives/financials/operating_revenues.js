@@ -1,6 +1,6 @@
 angular.module('rentals').directive('operatingRevenues', function(property_service) {
   return {
-    templateUrl: 'investment_properties_pages/operating_revenues.html',
+    templateUrl: 'investment_properties_pages/financials/operating_revenues.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {
