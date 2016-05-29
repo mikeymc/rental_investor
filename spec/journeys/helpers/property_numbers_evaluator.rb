@@ -356,24 +356,6 @@ class PropertyNumbersEvaluator
     end
   end
 
-  def verify_the_rental_increase_projections(property)
-    if property[:name] == 'moroni'
-      if (property[:updated])
-        assert_rental_increase_projections %w(1.00% 2.00% 3.60% 3.70% 3.10%)
-        assert_average_monthly_rents_each_year %w($808 $824 $854 $885 $913)
-        assert_operating_expense_projections %w(1.00% -2.10% -1.10% 1.60% 2.10%)
-      else
-        assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
-        assert_average_monthly_rents_each_year(%w($700 $721 $746 $769 $792))
-        assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
-      end
-    elsif property[:name] == 'sesame'
-      assert_rental_increase_projections(%w(0.00% 3.00% 3.50% 3.00% 3.00%))
-      assert_average_monthly_rents_each_year(%w($482 $496 $514 $529 $545))
-      assert_operating_expense_projections(%w(0.00% -2.00% -1.00% 1.50% 2.00%))
-    end
-  end
-
   def verify_the_operating_revenues(property)
     if property[:name] == 'moroni'
       if (property[:updated])
@@ -770,9 +752,6 @@ class PropertyNumbersEvaluator
     section = page.find('#operating-revenues')
 
     expect(section).to have_content 'Operating Revenues'
-    expect(section).to have_content 'Monthly'
-
-    (1..5).each { |year| expect(section).to have_content "Year #{year}" }
 
     details[:gross_scheduled_rental_income].each do |income|
       expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content income

@@ -95,6 +95,9 @@ class Expectations
   end
 
   def to_see_the_correct_values_for_the_property(property)
+    expect(page).to have_content 'Monthly'
+    (1..5).each { |year| expect(page).to have_content "Year #{year}" }
+
     property_numbers_evaluator.verify_the_property_details(property)
     property_numbers_evaluator.verify_the_operating_expenses_inputs(property)
     property_numbers_evaluator.verify_the_closing_costs(property)
@@ -102,7 +105,6 @@ class Expectations
     property_numbers_evaluator.verify_the_cost_and_revenue_assumptions(property)
     property_numbers_evaluator.verify_the_financing_assumptions(property)
     property_numbers_evaluator.verify_the_key_rent_ratios(property)
-    property_numbers_evaluator.verify_the_rental_increase_projections(property)
     property_numbers_evaluator.verify_the_operating_revenues(property)
     property_numbers_evaluator.verify_the_operating_expenses(property)
     property_numbers_evaluator.verify_the_net_operating_income(property)
