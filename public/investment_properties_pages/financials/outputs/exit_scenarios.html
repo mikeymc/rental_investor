@@ -1,49 +1,34 @@
 <div id="exit-scenarios" class="top-padded">
-  <div class="col-sm-15">
-    <div class="row">
-      <div class="col-sm-10 align-right"></div>
-      <div class="col-sm-4 align-right column-header">Exit Price</div>
-      <div class="col-sm-5 align-right column-header">Gain on Sale</div>
-      <div class="col-sm-5 align-right column-header">Cap Rate</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 align-center subsection-header no-bottom-border">Est Exit Price/Gain on Sale - 1 Yr</div>
-      <div class="col-sm-2 align-right"></div>
-      <div class="col-sm-4 align-right">{{first_year_exit_price | currency:'$':0}}</div>
-      <div class="col-sm-5 align-right">{{first_year_gain_on_sale | currency:'$':0}}</div>
-      <div class="col-sm-5 align-right">{{cap_rate | percentage:2}}</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 align-center subsection-header no-bottom-border">Est Exit Price/Gain on Sale - 3 Yr</div>
-      <div class="col-sm-2 align-right"></div>
-      <div class="col-sm-4 align-right">{{third_year_exit_price | currency:'$':0}}</div>
-      <div class="col-sm-5 align-right">{{third_year_gain_on_sale | currency:'$':0}}</div>
-      <div class="col-sm-5 align-right">{{cap_rate | percentage:2}}</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-8 align-center subsection-header">Est Exit Price/Gain on Sale - 5 Yr</div>
-      <div class="col-sm-2 align-right"></div>
-      <div class="col-sm-4 align-right">{{fifth_year_exit_price | currency:'$':0}}</div>
-      <div class="col-sm-5 align-right">{{fifth_year_gain_on_sale | currency:'$':0}}</div>
-      <div class="col-sm-5 align-right">{{cap_rate | percentage:2}}</div>
-    </div>
+  <div class="row">
+    <div class="col-sm-5 align-center subsection-header">Exit Scenarios</div>
+    <div class="col-sm-1 align-right column-header"></div>
+    <div class="col-sm-3 align-right column-header">Exit Price</div>
+    <div class="col-sm-3 align-right column-header">Gain on Sale</div>
+    <div class="col-sm-3 align-right column-header">Cap Rate</div>
+    <div class="col-sm-3 align-right column-header">IRR</div>
   </div>
-  <div id="irr" class="col-sm-9">
-    <div class="row">
-      <div class="col-sm-11 align-right"></div>
-      <div class="col-sm-5 align-right column-header">IRR</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-10 subsection-header align-center">Annualized IRR - 1 Yr</div>
-      <div class="col-sm-6 align-right">{{one_year_irr | percentage:2}}</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-10 subsection-header align-center">Annualized IRR - 3 Yr</div>
-      <div class="col-sm-6 align-right">{{three_year_irr | percentage:2}}</div>
-    </div>
-    <div class="row">
-      <div class="col-sm-10 subsection-header align-center">Annualized IRR - 5 Yr</div>
-      <div class="col-sm-6 align-right">{{five_year_irr | percentage:2}}</div>
-    </div>
+  <div class="row">
+    <div class="col-sm-5 align-left">1 Year Exit</div>
+    <div class="col-sm-1 align-right column-header"></div>
+    <div class="col-sm-3 align-right">{{first_year_exit_price | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right">{{first_year_gain_on_sale | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right">{{cap_rate | percentage:2}}</div>
+    <div class="col-sm-3 align-right">{{one_year_irr | percentage:2}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5 align-left">3 Year Exit</div>
+    <div class="col-sm-1 align-right column-header"></div>
+    <div class="col-sm-3 align-right">{{third_year_exit_price | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right">{{third_year_gain_on_sale | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right">{{cap_rate | percentage:2}}</div>
+    <div class="col-sm-3 align-right">{{three_year_irr | percentage:2}}</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-5 align-left">5 Year Exit</div>
+    <div class="col-sm-1 align-right column-header"></div>
+    <div class="col-sm-3 align-right">{{fifth_year_exit_price | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right">{{fifth_year_gain_on_sale | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right">{{cap_rate | percentage:2}}</div>
+    <div class="col-sm-3 align-right">{{five_year_irr | percentage:2}}</div>
   </div>
 </div>

@@ -625,19 +625,18 @@ class PropertyNumbersEvaluator
     expect(exits).to have_content 'Gain on Sale'
     expect(exits).to have_content 'Cap Rate'
     details[:one_year_exit_price_gain].each do |item|
-      expect(exits.find('.row', text: 'Est Exit Price/Gain on Sale - 1 Yr')).to have_content item
+      expect(exits.find('.row', text: '1 Year Exit')).to have_content item
     end
     details[:three_year_exit_price_gain].each do |item|
-      expect(exits.find('.row', text: 'Est Exit Price/Gain on Sale - 3 Yr')).to have_content item
+      expect(exits.find('.row', text: '3 Year Exit')).to have_content item
     end
     details[:five_year_exit_price_gain].each do |item|
-      expect(exits.find('.row', text: 'Est Exit Price/Gain on Sale - 5 Yr')).to have_content item
+      expect(exits.find('.row', text: '5 Year Exit')).to have_content item
     end
 
-    irr = page.find('#irr')
-    expect(irr.find('.row', text: 'Annualized IRR - 1 Yr')).to have_content details[:one_year_annualized_irr]
-    expect(irr.find('.row', text: 'Annualized IRR - 3 Yr')).to have_content details[:three_year_annualized_irr]
-    expect(irr.find('.row', text: 'Annualized IRR - 5 Yr')).to have_content details[:five_year_annualized_irr]
+    expect(exits).to have_content details[:one_year_annualized_irr]
+    expect(exits).to have_content details[:three_year_annualized_irr]
+    expect(exits).to have_content details[:five_year_annualized_irr]
   end
 
   def assert_net_operating_income(details)
