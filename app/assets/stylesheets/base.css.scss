@@ -1,0 +1,28 @@
+@import "colors";
+
+html, body {
+  height: 100%;
+  background-color: $dark-gray;
+  font-size: 9px;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: $blue;
+  font-weight: 500;
+}
+
+input {
+  margin: 0;
+  border: none;
+  text-align: right;
+  background-color: $light-gray;
+
+  &:focus {
+    outline-color: $dark-gray;
+    outline-width: thin;
+  }
+}

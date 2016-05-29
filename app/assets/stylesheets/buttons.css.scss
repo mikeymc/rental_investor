@@ -1,0 +1,67 @@
+@import "colors";
+
+button:focus {
+  outline: none;
+}
+
+.navbar {
+  button {
+    width: 90px;
+  }
+}
+
+#new-property-row {
+  .btn-sm {
+    padding: 5px 15px;
+    font-size: 10px;
+    line-height: 7px;
+    border-radius: 6px;
+  }
+}
+
+.btn-sm {
+  font-size: 10px;
+  background-color: $white;
+  border-radius: 0;
+  font-weight: 500;
+  border: 1px solid $blue;
+  color: $blue;
+  text-align: center;
+  width: 273px;
+  padding: 1px 10px;
+}
+
+.btn-sm:focus {
+  outline: none;
+  font-size: 10px;
+  background-color: $white;
+  border-radius: 0;
+  font-weight: 500;
+  border: 1px solid $blue;
+  color: $blue;
+}
+
+.btn-sm:active {
+  background-color: $blue;
+  color: $white;
+  box-shadow: none;
+  border: 1px solid $white;
+}
+
+.btn-sm:active:focus {
+  background-color: $blue;
+  color: $white;
+  box-shadow: none;
+  border: 1px solid $white;
+  outline: 1px auto $white;
+}
+
+.btn-sm:hover {
+  outline: none;
+  font-size: 10px;
+  background-color: $white;
+  border-radius: 0;
+  font-weight: 500;
+  border: 1px solid $blue;
+  color: $blue;
+}
