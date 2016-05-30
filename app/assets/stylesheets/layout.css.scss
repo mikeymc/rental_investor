@@ -37,6 +37,10 @@
   float: left;
 }
 
+.action {
+  line-height: 12px;
+}
+
 .no-bottom-border {
   border-bottom: none;
 }
@@ -59,4 +63,12 @@
 
 .bottom-padded {
   padding-bottom: 5px;
+}
+
+.hoverable-row {
+  cursor: default;
+
+  &:hover {
+    background-color: $light-gray;
+  }
 }

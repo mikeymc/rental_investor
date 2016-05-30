@@ -45,18 +45,18 @@ class JourneySteps
 
   def select_property(property)
     if property[:name] == 'moroni'
-      page.find('tr.rental-property-summary', text: '421 Moroni Blvd').click
+      page.find('div.rental-property-summary', text: '421 Moroni Blvd').click
     elsif property[:name] == 'sesame'
-      page.find('tr.rental-property-summary', text: '123 Sesame St').click
+      page.find('div.rental-property-summary', text: '123 Sesame St').click
     elsif property[:name] == 'banana'
-      page.find('tr.rental-property-summary', text: '666 Banana St').click
+      page.find('div.rental-property-summary', text: '666 Banana St').click
     end
   end
 
   def add_new_property
-    expect(page.all('tr.rental-property-summary').size).to eq(2)
+    expect(page.all('div.rental-property-summary').size).to eq(2)
     click_on('New Property')
-    expect(page.all('tr.rental-property-summary').size).to eq(3)
+    expect(page.all('div.rental-property-summary').size).to eq(3)
     fill_in('new_property_street', with: '666 Banana St')
     fill_in('new_property_city', with: 'Fruitvale')
     fill_in('new_property_state', with: 'CA')
@@ -65,9 +65,9 @@ class JourneySteps
   end
 
   def delete_property
-    expect(page.all('tr.rental-property-summary', minimum: 3, maximum: 3).size).to eq(3)
+    expect(page.all('div.rental-property-summary', minimum: 3, maximum: 3).size).to eq(3)
 
-    moroni_property = page.find('tr.rental-property-summary', text: 'Moroni')
+    moroni_property = page.find('div.rental-property-summary', text: 'Moroni')
     moroni_property.find('.delete-property').click
 
     expect(page.all('.rental-property-summary', minimum: 2, maximum: 2).size).to eq(2)

@@ -2,13 +2,14 @@ describe('a property summary', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service');
+    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service', 'property_service');
     this.$scope.summary = {
       street: '123 Sesame Street',
       city: 'Bunville',
       state: 'TN',
       zip_code: '12345'
-    }
+    };
+    spyOn(this.property_service, 'get_total_cost').and.returnValue('1000');
   });
 
   describe('cap rate', function() {

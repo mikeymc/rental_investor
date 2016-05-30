@@ -1,10 +1,12 @@
-<tr class="row rental-property-summary">
-  <td class="col-sm-2 align-left" ng-click="goToProperty(property.id)">{{property.street}}</td>
-  <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.city}}</td>
-  <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.state}}</td>
-  <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.zip_code}}</td>
-  <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.financing_and_income_assumption.number_of_units | number:0}}</td>
-  <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{cap_rate | percentage:2}}</td>
-  <td class="col-sm-1 align-center" ng-click="goToProperty(property.id)">{{total_cost | currency:'$':0}}</td>
-  <td><span class="glyphicon glyphicon-remove delete-property" ng-click="remove({id: property.id})"></span></td>
-</tr>
+<div class="row hoverable-row rental-property-summary">
+  <div class="col-sm-2 add-border-bottom" ng-click="goToProperty(property.id)">{{property.street}}</div>
+  <div class="col-sm-2 add-border-bottom" ng-click="goToProperty(property.id)">{{property.city}}</div>
+  <div class="col-sm-1 add-border-bottom" ng-click="goToProperty(property.id)">{{property.state}}</div>
+  <div class="col-sm-1 add-border-bottom" ng-click="goToProperty(property.id)">{{property.zip_code}}</div>
+  <div class="col-sm-1 add-border-bottom" ng-click="goToProperty(property.id)">{{property.financing_and_income_assumption.number_of_units | number:0}}</div>
+  <div class="col-sm-1 add-border-bottom" ng-click="goToProperty(property.id)">{{cap_rate | percentage:2}}</div>
+  <div class="col-sm-1 add-border-bottom" ng-click="goToProperty(property.id)">{{total_cost | currency:'$':0}}</div>
+  <div class="col-sm-3 add-border-bottom">
+    <span class="action glyphicon glyphicon-remove delete-property" ng-click="remove({id: property.id})"></span>
+  </div>
+</div>
