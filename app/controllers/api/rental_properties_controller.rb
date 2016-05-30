@@ -49,7 +49,7 @@ class Api::RentalPropertiesController < ApplicationController
         professional_fees: 0,
         advertising: 0,
         landscaping: 0,
-        capex: 0,
+        capex: 8,
         other_expenses: 0,
         equipment_depreciation: 0,
         income_tax_rate: 0

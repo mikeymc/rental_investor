@@ -47,3 +47,7 @@ button:focus {
   @extend .btn-sm:active;
   outline: 1px auto $white;
 }
+
+.btn-save, .btn-save:focus, .btn-save:active, .btn-save:hover {
+  background-color: beige;
+}

@@ -315,7 +315,7 @@ class PropertyNumbersEvaluator
         professional_fees: '$0.00',
         advertising: '$0.00',
         landscaping: '$0.00',
-        capital_expenditures: '0.0%',
+        capital_expenditures: '8.0%',
         other_expenses: '$0.00',
         equipment_depreciation: '$0',
         income_tax_rate: '0%'
