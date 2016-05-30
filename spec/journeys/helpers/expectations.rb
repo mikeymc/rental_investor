@@ -37,14 +37,16 @@ class Expectations
     expect(page).to have_content text
   end
 
-  def to_see_properties(names)
+  def to_see_properties(names, options)
     num_properties = names.size
+    expected_cap_rate = options[:updated] ? '9.48%' : '8.36%'
     properties = {
       moroni: {
         street: '421 Moroni Blvd',
         city: 'Salt Lake City',
         state: 'UT',
-        zip: '12345'
+        zip: '12345',
+        cap_rate: expected_cap_rate
       },
       sesame: {
         street: '123 Sesame St',

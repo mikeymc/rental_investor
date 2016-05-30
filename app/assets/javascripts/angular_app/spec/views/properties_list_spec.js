@@ -2,8 +2,10 @@ describe('the properties list view', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', '$httpBackend');
+    this.inject_dependencies('$scope', 'render_template', '$httpBackend', 'key_rent_ratios_service');
+    spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
     this.$httpBackend.expectGET('/api/rental_properties').respond(200, [{}, {}]);
+
     view = this.render_template('investment_properties_pages/properties_list/rental_properties.html', this.$scope);
     this.$httpBackend.flush();
   });

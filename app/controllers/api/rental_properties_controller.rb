@@ -4,7 +4,7 @@ class Api::RentalPropertiesController < ApplicationController
 
   def index
     @rental_properties = current_user.rental_properties
-    render json: @rental_properties
+    render json: serialize(@rental_properties)
   end
 
   def show
@@ -77,7 +77,7 @@ class Api::RentalPropertiesController < ApplicationController
         operating_expense_increases: [0, 0, 0, 0, 0]
       )
     }).save!
-    render json: current_user.rental_properties
+    render json: serialize(current_user.rental_properties)
   end
 
   def update
@@ -136,7 +136,7 @@ class Api::RentalPropertiesController < ApplicationController
     end
 
     RentalProperty.destroy(params[:id])
-    render json: current_user.rental_properties
+    render json: serialize(current_user.rental_properties)
   end
 
   private

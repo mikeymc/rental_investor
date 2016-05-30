@@ -16,6 +16,7 @@ gem 'webmock'
 group :development, :test do
   gem 'byebug'
   gem 'capybara'
+  gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'poltergeist'

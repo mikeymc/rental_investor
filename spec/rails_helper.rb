@@ -9,6 +9,7 @@ require 'rspec/rails'
 require 'capybara/poltergeist'
 require 'selenium-webdriver'
 require 'database_cleaner'
+require 'capybara-screenshot/rspec'
 
 ActiveRecord::Migration.check_pending!
 WebMock.allow_net_connect!
