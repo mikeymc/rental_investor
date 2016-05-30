@@ -39,14 +39,14 @@ class Expectations
 
   def to_see_properties(names, options)
     num_properties = names.size
-    expected_cap_rate = options[:updated] ? '9.48%' : '8.36%'
     properties = {
       moroni: {
         street: '421 Moroni Blvd',
         city: 'Salt Lake City',
         state: 'UT',
         zip: '12345',
-        cap_rate: expected_cap_rate
+        cap_rate: options[:updated] ? '9.48%' : '8.36%',
+        asking_price: options[:updated] ? '$3,233,435' : '$3,033,420'
       },
       sesame: {
         street: '123 Sesame St',
