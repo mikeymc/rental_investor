@@ -2,7 +2,7 @@
   <navbar></navbar>
   <div class="col-md-10 col-md-offset-1">
     <div class="row" style="padding-bottom: 5px;">
-        <button class="btn btn-primary btn-sm" ng-click="show_add_property_row()">New Property</button>
+        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#my-modal">New Property</button>
     </div>
     <div class="row">
       <div class="col-sm-2 subsection-header align-left">Street</div>
@@ -14,14 +14,30 @@
       <div class="col-sm-1 subsection-header align-right">Total Cost</div>
       <div class="col-sm-3 subsection-header align-right">Actions</div>
     </div>
-    <div id="new-property-row" class="row rental-property-summary" ng-if="show_new_property_row">
-      <div class="row" colspan="5">
-        <new-property-drawer></new-property-drawer>
-      </div>
-    </div>
     <div rental-property-summary="property"
         remove="remove(id)"
         ng-repeat="property in rental_properties">
     </div>
   </div>
+
+  <div id="my-modal" class="modal" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Property</h4>
+        </div>
+        <div class="modal-body">
+          <new-property-drawer></new-property-drawer>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-default" ng-click="cancel()" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary btn-default" ng-click="save_new_property()" data-dismiss="modal">
+            Create
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+

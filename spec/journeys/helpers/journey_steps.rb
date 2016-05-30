@@ -56,7 +56,6 @@ class JourneySteps
   def add_new_property
     expect(page.all('div.rental-property-summary').size).to eq(2)
     click_on('New Property')
-    expect(page.all('div.rental-property-summary').size).to eq(3)
     fill_in('new_property_street', with: '666 Banana St')
     fill_in('new_property_city', with: 'Fruitvale')
     fill_in('new_property_state', with: 'CA')
