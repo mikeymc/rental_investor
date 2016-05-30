@@ -46,7 +46,8 @@ class Expectations
         state: 'UT',
         zip: '12345',
         cap_rate: options[:updated] ? '9.48%' : '8.36%',
-        asking_price: options[:updated] ? '$3,233,435' : '$3,033,420'
+        asking_price: options[:updated] ? '$3,233,435' : '$3,033,420',
+        units: options[:updated] ? '61' : '60',
       },
       sesame: {
         street: '123 Sesame St',

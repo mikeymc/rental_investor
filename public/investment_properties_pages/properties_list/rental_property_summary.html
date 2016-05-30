@@ -3,6 +3,7 @@
   <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.city}}</td>
   <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.state}}</td>
   <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.zip_code}}</td>
+  <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{property.financing_and_income_assumption.number_of_units | number:0}}</td>
   <td class="col-sm-1 align-left" ng-click="goToProperty(property.id)">{{cap_rate | percentage:2}}</td>
   <td class="col-sm-1 align-center" ng-click="goToProperty(property.id)">{{total_cost | currency:'$':0}}</td>
   <td><span class="glyphicon glyphicon-remove delete-property" ng-click="remove({id: property.id})"></span></td>
