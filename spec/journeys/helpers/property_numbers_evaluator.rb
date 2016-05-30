@@ -329,16 +329,16 @@ class PropertyNumbersEvaluator
         assert_financing_assumptions({
           total_purchase: %w(100% $3,235,435),
           down_payment: %w(20% $647,087),
-          loan_amount: %w(80% $2,588,348.00),
+          loan_amount: %w(80% $2,588,34),
           interest_rate: %w(6.750% 0.563%),
           amortization_period: %w(30 360),
-          loan_payment: %w($16,787.98 $201,455.71)
+          loan_payment: %w($16,788 $201,456)
         })
       else
         assert_financing_assumptions({
           total_purchase: %w(100% $3,033,420),
           down_payment: %w(17% $515,681),
-          loan_amount: %w(83% $2,517,738.60),
+          loan_amount: %w(83% $2,517,739),
           interest_rate: %w(5.750% 0.479%),
           amortization_period: %w(25 300),
           loan_payment: %w($15,839 $190,071)
@@ -351,7 +351,7 @@ class PropertyNumbersEvaluator
         loan_amount: %w(80% $244,328),
         interest_rate: %w(4.000% 0.333%),
         amortization_period: %w(30 360),
-        loan_payment: %w($1,166 $13,997)
+        loan_payment: %w($1,166 $13,998)
       })
     end
   end

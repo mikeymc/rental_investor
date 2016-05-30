@@ -13,7 +13,7 @@ class JourneySteps
   end
 
   def go_back_to_properties_list
-    find('navbar a', text: 'All Properties').click
+    find('navbar a', text: 'Home').click
   end
 
   def login_as(user)
