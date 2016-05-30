@@ -5,7 +5,7 @@ button:focus {
 }
 
 .navbar {
-  button {
+  .btn-sm, .btn-sm:hover, .btn-sm:active, .btn-sm:focus {
     width: 90px;
   }
 }
@@ -13,7 +13,6 @@ button:focus {
 #new-property-row {
   .btn-sm {
     padding: 5px 15px;
-    font-size: 10px;
     line-height: 7px;
     border-radius: 6px;
   }
@@ -23,22 +22,18 @@ button:focus {
   font-size: 10px;
   background-color: $white;
   border-radius: 0;
-  font-weight: 500;
   border: 1px solid $blue;
+  font-weight: 500;
   color: $blue;
+
   text-align: center;
-  width: 273px;
+  width: 100%;
   padding: 1px 10px;
 }
 
-.btn-sm:focus {
+.btn-sm:focus, .btn-sm:hover {
+  @extend .btn-sm;
   outline: none;
-  font-size: 10px;
-  background-color: $white;
-  border-radius: 0;
-  font-weight: 500;
-  border: 1px solid $blue;
-  color: $blue;
 }
 
 .btn-sm:active {
@@ -49,19 +44,6 @@ button:focus {
 }
 
 .btn-sm:active:focus {
-  background-color: $blue;
-  color: $white;
-  box-shadow: none;
-  border: 1px solid $white;
+  @extend .btn-sm:active;
   outline: 1px auto $white;
-}
-
-.btn-sm:hover {
-  outline: none;
-  font-size: 10px;
-  background-color: $white;
-  border-radius: 0;
-  font-weight: 500;
-  border: 1px solid $blue;
-  color: $blue;
 }
