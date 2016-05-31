@@ -624,6 +624,7 @@ class PropertyNumbersEvaluator
     expect(exits).to have_content 'Exit Price'
     expect(exits).to have_content 'Gain on Sale'
     expect(exits).to have_content 'Cap Rate'
+
     details[:one_year_exit_price_gain].each do |item|
       expect(exits.find('.row', text: '1 Year Exit')).to have_content item
     end
@@ -751,7 +752,6 @@ class PropertyNumbersEvaluator
     section = page.find('#operating-revenues')
 
     expect(section).to have_content 'Operating Revenues'
-
     details[:gross_scheduled_rental_income].each do |income|
       expect(section.find('.row', text: 'Gross Scheduled Rent Income')).to have_content income
     end
@@ -774,7 +774,7 @@ class PropertyNumbersEvaluator
 
     expect(section).to have_content 'Operating Expense Projections'
     projections.each do |projection|
-      expect(section.find('.row')).to have_content projection
+      expect(section).to have_content projection
     end
   end
 
@@ -783,7 +783,7 @@ class PropertyNumbersEvaluator
 
     expect(section).to have_content 'Average Monthly Rent'
     projections.each do |projection|
-      expect(section.find('.row')).to have_content projection
+      expect(section).to have_content projection
     end
   end
 
@@ -792,7 +792,7 @@ class PropertyNumbersEvaluator
 
     expect(section).to have_content 'Rental Increase Projections'
     projections.each do |projection|
-      expect(section.find('.row')).to have_content projection
+      expect(section).to have_content projection
     end
   end
 
@@ -800,15 +800,15 @@ class PropertyNumbersEvaluator
     ratios = page.find('#key-rent-ratios')
 
     expect(ratios).to have_content 'Key Numbers'
-    expect(page.find('#key-rent-ratios .row', text: 'Total Square Feet')).to have_content details[:total_area_in_sq_ft]
-    expect(page.find('#key-rent-ratios .row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
-    expect(page.find('#key-rent-ratios .row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
-    expect(page.find('#key-rent-ratios .row', text: 'Total Cost/Sq Ft')).to have_content details[:total_cost_per_sq_ft]
-    expect(page.find('#key-rent-ratios .row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
-    expect(page.find('#key-rent-ratios .row', text: 'Capitalization Rate')).to have_content details[:cap_rate]
-    expect(page.find('#key-rent-ratios .row', text: 'Gross Rent Multiplier')).to have_content details[:gross_rent_multiplier]
-    expect(page.find('#key-rent-ratios .row', text: 'Expenses/Sq Ft (Op Efficiency)')).to have_content details[:operational_efficiency]
-    expect(page.find('#key-rent-ratios .row', text: 'Expenses per Unit')).to have_content details[:expenses_per_unit]
+    expect(ratios.find('.row', text: 'Total Square Feet')).to have_content details[:total_area_in_sq_ft]
+    expect(ratios.find('.row', text: 'Avg Sq Ft/Unit')).to have_content details[:avg_sq_ft_per_unit]
+    expect(ratios.find('.row', text: 'Avg Rent/Sq Ft')).to have_content details[:avg_rent_per_sq_ft]
+    expect(ratios.find('.row', text: 'Total Cost/Sq Ft')).to have_content details[:total_cost_per_sq_ft]
+    expect(ratios.find('.row', text: 'Cost per Unit')).to have_content details[:cost_per_unit]
+    expect(ratios.find('.row', text: 'Capitalization Rate')).to have_content details[:cap_rate]
+    expect(ratios.find('.row', text: 'Gross Rent Multiplier')).to have_content details[:gross_rent_multiplier]
+    expect(ratios.find('.row', text: 'Expenses/Sq Ft (Op Efficiency)')).to have_content details[:operational_efficiency]
+    expect(ratios.find('.row', text: 'Expenses per Unit')).to have_content details[:expenses_per_unit]
   end
 
   def assert_financing_assumptions(details)
@@ -879,6 +879,7 @@ class PropertyNumbersEvaluator
 
   def assert_cost_and_revenue_assumptions(details)
     assumptions = page.find('#cost-and-revenue-assumptions')
+
     expect(assumptions).to have_content 'Cost and Revenue'
     expect(assumptions.find('div', text: 'Land')).to have_content details[:land]
     expect(assumptions.find('div', text: 'Building')).to have_content details[:building]

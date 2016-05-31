@@ -72,34 +72,40 @@ class Expectations
       }
     }
 
-    expect(page.find('.navbar')).not_to have_content 'All Properties'
-    expect(page.all('.rental-property-summary', minimum: num_properties).size).to eq num_properties
+    list = page.find('.rental-properties-list')
+
+    expect(list.all('.rental-property-summary', minimum: num_properties).size).to eq num_properties
     to_be_on_properties_list_page
+
     names.each do |name|
       properties[name].values.each do |v|
-        expect(page).to have_content v
+        expect(list).to have_content v
       end
     end
   end
 
   def to_be_signed_in_as(email)
-    expect(page.find('navbar')).to have_content email
-    expect(page).to have_content 'Sign Out'
+    navbar = page.find('navbar')
+    expect(navbar).to have_content email
+    expect(navbar).to have_content 'Sign Out'
   end
 
   def to_be_on_the_property_page_for(property)
+    navbar = page.find('navbar')
+
     if (property[:name] == 'moroni')
-      expect(page.find('navbar')).to have_content '421 Moroni Blvd, Salt Lake City, UT 12345'
+      expect(navbar).to have_content '421 Moroni Blvd, Salt Lake City, UT 12345'
     elsif (property[:name] == 'sesame')
-      expect(page.find('navbar')).to have_content '123 Sesame St, Buffalo, NY 67890'
+      expect(navbar).to have_content '123 Sesame St, Buffalo, NY 67890'
     elsif (property[:name] == 'banana')
-      expect(page.find('navbar')).to have_content '666 Banana St, Fruitvale, CA 12345'
+      expect(navbar).to have_content '666 Banana St, Fruitvale, CA 12345'
     end
   end
 
   def to_see_the_correct_values_for_the_property(property)
-    expect(page).to have_content 'Monthly'
-    (1..5).each { |year| expect(page).to have_content "Year #{year}" }
+    time_row = page.find('#time-row')
+    expect(time_row).to have_content('Monthly')
+    (1..5).each { |year| expect(time_row).to have_content "Year #{year}" }
 
     property_numbers_evaluator.verify_the_property_details(property)
     property_numbers_evaluator.verify_the_operating_expenses_inputs(property)
