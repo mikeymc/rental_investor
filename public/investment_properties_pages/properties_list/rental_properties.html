@@ -1,5 +1,6 @@
 <div id="rental-properties" class="container flexbox-parent" ng-controller="RentalPropertiesListController">
-  <navbar></navbar>
+  <navbar/>
+
   <div class="col-md-10 col-md-offset-1">
     <div class="row" style="padding-bottom: 5px;">
         <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#my-modal">New Property</button>
@@ -20,24 +21,6 @@
     </div>
   </div>
 
-  <div id="my-modal" class="modal" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">New Property</h4>
-        </div>
-        <div class="modal-body">
-          <new-property-drawer></new-property-drawer>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary btn-default" ng-click="cancel()" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary btn-default" ng-click="save_new_property()" data-dismiss="modal">
-            Create
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <new-property-modal/>
 </div>
 

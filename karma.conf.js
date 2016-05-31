@@ -12,7 +12,7 @@ module.exports = function(config) {
       'vendor/assets/bower_components/ng-token-auth/dist/ng-token-auth.js',
       'vendor/assets/bower_components/angular-cookie/angular-cookie.js',
       'vendor/assets/bower_components/bootstrap/dist/js/bootstrap.js',
-      'vendor/assets/bower_components/bootstrap/dist/css/bootstrap.css',
+      'vendor/assets/bower_components/bootstrap/js/*.js',
       'app/assets/javascripts/angular_app/modules/**/*.js',
       'app/assets/javascripts/angular_app/controllers/**/*.js',
       'app/assets/javascripts/angular_app/directives/**/*.js',

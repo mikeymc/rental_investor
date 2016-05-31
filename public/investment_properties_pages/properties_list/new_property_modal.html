@@ -1,0 +1,56 @@
+<div id="my-modal" class="modal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">New Property</h4>
+      </div>
+      <div class="modal-body">
+        <table>
+          <tr>
+            <td colspan="4" class="col-sm-6 align-left">
+              <div class="row bottom-padded">
+                <div class="col-sm-5 less-spaced">
+                  <input class="col-sm-12"
+                         type="text"
+                         name="new_property_street"
+                         placeholder="1524 Mulberry Street"
+                         ng-model="new_property.street">
+                </div>
+                <div class="col-sm-3 less-spaced">
+                  <input class="col-sm-12"
+                         type="text"
+                         name="new_property_city"
+                         placeholder="Fruitvale"
+                         ng-model="new_property.city">
+                </div>
+                <div class="col-sm-2 less-spaced">
+                  <input class="col-sm-12"
+                         type="text"
+                         name="new_property_state"
+                         placeholder="CA"
+                         ng-model="new_property.state">
+                </div>
+                <div class="col-sm-2 less-spaced">
+                  <input class="col-sm-12"
+                         type="text"
+                         name="new_property_zip"
+                         placeholder="94212"
+                         ng-model="new_property.zip_code">
+                </div>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-default" ng-click="cancel()" data-dismiss="modal">Cancel
+        </button>
+        <button type="button" class="btn btn-primary btn-default" ng-click="save_new_property()" data-dismiss="modal">
+          Create
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
