@@ -5,6 +5,9 @@ require_relative 'helpers/journey_steps'
 RSpec.describe 'the rental investment tool' do
   before(:each) do
     Rails.application.load_seed
+    if (Capybara.current_driver != :poltergeist)
+      Capybara.current_session.driver.browser.manage.window.resize_to(1280, 800)
+    end
   end
 
   let(:now) { JourneySteps.new }
