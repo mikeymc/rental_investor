@@ -8,6 +8,7 @@ RSpec.describe 'the rental investment tool' do
     if (Capybara.current_driver != :poltergeist)
       Capybara.current_session.driver.browser.manage.window.resize_to(1280, 800)
     end
+    puts ''
   end
 
   let(:now) { JourneySteps.new }

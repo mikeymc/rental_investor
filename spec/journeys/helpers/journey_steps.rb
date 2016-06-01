@@ -1,8 +1,22 @@
 require 'rails_helper'
 
+module Printer
+end
+
 class JourneySteps
   include ::RSpec::Matchers
   include Capybara::DSL
+
+  def self.before(*names)
+    names.each do |name|
+      m = instance_method(name)
+      define_method(name) do |*args, &block|
+        yield
+        puts name.to_s.gsub('_', ' ')
+        m.bind(self).(*args, &block)
+      end
+    end
+  end
 
   def go_home
     visit '/'
@@ -120,4 +134,6 @@ class JourneySteps
     # just click away from the inputs
     page.find('.navbar').click
   end
+
+  before(*instance_methods(false)) { print 'Preparing to ' }
 end

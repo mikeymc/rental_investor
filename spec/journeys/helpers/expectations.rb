@@ -5,7 +5,16 @@ class Expectations
   include ::RSpec::Matchers
   include Capybara::DSL
 
-  attr_accessor :property_numbers_evaluator
+  def self.before(*names)
+    names.each do |name|
+      m = instance_method(name)
+      define_method(name) do |*args, &block|
+        yield
+        puts name.to_s.gsub('_', ' ')
+        m.bind(self).(*args, &block)
+      end
+    end
+  end
 
   def initialize
     @property_numbers_evaluator = PropertyNumbersEvaluator.new
@@ -119,5 +128,13 @@ class Expectations
     property_numbers_evaluator.verify_the_net_operating_income(property)
     property_numbers_evaluator.verify_the_cash_flow_from_operations(property)
     property_numbers_evaluator.verify_the_roi(property)
+  end
+
+  before(*instance_methods(false)) { print 'Expecting to ' }
+
+  private
+
+  def property_numbers_evaluator
+    @property_numbers_evaluator
   end
 end
