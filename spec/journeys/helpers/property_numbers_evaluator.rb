@@ -611,13 +611,13 @@ class PropertyNumbersEvaluator
 
     cfs = page.find('#net-cash-flows')
     details[:one_year_exit_net_cfs].each do |item|
-      expect(cfs.find('.row', text: 'Net CFs from Investment - 1 Yr Exit')).to have_content item
+      expect(cfs.find('.row', text: '1 Yr Exit')).to have_content item
     end
     details[:three_year_exit_net_cfs].each do |item|
-      expect(cfs.find('.row', text: 'Net CFs from Investment - 3 Yr Exit')).to have_content item
+      expect(cfs.find('.row', text: '3 Yr Exit')).to have_content item
     end
     details[:five_year_exit_net_cfs].each do |item|
-      expect(cfs.find('.row', text: 'Net CFs from Investment - 5 Yr Exit')).to have_content item
+      expect(cfs.find('.row', text: '5 Yr Exit')).to have_content item
     end
 
     exits = page.find('#exit-scenarios')
