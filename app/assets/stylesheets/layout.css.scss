@@ -1,7 +1,8 @@
 @import "colors";
 
 .container {
-  width: 1125px;
+  width: 85%;
+  min-width: 1125px;
   background-color: $white;
   margin-bottom: 40px;
   padding-bottom: 20px;
