@@ -75,7 +75,8 @@ class Api::RentalPropertiesController < ApplicationController
       income_and_cost_projection: IncomeAndCostProjection.new(
         rent_increases: [0, 2, 2, 2, 2],
         operating_expense_increases: [0, 0, 0, 0, 0]
-      )
+      ),
+      questionnaire: Questionnaire.new
     }).save!
     render json: serialize(current_user.rental_properties)
   end
@@ -91,6 +92,7 @@ class Api::RentalPropertiesController < ApplicationController
     finance_and_income_assumptions = params[:rental_property][:financing_and_income_assumption]
     operating_expenses_assumption = params[:rental_property][:operating_expenses_assumption]
     income_and_cost_projection = params[:rental_property][:income_and_cost_projection]
+    questionnaire = params[:rental_property][:questionnaire]
     @rental_property.financing_and_income_assumption.update({
       land_cost: finance_and_income_assumptions[:land_cost],
       building_cost: finance_and_income_assumptions[:building_cost],
@@ -124,6 +126,44 @@ class Api::RentalPropertiesController < ApplicationController
       rent_increases: income_and_cost_projection[:rent_increases],
       operating_expense_increases: income_and_cost_projection[:operating_expense_increases],
     })
+    @rental_property.questionnaire.update({
+      reason_owner_is_selling: questionnaire[:reason_owner_is_selling],
+      is_all_work_permitted: questionnaire[:is_all_work_permitted],
+      current_market_rent: questionnaire[:current_market_rent],
+      major_projects_in_the_area: questionnaire[:major_projects_in_the_area],
+      major_employer_in_the_area: questionnaire[:major_employer_in_the_area],
+      does_area_expect_wage_growth: questionnaire[:does_area_expect_wage_growth],
+      would_tenants_pay_more_for_air_conditioning: questionnaire[:would_tenants_pay_more_for_air_conditioning],
+      would_tenants_pay_more_for_a_pool: questionnaire[:would_tenants_pay_more_for_a_pool],
+      is_the_property_in_a_flood_zone: questionnaire[:is_the_property_in_a_flood_zone],
+      are_there_any_covenants_or_caveats: questionnaire[:are_there_any_covenants_or_caveats],
+      what_defects_or_imperfections_exist: questionnaire[:what_defects_or_imperfections_exist],
+      what_is_the_zoning: questionnaire[:what_is_the_zoning],
+      what_fixtures_and_fittings_will_go_with_the_sale: questionnaire[:what_fixtures_and_fittings_will_go_with_the_sale],
+      is_the_foundation_still_structurally_sound: questionnaire[:is_the_foundation_still_structurally_sound],
+      are_there_wiring_or_plumbing_issues: questionnaire[:are_there_wiring_or_plumbing_issues],
+      how_is_the_roof: questionnaire[:how_is_the_roof],
+      is_there_nearby_retail_and_entertainment: questionnaire[:is_there_nearby_retail_and_entertainment],
+      have_there_been_any_offers: questionnaire[:have_there_been_any_offers],
+      are_there_sealant_or_moisture_problems: questionnaire[:are_there_sealant_or_moisture_problems],
+      are_there_signs_of_covered_damage: questionnaire[:are_there_signs_of_covered_damage],
+      is_work_needed_in_the_short_term: questionnaire[:is_work_needed_in_the_short_term],
+      will_a_title_search_reveal_surprises: questionnaire[:will_a_title_search_reveal_surprises],
+      does_the_property_match_what_is_on_the_title: questionnaire[:does_the_property_match_what_is_on_the_title],
+      when_was_the_last_appraisal: questionnaire[:when_was_the_last_appraisal],
+      has_the_owner_previously_tried_to_sell: questionnaire[:has_the_owner_previously_tried_to_sell],
+      how_motivated_is_the_seller: questionnaire[:how_motivated_is_the_seller],
+      has_another_buyer_failed_to_close_due_to_financing: questionnaire[:has_another_buyer_failed_to_close_due_to_financing],
+      positive_attributes_of_the_property: questionnaire[:positive_attributes_of_the_property],
+      negative_attributes_of_the_property: questionnaire[:negative_attributes_of_the_property],
+      how_to_make_money_on_this_property: questionnaire[:how_to_make_money_on_this_property],
+      who_set_the_price: questionnaire[:who_set_the_price],
+      quality_of_finishes_and_fittings: questionnaire[:quality_of_finishes_and_fittings],
+      is_property_under_lease: questionnaire[:is_property_under_lease],
+      how_is_surrounding_property: questionnaire[:how_is_surrounding_property],
+      is_furniture_etc_included: questionnaire[:is_furniture_etc_included],
+      how_many_owners: questionnaire[:how_many_owners]
+    })
     render json: serialize(@rental_property)
   end
 
@@ -147,6 +187,7 @@ class Api::RentalPropertiesController < ApplicationController
       :operating_expenses_assumption,
       :closing_cost,
       :income_and_cost_projection,
+      :questionnaire
     ])
   end
 end

@@ -124,7 +124,8 @@ describe 'rental_properties' do
               id: 2,
               financing_and_income_assumption: {foo: 'bar'},
               operating_expenses_assumption: {foo: 'bar'},
-              income_and_cost_projection: {foo: 'bar'}
+              income_and_cost_projection: {foo: 'bar'},
+              questionnaire: {foo: 'bar'}
             }
           }
 

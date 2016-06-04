@@ -67,7 +67,8 @@ RentalProperty.new(
   income_and_cost_projection: IncomeAndCostProjection.new(
     rent_increases: [0, 3, 3.5, 3, 3],
     operating_expense_increases: [0, -2, -1, 1.5, 2]
-  )
+  ),
+  questionnaire: Questionnaire.new
 ).save!
 
 RentalProperty.create!(
@@ -127,7 +128,8 @@ RentalProperty.create!(
   income_and_cost_projection: IncomeAndCostProjection.new(
     rent_increases: [0, 3, 3.5, 3, 3],
     operating_expense_increases: [0, -2, -1, 1.5, 2]
-  )
+  ),
+  questionnaire: Questionnaire.new
 )
 
 RentalProperty.create!(
@@ -187,5 +189,6 @@ RentalProperty.create!(
   income_and_cost_projection: IncomeAndCostProjection.new(
     rent_increases: [0, 3, 3.5, 3, 3],
     operating_expense_increases: [0, -2, -1, 1.5, 2]
-  )
+  ),
+  questionnaire: Questionnaire.new
 )

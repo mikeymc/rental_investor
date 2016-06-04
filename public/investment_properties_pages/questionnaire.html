@@ -1,0 +1,78 @@
+<div class="container">
+  <navbar></navbar>
+  <div class="row margin-top-sm">
+    <button class="btn btn-primary btn-sm btn-save" ng-click="save()">{{persistence_state}}</button>
+  </div>
+  <div>Why do the owners want to sell?</div>
+  <textarea name="reason-owner-is-selling" cols="30" rows="10" ng-model="rental_property.questionnaire.reason_owner_is_selling"></textarea>
+  <div>Has all work done on the property been permitted?</div>
+  <textarea name="is-all-work-permitted" cols="30" rows="10" ng-model="rental_property.questionnaire.is_all_work_permitted"></textarea>
+  <div>What is the current market rent for this type of property?</div>
+  <textarea name="current-market-rent" cols="30" rows="10" ng-model="rental_property.questionnaire.current_market_rent"></textarea>
+  <div>What major projects are happening in the area?</div>
+  <textarea name="major-projects-in-the-area" cols="30" rows="10" ng-model="rental_property.questionnaire.major_projects_in_the_area"></textarea>
+  <div>Who is the major employer in the area? Are they likely to upsize or downsize?</div>
+  <textarea name="major-employer-in-the-area" cols="30" rows="10" ng-model="rental_property.questionnaire.major_employer_in_the_area"></textarea>
+  <div>Does the local industry have expected wage growth?</div>
+  <textarea name="does-area-expect-wage-growth" cols="30" rows="10" ng-model="rental_property.questionnaire.does_area_expect_wage_growth"></textarea>
+  <div>Would tenants pay more for air conditioning?</div>
+  <textarea name="would-tenants-pay-more-for-air-conditioning" cols="30" rows="10" ng-model="rental_property.questionnaire.would_tenants_pay_more_for_air_conditioning"></textarea>
+  <div>Would tenants pay more for a pool?</div>
+  <textarea name="would-tenants-pay-more-for-a-pool" cols="30" rows="10" ng-model="rental_property.questionnaire.would_tenants_pay_more_for_a_pool"></textarea>
+  <div>Is the property in a known flood zone?</div>
+  <textarea name="is-the-property-in-a-flood-zone" cols="30" rows="10" ng-model="rental_property.questionnaire.is_the_property_in_a_flood_zone"></textarea>
+  <div>Are there any covenants, caveats or any regulatory impositions on the property?</div>
+  <textarea name="are-there-any-covenants-or-caveats" cols="30" rows="10" ng-model="rental_property.questionnaire.are_there_any_covenants_or_caveats"></textarea>
+  <div>What defects or imperfections exist?</div>
+  <textarea name="what-defects-or-imperfections-exist" cols="30" rows="10" ng-model="rental_property.questionnaire.what_defects_or_imperfections_exist"></textarea>
+  <div>What is the zoning of the property? What is the potential for this zoning to change?</div>
+  <textarea name="what-is-the-zoning" cols="30" rows="10" ng-model="rental_property.questionnaire.what_is_the_zoning"></textarea>
+  <div>What fixtures and fittings are part of the purchase and what aren’t?</div>
+  <textarea name="what-fixtures-and-fittings-will-go-with-the-sale" cols="30" rows="10" ng-model="rental_property.questionnaire.what_fixtures_and_fittings_will_go_with_the_sale"></textarea>
+  <div>Is the foundation still structurally sound?</div>
+  <textarea name="is-the-foundation-still-structurally-sound" cols="30" rows="10" ng-model="rental_property.questionnaire.is_the_foundation_still_structurally_sound"></textarea>
+  <div>How old is the roof and what condition is it in?</div>
+  <textarea name="how-is-the-roof" cols="30" rows="10" ng-model="rental_property.questionnaire.how_is_the_roof"></textarea>
+  <div>Are there known wiring or plumbing issues?</div>
+  <textarea name="are-there-wiring-or-plumbing-issues" cols="30" rows="10" ng-model="rental_property.questionnaire.are_there_wiring_or_plumbing_issues"></textarea>
+  <div>Is the property near major shopping centres, cafes, restaurants and so on?</div>
+  <textarea name="is-there-nearby-retail-and-entertainment" cols="30" rows="10" ng-model="rental_property.questionnaire.is_there_nearby_retail_and_entertainment"></textarea>
+  <div>Have there been any offers?</div>
+  <textarea name="have-there-been-any-offers" cols="30" rows="10" ng-model="rental_property.questionnaire.have_there_been_any_offers"></textarea>
+  <div>Does the property have any known sealant or moisture problems?</div>
+  <textarea name="are-there-sealant-or-moisture-problems" cols="30" rows="10" ng-model="rental_property.questionnaire.have_there_been_any_offers"></textarea>
+  <div>Are there signs of internal or external damage that has been covered over?</div>
+  <textarea name="are-there-signs-of-covered-damage" cols="30" rows="10" ng-model="rental_property.questionnaire.are_there_signs_of_covered_damage"></textarea>
+  <div>Is there potential work that may need doing in the short to medium term?</div>
+  <textarea name="is-work-needed-in-the-short-term" cols="30" rows="10" ng-model="rental_property.questionnaire.is_work_needed_in_the_short_term"></textarea>
+  <div>Will a title search reveal something that will affect the purchase?</div>
+  <textarea name="will-a-title-search-reveal-surprises" cols="30" rows="10" ng-model="rental_property.questionnaire.will_a_title_search_reveal_surprises"></textarea>
+  <div>Do the actual physical property and the dwellings on it match what is delineated on the Certificate of Title?</div>
+  <textarea name="does-the-property-match-what-is-on-the-title" cols="30" rows="10" ng-model="rental_property.questionnaire.does_the_property_match_what_is_on_the_title"></textarea>
+  <div>When was the last appraisal?</div>
+  <textarea name="when-was-the-last-appraisal" cols="30" rows="10" ng-model="rental_property.questionnaire.when_was_the_last_appraisal"></textarea>
+  <div>Has the owner previously tried to sell the property?</div>
+  <textarea name="has-the-owner-previously-tried-to-sell" cols="30" rows="10" ng-model="rental_property.questionnaire.has_the_owner_previously_tried_to_sell"></textarea>
+  <div>How motivated is the seller?</div>
+  <textarea name="how-motivated-is-the-seller" cols="30" rows="10" ng-model="rental_property.questionnaire.how_motivated_is_the_seller"></textarea>
+  <div>Has another buyer failed to close due to financing?</div>
+  <textarea name="has-another-buyer-failed-to-close-due-to-financing" cols="30" rows="10" ng-model="rental_property.questionnaire.has_another_buyer_failed_to_close_due_to_financing"></textarea>
+  <div>What are the positive attributes of the property?</div>
+  <textarea name="positive-attributes-of-the-property" cols="30" rows="10" ng-model="rental_property.questionnaire.positive_attributes_of_the_property"></textarea>
+  <div>What are the negative attributes of the property?</div>
+  <textarea name="negative-attributes-of-the-property" cols="30" rows="10" ng-model="rental_property.questionnaire.negative_attributes_of_the_property"></textarea>
+  <div>How can money be made off this property?</div>
+  <textarea name="how-to-make-money-on-this-property" cols="30" rows="10" ng-model="rental_property.questionnaire.how_to_make_money_on_this_property"></textarea>
+  <div>Who set the price, the seller or the agent?</div>
+  <textarea name="who-set-the-price" cols="30" rows="10" ng-model="rental_property.questionnaire.who_set_the_price"></textarea>
+  <div>What is the quality of the finishes and fittings?</div>
+  <textarea name="quality-of-finishes-and-fittings" cols="30" rows="10" ng-model="rental_property.questionnaire.quality_of_finishes_and_fittings"></textarea>
+  <div>Is the property under lease?</div>
+  <textarea name="is-property-under-lease" cols="30" rows="10" ng-model="rental_property.questionnaire.is_property_under_lease"></textarea>
+  <div>What is the surrounding property like?</div>
+  <textarea name="how-is-surrounding-property" cols="30" rows="10" ng-model="rental_property.questionnaire.how_is_surrounding_property"></textarea>
+  <div>Is any furniture etc being sold with the property?</div>
+  <textarea name="is-furniture-etc-included" cols="30" rows="10" ng-model="rental_property.questionnaire.is_furniture_etc_included"></textarea>
+  <div>How many owners has the property had since it was built?</div>
+  <textarea name="how-many-owners" cols="30" rows="10" ng-model="rental_property.questionnaire.how_many_owners"></textarea>
+</div>

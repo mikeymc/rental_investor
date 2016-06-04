@@ -1,5 +1,4 @@
 angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/rental_properties');
 
   $stateProvider.state('sign_in', {
     url: '/sign_in',
@@ -12,9 +11,22 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     controller: 'UserRegistrationsController'
   });
 
-  $stateProvider.state('/rental_properties', {
+  $stateProvider.state('rental_properties', {
     url: '/rental_properties',
     templateUrl: 'investment_properties_pages/properties_list/rental_properties.html',
+    resolve: {
+      auth: function($auth, $state) {
+        return $auth.validateUser().catch(function() {
+          $state.go('sign_in')
+        });
+      }
+    }
+  });
+
+  $stateProvider.state('questionnaire', {
+    url: '/rental_property/:rental_id/questionnaire',
+    templateUrl: 'investment_properties_pages/questionnaire.html',
+    controller: 'QuestionnaireController',
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
@@ -41,4 +53,6 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     url: '/404',
     templateUrl: '404.html'
   });
+
+  $urlRouterProvider.otherwise('/rental_properties');
 });

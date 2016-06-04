@@ -79,11 +79,17 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni', updated: true)
     now.save_the_document
 
+    now.go_to_the_questionnaire_page
+    now.fill_out_the_questionnaire
+    now.save_the_document
+
     now.go_back_to_properties_list
     then_expect.to_see_properties([:moroni, :sesame], updated: true)
     now.select_property(name: 'moroni')
     then_expect.to_be_on_the_property_page_for(name: 'moroni')
     then_expect.to_see_the_correct_values_for_the_property(name: 'moroni', updated: true)
+    now.go_to_the_questionnaire_page
+    then_expect.to_see_the_filled_out_questionnaire
 
     now.go_back_to_properties_list
     then_expect.to_see_properties([:moroni, :sesame], updated: true)

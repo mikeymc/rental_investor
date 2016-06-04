@@ -3,7 +3,7 @@ angular.module('rentals').controller('UserSessionsController', function($scope, 
 
   $scope.login = function(login_form) {
     $scope.submitLogin(login_form).then(function() {
-      $state.go('/rental_properties');
+      $state.go('rental_properties');
     });
   };
 

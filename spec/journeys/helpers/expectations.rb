@@ -130,6 +130,81 @@ class Expectations
     property_numbers_evaluator.verify_the_roi(property)
   end
 
+  def to_see_the_filled_out_questionnaire
+    expect(page.find('navbar')).to have_content 'Moroni'
+    expect(page).to have_content 'Why do the owners want to sell?'
+    expect(page.find('textarea[name=reason-owner-is-selling]').value).to eq('Some reason or another')
+    expect(page).to have_content 'Has all work done on the property been permitted?'
+    expect(page.find('textarea[name=is-all-work-permitted]').value).to eq('No - the garage is not permitted')
+    expect(page).to have_content 'What is the current market rent for this type of property?'
+    expect(page.find('textarea[name=current-market-rent]').value).to eq('$1600')
+    expect(page).to have_content 'What major projects are happening in the area?'
+    expect(page.find('textarea[name=major-projects-in-the-area]').value).to eq('Someone is building a mall')
+    expect(page).to have_content 'Who is the major employer in the area? Are they likely to upsize or downsize?'
+    expect(page.find('textarea[name=major-employer-in-the-area]').value).to eq('Mr BIG. They plan to go up 10000 employees')
+    expect(page).to have_content 'Who is the major employer in the area? Are they likely to upsize or downsize?'
+    expect(page.find('textarea[name=does-area-expect-wage-growth]').value).to eq('Yes, Mr Big is definitely growing')
+    expect(page).to have_content 'Would tenants pay more for air conditioning?'
+    expect(page.find('textarea[name=would-tenants-pay-more-for-air-conditioning]').value).to eq('No, the temperature is usually cool')
+    expect(page).to have_content 'Would tenants pay more for a pool?'
+    expect(page.find('textarea[name=would-tenants-pay-more-for-a-pool]').value).to eq('Yes, a pool would be nice')
+    expect(page).to have_content 'Is the property in a known flood zone?'
+    expect(page.find('textarea[name=is-the-property-in-a-flood-zone]').value).to eq('No, it is on a mountain top')
+    expect(page.find('textarea[name=is-the-property-in-a-flood-zone]').value).to eq('No, it is on a mountain top')
+    expect(page).to have_content 'Are there any covenants, caveats or any regulatory impositions on the property?'
+    expect(page.find('textarea[name=are-there-any-covenants-or-caveats]').value).to eq('Only the religious cult you must join')
+    expect(page).to have_content 'What defects or imperfections exist?'
+    expect(page.find('textarea[name=what-defects-or-imperfections-exist]').value).to eq('The house is missing one wall')
+    expect(page).to have_content 'What is the zoning of the property? What is the potential for this zoning to change?'
+    expect(page.find('textarea[name=what-is-the-zoning]').value).to eq('Right now residential but that could all change tomorrow')
+    expect(page).to have_content 'What fixtures and fittings are part of the purchase and what aren’t?'
+    expect(page.find('textarea[name=what-fixtures-and-fittings-will-go-with-the-sale]').value).to eq('Everything but the doorbell')
+    expect(page).to have_content 'Is the foundation still structurally sound?'
+    expect(page.find('textarea[name=is-the-foundation-still-structurally-sound]').value).to eq('Yes. The bricks look great')
+    expect(page).to have_content 'How old is the roof and what condition is it in?'
+    expect(page.find('textarea[name=how-is-the-roof]').value).to eq('It is caving in just slightly')
+    expect(page).to have_content 'Are there known wiring or plumbing issues?'
+    expect(page.find('textarea[name=are-there-wiring-or-plumbing-issues]').value).to eq('The lights turn on')
+    expect(page).to have_content 'Is the property near major shopping centres, cafes, restaurants and so on?'
+    expect(page.find('textarea[name=is-there-nearby-retail-and-entertainment]').value).to eq('There is a McDonalds')
+    expect(page).to have_content 'Have there been any offers?'
+    expect(page.find('textarea[name=have-there-been-any-offers]').value).to eq('Yes someone tried to buy it')
+    expect(page).to have_content 'Does the property have any known sealant or moisture problems?'
+    expect(page.find('textarea[name=are-there-sealant-or-moisture-problems]').value).to eq('Yes someone tried to buy it')
+    expect(page).to have_content 'Are there signs of internal or external damage that has been covered over?'
+    expect(page.find('textarea[name=are-there-signs-of-covered-damage]').value).to eq('Yes someone tried to buy it')
+    expect(page).to have_content 'Is there potential work that may need doing in the short to medium term?'
+    expect(page.find('textarea[name=is-work-needed-in-the-short-term]').value).to eq('It needs to be painted')
+    expect(page).to have_content 'Will a title search reveal something that will affect the purchase?'
+    expect(page.find('textarea[name=will-a-title-search-reveal-surprises]').value).to eq('It is not owned by the seller')
+    expect(page).to have_content 'Do the actual physical property and the dwellings on it match what is delineated on the Certificate of Title?'
+    expect(page.find('textarea[name=does-the-property-match-what-is-on-the-title]').value).to eq('There is an extra building')
+    expect(page).to have_content 'When was the last appraisal?'
+    expect(page.find('textarea[name=when-was-the-last-appraisal]').value).to eq('This year')
+    expect(page).to have_content 'Has the owner previously tried to sell the property?'
+    expect(page.find('textarea[name=has-the-owner-previously-tried-to-sell]').value).to eq('Last year')
+    expect(page).to have_content 'How motivated is the seller?'
+    expect(page.find('textarea[name=how-motivated-is-the-seller]').value).to eq('Dying to get out')
+    expect(page).to have_content 'Has another buyer failed to close due to financing?'
+    expect(page.find('textarea[name=has-another-buyer-failed-to-close-due-to-financing]').value).to eq('Yeah but he had no money')
+    expect(page).to have_content 'What are the positive attributes of the property?'
+    expect(page.find('textarea[name=positive-attributes-of-the-property]').value).to eq('I like the color')
+    expect(page).to have_content 'What are the negative attributes of the property?'
+    expect(page.find('textarea[name=negative-attributes-of-the-property]').value).to eq('I hate the windows')
+    expect(page).to have_content 'Who set the price, the seller or the agent?'
+    expect(page.find('textarea[name=who-set-the-price]').value).to eq('The seller. He is nuts')
+    expect(page).to have_content 'What is the quality of the finishes and fittings?'
+    expect(page.find('textarea[name=quality-of-finishes-and-fittings]').value).to eq('The fridge is shiny')
+    expect(page).to have_content 'Is the property under lease?'
+    expect(page.find('textarea[name=is-property-under-lease]').value).to eq('Yes it is fully rented')
+    expect(page).to have_content 'What is the surrounding property like?'
+    expect(page.find('textarea[name=how-is-surrounding-property]').value).to eq('All ugly houses')
+    expect(page).to have_content 'Is any furniture etc being sold with the property?'
+    expect(page.find('textarea[name=is-furniture-etc-included]').value).to eq('A huge toolchest')
+    expect(page).to have_content 'How many owners has the property had since it was built?'
+    expect(page.find('textarea[name=how-many-owners]').value).to eq('First owner')
+  end
+
   before(*instance_methods(false)) { print 'Expecting to ' }
 
   private

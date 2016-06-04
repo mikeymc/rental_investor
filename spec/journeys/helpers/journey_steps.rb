@@ -7,17 +7,6 @@ class JourneySteps
   include ::RSpec::Matchers
   include Capybara::DSL
 
-  def self.before(*names)
-    names.each do |name|
-      m = instance_method(name)
-      define_method(name) do |*args, &block|
-        yield
-        puts name.to_s.gsub('_', ' ')
-        m.bind(self).(*args, &block)
-      end
-    end
-  end
-
   def go_home
     visit '/'
   end
@@ -86,6 +75,50 @@ class JourneySteps
     expect(page.all('.rental-property-summary', minimum: 2, maximum: 2).size).to eq(2)
   end
 
+  def go_to_the_questionnaire_page
+    page.find('navbar').find_link('Questionnaire').click
+  end
+
+  def fill_out_the_questionnaire
+    expect(page.find('navbar')).to have_content 'Moroni'
+    expect(page).to have_content 'Why do the owners want to sell?'
+    fill_in('reason-owner-is-selling', with: 'Some reason or another')
+    fill_in('is-all-work-permitted', with: 'No - the garage is not permitted')
+    fill_in('current-market-rent', with: '$1600')
+    fill_in('major-projects-in-the-area', with: 'Someone is building a mall')
+    fill_in('major-employer-in-the-area', with: 'Mr BIG. They plan to go up 10000 employees')
+    fill_in('does-area-expect-wage-growth', with: 'Yes, Mr Big is definitely growing')
+    fill_in('would-tenants-pay-more-for-air-conditioning', with: 'No, the temperature is usually cool')
+    fill_in('would-tenants-pay-more-for-a-pool', with: 'Yes, a pool would be nice')
+    fill_in('is-the-property-in-a-flood-zone', with: 'No, it is on a mountain top')
+    fill_in('are-there-any-covenants-or-caveats', with: 'Only the religious cult you must join')
+    fill_in('what-defects-or-imperfections-exist', with: 'The house is missing one wall')
+    fill_in('what-is-the-zoning', with: 'Right now residential but that could all change tomorrow')
+    fill_in('what-fixtures-and-fittings-will-go-with-the-sale', with: 'Everything but the doorbell')
+    fill_in('is-the-foundation-still-structurally-sound', with: 'Yes. The bricks look great')
+    fill_in('how-is-the-roof', with: 'It is caving in just slightly')
+    fill_in('are-there-wiring-or-plumbing-issues', with: 'The lights turn on')
+    fill_in('is-there-nearby-retail-and-entertainment', with: 'There is a McDonalds')
+    fill_in('are-there-sealant-or-moisture-problems', with: 'Yes someone tried to buy it')
+    fill_in('are-there-signs-of-covered-damage', with: 'Yes someone tried to buy it')
+    fill_in('is-work-needed-in-the-short-term', with: 'It needs to be painted')
+    fill_in('will-a-title-search-reveal-surprises', with: 'It is not owned by the seller')
+    fill_in('does-the-property-match-what-is-on-the-title', with: 'There is an extra building')
+    fill_in('when-was-the-last-appraisal', with: 'This year')
+    fill_in('has-the-owner-previously-tried-to-sell', with: 'Last year')
+    fill_in('has-another-buyer-failed-to-close-due-to-financing', with: 'Yeah but he had no money')
+    fill_in('how-motivated-is-the-seller', with: 'Dying to get out')
+    fill_in('positive-attributes-of-the-property', with: 'I like the color')
+    fill_in('negative-attributes-of-the-property', with: 'I hate the windows')
+    fill_in('how-to-make-money-on-this-property', with: 'Burn it and get insurance money')
+    fill_in('who-set-the-price', with: 'The seller. He is nuts')
+    fill_in('quality-of-finishes-and-fittings', with: 'The fridge is shiny')
+    fill_in('is-property-under-lease', with: 'Yes it is fully rented')
+    fill_in('how-is-surrounding-property', with: 'All ugly houses')
+    fill_in('is-furniture-etc-included', with: 'A huge toolchest')
+    fill_in('how-many-owners', with: 'First owner')
+  end
+
   def save_the_document
     click_on('Save')
     expect(page).to have_content 'Saved!'
@@ -95,6 +128,7 @@ class JourneySteps
   end
 
   def update_property
+    expect(page.find('navbar')).to have_content 'Moroni'
     page.find('#land-cost-input').send_keys('600000')
     page.find('#building-cost-input').send_keys('2600000')
     page.find('#improvements-input').send_keys('15')
@@ -133,6 +167,17 @@ class JourneySteps
 
     # just click away from the inputs
     page.find('.navbar').click
+  end
+
+  def self.before(*names)
+    names.each do |name|
+      m = instance_method(name)
+      define_method(name) do |*args, &block|
+        yield
+        puts name.to_s.gsub('_', ' ')
+        m.bind(self).(*args, &block)
+      end
+    end
   end
 
   before(*instance_methods(false)) { print 'Preparing to ' }
