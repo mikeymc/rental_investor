@@ -131,6 +131,26 @@ describe 'rental_properties' do
 
           expect(response.status).to eq(200)
         end
+
+        describe 'when the property does not yet have a questionnaire but the user adds one' do
+          it 'creates a questionnaire and then saves it' do
+            allow_any_instance_of(Api::RentalPropertiesController).to receive(:current_user).and_return(@user)
+
+            RentalProperty.find(2).questionnaire = nil
+
+            put '/api/rental_properties/2', {
+              rental_property: {
+                id: 2,
+                financing_and_income_assumption: {foo: 'bar'},
+                operating_expenses_assumption: {foo: 'bar'},
+                income_and_cost_projection: {foo: 'bar'},
+                questionnaire: {reason_owner_is_selling: 'some-reason'}
+              }
+            }
+
+            expect(response.status).to eq(200)
+          end
+        end
       end
 
       describe 'when the user is updating a property owned by someone else' do

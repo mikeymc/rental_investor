@@ -93,6 +93,11 @@ class Api::RentalPropertiesController < ApplicationController
     operating_expenses_assumption = params[:rental_property][:operating_expenses_assumption]
     income_and_cost_projection = params[:rental_property][:income_and_cost_projection]
     questionnaire = params[:rental_property][:questionnaire]
+
+    if @rental_property.questionnaire.nil?
+      @rental_property.questionnaire = Questionnaire.new
+    end
+
     @rental_property.financing_and_income_assumption.update({
       land_cost: finance_and_income_assumptions[:land_cost],
       building_cost: finance_and_income_assumptions[:building_cost],
