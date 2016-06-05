@@ -65,6 +65,10 @@
   margin-right: 5px;
 }
 
+.questionnaire-link {
+  @extend .property-address;
+}
+
 .logged-in-user {
   vertical-align: middle;
   padding-right: 5px;

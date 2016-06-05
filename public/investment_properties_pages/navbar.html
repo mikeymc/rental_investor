@@ -2,8 +2,8 @@
   <li class="property-address" ng-if="show_home_button()">
     <a ui-sref="rental_properties" style="padding-left: 5px;">Home</a> |
   </li>
-  <li class="property-address">{{address}}</li>
-  <li class="property-address">
+  <li class="property-address" ng-if="address">{{address}}</li>
+  <li class="questionnaire-link" ng-if="show_questionnaire_button()">
     <a ui-sref="questionnaire({rental_id: rental_property.id})">Questionnaire</a>
   </li>
   <li class="float-right">
