@@ -4,11 +4,10 @@ angular.module('rentals').directive('rentalPropertySummary', function($state, ke
     restrict: 'A',
     replace: true,
     scope: {
-      rentalPropertySummary: '=',
+      property: '=rentalPropertySummary',
       remove: '&'
     },
     link: function($scope) {
-      $scope.property = $scope.rentalPropertySummary;
       $scope.$watch('property', function() {
         if (!$scope.property) {
           return;
