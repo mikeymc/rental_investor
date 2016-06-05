@@ -4,11 +4,6 @@ class AddQuestionnaire < ActiveRecord::Migration
       t.text :reason_owner_is_selling
       t.text :is_all_work_permitted
       t.text :current_market_rent
-      t.text :major_projects_in_the_area
-      t.text :major_employer_in_the_area
-      t.text :does_area_expect_wage_growth
-      t.text :would_tenants_pay_more_for_air_conditioning
-      t.text :would_tenants_pay_more_for_a_pool
       t.text :is_the_property_in_a_flood_zone
       t.text :are_there_any_covenants_or_caveats
       t.text :what_defects_or_imperfections_exist

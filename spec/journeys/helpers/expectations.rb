@@ -136,18 +136,6 @@ class Expectations
     expect(page.find('textarea[name=reason-owner-is-selling]').value).to eq('Some reason or another')
     expect(page).to have_content 'Has all work done on the property been permitted?'
     expect(page.find('textarea[name=is-all-work-permitted]').value).to eq('No - the garage is not permitted')
-    expect(page).to have_content 'What is the current market rent for this type of property?'
-    expect(page.find('textarea[name=current-market-rent]').value).to eq('$1600')
-    expect(page).to have_content 'What major projects are happening in the area?'
-    expect(page.find('textarea[name=major-projects-in-the-area]').value).to eq('Someone is building a mall')
-    expect(page).to have_content 'Who is the major employer in the area? Are they likely to upsize or downsize?'
-    expect(page.find('textarea[name=major-employer-in-the-area]').value).to eq('Mr BIG. They plan to go up 10000 employees')
-    expect(page).to have_content 'Who is the major employer in the area? Are they likely to upsize or downsize?'
-    expect(page.find('textarea[name=does-area-expect-wage-growth]').value).to eq('Yes, Mr Big is definitely growing')
-    expect(page).to have_content 'Would tenants pay more for air conditioning?'
-    expect(page.find('textarea[name=would-tenants-pay-more-for-air-conditioning]').value).to eq('No, the temperature is usually cool')
-    expect(page).to have_content 'Would tenants pay more for a pool?'
-    expect(page.find('textarea[name=would-tenants-pay-more-for-a-pool]').value).to eq('Yes, a pool would be nice')
     expect(page).to have_content 'Is the property in a known flood zone?'
     expect(page.find('textarea[name=is-the-property-in-a-flood-zone]').value).to eq('No, it is on a mountain top')
     expect(page.find('textarea[name=is-the-property-in-a-flood-zone]').value).to eq('No, it is on a mountain top')

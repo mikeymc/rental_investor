@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 20160604173329) do
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
   create_table "income_and_cost_projections", force: :cascade do |t|
-    t.decimal "rent_increases",              default: [#<BigDecimal:7fc613de1c10,'0.0',9(18)>, #<BigDecimal:7fc613de1b70,'0.0',9(18)>, #<BigDecimal:7fc613de1af8,'0.0',9(18)>, #<BigDecimal:7fc613de1a58,'0.0',9(18)>, #<BigDecimal:7fc613de1940,'0.0',9(18)>], array: true
-    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fc6140a7f58,'0.0',9(18)>, #<BigDecimal:7fc6140a7ee0,'0.0',9(18)>, #<BigDecimal:7fc6140a7e68,'0.0',9(18)>, #<BigDecimal:7fc6140a7df0,'0.0',9(18)>, #<BigDecimal:7fc6140a7d78,'0.0',9(18)>], array: true
+    t.decimal "rent_increases",              default: [#<BigDecimal:7fa346e53030,'0.0',9(18)>, #<BigDecimal:7fa346e52fb8,'0.0',9(18)>, #<BigDecimal:7fa346e52f40,'0.0',9(18)>, #<BigDecimal:7fa346e52ec8,'0.0',9(18)>, #<BigDecimal:7fa346e52e50,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fa346e524c8,'0.0',9(18)>, #<BigDecimal:7fa346e52450,'0.0',9(18)>, #<BigDecimal:7fa346e523d8,'0.0',9(18)>, #<BigDecimal:7fa346e52360,'0.0',9(18)>, #<BigDecimal:7fa346e522e8,'0.0',9(18)>], array: true
     t.integer "rental_property_id"
   end
 
@@ -88,11 +88,6 @@ ActiveRecord::Schema.define(version: 20160604173329) do
     t.text    "reason_owner_is_selling"
     t.text    "is_all_work_permitted"
     t.text    "current_market_rent"
-    t.text    "major_projects_in_the_area"
-    t.text    "major_employer_in_the_area"
-    t.text    "does_area_expect_wage_growth"
-    t.text    "would_tenants_pay_more_for_air_conditioning"
-    t.text    "would_tenants_pay_more_for_a_pool"
     t.text    "is_the_property_in_a_flood_zone"
     t.text    "are_there_any_covenants_or_caveats"
     t.text    "what_defects_or_imperfections_exist"

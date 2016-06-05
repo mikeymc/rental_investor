@@ -134,12 +134,6 @@ class Api::RentalPropertiesController < ApplicationController
     @rental_property.questionnaire.update({
       reason_owner_is_selling: questionnaire[:reason_owner_is_selling],
       is_all_work_permitted: questionnaire[:is_all_work_permitted],
-      current_market_rent: questionnaire[:current_market_rent],
-      major_projects_in_the_area: questionnaire[:major_projects_in_the_area],
-      major_employer_in_the_area: questionnaire[:major_employer_in_the_area],
-      does_area_expect_wage_growth: questionnaire[:does_area_expect_wage_growth],
-      would_tenants_pay_more_for_air_conditioning: questionnaire[:would_tenants_pay_more_for_air_conditioning],
-      would_tenants_pay_more_for_a_pool: questionnaire[:would_tenants_pay_more_for_a_pool],
       is_the_property_in_a_flood_zone: questionnaire[:is_the_property_in_a_flood_zone],
       are_there_any_covenants_or_caveats: questionnaire[:are_there_any_covenants_or_caveats],
       what_defects_or_imperfections_exist: questionnaire[:what_defects_or_imperfections_exist],

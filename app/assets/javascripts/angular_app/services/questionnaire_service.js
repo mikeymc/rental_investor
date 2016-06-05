@@ -18,34 +18,9 @@ angular.module('rentals').service('questionnaire_service', function() {
         field: 'current_market_rent'
       },
       {
-        prompt: 'What major projects are happening in the area?',
-        name: 'major-projects-in-the-area',
-        field: 'major_projects_in_the_area'
-      },
-      {
         prompt: 'Has all work done on the property been permitted?',
         name: 'is-all-work-permitted',
         field: 'is_all_work_permitted'
-      },
-      {
-        prompt: 'Who is the major employer in the area? Are they likely to upsize or downsize?',
-        name: 'major-employer-in-the-area',
-        field: 'major_employer_in_the_area'
-      },
-      {
-        prompt: 'Does the local industry have expected wage growth?',
-        name: 'does-area-expect-wage-growth',
-        field: 'does_area_expect_wage_growth'
-      },
-      {
-        prompt: 'Would tenants pay more for air conditioning?',
-        name: 'would-tenants-pay-more-for-air-conditioning',
-        field: 'would_tenants_pay_more_for_air_conditioning'
-      },
-      {
-        prompt: 'Would tenants pay more for a pool?',
-        name: 'would-tenants-pay-more-for-a-pool',
-        field: 'would_tenants_pay_more_for_a_pool'
       },
       {
         prompt: 'Is the property in a known flood zone?',

@@ -84,12 +84,6 @@ class JourneySteps
     expect(page).to have_content 'Why do the owners want to sell?'
     fill_in('reason-owner-is-selling', with: 'Some reason or another')
     fill_in('is-all-work-permitted', with: 'No - the garage is not permitted')
-    fill_in('current-market-rent', with: '$1600')
-    fill_in('major-projects-in-the-area', with: 'Someone is building a mall')
-    fill_in('major-employer-in-the-area', with: 'Mr BIG. They plan to go up 10000 employees')
-    fill_in('does-area-expect-wage-growth', with: 'Yes, Mr Big is definitely growing')
-    fill_in('would-tenants-pay-more-for-air-conditioning', with: 'No, the temperature is usually cool')
-    fill_in('would-tenants-pay-more-for-a-pool', with: 'Yes, a pool would be nice')
     fill_in('is-the-property-in-a-flood-zone', with: 'No, it is on a mountain top')
     fill_in('are-there-any-covenants-or-caveats', with: 'Only the religious cult you must join')
     fill_in('what-defects-or-imperfections-exist', with: 'The house is missing one wall')
