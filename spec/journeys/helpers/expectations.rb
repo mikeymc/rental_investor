@@ -170,9 +170,9 @@ class Expectations
     expect(page).to have_content 'Have there been any offers?'
     expect(page.find('textarea[name=have-there-been-any-offers]').value).to eq('Yes someone tried to buy it')
     expect(page).to have_content 'Does the property have any known sealant or moisture problems?'
-    expect(page.find('textarea[name=are-there-sealant-or-moisture-problems]').value).to eq('Yes someone tried to buy it')
+    expect(page.find('textarea[name=are-there-sealant-or-moisture-problems]').value).to eq('Yes the roof is leaking')
     expect(page).to have_content 'Are there signs of internal or external damage that has been covered over?'
-    expect(page.find('textarea[name=are-there-signs-of-covered-damage]').value).to eq('Yes someone tried to buy it')
+    expect(page.find('textarea[name=are-there-signs-of-covered-damage]').value).to eq('No everything looks on the up and up')
     expect(page).to have_content 'Is there potential work that may need doing in the short to medium term?'
     expect(page.find('textarea[name=is-work-needed-in-the-short-term]').value).to eq('It needs to be painted')
     expect(page).to have_content 'Will a title search reveal something that will affect the purchase?'
