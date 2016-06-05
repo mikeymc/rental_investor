@@ -16,6 +16,17 @@
   @include column-adjust(24, $grid-gutter-width);
 }
 
+.questionnaire {
+  width: 60%;
+  margin: auto;
+  display: block;
+  padding-top: 10px;
+
+  textarea {
+    width: 100%;
+  }
+}
+
 .notification {
   float: right;
   color: $white;

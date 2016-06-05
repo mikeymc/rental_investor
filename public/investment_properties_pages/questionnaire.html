@@ -1,8 +1,20 @@
 <div class="container">
   <navbar></navbar>
-  <save-button rental-id="rental_id" rental-property="rental_property"></save-button>
-  <div ng-repeat="question in questions">
-    <div>{{question.prompt}}</div>
-    <textarea name="{{question.name}}" cols="30" rows="10" ng-model="rental_property.questionnaire[question.field]"></textarea>
+  <div class="questionnaire">
+    <div class="row">
+      <div class="col-sm-2">
+        <save-button rental-id="rental_id" rental-property="rental_property"></save-button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="top-padded" ng-repeat="question in questions">
+        <div><b>{{question.prompt}}</b></div>
+        <textarea name="{{question.name}}"
+                  cols="30"
+                  rows="6"
+                  ng-model="rental_property.questionnaire[question.field]">
+      </textarea>
+      </div>
+    </div>
   </div>
 </div>
