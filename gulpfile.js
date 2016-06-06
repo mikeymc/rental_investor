@@ -20,12 +20,13 @@ gulp.task('watch', ['sass:compile', 'hologram'], function() {
   gulp.watch(scripts, ['sass:compile', 'hologram']);
 });
 
-gulp.task('sass:compile', function() {
-  return gulp.src(scripts)
+gulp.task('sass:compile', function(callback) {
+  gulp.src(scripts)
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(gulp.dest('./public/styleguide/css'));
+  callback();
 });
 
-gulp.task('hologram', function() {
+gulp.task('hologram', ['sass:compile'], function() {
   shell.exec('hologram');
 });
