@@ -58,6 +58,33 @@ describe('the navbar', function() {
     });
   });
 
+  describe('the financials link', function() {
+    describe('when on the properties list page', function() {
+      it('does not show the link', function() {
+        this.$state.go('rental_properties');
+        view = this.render_template('<navbar/>', this.$scope);
+
+        expect(view).not.toContainText('Financials');
+      });
+    });
+
+    describe('when on the property page', function() {
+      it('shows the link', function() {
+        this.$state.go('rental_property', {rental_id: 1});
+        view = this.render_template('<navbar/>', this.$scope);
+
+        expect(view.find('a:contains(Financials)')).toExist();
+      });
+
+      it('links to the financials', function() {
+        this.$state.go('rental_property', {rental_id: 1});
+        view = this.render_template('<navbar/>', this.$scope);
+
+        expect(view.find('a:contains(Financials)').attr('ui-sref')).toEqual('rental_property({rental_id: rental_property.id})');
+      })
+    });
+  });
+
   describe('the questionnaire link', function() {
     describe('when on the properties list page', function() {
       it('does not show the link', function() {

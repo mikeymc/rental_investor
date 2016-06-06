@@ -69,6 +69,10 @@
   @extend .property-address;
 }
 
+.financials-link {
+  @extend .property-address;
+}
+
 .logged-in-user {
   vertical-align: middle;
   padding-right: 5px;

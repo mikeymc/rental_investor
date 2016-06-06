@@ -15,11 +15,7 @@ angular.module('rentals').directive('navbar', function($state) {
         $scope.address = full_address($scope.rental_property);
       });
 
-      $scope.show_home_button = function() {
-        return $state.current.name != 'rental_properties';
-      };
-
-      $scope.show_questionnaire_button = function() {
+      $scope.show_property_buttons = function() {
         return $state.current.name != 'rental_properties';
       };
 
