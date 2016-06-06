@@ -24,7 +24,9 @@
 /public/assets/*.gz
 /public/assets/*.css
 /public/assets/bootstrap*
-/public/assetes/stylesheets/.sass-cache
+/public/assets/stylesheets/.sass-cache
+/public/assets/stylesheets/.sass-cache
+/public/styleguide*
 .sass-cache
 .byebug_history
 
