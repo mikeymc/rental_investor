@@ -18,6 +18,7 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-screenshot'
   gem 'database_cleaner'
+  gem 'hologram'
   gem 'launchy'
   gem 'poltergeist'
   gem 'rspec'

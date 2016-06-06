@@ -1,3 +1,29 @@
+/*doc
+---
+title: Navbar
+name: navbar
+category: basics
+---
+```html_example
+  <div class="navbar navbar-default navbar-static-top">
+    <li class="property-address">
+      <a style="padding-left: 5px;">Home</a>
+    </li>
+    <li class="property-address">456 Banana St, Fruitvale, CA 12345</li>
+    <li class="questionnaire-link">
+      <a>Questionnaire</a>
+    </li>
+    <li class="financials-link">
+      <a>Financials</a>
+    </li>
+    <li class="float-right">
+      <span class="logged-in-user">Logged In User</span>
+      <button class="btn btn-default btn-sm">Sign Out</button>
+    </li>
+  </div>
+```
+*/
+
 /*
  *= require_self
  *= require_tree .
@@ -6,11 +32,11 @@
 @import "bootstrap";
 @import "vars";
 @import "mixins";
-@import "colors";
-@import "base";
-@import "faux-modal";
-@import "layout";
-@import "buttons";
+@import "_colors.css.scss";
+@import "_base.css.scss";
+@import "_faux-modal.css.scss";
+@import "_layout.css.scss";
+@import "_buttons.css.scss";
 
 .grid-24-across {
   @include column-adjust(24, $grid-gutter-width);
