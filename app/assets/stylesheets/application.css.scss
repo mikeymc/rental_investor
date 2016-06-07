@@ -2,7 +2,7 @@
 ---
 title: Navbar
 name: navbar
-category: basics
+category: components
 ---
 ```html_example
   <div class="navbar navbar-default navbar-static-top">
@@ -26,9 +26,9 @@ category: basics
 
 /*doc
 ---
-title: Properties
+title: Properties List
 name: properties
-category: properties
+category: components
 ---
 ```html_example
 <div id="rental-properties" class="container flexbox-parent" ng-controller="RentalPropertiesListController">
@@ -89,9 +89,9 @@ category: properties
 
 /*doc
 ---
-title: Inputs
+title: Questionnaire Item
 name: inputs
-category: inputs
+category: components
 ---
 ```html_example
   <div class="questionnaire">
@@ -103,9 +103,9 @@ category: inputs
 
 /*doc
 ---
-title: Authentication and Registration
+title: Authentication Faux Modal
 name: auth
-category: auth
+category: components
 ---
 ```html_example
   <div class="faux-modal">
@@ -139,6 +139,14 @@ category: auth
     </div>
   </div>
 ```
+*/
+
+/*doc
+---
+title: Registration Faux Modal
+name: reg
+category: components
+---
 ```html_example
   <div class="faux-modal">
     <div class="centered">
