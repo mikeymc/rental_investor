@@ -1,3 +1,50 @@
+/*doc
+---
+title: Colors
+name: colors
+category: colors
+---
+```html_example
+  <div class="clearfix">
+    <div class="docswatch">
+      <div>Red</div>
+        <div class="swatch-item" style="background-color: red;">
+      </div>
+    </div>
+    <div class="docswatch">
+      <div>White</div>
+        <div class="swatch-item" style="background-color: white;">
+      </div>
+    </div>
+    <div class="docswatch">
+      <div>Blue</div>
+        <div class="swatch-item" style="background-color: #5894b9;">
+      </div>
+    </div>
+    <div class="docswatch">
+      <div>Light Gray</div>
+        <div class="swatch-item" style="background-color: #EAEAEA;">
+      </div>
+    </div>
+    <div class="docswatch">
+      <div>Medium Gray</div>
+        <div class="swatch-item" style="background-color: #AAA;">
+      </div>
+    </div>
+    <div class="docswatch">
+      <div>Dark Gray</div>
+        <div class="swatch-item" style="background-color: #676767;">
+      </div>
+    </div>
+    <div class="docswatch">
+      <div>Black</div>
+        <div class="swatch-item" style="background-color: #555;">
+      </div>
+    </div>
+  </div>
+```
+*/
+
 $white: white;
 $blue: #5894b9;
 $red: red;

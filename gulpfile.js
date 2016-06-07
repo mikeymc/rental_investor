@@ -5,7 +5,7 @@ var shell = require('shelljs');
 
 var scripts = [
   './app/assets/stylesheets/**/*.css.scss',
-  './styleguide_assets/*.html'
+  './styleguide/styleguide_assets/*.html'
 ];
 
 var sassOptions = {

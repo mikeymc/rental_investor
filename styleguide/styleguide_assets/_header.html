@@ -1,10 +1,22 @@
 <!doctype html>
-<html>
+<html style="background-color: whitesmoke;">
   <head>
     <title>Investment Properties Styleguide: <%= title %></title>
     <link rel="stylesheet" href="./css/application.css.css">
+    <style>
+      .swatch-item {
+        height: 200px;
+        width: 200px;
+        border: 1px solid #ccc;
+      }
+
+      .docswatch {
+        float: left;
+        margin: 3px;
+      }
+    </style>
   </head>
-  <body style="background-color: white;">
+  <body style="background-color: whitesmoke;">
     <div>
       <nav>
         <ul>
@@ -14,6 +26,7 @@
         </ul>
       </nav>
 
+      <h1>The Investment Properties Styleguide</h1>
       <section class="content" style="width: 80%; margin: auto;">
         <ul>
         <% @blocks.each do |b| %>
