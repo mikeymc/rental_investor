@@ -1,3 +1,103 @@
+/*
+ *= require_self
+ *= require_tree .
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "vars";
+@import "mixins";
+@import "_colors.css.scss";
+@import "_base.css.scss";
+@import "_faux-modal.css.scss";
+@import "_layout.css.scss";
+@import "_buttons.css.scss";
+
+.grid-24-across {
+  @include column-adjust(24, $grid-gutter-width);
+}
+
+.questionnaire {
+  width: 60%;
+  margin: auto;
+  display: block;
+  padding-top: 10px;
+
+  textarea {
+    width: 100%;
+  }
+}
+
+.notification {
+  float: right;
+  color: $white;
+}
+
+#rental-properties {
+  .btn-sm {
+    width: 90px;
+  }
+}
+
+#new-property-row {
+  input {
+    border: thin solid lightgray;
+    text-align: left;
+    background-color: $white;
+  }
+
+  .less-spaced {
+    padding-left: 1px;
+    padding-right: 1px;
+  }
+}
+
+.navbar {
+  background-color: $light-gray;
+  min-height: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom: none;
+}
+
+.property-address {
+  float: left;
+  padding-top: 4px;
+  margin-right: 5px;
+}
+
+.questionnaire-link {
+  @extend .property-address;
+}
+
+.financials-link {
+  @extend .property-address;
+}
+
+.logged-in-user {
+  vertical-align: middle;
+  padding-right: 5px;
+}
+
+.delete-property {
+  float: right;
+  padding-right: 10px;
+  color: $dark-gray;
+}
+
+.subsection-header {
+  @extend .column-header;
+  background-color: $blue;
+  color: $white;
+}
+
+.column-header {
+  font-weight: bold;
+}
+
+.dark-gray {
+  color: $dark-gray;
+}
+
 /*doc
 ---
 title: Navbar
@@ -188,105 +288,3 @@ category: components
   </div>
 ```
 */
-
-
-
-/*
- *= require_self
- *= require_tree .
- */
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "vars";
-@import "mixins";
-@import "_colors.css.scss";
-@import "_base.css.scss";
-@import "_faux-modal.css.scss";
-@import "_layout.css.scss";
-@import "_buttons.css.scss";
-
-.grid-24-across {
-  @include column-adjust(24, $grid-gutter-width);
-}
-
-.questionnaire {
-  width: 60%;
-  margin: auto;
-  display: block;
-  padding-top: 10px;
-
-  textarea {
-    width: 100%;
-  }
-}
-
-.notification {
-  float: right;
-  color: $white;
-}
-
-#rental-properties {
-  .btn-sm {
-    width: 90px;
-  }
-}
-
-#new-property-row {
-  input {
-    border: thin solid lightgray;
-    text-align: left;
-    background-color: $white;
-  }
-
-  .less-spaced {
-    padding-left: 1px;
-    padding-right: 1px;
-  }
-}
-
-.navbar {
-  background-color: $light-gray;
-  min-height: 20px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-bottom: none;
-}
-
-.property-address {
-  float: left;
-  padding-top: 4px;
-  margin-right: 5px;
-}
-
-.questionnaire-link {
-  @extend .property-address;
-}
-
-.financials-link {
-  @extend .property-address;
-}
-
-.logged-in-user {
-  vertical-align: middle;
-  padding-right: 5px;
-}
-
-.delete-property {
-  float: right;
-  padding-right: 10px;
-  color: $dark-gray;
-}
-
-.subsection-header {
-  @extend .column-header;
-  background-color: $blue;
-  color: $white;
-}
-
-.column-header {
-  font-weight: bold;
-}
-
-.dark-gray {
-  color: $dark-gray;
-}
