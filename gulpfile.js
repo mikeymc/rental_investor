@@ -24,6 +24,8 @@ gulp.task('sass:compile', function(callback) {
   gulp.src(scripts)
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(gulp.dest('./public/styleguide/css'));
+  gulp.src('vendor/assets/bower_components/bootstrap-sass/assets/fonts/bootstrap/*')
+    .pipe(gulp.dest('./public/styleguide/css/bootstrap'));
   callback();
 });
 
