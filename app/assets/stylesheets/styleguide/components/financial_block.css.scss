@@ -60,4 +60,109 @@ category: components
     </div>
   </div>
 ```
+
+```html_example
+  <div class="grid-24-across clearfix"">
+    <div class="col-sm-18">
+      <div class="row">
+        <div class="col-sm-8">
+          <div id="property-and-loan-information">
+            <div class="row">
+              <div class="col-sm-24 subsection-header align-center">Property and Loan Information</div>
+            </div>
+            <div id="land-cost" class="row">
+              <span class="col-sm-18">Land Cost</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="land-cost-input"
+                     name="land-cost-input"
+                     format="currency"
+                     symbol="$"
+                     decimals="0"/>
+            </div>
+            <div id="building-cost" class="row">
+              <span class="col-sm-18">Building Cost</span>
+              <input class="col-sm-6"
+                     type="text"
+                     name="building-cost-input"
+                     id="building-cost-input"
+                     format="currency"
+                     symbol="$"
+                     decimals="0"/>
+            </div>
+            <div id="improvements" class="row">
+              <span class="col-sm-18">Improvements</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="improvements-input"
+                     name="improvements-input"
+                     format="currency"
+                     symbol="$"
+                     decimals="0"/>
+            </div>
+            <div id="total-square-feet" class="row">
+              <span class="col-sm-18">Total Square Feet</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="total-square-feet-input"
+                     name="total-square-feet-input"
+                     format="number"/>
+            </div>
+            <div id="number-of-units" class="row">
+              <span class="col-sm-18">Number of Units</span>
+              <input class="col-sm-6"
+                     type="text"
+                     format="number"
+                     id="number-of-units-input"
+                     name="number-of-units-input"/>
+            </div>
+            <div id="average-monthly-rent" class="row">
+              <span class="col-sm-18">Average Monthly Rent</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="average-monthly-rent-input"
+                     name="average-monthly-rent-input"
+                     format="currency"/>
+            </div>
+            <div id="other-income" class="row">
+              <span class="col-sm-18">Other Income</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="other-income-input"
+                     name="other-income-input"
+                     format="currency"/>
+            </div>
+            <div id="equity-percentage" class="row">
+              <span class="col-sm-18">Equity Percentage</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="equity-percentage-input"
+                     name="equity-percentage-input"
+                     format="percentage"
+                     decimals="1"/>
+            </div>
+            <div id="loan-interest-rate" class="row">
+              <span class="col-sm-18">Loan Interest Rate</span>
+              <input class="col-sm-6"
+                     type="text"
+                     id="loan-interest-rate-input"
+                     name="loan-interest-rate-input"
+                     format="percentage"
+                     decimals="3"/>
+            </div>
+            <div id="amortization-period-in-years" class="row">
+              <span class="col-sm-18">Amortization Period in Years</span>
+              <input class="col-sm-6"
+                     type="text"
+                     format="number"
+                     decimals="0"
+                     id="amortization-period-in-years-input"
+                     name="amortization-period-in-years-input"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+```
 */
