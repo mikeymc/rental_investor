@@ -2,32 +2,35 @@ var gulp = require('gulp');
 var sass = require('gulp-sass');
 var shell = require('shelljs');
 
-
-var scripts = [
+var stuffToWatch = [
   './styleguide/styleguide_assets/*.html',
   './app/assets/stylesheets/**/*'
 ];
 
-var sassOptions = {
-  includePaths: ['vendor/assets/bower_components/bootstrap-sass/assets/stylesheets/'],
-  outputStyle: 'expanded',
-  errLogToConsole: true
-};
-
 gulp.task('default', ['watch']);
 
-gulp.task('watch', ['sass:compile', 'hologram'], function() {
-  gulp.watch(scripts, ['sass:compile', 'hologram']);
+gulp.task('watch', ['sass:compile', 'buildStyleGuide', 'importBootstrap'], function() {
+  gulp.watch(stuffToWatch, ['sass:compile', 'buildStyleGuide']);
 });
 
 gulp.task('sass:compile', function(callback) {
-  shell.exec('sass --load-path="vendor/assets/bower_components/bootstrap-sass/assets/stylesheets/" app/assets/stylesheets/application.css.scss ./public/styleguide/css/application.css');
-  gulp.src(['./styleguide/styleguide_assets/*.html']).pipe(gulp.dest('./public/styleguide/css'));
-  gulp.src('vendor/assets/bower_components/bootstrap-sass/assets/fonts/bootstrap/*')
-    .pipe(gulp.dest('./public/styleguide/css/bootstrap'));
+  var loadPath = 'vendor/assets/bower_components/bootstrap-sass/assets/stylesheets/';
+  var inputFile = 'app/assets/stylesheets/application.css.scss';
+  var outputFile = './public/styleguide/css/application.css';
+
+  shell.exec('mkdir -p public/styleguide/css');
+  shell.exec('sass --load-path="' + loadPath + '" ' + inputFile + ' ' + outputFile);
   callback();
 });
 
-gulp.task('hologram', ['sass:compile'], function() {
+gulp.task('importBootstrap', function(callback) {
+  var input = 'vendor/assets/bower_components/bootstrap-sass/assets/fonts/bootstrap/*';
+  var output = './public/styleguide/css/bootstrap';
+
+  gulp.src(input).pipe(gulp.dest(output));
+  callback();
+});
+
+gulp.task('buildStyleGuide', ['sass:compile'], function() {
   shell.exec('hologram');
 });
