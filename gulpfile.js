@@ -4,8 +4,8 @@ var shell = require('shelljs');
 
 
 var scripts = [
-  './app/assets/stylesheets/**/*.css.scss',
-  './styleguide/styleguide_assets/*.html'
+  './styleguide/styleguide_assets/*.html',
+  './app/assets/stylesheets/**/*'
 ];
 
 var sassOptions = {
@@ -21,9 +21,8 @@ gulp.task('watch', ['sass:compile', 'hologram'], function() {
 });
 
 gulp.task('sass:compile', function(callback) {
-  gulp.src(scripts)
-    .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(gulp.dest('./public/styleguide/css'));
+  shell.exec('sass --load-path="vendor/assets/bower_components/bootstrap-sass/assets/stylesheets/" app/assets/stylesheets/application.css.scss ./public/styleguide/css/application.css');
+  gulp.src(['./styleguide/styleguide_assets/*.html']).pipe(gulp.dest('./public/styleguide/css'));
   gulp.src('vendor/assets/bower_components/bootstrap-sass/assets/fonts/bootstrap/*')
     .pipe(gulp.dest('./public/styleguide/css/bootstrap'));
   callback();

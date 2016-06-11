@@ -1,0 +1,62 @@
+/*doc
+---
+title: Properties List
+name: properties
+category: components
+---
+```html_example
+<div id="rental-properties" class="container flexbox-parent" ng-controller="RentalPropertiesListController">
+  <div class="rental-properties-list col-md-10 col-md-offset-1">
+    <div class="row" style="padding-bottom: 5px;">
+        <button class="btn btn-primary btn-sm">New Property</button>
+    </div>
+    <div class="row">
+      <div class="col-sm-2 subsection-header align-left">Street</div>
+      <div class="col-sm-2 subsection-header align-left">City</div>
+      <div class="col-sm-1 subsection-header align-left">State</div>
+      <div class="col-sm-1 subsection-header align-left">Zip Code</div>
+      <div class="col-sm-1 subsection-header align-right">Units</div>
+      <div class="col-sm-1 subsection-header align-right">Cap Rate</div>
+      <div class="col-sm-1 subsection-header align-right">Total Cost</div>
+      <div class="col-sm-3 subsection-header align-right">Actions</div>
+    </div>
+    <div class="row hoverable-row rental-property-summary">
+      <div class="col-sm-2 add-border-bottom">456 Cherry St</div>
+      <div class="col-sm-2 add-border-bottom">Fruitvale</div>
+      <div class="col-sm-1 add-border-bottom">CA</div>
+      <div class="col-sm-1 add-border-bottom">12345</div>
+      <div class="col-sm-1 add-border-bottom align-right"">3</div>
+      <div class="col-sm-1 add-border-bottom align-right"">6.20%</div>
+      <div class="col-sm-1 add-border-bottom align-right"">$439,000</div>
+      <div class="col-sm-3 add-border-bottom align-right">
+        <span class="action glyphicon glyphicon-remove delete-property"></span>
+      </div>
+    </div>
+    <div class="row hoverable-row rental-property-summary">
+      <div class="col-sm-2 add-border-bottom">123 Banana Dr</div>
+      <div class="col-sm-2 add-border-bottom">Fruitvale</div>
+      <div class="col-sm-1 add-border-bottom">CA</div>
+      <div class="col-sm-1 add-border-bottom">12345</div>
+      <div class="col-sm-1 add-border-bottom align-right"">6</div>
+      <div class="col-sm-1 add-border-bottom align-right"">6.20%</div>
+      <div class="col-sm-1 add-border-bottom align-right"">$5,240,000</div>
+      <div class="col-sm-3 add-border-bottom align-right">
+        <span class="action glyphicon glyphicon-remove delete-property"></span>
+      </div>
+    </div>
+    <div class="row hoverable-row rental-property-summary">
+      <div class="col-sm-2 add-border-bottom">789 Apple Ln</div>
+      <div class="col-sm-2 add-border-bottom">Fruitvale</div>
+      <div class="col-sm-1 add-border-bottom">CA</div>
+      <div class="col-sm-1 add-border-bottom">12345</div>
+      <div class="col-sm-1 add-border-bottom align-right"">16</div>
+      <div class="col-sm-1 add-border-bottom align-right"">9.10%</div>
+      <div class="col-sm-1 add-border-bottom align-right"">$9,999,000</div>
+      <div class="col-sm-3 add-border-bottom align-right">
+        <span class="action glyphicon glyphicon-remove delete-property"></span>
+      </div>
+    </div>
+  </div>
+</div>
+```
+*/

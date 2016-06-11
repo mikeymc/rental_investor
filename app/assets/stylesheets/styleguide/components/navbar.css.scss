@@ -1,0 +1,25 @@
+/*doc
+---
+title: Navbar
+name: navbar
+category: components
+---
+```html_example
+  <div class="navbar navbar-default navbar-static-top">
+    <li class="property-address">
+      <a style="padding-left: 5px;">Home</a>
+    </li>
+    <li class="property-address">456 Banana St, Fruitvale, CA 12345</li>
+    <li class="questionnaire-link">
+      <a>Questionnaire</a>
+    </li>
+    <li class="financials-link">
+      <a>Financials</a>
+    </li>
+    <li class="float-right">
+      <span class="logged-in-user">Logged In User</span>
+      <button class="btn btn-default btn-sm">Sign Out</button>
+    </li>
+  </div>
+```
+*/

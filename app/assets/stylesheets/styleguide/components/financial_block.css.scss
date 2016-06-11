@@ -1,0 +1,63 @@
+/*doc
+---
+title: Financial Block
+name: finances
+category: components
+---
+```html_example
+  <div class="grid-24-across clearfix"">
+    <div class="col-sm-18">
+    <div class="row">
+      <div class="col-sm-8">
+        <div id="cost-and-revenue-assumptions">
+          <div class="row">
+            <div class="col-sm-24 subsection-header align-center">Cost and Revenue</div>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Land</span>
+            <span class="col-sm-6 align-right">$6,100,000</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Building</span>
+            <span class="col-sm-6 align-right">$5,123,000</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Improvements</span>
+            <span class="col-sm-6 align-right">$120,000</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Closing Costs</span>
+            <span class="col-sm-6 align-right add-border-bottom">$30,000</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Total Cost</span>
+            <span class="col-sm-6 align-right">$12,124,567</span>
+          </div>
+          <br>
+          <div class="row">
+            <span class="col-sm-18">Number of Units</span>
+            <span class="col-sm-6 align-right">16</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Average Monthly Rent</span>
+            <span class="col-sm-6 align-right add-border-bottom">$1,700</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Gross Monthly Rent</span>
+            <span class="col-sm-6 align-right">$2,100</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Other Income</span>
+            <span class="col-sm-6 align-right add-border-bottom">$600</span>
+          </div>
+          <div class="row">
+            <span class="col-sm-18">Total Gross Monthly Income</span>
+            <span class="col-sm-6 align-right">$9,500</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+```
+*/

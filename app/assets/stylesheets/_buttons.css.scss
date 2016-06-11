@@ -51,24 +51,3 @@ button:focus {
 .btn-save, .btn-save:focus, .btn-save:active, .btn-save:hover {
   background-color: beige;
 }
-
-/*doc
----
-title: Buttons
-name: buttons
-category: buttons
----
-```html_example
-  <button>Raw Button</button>
-```
-```html_example
-  <div style="width: 100px;">
-    <button class="btn-sm">Click Me</button>
-  </div>
-```
-```html_example
-  <div style="width: 100px;">
-    <button class="btn-sm btn-save">Save</button>
-  </div>
-```
-*/
