@@ -1,16 +1,12 @@
 @import "_colors.css.scss";
+@import "_layout.css.scss";
 
 .faux-modal {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 100px;
+  @extend .centerer;
   width: 600px;
-  height: 200px;
+  height: 250px;
   background-color: $white;
   color: $blue;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
 
   input {
     height: 30px;
@@ -23,21 +19,12 @@
     margin-bottom: 10px;
   }
 
-  .centered {
+  .auth-modal {
     margin: auto;
-    width: 92%;
-  }
-
-  .centered.sign-in {
-    margin-left: auto;
-    margin-right: auto;
-    width: 92%;
+    width: 60%;
   }
 
   .form-group {
-    margin: auto;
-    width: 60%;
-
     label {
       margin-bottom: 0;
     }

@@ -1,4 +1,26 @@
+/*doc
+---
+title: Centerer
+name: centerer
+category: layout
+---
+```html_example
+  <div class="centerer" style="height: 200px; width: 400px; border: thin solid black;">
+    <div>Look at me -- I'm centered!</div>
+  </div>
+```
+*/
+
 @import "_colors.css.scss";
+
+.centerer {
+  display: flex;
+  display: -webkit-flex;
+  align-items: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  justify-content: center;
+}
 
 .container {
   width: 85%;
