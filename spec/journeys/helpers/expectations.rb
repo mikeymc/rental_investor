@@ -39,7 +39,7 @@ class Expectations
     expect(page).to have_content 'Street'
     expect(page).to have_content 'City'
     expect(page).to have_content 'State'
-    expect(page).to have_content 'Zip Code'
+    expect(page).to have_content 'Zip'
   end
 
   def to_see(text)
