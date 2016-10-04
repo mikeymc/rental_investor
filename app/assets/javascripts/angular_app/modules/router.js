@@ -38,7 +38,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('financials', {
     url: '/rental_property/:rental_id',
-    templateUrl: 'investment_properties_pages/financials/rental_property.html',
+    templateUrl: 'investment_properties_pages/financials/rentalProperty.html',
     controller: 'RentalPropertyController',
     resolve: {
       auth: function($auth, $state) {
