@@ -1,6 +1,6 @@
-angular.module('rentals').controller('QuestionnaireController', function($scope, $stateParams, property_repository, $timeout, questionnaire_service) {
+angular.module('rentals').controller('QuestionnaireController', function($scope, $stateParams, property_repository, $timeout, questionnaireService) {
   $scope.rental_id = $stateParams.rental_id;
-  $scope.questions = questionnaire_service.get_questionnaire();
+  $scope.questions = questionnaireService.getQuestionnaire();
 
   property_repository.find($stateParams.rental_id).then(function(response) {
     $scope.rental_property = response.data;

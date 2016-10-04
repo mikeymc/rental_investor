@@ -1,11 +1,11 @@
-angular.module('rentals').service('questionnaire_service', function() {
+angular.module('rentals').service('questionnaireService', function() {
   return {
-    get_questionnaire: get_questionnaire
+    getQuestionnaire: getQuestionnaire
   };
 
   /* --- Private --- */
 
-  function get_questionnaire() {
+  function getQuestionnaire() {
     var questions = {
       reason_owner_is_selling: {
         prompt: 'Why do the owners want to sell?',
