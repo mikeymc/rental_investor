@@ -1,6 +1,6 @@
 angular.module('rentals').directive('financingAssumptions', function(property_service) {
   return {
-    templateUrl: 'investment_properties_pages/financials/outputs/financing_assumptions.html',
+    templateUrl: 'investment_properties_pages/financials/outputs/financingAssumptions.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {

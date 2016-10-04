@@ -1,6 +1,6 @@
 angular.module('rentals').directive('exitScenarios', function(property_service, key_rent_ratios_service, exit_scenarios_service, cash_flow_service, irr_service) {
   return {
-    templateUrl: 'investment_properties_pages/financials/outputs/exit_scenarios.html',
+    templateUrl: 'investment_properties_pages/financials/outputs/exitScenarios.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {
