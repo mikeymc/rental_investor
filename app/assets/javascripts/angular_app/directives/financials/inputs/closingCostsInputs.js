@@ -1,6 +1,6 @@
 angular.module('rentals').directive('closingCostsInputs', function(property_service) {
   return {
-    templateUrl: 'investment_properties_pages/financials/inputs/closing_costs.html',
+    templateUrl: 'investment_properties_pages/financials/inputs/closingCosts.html',
     restrict: 'E',
     link: function($scope) {
       $scope.$watch('rental_property', function() {
