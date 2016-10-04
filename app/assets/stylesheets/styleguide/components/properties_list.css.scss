@@ -5,7 +5,7 @@ name: properties
 category: components
 ---
 ```html_example
-<div id="rental-properties" class="container flexbox-parent" ng-controller="RentalPropertiesListController">
+<div id="rental-properties" class="container flexbox-parent" ng-controller="rentalPropertiesListController">
   <div class="rental-properties-list col-md-10 col-md-offset-1">
     <div class="row" style="padding-bottom: 5px;">
         <button class="btn btn-primary btn-sm">New Property</button>
