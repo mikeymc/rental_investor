@@ -27,7 +27,7 @@ describe('the properties list view', function () {
       }
     ]);
 
-    view = this.render_template('investment_properties_pages/properties_list/rental_properties.html', this.$scope);
+    view = this.render_template('investment_properties_pages/properties_list/rentalProperties.html', this.$scope);
     this.$httpBackend.flush();
   });
 

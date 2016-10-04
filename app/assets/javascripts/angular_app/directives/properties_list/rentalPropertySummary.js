@@ -1,6 +1,6 @@
 angular.module('rentals').directive('rentalPropertySummary', function($state, key_rent_ratios_service, property_service, roi_service) {
   return {
-    templateUrl: 'investment_properties_pages/properties_list/rental_property_summary.html',
+    templateUrl: 'investment_properties_pages/properties_list/rentalPropertySummary.html',
     restrict: 'A',
     replace: true,
     scope: {

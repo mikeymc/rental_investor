@@ -1,6 +1,6 @@
 angular.module('rentals').directive('newPropertyModal', function() {
   return {
-    templateUrl: 'investment_properties_pages/properties_list/new_property_modal.html',
+    templateUrl: 'investment_properties_pages/properties_list/newPropertyModal.html',
     restrict: 'E',
     replace: true,
     scope: {
