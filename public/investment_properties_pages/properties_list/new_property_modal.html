@@ -15,6 +15,7 @@
                          type="text"
                          name="new_property_street"
                          placeholder="1524 Mulberry Street"
+                         ng-change="changed()"
                          ng-model="new_property.street">
                 </div>
                 <div class="col-sm-3 less-spaced">
@@ -46,7 +47,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-default" ng-click="cancel()" data-dismiss="modal">Cancel
         </button>
-        <button type="button" class="btn btn-primary btn-default" ng-click="save_new_property()" data-dismiss="modal">
+        <button type="button" class="btn btn-primary btn-default" ng-click="createProperty(new_property)" data-dismiss="modal">
           Create
         </button>
       </div>

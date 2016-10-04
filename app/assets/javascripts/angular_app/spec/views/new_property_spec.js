@@ -2,7 +2,7 @@ describe('the new property dialog', function () {
   var view;
 
   beforeEach(function () {
-    this.inject_dependencies('$scope', 'render_template', 'property_repository');
+    this.inject_dependencies('$scope', '$rootScope', 'render_template', 'property_repository');
   });
 
   describe('items on the dialog', function () {
@@ -31,22 +31,35 @@ describe('the new property dialog', function () {
   });
 
   describe('entering an address and hitting Create', function () {
-    beforeEach(function() {
+    it('calls the callback that was passed in with the right input values', function () {
       this.$scope.save_new_property = function () {};
       spyOn(this.$scope, 'save_new_property');
 
-      view = this.render_template('<new-property-modal/>', this.$scope);
-    });
-
-    it('creates the property', function () {
-      view.find('input[name=new_property_street]').val('street-address-value');
-      view.find('input[name=new_property_city]').val('city-value');
-      view.find('input[name=new_property_state]').val('state-value');
-      view.find('input[name=new_property_zip]').val('zip-value');
-
+      view = this.render_template('<new-property-modal create-property="save_new_property"/>', this.$scope);
+      view.find('input[name=new_property_street]').val('123 Banana Street').trigger('input');
+      view.find('input[name=new_property_city]').val('Fruitvale').trigger('input');
+      view.find('input[name=new_property_state]').val('CA').trigger('input');
+      view.find('input[name=new_property_zip]').val('12345').trigger('input');
       view.find('button:contains(Create)').click();
 
-      expect(this.$scope.save_new_property).toHaveBeenCalled();
+      expect(this.$scope.save_new_property).toHaveBeenCalledWith({
+        street: '123 Banana Street',
+        city: 'Fruitvale',
+        state: 'CA',
+        zip_code: '12345'
+      });
+    });
+  });
+
+  describe('clicking the cancel button', function () {
+    it('calls the cancel callback', function () {
+      this.$scope.cancel_callback = function () {};
+      spyOn(this.$scope, 'cancel_callback');
+
+      view = this.render_template('<new-property-modal cancel="cancel_callback"/>', this.$scope);
+      view.find('button:contains(Cancel)').click();
+
+      expect(this.$scope.cancel_callback).toHaveBeenCalled();
     });
   });
 });

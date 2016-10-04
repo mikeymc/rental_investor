@@ -14,8 +14,8 @@ angular.module('rentals').controller('RentalPropertiesListController', function(
     $state.go('sign_in');
   };
 
-  $scope.save_new_property = function() {
-    property_repository.create($scope.new_property).then(function(response) {
+  $scope.save_new_property = function(property) {
+    property_repository.create(property).then(function(response) {
       $scope.rental_properties = response.data;
       $scope.show_new_property_row = false;
     });
