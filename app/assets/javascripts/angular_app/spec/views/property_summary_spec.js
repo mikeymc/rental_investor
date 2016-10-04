@@ -2,7 +2,7 @@ describe('a property summary', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service', 'property_service');
+    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service', 'property_service', 'roi_service');
     this.$scope.summary = {
       street: '123 Sesame Street',
       city: 'Bunville',
@@ -20,6 +20,7 @@ describe('a property summary', function() {
 
     beforeEach(function () {
       spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
+      spyOn(this.roi_service, 'cash_roi').and.returnValue(['57.89', '12.22']);
       view = this.render_template('<div rental-property-summary="summary">', this.$scope);
       summary_row = view.find('.rental-property-summary');
     });
@@ -42,9 +43,17 @@ describe('a property summary', function() {
     it('shows the cost in the 7th slot', function () {
       expect(summary_row.find('div:nth(6)').text().trim()).toEqual('$1,000');
     });
+
+    it('shows the Cash on Cash ROI in the 8th slot', function () {
+      expect(summary_row.find('div:nth(7)').text().trim()).toEqual('57.89%');
+    });
   });
 
   describe('cap rate', function() {
+    beforeEach(function() {
+      spyOn(this.roi_service, 'cash_roi').and.returnValue('7.89');
+    });
+
     describe('when the cap rate returns a number', function() {
       it('displays the number', function() {
         spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
@@ -52,7 +61,7 @@ describe('a property summary', function() {
         view = this.render_template('<div rental-property-summary="summary">', this.$scope);
         this.$scope.$apply();
 
-        expect(view).toContainText('1.23%');
+        expect(view.find('div:nth(6)').text().trim()).toEqual('1.23%');
       });
     });
 
@@ -62,8 +71,7 @@ describe('a property summary', function() {
 
         view = this.render_template('<div rental-property-summary="summary">', this.$scope);
 
-        expect(view).toContainText('--');
-        expect(view).not.toContainText('%');
+        expect(view.find('div:nth(6)').text().trim()).toEqual('--');
       });
     });
   });

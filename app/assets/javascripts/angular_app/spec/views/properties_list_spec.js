@@ -2,8 +2,9 @@ describe('the properties list view', function () {
   var view;
 
   beforeEach(function () {
-    this.inject_dependencies('$scope', 'render_template', '$httpBackend', 'key_rent_ratios_service', 'property_service');
+    this.inject_dependencies('$scope', 'render_template', '$httpBackend', 'key_rent_ratios_service', 'property_service', 'roi_service');
     spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
+    spyOn(this.roi_service, 'cash_roi').and.returnValue('1.23');
     spyOn(this.property_service, 'get_total_cost').and.returnValue('1000');
     this.$httpBackend.expectGET('/api/rental_properties').respond(200, [
       {
@@ -51,7 +52,8 @@ describe('the properties list view', function () {
       expect(header_row.find('div:nth(4)').text().trim()).toEqual('Units');
       expect(header_row.find('div:nth(5)').text().trim()).toEqual('Cap Rate');
       expect(header_row.find('div:nth(6)').text().trim()).toEqual('Cost');
-      expect(header_row.find('div:nth(7)').text().trim()).toEqual('Actions');
+      expect(header_row.find('div:nth(7)').text().trim()).toEqual('CoC ROI');
+      expect(header_row.find('div:nth(8)').text().trim()).toEqual('Actions');
     })
   });
 

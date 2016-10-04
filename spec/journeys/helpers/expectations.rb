@@ -56,6 +56,7 @@ class Expectations
         zip: '12345',
         cap_rate: options[:updated] ? '9.48%' : '8.36%',
         asking_price: options[:updated] ? '$3,233,435' : '$3,033,420',
+        cash_on_cash_roi: options[:updated] ? '16.25%': '12.29%',
         units: options[:updated] ? '61' : '60',
       },
       sesame: {
