@@ -26,7 +26,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
   $stateProvider.state('questionnaire', {
     url: '/rental_property/:rental_id/questionnaire',
     templateUrl: 'investment_properties_pages/questionnaire.html',
-    controller: 'QuestionnaireController',
+    controller: 'questionnaireController',
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {

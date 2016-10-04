@@ -1,4 +1,4 @@
-angular.module('rentals').controller('QuestionnaireController', function($scope, $stateParams, propertyRepository, questionnaireService) {
+angular.module('rentals').controller('questionnaireController', function($scope, $stateParams, propertyRepository, questionnaireService) {
   $scope.rental_id = $stateParams.rental_id;
   $scope.questions = questionnaireService.getQuestionnaire();
 
