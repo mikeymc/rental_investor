@@ -1,4 +1,4 @@
-angular.module('rentals').controller('UserRegistrationsController', function($auth, $scope, property_repository, $state) {
+angular.module('rentals').controller('UserRegistrationsController', function($auth, $scope, propertyRepository, $state) {
   $scope.handleRegBtnClick = function() {
     register()
       .then(login)
@@ -31,7 +31,7 @@ angular.module('rentals').controller('UserRegistrationsController', function($au
       zip_code: '12345'
     };
 
-    return property_repository.create(sample_property);
+    return propertyRepository.create(sample_property);
   }
 
   function go_to_properties_list() {

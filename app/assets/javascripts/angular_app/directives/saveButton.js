@@ -1,4 +1,4 @@
-angular.module('rentals').directive('saveButton', function(property_repository, $timeout) {
+angular.module('rentals').directive('saveButton', function(propertyRepository, $timeout) {
   return {
     templateUrl: 'investment_properties_pages/save_button.html',
     restrict: 'E',
@@ -10,7 +10,7 @@ angular.module('rentals').directive('saveButton', function(property_repository, 
       $scope.persistence_state = 'Save';
 
       $scope.save = function() {
-        property_repository.update($scope.rental_id, $scope.rental_property).then(function(response) {
+        propertyRepository.update($scope.rental_id, $scope.rental_property).then(function(response) {
           $scope.rental_property = response.data;
           displaySavedFlag();
         });

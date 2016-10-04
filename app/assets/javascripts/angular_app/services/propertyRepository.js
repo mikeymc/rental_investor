@@ -1,4 +1,4 @@
-angular.module('rentals').service('property_repository', function($http) {
+angular.module('rentals').service('propertyRepository', function($http) {
   return {
     all: function() {
       return $http.get('/api/rental_properties');

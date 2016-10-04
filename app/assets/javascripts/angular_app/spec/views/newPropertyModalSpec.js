@@ -2,7 +2,7 @@ describe('the new property dialog', function () {
   var view;
 
   beforeEach(function () {
-    this.inject_dependencies('$scope', '$rootScope', 'render_template', 'property_repository');
+    this.inject_dependencies('$scope', '$rootScope', 'render_template', 'propertyRepository');
   });
 
   describe('items on the dialog', function () {
