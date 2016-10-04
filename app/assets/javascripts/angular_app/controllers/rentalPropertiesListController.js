@@ -1,4 +1,4 @@
-angular.module('rentals').controller('RentalPropertiesListController', function($scope, $http, $state, propertyRepository) {
+angular.module('rentals').controller('RentalPropertiesListController', function($scope, $state, propertyRepository) {
   $scope.adding_new_property = false;
 
   propertyRepository.all().then(function(response) {
