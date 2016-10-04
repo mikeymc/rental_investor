@@ -1,4 +1,4 @@
-angular.module('rentals').controller('UserSessionsController', function($scope, $state) {
+angular.module('rentals').controller('userSessionsController', function($scope, $state) {
   $scope.error_message = '';
 
   $scope.login = function(login_form) {
