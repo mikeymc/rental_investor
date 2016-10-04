@@ -4,7 +4,6 @@ angular.module('rentals').controller('rentalPropertiesListController', function(
   });
 
   $scope.show_add_property_row = function() {
-    $scope.new_property = {};
     $scope.show_new_property_row = true;
   };
 
