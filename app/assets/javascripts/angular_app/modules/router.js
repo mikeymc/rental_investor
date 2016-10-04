@@ -13,7 +13,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider.state('rental_properties', {
     url: '/rental_properties',
-    templateUrl: 'investment_properties_pages/properties_list/rentalProperties.html',
+    templateUrl: 'investment_properties_pages/properties_list/rentalPropertiesList.html',
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
