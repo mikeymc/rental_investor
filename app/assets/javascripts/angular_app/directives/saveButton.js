@@ -1,6 +1,6 @@
 angular.module('rentals').directive('saveButton', function(propertyRepository, $timeout) {
   return {
-    templateUrl: 'investment_properties_pages/save_button.html',
+    templateUrl: 'investment_properties_pages/saveButton.html',
     restrict: 'E',
     scope: {
       rental_id: '=rentalId',
