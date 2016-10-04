@@ -27,28 +27,31 @@ describe('a property summary', function() {
   });
 
   describe('the summary data that is shown', function () {
+    var summary_row;
+
     beforeEach(function () {
       spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
       view = this.render_template('<div rental-property-summary="summary">', this.$scope);
+      summary_row = view.find('.rental-property-summary');
     });
 
-    it('shows the address', function () {
-      expect(view.text()).toContain('123 Sesame Street');
-      expect(view.text()).toContain('Bunville');
-      expect(view.text()).toContain('TN');
-      expect(view.text()).toContain('12345');
+    it('shows the address in the first 4 slots', function () {
+      expect(summary_row.find('div:nth(0)').text().trim()).toEqual('123 Sesame Street');
+      expect(summary_row.find('div:nth(1)').text().trim()).toEqual('Bunville');
+      expect(summary_row.find('div:nth(2)').text().trim()).toEqual('TN');
+      expect(summary_row.find('div:nth(3)').text().trim()).toEqual('12345');
     });
 
-    it('shows the cap rate', function () {
-      expect(view.text()).toContain('1.23%');
+    it('shows the number of units in the 5th slot', function () {
+      expect(summary_row.find('div:nth(4)').text().trim()).toEqual('55');
     });
 
-    it('shows the number of units', function () {
-      expect(view.text()).toContain('55');
+    it('shows the cap rate in the 6th slot', function () {
+      expect(summary_row.find('div:nth(5)').text().trim()).toEqual('1.23%');
     });
 
-    it('shows the cost', function () {
-      expect(view.text()).toContain('$1,000');
+    it('shows the cost in the 7th slot', function () {
+      expect(summary_row.find('div:nth(6)').text().trim()).toEqual('$1,000');
     });
   });
 
