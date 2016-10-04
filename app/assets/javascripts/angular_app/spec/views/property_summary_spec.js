@@ -15,17 +15,6 @@ describe('a property summary', function() {
     spyOn(this.property_service, 'get_total_cost').and.returnValue('1000');
   });
 
-  describe('before any data exists', function () {
-    beforeEach(function () {
-      this.$scope.summary = null;
-      view = this.render_template('<div rental-property-summary="summary">', this.$scope);
-    });
-
-    it('shows nothing', function () {
-      expect(view.text().trim()).toEqual('--');
-    });
-  });
-
   describe('the summary data that is shown', function () {
     var summary_row;
 
