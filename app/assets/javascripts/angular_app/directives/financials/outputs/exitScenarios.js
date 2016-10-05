@@ -1,4 +1,4 @@
-angular.module('rentals').directive('exitScenarios', function(propertyService, key_rent_ratios_service, exitScenariosService, cashFlowService, irr_service) {
+angular.module('rentals').directive('exitScenarios', function(propertyService, key_rent_ratios_service, exitScenariosService, cashFlowService, irrService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/exitScenarios.html',
     restrict: 'E',
@@ -30,7 +30,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
         var first_month = -1 * propertyService.getDownPayment(property);
         var first_year_exit_net = cashFlowService.getOneYearExitNet(property);
 
-        return irr_service.calculate_irr([first_month, first_year_exit_net]);
+        return irrService.calculateInternalRateOfReturn([first_month, first_year_exit_net]);
       }
 
       function calculate_three_year_irr(property) {
@@ -39,7 +39,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
         var three_year_nets = cashFlowService.getThreeYearExitNets(property, gain_on_sale);
         three_year_nets.unshift(first_month);
 
-        return irr_service.calculate_irr(three_year_nets);
+        return irrService.calculateInternalRateOfReturn(three_year_nets);
       }
 
       function calculate_five_year_irr(property) {
@@ -48,7 +48,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
         var five_year_nets = cashFlowService.getFiveYearExitNets(property, gain_on_sale);
         five_year_nets.unshift(first_month);
 
-        return irr_service.calculate_irr(five_year_nets);
+        return irrService.calculateInternalRateOfReturn(five_year_nets);
       }
     }
   }

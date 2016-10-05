@@ -1,12 +1,11 @@
-angular.module('rentals').service('irr_service', function($filter) {
+angular.module('rentals').service('irrService', function($filter) {
   return {
-    calculate_irr: calculate_irr
+    calculateInternalRateOfReturn: calculateInternalRateOfReturn
   };
 
   /* --- Private --- */
 
-
-  function calculate_irr(values, guess) {
+  function calculateInternalRateOfReturn(values, guess) {
     values = _.map(values, function(val) {
       return parseFloat(val);
     });
