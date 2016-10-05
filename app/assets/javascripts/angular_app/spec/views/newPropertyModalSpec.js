@@ -50,16 +50,4 @@ describe('the new property dialog', function () {
       });
     });
   });
-
-  describe('clicking the cancel button', function () {
-    it('calls the cancel callback', function () {
-      this.$scope.cancel_callback = function () {};
-      spyOn(this.$scope, 'cancel_callback');
-
-      view = this.render_template('<new-property-modal cancel="cancel_callback"/>', this.$scope);
-      view.find('button:contains(Cancel)').click();
-
-      expect(this.$scope.cancel_callback).toHaveBeenCalled();
-    });
-  });
 });

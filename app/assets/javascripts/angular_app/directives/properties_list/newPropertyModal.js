@@ -4,8 +4,7 @@ angular.module('rentals').directive('newPropertyModal', function() {
     restrict: 'E',
     replace: true,
     scope: {
-      createProperty: '=',
-      cancel: '='
+      createProperty: '='
     },
     link: function($scope) {
       $scope.new_property = {};
