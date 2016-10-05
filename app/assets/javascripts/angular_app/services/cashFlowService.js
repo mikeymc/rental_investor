@@ -1,6 +1,6 @@
 angular.module('rentals').service('cash_flow_service', function(propertyService, operating_expenses_service) {
   return {
-    get_monthly_total_return: getMonthlyTotalReturn,
+    getMonthlyTotalReturn: getMonthlyTotalReturn,
     get_annual_total_returns: getAnnualTotalReturns,
     monthly_cum_princ: getMonthlyCumPrinc,
     yearly_cum_princ: getAnnualCumPrincs,

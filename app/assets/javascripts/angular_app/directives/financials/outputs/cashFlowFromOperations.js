@@ -18,7 +18,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         $scope.annual_cfs_remaining = cash_flow_service.annual_cash_flows_remaining($scope.rental_property);
         $scope.monthly_principal_reduction = cash_flow_service.monthly_cum_princ($scope.rental_property);
         $scope.yearly_principal_reductions = cash_flow_service.yearly_cum_princ($scope.rental_property);
-        $scope.monthly_total_return = cash_flow_service.get_monthly_total_return($scope.rental_property);
+        $scope.monthly_total_return = cash_flow_service.getMonthlyTotalReturn($scope.rental_property);
         $scope.annual_total_returns = cash_flow_service.get_annual_total_returns($scope.rental_property);
         $scope.monthly_cf_debt_servicing_ratio = monthly_cf_debt_servicing_ratio($scope.rental_property);
         $scope.annual_cf_debt_servicing_ratio = annual_cf_debt_servicing_ratio($scope.rental_property);
