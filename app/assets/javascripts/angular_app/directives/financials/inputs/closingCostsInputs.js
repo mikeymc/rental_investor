@@ -1,4 +1,4 @@
-angular.module('rentals').directive('closingCostsInputs', function(property_service) {
+angular.module('rentals').directive('closingCostsInputs', function(propertyService) {
   return {
     templateUrl: 'investment_properties_pages/financials/inputs/closingCosts.html',
     restrict: 'E',
@@ -8,8 +8,8 @@ angular.module('rentals').directive('closingCostsInputs', function(property_serv
           return;
         }
 
-        $scope.rental_property.closing_cost.origination_fee = property_service.getLoanOriginationFee($scope.rental_property);
-        $scope.total = property_service.getClosingCosts($scope.rental_property);
+        $scope.rental_property.closing_cost.origination_fee = propertyService.getLoanOriginationFee($scope.rental_property);
+        $scope.total = propertyService.getClosingCosts($scope.rental_property);
       }, true);
     }
   }

@@ -1,9 +1,9 @@
-describe('property_service', function() {
+describe('propertyService', function() {
   var subject;
 
   beforeEach(function() {
-    this.inject_dependencies('property_service');
-    subject = this.property_service;
+    this.inject_dependencies('propertyService');
+    subject = this.propertyService;
   });
 
   it('returns the sum of costs', function() {

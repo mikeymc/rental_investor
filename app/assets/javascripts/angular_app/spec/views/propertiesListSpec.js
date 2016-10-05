@@ -2,10 +2,10 @@ describe('the properties list view', function () {
   var view;
 
   beforeEach(function () {
-    this.inject_dependencies('$scope', 'render_template', '$httpBackend', 'key_rent_ratios_service', 'property_service', 'roi_service');
+    this.inject_dependencies('$scope', 'render_template', '$httpBackend', 'key_rent_ratios_service', 'propertyService', 'roi_service');
     spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
     spyOn(this.roi_service, 'cash_roi').and.returnValue('1.23');
-    spyOn(this.property_service, 'getTotalCost').and.returnValue('1000');
+    spyOn(this.propertyService, 'getTotalCost').and.returnValue('1000');
     this.$httpBackend.expectGET('/api/rental_properties').respond(200, [
       {
         street: '123 Sesame Street',

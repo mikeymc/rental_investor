@@ -1,4 +1,4 @@
-angular.module('rentals').service('property_service', function() {
+angular.module('rentals').service('propertyService', function() {
   return {
     getClosingCosts: getClosingCosts,
     getTotalGrossMonthlyIncome: getTotalGrossMonthlyIncome,

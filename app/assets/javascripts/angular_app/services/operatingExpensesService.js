@@ -1,4 +1,4 @@
-angular.module('rentals').service('operating_expenses_service', function(property_service) {
+angular.module('rentals').service('operating_expenses_service', function(propertyService) {
   return {
     all_operating_expenses: all_operating_expenses
   };
@@ -105,7 +105,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
   }
 
   function total_monthly(property) {
-    var gross_income = property_service.getGrossOperatingIncome(property);
+    var gross_income = propertyService.getGrossOperatingIncome(property);
     var total_expenses_percentage = total_percentage(property);
 
     var number = total_expenses_percentage / 100 * gross_income;
@@ -134,70 +134,70 @@ angular.module('rentals').service('operating_expenses_service', function(propert
   }
 
   function monthly_capex(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_capex = property.operating_expenses_assumption.capex;
 
     return monthly_capex * monthly_income / 100;
   }
 
   function other_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_capex = property.operating_expenses_assumption.other_expenses;
 
     return 100 * monthly_capex / monthly_income;
   }
 
   function landscaping_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_landscaping_fees = property.operating_expenses_assumption.landscaping;
 
     return 100 * monthly_landscaping_fees / monthly_income
   }
 
   function professional_fees_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_professional_fees = property.operating_expenses_assumption.professional_fees;
 
     return 100 * monthly_professional_fees / monthly_income
   }
 
   function advertising_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_advertising_fees = property.operating_expenses_assumption.advertising;
 
     return 100 * monthly_advertising_fees / monthly_income
   }
 
   function water_and_sewer_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_water_and_sewer = property.operating_expenses_assumption.water_and_sewer;
 
     return 100 * monthly_water_and_sewer / monthly_income
   }
 
   function trash_removal_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_trash_removal = property.operating_expenses_assumption.trash_removal;
 
     return 100 * monthly_trash_removal / monthly_income
   }
 
   function salaries_and_wages_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_salaries_and_wages = property.operating_expenses_assumption.salaries_and_wages;
 
     return 100 * monthly_salaries_and_wages / monthly_income
   }
 
   function utilities_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var monthly_utilities = property.operating_expenses_assumption.utilities;
 
     return 100 * monthly_utilities / monthly_income
   }
 
   function insurance_percentage(property) {
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
     var insurance = property.operating_expenses_assumption.insurance;
 
     return insurance / monthly_income * 100;
@@ -205,13 +205,13 @@ angular.module('rentals').service('operating_expenses_service', function(propert
 
   function taxes_percentage(property) {
     var monthly_taxes = property.operating_expenses_assumption.taxes;
-    var monthly_income = property_service.getGrossOperatingIncome(property);
+    var monthly_income = propertyService.getGrossOperatingIncome(property);
 
     return monthly_taxes / monthly_income * 100;
   }
 
   function monthly_property_management_fee(property) {
-    var gross_income = property_service.getGrossOperatingIncome(property);
+    var gross_income = propertyService.getGrossOperatingIncome(property);
     var property_management_fees = property.operating_expenses_assumption.property_management_fees;
 
     return gross_income * property_management_fees / 100;
@@ -359,7 +359,7 @@ angular.module('rentals').service('operating_expenses_service', function(propert
   }
 
   function repairs_and_maintenance_percentage(property) {
-    var gross_income = property_service.getGrossOperatingIncome(property);
+    var gross_income = propertyService.getGrossOperatingIncome(property);
     var repairs_and_maintenance_cost = parseFloat(property.operating_expenses_assumption.repairs_and_maintenance);
 
     return 100 * repairs_and_maintenance_cost / gross_income;

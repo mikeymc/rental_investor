@@ -1,4 +1,4 @@
-angular.module('rentals').service('exit_scenarios_service', function(key_rent_ratios_service, noi_service, operating_expenses_service, property_service) {
+angular.module('rentals').service('exit_scenarios_service', function(key_rent_ratios_service, noi_service, operating_expenses_service, propertyService) {
   return {
     first_year_exit_price: first_year_exit_price,
     third_year_exit_price: third_year_exit_price,
@@ -36,21 +36,21 @@ angular.module('rentals').service('exit_scenarios_service', function(key_rent_ra
 
   function first_year_gain_on_sale(property) {
     var price = first_year_exit_price(property);
-    var cost = property_service.getTotalCost(property);
+    var cost = propertyService.getTotalCost(property);
 
     return price - cost;
   }
 
   function third_year_gain_on_sale(property) {
     var price = third_year_exit_price(property);
-    var cost = property_service.getTotalCost(property);
+    var cost = propertyService.getTotalCost(property);
 
     return price - cost;
   }
 
   function fifth_year_gain_on_sale(property) {
     var price = fifth_year_exit_price(property);
-    var cost = property_service.getTotalCost(property);
+    var cost = propertyService.getTotalCost(property);
 
     return price - cost;
   }

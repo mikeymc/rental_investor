@@ -2,7 +2,7 @@ describe('a property summary', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service', 'property_service', 'roi_service');
+    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service', 'propertyService', 'roi_service');
     this.$scope.summary = {
       street: '123 Sesame Street',
       city: 'Bunville',
@@ -12,7 +12,7 @@ describe('a property summary', function() {
         number_of_units: 55
       }
     };
-    spyOn(this.property_service, 'getTotalCost').and.returnValue('1000');
+    spyOn(this.propertyService, 'getTotalCost').and.returnValue('1000');
   });
 
   describe('the summary data that is shown', function () {

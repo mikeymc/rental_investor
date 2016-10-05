@@ -1,4 +1,4 @@
-angular.module('rentals').service('noi_service', function(property_service, cash_flow_service) {
+angular.module('rentals').service('noi_service', function(propertyService, cash_flow_service) {
   return {
     monthly_net_income_before_taxes: monthly_net_income_before_taxes,
     monthly_net_income_after_taxes: monthly_net_income_after_taxes,
@@ -66,21 +66,21 @@ angular.module('rentals').service('noi_service', function(property_service, cash
   }
 
   function monthly_interest_on_loan_percentage(property) {
-    return 100 * monthly_interest_on_loan(property) / property_service.getGrossOperatingIncome(property);
+    return 100 * monthly_interest_on_loan(property) / propertyService.getGrossOperatingIncome(property);
   }
 
   function monthly_interest_on_loan(property) {
-    return property_service.getMonthlyLoanPayment(property) - cash_flow_service.monthly_cum_princ(property);
+    return propertyService.getMonthlyLoanPayment(property) - cash_flow_service.monthly_cum_princ(property);
   }
 
   function net_monthly_income(property, expenses) {
-    var gross_income = property_service.getGrossOperatingIncome(property);
+    var gross_income = propertyService.getGrossOperatingIncome(property);
     var total_monthly_expenses = expenses.total.monthly_cost;
     return gross_income - total_monthly_expenses;
   }
 
   function net_annual_incomes(property, expenses) {
-    var incomes = property_service.getProjectedAnnualGrossOperatingIncomes(property);
+    var incomes = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
     return _.map(incomes, function(income, index) {
       return income - expenses.total.yearly_costs[index];
     });

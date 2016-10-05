@@ -1,4 +1,4 @@
-angular.module('rentals').service('cash_flow_service', function(property_service, operating_expenses_service) {
+angular.module('rentals').service('cash_flow_service', function(propertyService, operating_expenses_service) {
   return {
     get_monthly_total_return: get_monthly_total_return,
     get_annual_total_returns: get_annual_total_returns,
@@ -22,7 +22,7 @@ angular.module('rentals').service('cash_flow_service', function(property_service
         get_annual_total_returns(property)[2],
         annual_principal_reductions[0],
         annual_principal_reductions[1],
-        property_service.down_payment(property),
+        propertyService.down_payment(property),
         gain_on_sale
       ];
 
@@ -50,7 +50,7 @@ angular.module('rentals').service('cash_flow_service', function(property_service
         annual_principal_reductions[1],
         annual_principal_reductions[2],
         annual_principal_reductions[3],
-        property_service.down_payment(property),
+        propertyService.down_payment(property),
         gain_on_sale
       ];
 
@@ -71,7 +71,7 @@ angular.module('rentals').service('cash_flow_service', function(property_service
   }
 
   function one_year_exit_net(property) {
-    var down_payment = property_service.down_payment(property);
+    var down_payment = propertyService.down_payment(property);
     var total_return = get_annual_total_returns(property)[0];
 
     return down_payment + total_return;
@@ -90,17 +90,17 @@ angular.module('rentals').service('cash_flow_service', function(property_service
   }
 
   function monthly_cum_princ(property) {
-    var rate = property_service.getMonthlyInterestRate(property);
+    var rate = propertyService.getMonthlyInterestRate(property);
     var num_payments = property.financing_and_income_assumption.amortization_period_in_years * 12;
-    var balance = property_service.getBalanceToFinance(property);
+    var balance = propertyService.getBalanceToFinance(property);
 
     return cum_princ(rate, num_payments, balance, 1, 1, 0);
   }
 
   function yearly_cum_princ(property) {
-    var rate = property_service.getMonthlyInterestRate(property);
+    var rate = propertyService.getMonthlyInterestRate(property);
     var num_payments = property.financing_and_income_assumption.amortization_period_in_years * 12;
-    var balance = property_service.getBalanceToFinance(property);
+    var balance = propertyService.getBalanceToFinance(property);
 
     var start = 1;
     var end = 12;
@@ -116,21 +116,21 @@ angular.module('rentals').service('cash_flow_service', function(property_service
   }
 
   function annual_debt_service(property) {
-    return 12 * property_service.getMonthlyLoanPayment(property);
+    return 12 * propertyService.getMonthlyLoanPayment(property);
   }
 
   function monthly_cash_flow_remaining(property) {
-    var monthly_debt_service = property_service.getMonthlyLoanPayment(property);
+    var monthly_debt_service = propertyService.getMonthlyLoanPayment(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var cash_available = property_service.getNetOperatingIncome(property, expenses);
+    var cash_available = propertyService.getNetOperatingIncome(property, expenses);
 
     return cash_available - monthly_debt_service;
   }
 
   function annual_cash_flows_remaining(property) {
-    var annual_debt_service = 12 * property_service.getMonthlyLoanPayment(property);
+    var annual_debt_service = 12 * propertyService.getMonthlyLoanPayment(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var annual_cash_available_for_loan_servicing = property_service.getNetAnnualOperatingIncomes(
+    var annual_cash_available_for_loan_servicing = propertyService.getNetAnnualOperatingIncomes(
       property,
       expenses);
 

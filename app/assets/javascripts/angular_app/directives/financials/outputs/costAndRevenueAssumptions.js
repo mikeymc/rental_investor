@@ -1,9 +1,9 @@
-angular.module('rentals').directive('costAndRevenueAssumptions', function(property_service) {
+angular.module('rentals').directive('costAndRevenueAssumptions', function(propertyService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/costAndRevenueAssumptions.html',
     restrict: 'E',
     link: function($scope) {
-      var s = property_service;
+      var s = propertyService;
       $scope.$watch('rental_property', function() {
         if(!$scope.rental_property) {
           return;

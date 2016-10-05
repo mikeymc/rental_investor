@@ -1,4 +1,4 @@
-angular.module('rentals').directive('cashFlowFromOperations', function(property_service, operating_expenses_service, cash_flow_service, noi_service) {
+angular.module('rentals').directive('cashFlowFromOperations', function(propertyService, operating_expenses_service, cash_flow_service, noi_service) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/cashFlowFromOperations.html',
     restrict: 'E',
@@ -10,10 +10,10 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
 
         var expenses = operating_expenses_service.all_operating_expenses($scope.rental_property);
 
-        $scope.monthly_debt_service = property_service.getMonthlyLoanPayment($scope.rental_property);
+        $scope.monthly_debt_service = propertyService.getMonthlyLoanPayment($scope.rental_property);
         $scope.annual_debt_service = cash_flow_service.annual_debt_service($scope.rental_property);
-        $scope.cash_available = property_service.getNetOperatingIncome($scope.rental_property, expenses);
-        $scope.annual_cash_available = property_service.getNetAnnualOperatingIncomes($scope.rental_property, expenses);
+        $scope.cash_available = propertyService.getNetOperatingIncome($scope.rental_property, expenses);
+        $scope.annual_cash_available = propertyService.getNetAnnualOperatingIncomes($scope.rental_property, expenses);
         $scope.monthly_cf_remaining = cash_flow_service.monthly_cash_flow_remaining($scope.rental_property);
         $scope.annual_cfs_remaining = cash_flow_service.annual_cash_flows_remaining($scope.rental_property);
         $scope.monthly_principal_reduction = cash_flow_service.monthly_cum_princ($scope.rental_property);
@@ -51,7 +51,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
 
         function annual_cf_debt_servicing_ratio(property) {
           var expenses = operating_expenses_service.all_operating_expenses(property);
-          var annual_cash_available = property_service.getNetAnnualOperatingIncomes(property, expenses);
+          var annual_cash_available = propertyService.getNetAnnualOperatingIncomes(property, expenses);
           var annual_debt_service = cash_flow_service.annual_debt_service(property);
 
           return _.map(annual_cash_available, function(cash) {
@@ -61,8 +61,8 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
 
         function monthly_cf_debt_servicing_ratio(property) {
           var expenses = operating_expenses_service.all_operating_expenses(property);
-          var monthly_debt_service = property_service.getMonthlyLoanPayment(property);
-          var cash_available = property_service.getNetOperatingIncome(property, expenses);
+          var monthly_debt_service = propertyService.getMonthlyLoanPayment(property);
+          var cash_available = propertyService.getNetOperatingIncome(property, expenses);
 
           return 100 * cash_available / monthly_debt_service;
         }

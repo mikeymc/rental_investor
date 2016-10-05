@@ -1,4 +1,4 @@
-angular.module('rentals').service('roi_service', function(property_service, operating_expenses_service, noi_service, cash_flow_service) {
+angular.module('rentals').service('roi_service', function(propertyService, operating_expenses_service, noi_service, cash_flow_service) {
   return {
     annual_noi_roi: annual_noi_roi,
     cash_roi: cash_roi,
@@ -8,9 +8,9 @@ angular.module('rentals').service('roi_service', function(property_service, oper
   /* --- Private --- */
 
   function annual_noi_roi(property) {
-    var down_payment = property_service.down_payment(property);
+    var down_payment = propertyService.down_payment(property);
     var operating_expenses_each_year = operating_expenses_service.all_operating_expenses(property).total.yearly_costs;
-    var gross_incomes_each_year = property_service.getProjectedAnnualGrossOperatingIncomes(property);
+    var gross_incomes_each_year = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
     var interest_on_loan_each_year = noi_service.get_annual_interest_on_loan(property);
     var depreciation_each_year = noi_service.get_annual_building_depreciation(property);
 
@@ -21,7 +21,7 @@ angular.module('rentals').service('roi_service', function(property_service, oper
 
   function cash_roi(property) {
     var remaining_cash_flow_each_year = cash_flow_service.annual_cash_flows_remaining(property);
-    var down_payment_on_the_property = property_service.down_payment(property);
+    var down_payment_on_the_property = propertyService.down_payment(property);
 
     return _.map(remaining_cash_flow_each_year, function(cash_flow_that_year) {
       return 100 * cash_flow_that_year / down_payment_on_the_property;
@@ -29,7 +29,7 @@ angular.module('rentals').service('roi_service', function(property_service, oper
   }
 
   function total_roi(property) {
-    var down_payment = property_service.down_payment(property);
+    var down_payment = propertyService.down_payment(property);
     var remaining_annual_cash_flows = cash_flow_service.annual_cash_flows_remaining(property);
     var yearly_cumulative_payment_on_the_principal = cash_flow_service.yearly_cum_princ(property);
 
