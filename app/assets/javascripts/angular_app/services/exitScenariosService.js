@@ -1,11 +1,11 @@
 angular.module('rentals').service('exit_scenarios_service', function(key_rent_ratios_service, noi_service, operating_expenses_service, propertyService) {
   return {
-    first_year_exit_price: firstYearExitPrice,
-    third_year_exit_price: thirdYearExitPrice,
-    fifth_year_exit_price: fifthYearExitPrice,
-    first_year_gain_on_sale: firstYearGainOnSale,
-    third_year_gain_on_sale: thirdYearGainOnSale,
-    fifth_year_gain_on_sale: fifthYearGainOnSale
+    firstYearExitPrice: firstYearExitPrice,
+    thirdYearExitPrice: thirdYearExitPrice,
+    fifthYearExitPrice: fifthYearExitPrice,
+    firstYearGainOnSale: firstYearGainOnSale,
+    thirdYearGainOnSale: thirdYearGainOnSale,
+    fifthYearGainOnSale: fifthYearGainOnSale
   };
 
   /* --- Private --- */

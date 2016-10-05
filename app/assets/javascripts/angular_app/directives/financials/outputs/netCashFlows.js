@@ -17,12 +17,12 @@ angular.module('rentals').directive('netCashFlows', function(propertyService, ca
       /* --- Private --- */
 
       function three_year_exit_nets(property) {
-        var gain_on_sale = exit_scenarios_service.third_year_gain_on_sale(property);
+        var gain_on_sale = exit_scenarios_service.thirdYearGainOnSale(property);
         return cashFlowService.getThreeYearExitNets(property, gain_on_sale);
       }
 
       function five_year_exit_nets(property) {
-        var gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale(property);
+        var gain_on_sale = exit_scenarios_service.fifthYearGainOnSale(property);
         return cashFlowService.getFiveYearExitNets(property, gain_on_sale);
       }
     }

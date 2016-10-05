@@ -8,13 +8,13 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
           return;
         }
 
-        $scope.first_year_exit_price = exit_scenarios_service.first_year_exit_price($scope.rental_property);
-        $scope.third_year_exit_price = exit_scenarios_service.third_year_exit_price($scope.rental_property);
-        $scope.fifth_year_exit_price = exit_scenarios_service.fifth_year_exit_price($scope.rental_property);
+        $scope.first_year_exit_price = exit_scenarios_service.firstYearExitPrice($scope.rental_property);
+        $scope.third_year_exit_price = exit_scenarios_service.thirdYearExitPrice($scope.rental_property);
+        $scope.fifth_year_exit_price = exit_scenarios_service.fifthYearExitPrice($scope.rental_property);
 
-        $scope.first_year_gain_on_sale = exit_scenarios_service.first_year_gain_on_sale($scope.rental_property);
-        $scope.third_year_gain_on_sale = exit_scenarios_service.third_year_gain_on_sale($scope.rental_property);
-        $scope.fifth_year_gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale($scope.rental_property);
+        $scope.first_year_gain_on_sale = exit_scenarios_service.firstYearGainOnSale($scope.rental_property);
+        $scope.third_year_gain_on_sale = exit_scenarios_service.thirdYearGainOnSale($scope.rental_property);
+        $scope.fifth_year_gain_on_sale = exit_scenarios_service.fifthYearGainOnSale($scope.rental_property);
 
         $scope.cap_rate = key_rent_ratios_service.get_cap_rate($scope.rental_property);
 
@@ -35,7 +35,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
 
       function calculate_three_year_irr(property) {
         var first_month = -1 * propertyService.getDownPayment(property);
-        var gain_on_sale = exit_scenarios_service.third_year_gain_on_sale(property);
+        var gain_on_sale = exit_scenarios_service.thirdYearGainOnSale(property);
         var three_year_nets = cashFlowService.getThreeYearExitNets(property, gain_on_sale);
         three_year_nets.unshift(first_month);
 
@@ -44,7 +44,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
 
       function calculate_five_year_irr(property) {
         var first_month = -1 * propertyService.getDownPayment(property);
-        var gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale(property);
+        var gain_on_sale = exit_scenarios_service.fifthYearGainOnSale(property);
         var five_year_nets = cashFlowService.getFiveYearExitNets(property, gain_on_sale);
         five_year_nets.unshift(first_month);
 
