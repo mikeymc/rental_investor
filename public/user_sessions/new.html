@@ -1,13 +1,13 @@
 <div class="centerer flexbox-parent">
   <div class="faux-modal" ng-controller="userSessionsController">
     <div class="auth-modal">
-      <form ng-submit="login(login_form)" role="form" ng-init="login_form = {}">
+      <form ng-submit="login(loginForm)" role="form" ng-init="loginForm = {}">
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email"
                  name="email"
                  id="email"
-                 ng-model="login_form.email"
+                 ng-model="loginForm.email"
                  required="required"
                  class="form-control">
         </div>
@@ -17,17 +17,17 @@
           <input type="password"
                  name="password"
                  id="password"
-                 ng-model="login_form.password"
+                 ng-model="loginForm.password"
                  required="required"
                  class="form-control">
         </div>
 
         <div class="form-group">
           <button type="submit" class="btn btn-primary btn-sm sign-in-btn">Sign In</button>
-          <button class="btn btn-primary btn-sm sign-in-btn" ng-click="sign_up()">Sign Up</button>
+          <button class="btn btn-primary btn-sm sign-in-btn" ng-click="signUp()">Sign Up</button>
         </div>
 
-        <div class="invalid-credentials">{{error_message}}</div>
+        <div class="invalid-credentials">{{errorMessage}}</div>
       </form>
     </div>
   </div>
