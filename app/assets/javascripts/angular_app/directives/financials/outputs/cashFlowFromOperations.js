@@ -10,10 +10,10 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
 
         var expenses = operating_expenses_service.all_operating_expenses($scope.rental_property);
 
-        $scope.monthly_debt_service = property_service.monthly_loan_payment($scope.rental_property);
+        $scope.monthly_debt_service = property_service.getMonthlyLoanPayment($scope.rental_property);
         $scope.annual_debt_service = cash_flow_service.annual_debt_service($scope.rental_property);
-        $scope.cash_available = property_service.get_net_operating_income($scope.rental_property, expenses);
-        $scope.annual_cash_available = property_service.get_net_annual_operating_incomes($scope.rental_property, expenses);
+        $scope.cash_available = property_service.getNetOperatingIncome($scope.rental_property, expenses);
+        $scope.annual_cash_available = property_service.getNetAnnualOperatingIncomes($scope.rental_property, expenses);
         $scope.monthly_cf_remaining = cash_flow_service.monthly_cash_flow_remaining($scope.rental_property);
         $scope.annual_cfs_remaining = cash_flow_service.annual_cash_flows_remaining($scope.rental_property);
         $scope.monthly_principal_reduction = cash_flow_service.monthly_cum_princ($scope.rental_property);
@@ -51,7 +51,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
 
         function annual_cf_debt_servicing_ratio(property) {
           var expenses = operating_expenses_service.all_operating_expenses(property);
-          var annual_cash_available = property_service.get_net_annual_operating_incomes(property, expenses);
+          var annual_cash_available = property_service.getNetAnnualOperatingIncomes(property, expenses);
           var annual_debt_service = cash_flow_service.annual_debt_service(property);
 
           return _.map(annual_cash_available, function(cash) {
@@ -61,8 +61,8 @@ angular.module('rentals').directive('cashFlowFromOperations', function(property_
 
         function monthly_cf_debt_servicing_ratio(property) {
           var expenses = operating_expenses_service.all_operating_expenses(property);
-          var monthly_debt_service = property_service.monthly_loan_payment(property);
-          var cash_available = property_service.get_net_operating_income(property, expenses);
+          var monthly_debt_service = property_service.getMonthlyLoanPayment(property);
+          var cash_available = property_service.getNetOperatingIncome(property, expenses);
 
           return 100 * cash_available / monthly_debt_service;
         }

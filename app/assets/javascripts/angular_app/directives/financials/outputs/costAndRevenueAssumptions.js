@@ -9,10 +9,10 @@ angular.module('rentals').directive('costAndRevenueAssumptions', function(proper
           return;
         }
         if ($scope.rental_property.closing_cost && $scope.rental_property.financing_and_income_assumption) {
-          $scope.total_closing_costs = s.get_closing_costs($scope.rental_property);
-          $scope.gross_monthly_rent = s.get_gross_monthly_rent($scope.rental_property);
-          $scope.total_cost = s.get_total_cost($scope.rental_property);
-          $scope.total_gross_monthly_income = s.get_total_gross_monthly_income($scope.rental_property);
+          $scope.total_closing_costs = s.getClosingCosts($scope.rental_property);
+          $scope.gross_monthly_rent = s.getGrossMonthlyRent($scope.rental_property);
+          $scope.total_cost = s.getTotalCost($scope.rental_property);
+          $scope.total_gross_monthly_income = s.getTotalGrossMonthlyIncome($scope.rental_property);
         }
       }, true);
     }

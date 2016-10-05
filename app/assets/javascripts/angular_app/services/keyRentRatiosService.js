@@ -25,14 +25,14 @@ angular.module('rentals').service('key_rent_ratios_service', function(property_s
   function get_cap_rate(property) {
     var expenses = operating_expenses_service.all_operating_expenses(property);
     var noi = noi_service.net_annual_incomes(property, expenses)[0];
-    var cost = property_service.get_total_cost(property);
+    var cost = property_service.getTotalCost(property);
 
     return 100 * noi / cost;
   }
 
   function get_gross_rent_multiplier(property) {
-    var first_year_rents = property_service.get_projected_gross_annual_rents(property)[0];
-    var cost = property_service.get_total_cost(property);
+    var first_year_rents = property_service.getProjectedGrossAnnualRents(property)[0];
+    var cost = property_service.getTotalCost(property);
 
     return cost / first_year_rents;
   }

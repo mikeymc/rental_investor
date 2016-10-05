@@ -10,7 +10,7 @@ angular.module('rentals').service('roi_service', function(property_service, oper
   function annual_noi_roi(property) {
     var down_payment = property_service.down_payment(property);
     var operating_expenses_each_year = operating_expenses_service.all_operating_expenses(property).total.yearly_costs;
-    var gross_incomes_each_year = property_service.get_projected_annual_gross_operating_incomes(property);
+    var gross_incomes_each_year = property_service.getProjectedAnnualGrossOperatingIncomes(property);
     var interest_on_loan_each_year = noi_service.get_annual_interest_on_loan(property);
     var depreciation_each_year = noi_service.get_annual_building_depreciation(property);
 

@@ -8,8 +8,8 @@ angular.module('rentals').directive('closingCostsInputs', function(property_serv
           return;
         }
 
-        $scope.rental_property.closing_cost.origination_fee = property_service.get_loan_origination_fee($scope.rental_property);
-        $scope.total = property_service.get_closing_costs($scope.rental_property);
+        $scope.rental_property.closing_cost.origination_fee = property_service.getLoanOriginationFee($scope.rental_property);
+        $scope.total = property_service.getClosingCosts($scope.rental_property);
       }, true);
     }
   }

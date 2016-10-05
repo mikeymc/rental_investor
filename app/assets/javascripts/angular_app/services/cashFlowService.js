@@ -90,17 +90,17 @@ angular.module('rentals').service('cash_flow_service', function(property_service
   }
 
   function monthly_cum_princ(property) {
-    var rate = property_service.get_monthly_interest_rate(property);
+    var rate = property_service.getMonthlyInterestRate(property);
     var num_payments = property.financing_and_income_assumption.amortization_period_in_years * 12;
-    var balance = property_service.balance_to_finance(property);
+    var balance = property_service.getBalanceToFinance(property);
 
     return cum_princ(rate, num_payments, balance, 1, 1, 0);
   }
 
   function yearly_cum_princ(property) {
-    var rate = property_service.get_monthly_interest_rate(property);
+    var rate = property_service.getMonthlyInterestRate(property);
     var num_payments = property.financing_and_income_assumption.amortization_period_in_years * 12;
-    var balance = property_service.balance_to_finance(property);
+    var balance = property_service.getBalanceToFinance(property);
 
     var start = 1;
     var end = 12;
@@ -116,21 +116,21 @@ angular.module('rentals').service('cash_flow_service', function(property_service
   }
 
   function annual_debt_service(property) {
-    return 12 * property_service.monthly_loan_payment(property);
+    return 12 * property_service.getMonthlyLoanPayment(property);
   }
 
   function monthly_cash_flow_remaining(property) {
-    var monthly_debt_service = property_service.monthly_loan_payment(property);
+    var monthly_debt_service = property_service.getMonthlyLoanPayment(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var cash_available = property_service.get_net_operating_income(property, expenses);
+    var cash_available = property_service.getNetOperatingIncome(property, expenses);
 
     return cash_available - monthly_debt_service;
   }
 
   function annual_cash_flows_remaining(property) {
-    var annual_debt_service = 12 * property_service.monthly_loan_payment(property);
+    var annual_debt_service = 12 * property_service.getMonthlyLoanPayment(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var annual_cash_available_for_loan_servicing = property_service.get_net_annual_operating_incomes(
+    var annual_cash_available_for_loan_servicing = property_service.getNetAnnualOperatingIncomes(
       property,
       expenses);
 

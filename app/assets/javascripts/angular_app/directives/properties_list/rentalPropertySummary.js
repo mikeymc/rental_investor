@@ -14,7 +14,7 @@ angular.module('rentals').directive('rentalPropertySummary', function($state, ke
         }
 
         $scope.cap_rate = key_rent_ratios_service.get_cap_rate($scope.property);
-        $scope.total_cost = property_service.get_total_cost($scope.property);
+        $scope.total_cost = property_service.getTotalCost($scope.property);
         $scope.year_one_cash_on_cash_roi = roi_service.cash_roi($scope.property)[0];
       });
 

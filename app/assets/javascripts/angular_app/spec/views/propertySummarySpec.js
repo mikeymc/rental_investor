@@ -12,7 +12,7 @@ describe('a property summary', function() {
         number_of_units: 55
       }
     };
-    spyOn(this.property_service, 'get_total_cost').and.returnValue('1000');
+    spyOn(this.property_service, 'getTotalCost').and.returnValue('1000');
   });
 
   describe('the summary data that is shown', function () {

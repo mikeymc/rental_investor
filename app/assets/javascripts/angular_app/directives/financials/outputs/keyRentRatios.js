@@ -7,10 +7,10 @@ angular.module('rentals').directive('keyRentRatios', function(property_service, 
         if(!$scope.rental_property) {
           return;
         }
-        $scope.avg_sq_ft_per_unit = property_service.get_avg_area_per_unit($scope.rental_property);
-        $scope.avg_rent_per_sq_ft = property_service.get_avg_rent_per_sq_ft($scope.rental_property);
-        $scope.total_cost_per_sq_ft = property_service.get_total_cost_per_sq_ft($scope.rental_property);
-        $scope.cost_per_unit = property_service.get_cost_per_unit($scope.rental_property);
+        $scope.avg_sq_ft_per_unit = property_service.getAverageAreaPerUnit($scope.rental_property);
+        $scope.avg_rent_per_sq_ft = property_service.getAverageRentPerSquareFoot($scope.rental_property);
+        $scope.total_cost_per_sq_ft = property_service.getTotalCostPerSquareFoot($scope.rental_property);
+        $scope.cost_per_unit = property_service.getCostPerUnit($scope.rental_property);
         $scope.cap_rate = key_rent_ratios_service.get_cap_rate($scope.rental_property);
         $scope.gross_rent_multiplier = key_rent_ratios_service.get_gross_rent_multiplier($scope.rental_property);
         $scope.operating_efficiency = key_rent_ratios_service.get_operating_efficiency($scope.rental_property);

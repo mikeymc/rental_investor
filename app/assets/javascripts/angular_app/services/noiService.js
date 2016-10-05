@@ -66,21 +66,21 @@ angular.module('rentals').service('noi_service', function(property_service, cash
   }
 
   function monthly_interest_on_loan_percentage(property) {
-    return 100 * monthly_interest_on_loan(property) / property_service.get_gross_operating_income(property);
+    return 100 * monthly_interest_on_loan(property) / property_service.getGrossOperatingIncome(property);
   }
 
   function monthly_interest_on_loan(property) {
-    return property_service.monthly_loan_payment(property) - cash_flow_service.monthly_cum_princ(property);
+    return property_service.getMonthlyLoanPayment(property) - cash_flow_service.monthly_cum_princ(property);
   }
 
   function net_monthly_income(property, expenses) {
-    var gross_income = property_service.get_gross_operating_income(property);
+    var gross_income = property_service.getGrossOperatingIncome(property);
     var total_monthly_expenses = expenses.total.monthly_cost;
     return gross_income - total_monthly_expenses;
   }
 
   function net_annual_incomes(property, expenses) {
-    var incomes = property_service.get_projected_annual_gross_operating_incomes(property);
+    var incomes = property_service.getProjectedAnnualGrossOperatingIncomes(property);
     return _.map(incomes, function(income, index) {
       return income - expenses.total.yearly_costs[index];
     });
