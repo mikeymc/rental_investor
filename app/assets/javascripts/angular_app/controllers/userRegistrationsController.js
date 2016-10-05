@@ -2,8 +2,8 @@ angular.module('rentals').controller('UserRegistrationsController', function($au
   $scope.handleRegBtnClick = function() {
     register()
       .then(login)
-      .then(create_sample_property)
-      .then(go_to_properties_list);
+      .then(createSampleProperty)
+      .then(goToPropertiesList);
   };
 
   $scope.$on('auth:registration-email-error', function(ev, reason) {
@@ -23,18 +23,18 @@ angular.module('rentals').controller('UserRegistrationsController', function($au
     });
   }
 
-  function create_sample_property() {
-    var sample_property = {
+  function createSampleProperty() {
+    var sampleProperty = {
       street: '123 Sample St',
       city: 'Atlanta',
       state: 'GA',
       zip_code: '12345'
     };
 
-    return propertyRepository.create(sample_property);
+    return propertyRepository.create(sampleProperty);
   }
 
-  function go_to_properties_list() {
+  function goToPropertiesList() {
     $state.go('rental_properties');
   }
 });
