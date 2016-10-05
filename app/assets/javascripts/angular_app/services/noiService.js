@@ -57,7 +57,7 @@ angular.module('rentals').service('noi_service', function(propertyService, cash_
   }
 
   function get_annual_interest_on_loan(property) {
-    var yearly_principal_reductions = cash_flow_service.yearly_cum_princ(property);
+    var yearly_principal_reductions = cash_flow_service.getAnnualCumPrincs(property);
     var yearly_debt_service = cash_flow_service.annual_debt_service(property);
 
     return _.map(yearly_principal_reductions, function(reduction) {
@@ -70,7 +70,7 @@ angular.module('rentals').service('noi_service', function(propertyService, cash_
   }
 
   function monthly_interest_on_loan(property) {
-    return propertyService.getMonthlyLoanPayment(property) - cash_flow_service.monthly_cum_princ(property);
+    return propertyService.getMonthlyLoanPayment(property) - cash_flow_service.getMonthlyCumPrinc(property);
   }
 
   function net_monthly_income(property, expenses) {

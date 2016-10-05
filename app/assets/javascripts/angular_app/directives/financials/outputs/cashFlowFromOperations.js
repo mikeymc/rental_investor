@@ -14,12 +14,12 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         $scope.annual_debt_service = cash_flow_service.annual_debt_service($scope.rental_property);
         $scope.cash_available = propertyService.getNetOperatingIncome($scope.rental_property, expenses);
         $scope.annual_cash_available = propertyService.getNetAnnualOperatingIncomes($scope.rental_property, expenses);
-        $scope.monthly_cf_remaining = cash_flow_service.monthly_cash_flow_remaining($scope.rental_property);
-        $scope.annual_cfs_remaining = cash_flow_service.annual_cash_flows_remaining($scope.rental_property);
-        $scope.monthly_principal_reduction = cash_flow_service.monthly_cum_princ($scope.rental_property);
-        $scope.yearly_principal_reductions = cash_flow_service.yearly_cum_princ($scope.rental_property);
+        $scope.monthly_cf_remaining = cash_flow_service.getMonthlyCashFlowRemaining($scope.rental_property);
+        $scope.annual_cfs_remaining = cash_flow_service.getAnnualCashFlowsRemaining($scope.rental_property);
+        $scope.monthly_principal_reduction = cash_flow_service.getMonthlyCumPrinc($scope.rental_property);
+        $scope.yearly_principal_reductions = cash_flow_service.getAnnualCumPrincs($scope.rental_property);
         $scope.monthly_total_return = cash_flow_service.getMonthlyTotalReturn($scope.rental_property);
-        $scope.annual_total_returns = cash_flow_service.get_annual_total_returns($scope.rental_property);
+        $scope.annual_total_returns = cash_flow_service.getAnnualTotalReturns($scope.rental_property);
         $scope.monthly_cf_debt_servicing_ratio = monthly_cf_debt_servicing_ratio($scope.rental_property);
         $scope.annual_cf_debt_servicing_ratio = annual_cf_debt_servicing_ratio($scope.rental_property);
         $scope.monthly_net_income_after_taxes = noi_service.monthly_net_income_after_taxes($scope.rental_property, expenses);

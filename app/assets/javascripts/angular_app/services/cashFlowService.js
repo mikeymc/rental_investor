@@ -1,15 +1,15 @@
 angular.module('rentals').service('cash_flow_service', function(propertyService, operating_expenses_service) {
   return {
     getMonthlyTotalReturn: getMonthlyTotalReturn,
-    get_annual_total_returns: getAnnualTotalReturns,
-    monthly_cum_princ: getMonthlyCumPrinc,
-    yearly_cum_princ: getAnnualCumPrincs,
+    getAnnualTotalReturns: getAnnualTotalReturns,
+    getMonthlyCumPrinc: getMonthlyCumPrinc,
+    getAnnualCumPrincs: getAnnualCumPrincs,
     annual_debt_service: getAnnualDebtService,
-    monthly_cash_flow_remaining: getMonthlyCashFlowRemaining,
-    annual_cash_flows_remaining: getAnnualCashFlowsRemaining,
-    one_year_exit_net: getOneYearExitNet,
-    three_year_exit_nets: getThreeYearExitNets,
-    five_year_exit_nets: getFiveYearExitNets
+    getMonthlyCashFlowRemaining: getMonthlyCashFlowRemaining,
+    getAnnualCashFlowsRemaining: getAnnualCashFlowsRemaining,
+    getOneYearExitNet: getOneYearExitNet,
+    getThreeYearExitNets: getThreeYearExitNets,
+    getFiveYearExitNets: getFiveYearExitNets
   };
 
   /* --- Private --- */
