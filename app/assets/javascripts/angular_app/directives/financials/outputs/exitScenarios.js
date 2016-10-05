@@ -1,4 +1,4 @@
-angular.module('rentals').directive('exitScenarios', function(propertyService, key_rent_ratios_service, exitScenariosService, cashFlowService, irrService) {
+angular.module('rentals').directive('exitScenarios', function(propertyService, keyRentRatiosService, exitScenariosService, cashFlowService, irrService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/exitScenarios.html',
     restrict: 'E',
@@ -16,7 +16,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
         $scope.third_year_gain_on_sale = exitScenariosService.thirdYearGainOnSale($scope.rental_property);
         $scope.fifth_year_gain_on_sale = exitScenariosService.fifthYearGainOnSale($scope.rental_property);
 
-        $scope.cap_rate = key_rent_ratios_service.get_cap_rate($scope.rental_property);
+        $scope.cap_rate = keyRentRatiosService.getCapitalizationRate($scope.rental_property);
 
         $scope.one_year_irr = calculate_one_year_irr($scope.rental_property);
         $scope.three_year_irr = calculate_three_year_irr($scope.rental_property);

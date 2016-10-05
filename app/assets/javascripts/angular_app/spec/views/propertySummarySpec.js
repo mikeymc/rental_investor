@@ -2,7 +2,7 @@ describe('a property summary', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', 'key_rent_ratios_service', 'propertyService', 'roi_service');
+    this.inject_dependencies('$scope', 'render_template', 'keyRentRatiosService', 'propertyService', 'roi_service');
     this.$scope.summary = {
       street: '123 Sesame Street',
       city: 'Bunville',
@@ -19,7 +19,7 @@ describe('a property summary', function() {
     var summary_row;
 
     beforeEach(function () {
-      spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
+      spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
       spyOn(this.roi_service, 'cash_roi').and.returnValue(['57.89', '12.22']);
       view = this.render_template('<div rental-property-summary="summary">', this.$scope);
       summary_row = view.find('.rental-property-summary');
@@ -56,7 +56,7 @@ describe('a property summary', function() {
 
     describe('when the cap rate returns a number', function() {
       it('displays the number', function() {
-        spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue('1.23');
+        spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
 
         view = this.render_template('<div rental-property-summary="summary">', this.$scope);
         this.$scope.$apply();
@@ -67,7 +67,7 @@ describe('a property summary', function() {
 
     describe('when the cap rate does not return a number', function() {
       it('displays --', function() {
-        spyOn(this.key_rent_ratios_service, 'get_cap_rate').and.returnValue(NaN);
+        spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue(NaN);
 
         view = this.render_template('<div rental-property-summary="summary">', this.$scope);
 
