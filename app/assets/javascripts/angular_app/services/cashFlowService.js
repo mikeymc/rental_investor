@@ -4,7 +4,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
     getAnnualTotalReturns: getAnnualTotalReturns,
     getMonthlyCumPrinc: getMonthlyCumPrinc,
     getAnnualCumPrincs: getAnnualCumPrincs,
-    annual_debt_service: getAnnualDebtService,
+    getAnnualDebtService: getAnnualDebtService,
     getMonthlyCashFlowRemaining: getMonthlyCashFlowRemaining,
     getAnnualCashFlowsRemaining: getAnnualCashFlowsRemaining,
     getOneYearExitNet: getOneYearExitNet,

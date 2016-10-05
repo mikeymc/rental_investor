@@ -58,7 +58,7 @@ angular.module('rentals').service('noi_service', function(propertyService, cashF
 
   function get_annual_interest_on_loan(property) {
     var yearly_principal_reductions = cashFlowService.getAnnualCumPrincs(property);
-    var yearly_debt_service = cashFlowService.annual_debt_service(property);
+    var yearly_debt_service = cashFlowService.getAnnualDebtService(property);
 
     return _.map(yearly_principal_reductions, function(reduction) {
       return yearly_debt_service - reduction;
