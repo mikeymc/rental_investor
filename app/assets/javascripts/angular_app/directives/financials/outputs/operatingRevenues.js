@@ -15,7 +15,7 @@ angular.module('rentals').directive('operatingRevenues', function(propertyServic
         $scope.projected_gross_annual_rents = propertyService.getProjectedGrossAnnualRents($scope.rental_property);
         $scope.projected_annual_vacancy_costs = propertyService.getProjectedAnnualVacancyCosts($scope.rental_property);
         $scope.projected_annual_net_rental_incomes = propertyService.getProjectedAnnualNetRentalIncomes($scope.rental_property);
-        $scope.projected_other_incomes = propertyService.get_projected_other_incomes($scope.rental_property);
+        $scope.projected_other_incomes = propertyService.getProjectedOtherIncomes($scope.rental_property);
         $scope.projected_gross_incomes = propertyService.getProjectedAnnualGrossOperatingIncomes($scope.rental_property);
       }, true);
     }

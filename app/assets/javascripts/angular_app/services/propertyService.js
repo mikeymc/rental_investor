@@ -10,7 +10,7 @@ angular.module('rentals').service('propertyService', function() {
     getAverageAreaPerUnit: getAverageAreaPerUnit,
     getTotalCostPerSquareFoot: getTotalCostPerSquareFoot,
     getAverageRentPerSquareFoot: getAverageRentPerSquareFoot,
-    get_projected_other_incomes: getProjectedOtherIncomes,
+    getProjectedOtherIncomes: getProjectedOtherIncomes,
     getVacancyOperatingExpense: getVacancyOperatingExpense,
     getNetRentalIncome: getNetRentalIncome,
     getGrossOperatingIncome: getGrossOperatingIncome,
