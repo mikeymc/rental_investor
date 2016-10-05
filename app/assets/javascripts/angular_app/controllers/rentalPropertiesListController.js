@@ -3,10 +3,6 @@ angular.module('rentals').controller('rentalPropertiesListController', function(
     $scope.rental_properties = response.data;
   });
 
-  $scope.sign_out = function() {
-    $state.go('sign_in');
-  };
-
   $scope.save_new_property = function(property) {
     propertyRepository.create(property).then(function(response) {
       $scope.rental_properties = response.data;
