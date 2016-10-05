@@ -12,7 +12,7 @@ angular.module('rentals').service('roi_service', function(propertyService, opera
     var operating_expenses_each_year = operating_expenses_service.all_operating_expenses(property).total.yearly_costs;
     var gross_incomes_each_year = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
     var interest_on_loan_each_year = noiService.get_annual_interest_on_loan(property);
-    var depreciation_each_year = noiService.get_annual_building_depreciation(property);
+    var depreciation_each_year = noiService.getAnnualBuildingDepreciation(property);
 
     return _.map(gross_incomes_each_year, function(gross_income_for_the_year, year) {
       return 100 * (gross_income_for_the_year - operating_expenses_each_year[year] - interest_on_loan_each_year[year] - depreciation_each_year) / down_payment;

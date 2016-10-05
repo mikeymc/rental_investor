@@ -22,11 +22,11 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         $scope.annual_total_returns = cashFlowService.getAnnualTotalReturns($scope.rental_property);
         $scope.monthly_cf_debt_servicing_ratio = monthly_cf_debt_servicing_ratio($scope.rental_property);
         $scope.annual_cf_debt_servicing_ratio = annual_cf_debt_servicing_ratio($scope.rental_property);
-        $scope.monthly_net_income_after_taxes = noiService.monthly_net_income_after_taxes($scope.rental_property, expenses);
-        $scope.annual_net_income_after_taxes = noiService.annual_net_income_after_taxes($scope.rental_property, expenses);
-        $scope.monthly_building_depreciation = noiService.get_monthly_building_depreciation($scope.rental_property);
-        $scope.annual_building_depreciation = noiService.get_annual_building_depreciation($scope.rental_property);
-        $scope.monthly_interest_on_loan = noiService.monthly_interest_on_loan($scope.rental_property);
+        $scope.monthly_net_income_after_taxes = noiService.getMonthlyNetIncomeAfterTaxes($scope.rental_property, expenses);
+        $scope.annual_net_income_after_taxes = noiService.getAnnualNetIncomeAfterTaxes($scope.rental_property, expenses);
+        $scope.monthly_building_depreciation = noiService.getMonthlyBuildingDepreciation($scope.rental_property);
+        $scope.annual_building_depreciation = noiService.getAnnualBuildingDepreciation($scope.rental_property);
+        $scope.monthly_interest_on_loan = noiService.getMonthlyInterestOnLoan($scope.rental_property);
         $scope.annual_interest_on_loan = noiService.get_annual_interest_on_loan($scope.rental_property);
         $scope.monthly_total_cf_from_operations = monthly_total_cf_from_operations($scope.rental_property, expenses);
         $scope.annual_total_cf_from_operations = annual_total_cf_from_operations($scope.rental_property, expenses);
@@ -34,15 +34,15 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         /* --- Private --- */
 
         function monthly_total_cf_from_operations(property, expenses) {
-          var depreciation = noiService.get_monthly_building_depreciation(property);
-          var income_after_taxes = noiService.monthly_net_income_after_taxes(property, expenses);
+          var depreciation = noiService.getMonthlyBuildingDepreciation(property);
+          var income_after_taxes = noiService.getMonthlyNetIncomeAfterTaxes(property, expenses);
 
           return depreciation + income_after_taxes;
         }
 
         function annual_total_cf_from_operations(property, expenses) {
-          var depreciation = noiService.get_annual_building_depreciation(property);
-          var income_after_taxes = noiService.annual_net_income_after_taxes(property, expenses);
+          var depreciation = noiService.getAnnualBuildingDepreciation(property);
+          var income_after_taxes = noiService.getAnnualNetIncomeAfterTaxes(property, expenses);
 
           return _.map(income_after_taxes, function(income) {
             return depreciation + income;
