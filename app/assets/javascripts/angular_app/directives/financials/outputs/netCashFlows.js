@@ -8,7 +8,7 @@ angular.module('rentals').directive('netCashFlows', function(propertyService, ca
           return;
         }
 
-        $scope.monthly_cash_flow = -1 * propertyService.down_payment($scope.rental_property);
+        $scope.monthly_cash_flow = -1 * propertyService.getDownPayment($scope.rental_property);
         $scope.one_year_exit_net = cashFlowService.getOneYearExitNet($scope.rental_property);
         $scope.three_year_exit_nets = three_year_exit_nets($scope.rental_property);
         $scope.five_year_exit_nets = five_year_exit_nets($scope.rental_property);

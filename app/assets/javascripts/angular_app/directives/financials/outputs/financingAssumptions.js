@@ -13,7 +13,7 @@ angular.module('rentals').directive('financingAssumptions', function(propertySer
         $scope.equity_percentage = property.financing_and_income_assumption.equity_percentage;
         $scope.total_closing_costs = propertyService.getClosingCosts(property);
         $scope.total_cost = propertyService.getTotalCost(property);
-        $scope.down_payment = propertyService.down_payment(property);
+        $scope.down_payment = propertyService.getDownPayment(property);
         $scope.balance_to_finance_percentage = propertyService.getPercentToFinance(property);
         $scope.balance_to_finance = propertyService.getBalanceToFinance(property);
         $scope.monthly_interest_rate = property.financing_and_income_assumption.loan_interest_rate / 12;

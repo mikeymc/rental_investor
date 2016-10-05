@@ -22,7 +22,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
         getAnnualTotalReturns(property)[2],
         annualPrincipalReductions[0],
         annualPrincipalReductions[1],
-        propertyService.down_payment(property),
+        propertyService.getDownPayment(property),
         gainOnSale
       ];
 
@@ -50,7 +50,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
         annualPrincipalReductions[1],
         annualPrincipalReductions[2],
         annualPrincipalReductions[3],
-        propertyService.down_payment(property),
+        propertyService.getDownPayment(property),
         gain_on_sale
       ];
 
@@ -71,7 +71,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
   }
 
   function getOneYearExitNet(property) {
-    var downPayment = propertyService.down_payment(property);
+    var downPayment = propertyService.getDownPayment(property);
     var totalReturn = getAnnualTotalReturns(property)[0];
 
     return downPayment + totalReturn;

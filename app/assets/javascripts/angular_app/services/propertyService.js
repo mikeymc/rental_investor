@@ -20,7 +20,7 @@ angular.module('rentals').service('propertyService', function() {
     getProjectedAnnualGrossOperatingIncomes: getProjectedAnnualGrossOperatingIncomes,
     getMonthlyLoanPayment: getMonthlyLoanPayment,
     getMonthlyInterestRate: getMonthlyInterestRate,
-    down_payment: getDownPayment,
+    getDownPayment: getDownPayment,
     getPercentToFinance: getPercentToFinance,
     getBalanceToFinance: getBalanceToFinance,
     getNetOperatingIncome: getNetOperatingIncome,

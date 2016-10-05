@@ -27,14 +27,14 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
       /* --- Private --- */
 
       function calculate_one_year_irr(property) {
-        var first_month = -1 * propertyService.down_payment(property);
+        var first_month = -1 * propertyService.getDownPayment(property);
         var first_year_exit_net = cashFlowService.getOneYearExitNet(property);
 
         return irr_service.calculate_irr([first_month, first_year_exit_net]);
       }
 
       function calculate_three_year_irr(property) {
-        var first_month = -1 * propertyService.down_payment(property);
+        var first_month = -1 * propertyService.getDownPayment(property);
         var gain_on_sale = exit_scenarios_service.third_year_gain_on_sale(property);
         var three_year_nets = cashFlowService.getThreeYearExitNets(property, gain_on_sale);
         three_year_nets.unshift(first_month);
@@ -43,7 +43,7 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
       }
 
       function calculate_five_year_irr(property) {
-        var first_month = -1 * propertyService.down_payment(property);
+        var first_month = -1 * propertyService.getDownPayment(property);
         var gain_on_sale = exit_scenarios_service.fifth_year_gain_on_sale(property);
         var five_year_nets = cashFlowService.getFiveYearExitNets(property, gain_on_sale);
         five_year_nets.unshift(first_month);

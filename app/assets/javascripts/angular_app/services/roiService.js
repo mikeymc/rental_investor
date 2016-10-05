@@ -8,7 +8,7 @@ angular.module('rentals').service('roi_service', function(propertyService, opera
   /* --- Private --- */
 
   function annual_noi_roi(property) {
-    var down_payment = propertyService.down_payment(property);
+    var down_payment = propertyService.getDownPayment(property);
     var operating_expenses_each_year = operating_expenses_service.all_operating_expenses(property).total.yearly_costs;
     var gross_incomes_each_year = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
     var interest_on_loan_each_year = noi_service.get_annual_interest_on_loan(property);
@@ -21,7 +21,7 @@ angular.module('rentals').service('roi_service', function(propertyService, opera
 
   function cash_roi(property) {
     var remaining_cash_flow_each_year = cashFlowService.getAnnualCashFlowsRemaining(property);
-    var down_payment_on_the_property = propertyService.down_payment(property);
+    var down_payment_on_the_property = propertyService.getDownPayment(property);
 
     return _.map(remaining_cash_flow_each_year, function(cash_flow_that_year) {
       return 100 * cash_flow_that_year / down_payment_on_the_property;
@@ -29,7 +29,7 @@ angular.module('rentals').service('roi_service', function(propertyService, opera
   }
 
   function total_roi(property) {
-    var down_payment = propertyService.down_payment(property);
+    var down_payment = propertyService.getDownPayment(property);
     var remaining_annual_cash_flows = cashFlowService.getAnnualCashFlowsRemaining(property);
     var yearly_cumulative_payment_on_the_principal = cashFlowService.getAnnualCumPrincs(property);
 
