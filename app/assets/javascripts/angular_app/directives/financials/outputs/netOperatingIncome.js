@@ -1,4 +1,4 @@
-angular.module('rentals').directive('netOperatingIncome', function(operating_expenses_service, noi_service) {
+angular.module('rentals').directive('netOperatingIncome', function(operating_expenses_service, noiService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/netOperatingIncome.html',
     restrict: 'E',
@@ -10,20 +10,20 @@ angular.module('rentals').directive('netOperatingIncome', function(operating_exp
         var expenses = operating_expenses_service.all_operating_expenses($scope.rental_property);
 
         $scope.noi_percentage = 100 - expenses.total.percentage;
-        $scope.net_monthly_income = noi_service.net_monthly_income($scope.rental_property, expenses);
-        $scope.net_annual_incomes = noi_service.net_annual_incomes($scope.rental_property, expenses);
-        $scope.monthly_building_depreciation = noi_service.get_monthly_building_depreciation($scope.rental_property);
-        $scope.annual_building_depreciation = noi_service.get_annual_building_depreciation($scope.rental_property);
-        $scope.monthly_interest_on_loan_percentage = noi_service.monthly_interest_on_loan_percentage($scope.rental_property);
-        $scope.monthly_interest_on_loan = noi_service.monthly_interest_on_loan($scope.rental_property);
-        $scope.annual_interest_on_loan = noi_service.get_annual_interest_on_loan($scope.rental_property);
-        $scope.monthly_net_income_before_taxes = noi_service.monthly_net_income_before_taxes($scope.rental_property, expenses);
-        $scope.monthly_net_income_after_taxes = noi_service.monthly_net_income_after_taxes($scope.rental_property, expenses);
-        $scope.annual_net_income_before_taxes = noi_service.annual_net_income_before_taxes($scope.rental_property, expenses);
-        $scope.annual_net_income_after_taxes = noi_service.annual_net_income_after_taxes($scope.rental_property, expenses);
+        $scope.net_monthly_income = noiService.net_monthly_income($scope.rental_property, expenses);
+        $scope.net_annual_incomes = noiService.net_annual_incomes($scope.rental_property, expenses);
+        $scope.monthly_building_depreciation = noiService.get_monthly_building_depreciation($scope.rental_property);
+        $scope.annual_building_depreciation = noiService.get_annual_building_depreciation($scope.rental_property);
+        $scope.monthly_interest_on_loan_percentage = noiService.monthly_interest_on_loan_percentage($scope.rental_property);
+        $scope.monthly_interest_on_loan = noiService.monthly_interest_on_loan($scope.rental_property);
+        $scope.annual_interest_on_loan = noiService.get_annual_interest_on_loan($scope.rental_property);
+        $scope.monthly_net_income_before_taxes = noiService.monthly_net_income_before_taxes($scope.rental_property, expenses);
+        $scope.monthly_net_income_after_taxes = noiService.monthly_net_income_after_taxes($scope.rental_property, expenses);
+        $scope.annual_net_income_before_taxes = noiService.annual_net_income_before_taxes($scope.rental_property, expenses);
+        $scope.annual_net_income_after_taxes = noiService.annual_net_income_after_taxes($scope.rental_property, expenses);
         $scope.income_tax_rate = $scope.rental_property.operating_expenses_assumption.income_tax_rate;
-        $scope.monthly_taxes = noi_service.monthly_taxes($scope.rental_property, expenses);
-        $scope.annual_taxes = noi_service.annual_taxes($scope.rental_property, expenses);
+        $scope.monthly_taxes = noiService.monthly_taxes($scope.rental_property, expenses);
+        $scope.annual_taxes = noiService.annual_taxes($scope.rental_property, expenses);
 
       }, true);
     }

@@ -1,4 +1,4 @@
-angular.module('rentals').service('noi_service', function(propertyService, cashFlowService) {
+angular.module('rentals').service('noiService', function(propertyService, cashFlowService) {
   return {
     monthly_net_income_before_taxes: monthly_net_income_before_taxes,
     monthly_net_income_after_taxes: monthly_net_income_after_taxes,
