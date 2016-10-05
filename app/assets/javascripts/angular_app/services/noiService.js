@@ -1,4 +1,4 @@
-angular.module('rentals').service('noi_service', function(propertyService, cash_flow_service) {
+angular.module('rentals').service('noi_service', function(propertyService, cashFlowService) {
   return {
     monthly_net_income_before_taxes: monthly_net_income_before_taxes,
     monthly_net_income_after_taxes: monthly_net_income_after_taxes,
@@ -57,8 +57,8 @@ angular.module('rentals').service('noi_service', function(propertyService, cash_
   }
 
   function get_annual_interest_on_loan(property) {
-    var yearly_principal_reductions = cash_flow_service.getAnnualCumPrincs(property);
-    var yearly_debt_service = cash_flow_service.annual_debt_service(property);
+    var yearly_principal_reductions = cashFlowService.getAnnualCumPrincs(property);
+    var yearly_debt_service = cashFlowService.annual_debt_service(property);
 
     return _.map(yearly_principal_reductions, function(reduction) {
       return yearly_debt_service - reduction;
@@ -70,7 +70,7 @@ angular.module('rentals').service('noi_service', function(propertyService, cash_
   }
 
   function monthly_interest_on_loan(property) {
-    return propertyService.getMonthlyLoanPayment(property) - cash_flow_service.getMonthlyCumPrinc(property);
+    return propertyService.getMonthlyLoanPayment(property) - cashFlowService.getMonthlyCumPrinc(property);
   }
 
   function net_monthly_income(property, expenses) {

@@ -1,4 +1,4 @@
-angular.module('rentals').service('cash_flow_service', function(propertyService, operating_expenses_service) {
+angular.module('rentals').service('cashFlowService', function(propertyService, operating_expenses_service) {
   return {
     getMonthlyTotalReturn: getMonthlyTotalReturn,
     getAnnualTotalReturns: getAnnualTotalReturns,
