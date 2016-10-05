@@ -1,4 +1,4 @@
-angular.module('rentals').service('exit_scenarios_service', function(key_rent_ratios_service, noi_service, operating_expenses_service, propertyService) {
+angular.module('rentals').service('exitScenariosService', function(key_rent_ratios_service, noi_service, operating_expenses_service, propertyService) {
   return {
     firstYearExitPrice: firstYearExitPrice,
     thirdYearExitPrice: thirdYearExitPrice,
