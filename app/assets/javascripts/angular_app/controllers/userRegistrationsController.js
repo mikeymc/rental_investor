@@ -7,7 +7,7 @@ angular.module('rentals').controller('UserRegistrationsController', function($au
   };
 
   $scope.$on('auth:registration-email-error', function(ev, reason) {
-    $scope.error_message = reason.errors.full_messages[0];
+    $scope.errorMessage = reason.errors.full_messages[0];
   });
 
   /* --- Private --- */
