@@ -7,7 +7,7 @@ angular.module('rentals').directive('saveButton', function(propertyRepository, $
       rental_property: '=rentalProperty'
     },
     link: function($scope) {
-      $scope.persistence_state = 'Save';
+      $scope.persistenceState = 'Save';
 
       $scope.save = function() {
         propertyRepository.update($scope.rentalId, $scope.rental_property).then(function(response) {
@@ -21,9 +21,9 @@ angular.module('rentals').directive('saveButton', function(propertyRepository, $
       function displaySavedFlag() {
         function toggleSaved(flag) {
           if (flag) {
-            $scope.persistence_state = 'Saved!';
+            $scope.persistenceState = 'Saved!';
           } else {
-            $scope.persistence_state = 'Save';
+            $scope.persistenceState = 'Save';
           }
           $timeout(function() {
             $scope.$apply();
