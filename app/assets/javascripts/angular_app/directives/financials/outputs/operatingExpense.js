@@ -7,9 +7,8 @@ angular.module('rentals').directive('operatingExpense', function() {
       addBorder: '='
     },
     link: function($scope) {
-      $scope.add_border = $scope.addBorder;
-      if($scope.add_border) {
-        $scope.border_style = 'add-border-top';
+      if($scope.addBorder) {
+        $scope.borderStyle = 'add-border-top';
       }
     }
   }
