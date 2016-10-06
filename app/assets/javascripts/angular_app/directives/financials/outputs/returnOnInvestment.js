@@ -1,4 +1,4 @@
-angular.module('rentals').directive('returnOnInvestment', function(roi_service) {
+angular.module('rentals').directive('returnOnInvestment', function(roiService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/returnOnInvestment.html',
     restrict: 'E',
@@ -8,9 +8,9 @@ angular.module('rentals').directive('returnOnInvestment', function(roi_service) 
           return;
         }
 
-        $scope.noi_roi = roi_service.annual_noi_roi($scope.rental_property);
-        $scope.cash_roi = roi_service.cash_roi($scope.rental_property);
-        $scope.total_roi = roi_service.total_roi($scope.rental_property);
+        $scope.noi_roi = roiService.annual_noi_roi($scope.rental_property);
+        $scope.cash_roi = roiService.cash_roi($scope.rental_property);
+        $scope.total_roi = roiService.total_roi($scope.rental_property);
 
       }, true);
     }
