@@ -2,12 +2,12 @@ describe('the new property dialog', function () {
   var view;
 
   beforeEach(function () {
-    this.injectDependencies('$scope', '$rootScope', 'render_template', 'propertyRepository');
+    this.injectDependencies('$scope', '$rootScope', 'renderTemplate', 'propertyRepository');
   });
 
   describe('items on the dialog', function () {
     beforeEach(function() {
-      view = this.render_template('<new-property-modal/>', this.$scope);
+      view = this.renderTemplate('<new-property-modal/>', this.$scope);
     });
 
     it('has a title', function () {
@@ -35,7 +35,7 @@ describe('the new property dialog', function () {
       this.$scope.save_new_property = function () {};
       spyOn(this.$scope, 'save_new_property');
 
-      view = this.render_template('<new-property-modal create-property="save_new_property"/>', this.$scope);
+      view = this.renderTemplate('<new-property-modal create-property="save_new_property"/>', this.$scope);
       view.find('input[name=new_property_street]').val('123 Banana Street').trigger('input');
       view.find('input[name=new_property_city]').val('Fruitvale').trigger('input');
       view.find('input[name=new_property_state]').val('CA').trigger('input');

@@ -2,7 +2,7 @@ describe('the properties list view', function () {
   var view;
 
   beforeEach(function () {
-    this.injectDependencies('$scope', 'render_template', '$httpBackend', 'keyRentRatiosService', 'propertyService', 'roiService');
+    this.injectDependencies('$scope', 'renderTemplate', '$httpBackend', 'keyRentRatiosService', 'propertyService', 'roiService');
     spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
     spyOn(this.roiService, 'getCashOnCashReturn').and.returnValue('1.23');
     spyOn(this.propertyService, 'getTotalCost').and.returnValue('1000');
@@ -27,7 +27,7 @@ describe('the properties list view', function () {
       }
     ]);
 
-    view = this.render_template('investment_properties_pages/properties_list/rentalPropertiesList.html', this.$scope);
+    view = this.renderTemplate('investment_properties_pages/properties_list/rentalPropertiesList.html', this.$scope);
     this.$httpBackend.flush();
   });
 

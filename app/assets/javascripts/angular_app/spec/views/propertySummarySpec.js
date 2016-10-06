@@ -2,7 +2,7 @@ describe('a property summary', function() {
   var view;
 
   beforeEach(function() {
-    this.injectDependencies('$scope', 'render_template', 'keyRentRatiosService', 'propertyService', 'roiService');
+    this.injectDependencies('$scope', 'renderTemplate', 'keyRentRatiosService', 'propertyService', 'roiService');
     this.$scope.summary = {
       street: '123 Sesame Street',
       city: 'Bunville',
@@ -21,7 +21,7 @@ describe('a property summary', function() {
     beforeEach(function () {
       spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
       spyOn(this.roiService, 'getCashOnCashReturn').and.returnValue(['57.89', '12.22']);
-      view = this.render_template('<div rental-property-summary="summary">', this.$scope);
+      view = this.renderTemplate('<div rental-property-summary="summary">', this.$scope);
       summary_row = view.find('.rental-property-summary');
     });
 
@@ -58,7 +58,7 @@ describe('a property summary', function() {
       it('displays the number', function() {
         spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
 
-        view = this.render_template('<div rental-property-summary="summary">', this.$scope);
+        view = this.renderTemplate('<div rental-property-summary="summary">', this.$scope);
         this.$scope.$apply();
 
         expect(view.find('div:nth(6)').text().trim()).toEqual('1.23%');
@@ -69,7 +69,7 @@ describe('a property summary', function() {
       it('displays --', function() {
         spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue(NaN);
 
-        view = this.render_template('<div rental-property-summary="summary">', this.$scope);
+        view = this.renderTemplate('<div rental-property-summary="summary">', this.$scope);
 
         expect(view.find('div:nth(6)').text().trim()).toEqual('--');
       });

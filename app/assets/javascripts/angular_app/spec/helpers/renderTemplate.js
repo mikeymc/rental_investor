@@ -1,4 +1,4 @@
-angular.module('rentals').service('render_template', function($templateCache, $compile) {
+angular.module('rentals').service('renderTemplate', function($templateCache, $compile) {
   function isTemplateFile(template) {
     return _.last(template, 5).join('') === '.html';
   }

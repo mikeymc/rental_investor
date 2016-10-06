@@ -2,7 +2,7 @@ describe('the navbar', function() {
   var view;
 
   beforeEach(function() {
-    this.injectDependencies('$scope', 'render_template', '$state', '$auth', '$q');
+    this.injectDependencies('$scope', 'renderTemplate', '$state', '$auth', '$q');
     spyOn(this.$auth, 'validateUser').and.returnValue(this.$q.when(true));
   });
 
@@ -10,7 +10,7 @@ describe('the navbar', function() {
     describe('when not on the properties list page', function() {
       beforeEach(function() {
         this.$state.go('financials', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
       });
 
       it('shows a home link', function() {
@@ -26,7 +26,7 @@ describe('the navbar', function() {
       it('does not show a home link', function() {
         this.$state.current.name = 'rental_properties';
 
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Home)')).not.toExist();
       });
@@ -43,7 +43,7 @@ describe('the navbar', function() {
           zip_code: '09876'
         };
 
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('.property-address')).toContainText('12345 Banana St, Fruitvale, CA 09876');
       })
@@ -51,7 +51,7 @@ describe('the navbar', function() {
 
     describe('when a property does not exist', function() {
       it('shows the property address', function() {
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('.property-address')).not.toExist();
       })
@@ -62,7 +62,7 @@ describe('the navbar', function() {
     describe('when on the properties list page', function() {
       it('does not show the link', function() {
         this.$state.go('rental_properties');
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view).not.toContainText('Financials');
       });
@@ -71,14 +71,14 @@ describe('the navbar', function() {
     describe('when on the property page', function() {
       it('shows the link', function() {
         this.$state.go('financials', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Financials)')).toExist();
       });
 
       it('links to the financials', function() {
         this.$state.go('financials', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Financials)').attr('ui-sref')).toEqual('financials({rental_id: rental_property.id})');
       })
@@ -89,7 +89,7 @@ describe('the navbar', function() {
     describe('when on the properties list page', function() {
       it('does not show the link', function() {
         this.$state.go('rental_properties');
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view).not.toContainText('Questionnaire');
       });
@@ -98,14 +98,14 @@ describe('the navbar', function() {
     describe('when on the property page', function() {
       it('shows the link', function() {
         this.$state.go('financials', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Questionnaire)')).toExist();
       });
 
       it('links to the questionnaire', function() {
         this.$state.go('financials', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Questionnaire)').attr('ui-sref')).toEqual('questionnaire({rental_id: rental_property.id})');
       })
@@ -114,14 +114,14 @@ describe('the navbar', function() {
     describe('when on the questionnaire page', function() {
       it('shows the link', function() {
         this.$state.go('questionnaire', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Questionnaire)')).toExist();
       });
 
       it('links to the questionnaire', function() {
         this.$state.go('questionnaire', {rental_id: 1});
-        view = this.render_template('<navbar/>', this.$scope);
+        view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view.find('a:contains(Questionnaire)').attr('ui-sref')).toEqual('questionnaire({rental_id: rental_property.id})');
       })
