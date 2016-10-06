@@ -8,47 +8,47 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
           return;
         }
 
-        $scope.first_year_exit_price = exitScenariosService.firstYearExitPrice($scope.rental_property);
-        $scope.third_year_exit_price = exitScenariosService.thirdYearExitPrice($scope.rental_property);
-        $scope.fifth_year_exit_price = exitScenariosService.fifthYearExitPrice($scope.rental_property);
+        $scope.firstYearExitPrice = exitScenariosService.firstYearExitPrice($scope.rental_property);
+        $scope.thirdYearExitPrice = exitScenariosService.thirdYearExitPrice($scope.rental_property);
+        $scope.fifthYearExitPrice = exitScenariosService.fifthYearExitPrice($scope.rental_property);
 
-        $scope.first_year_gain_on_sale = exitScenariosService.firstYearGainOnSale($scope.rental_property);
-        $scope.third_year_gain_on_sale = exitScenariosService.thirdYearGainOnSale($scope.rental_property);
-        $scope.fifth_year_gain_on_sale = exitScenariosService.fifthYearGainOnSale($scope.rental_property);
+        $scope.firstYearGainOnSale = exitScenariosService.firstYearGainOnSale($scope.rental_property);
+        $scope.thirdYearGainOnSale = exitScenariosService.thirdYearGainOnSale($scope.rental_property);
+        $scope.fifthYearGainOnSale = exitScenariosService.fifthYearGainOnSale($scope.rental_property);
 
-        $scope.cap_rate = keyRentRatiosService.getCapitalizationRate($scope.rental_property);
+        $scope.capRate = keyRentRatiosService.getCapitalizationRate($scope.rental_property);
 
-        $scope.one_year_irr = calculate_one_year_irr($scope.rental_property);
-        $scope.three_year_irr = calculate_three_year_irr($scope.rental_property);
-        $scope.five_year_irr = calculate_five_year_irr($scope.rental_property);
+        $scope.oneYearIrr = calculateOneYearInternalRateOfReturn($scope.rental_property);
+        $scope.threeYearIrr = calculateThreeYearInternalRateOfReturn($scope.rental_property);
+        $scope.fiveYearIrr = calculateFiveYearInternalRateOfReturn($scope.rental_property);
 
       }, true);
 
       /* --- Private --- */
 
-      function calculate_one_year_irr(property) {
-        var first_month = -1 * propertyService.getDownPayment(property);
-        var first_year_exit_net = cashFlowService.getOneYearExitNet(property);
+      function calculateOneYearInternalRateOfReturn(property) {
+        var downPayment = -1 * propertyService.getDownPayment(property);
+        var firstYearExitNet = cashFlowService.getOneYearExitNet(property);
 
-        return irrService.calculateInternalRateOfReturn([first_month, first_year_exit_net]);
+        return irrService.calculateInternalRateOfReturn([downPayment, firstYearExitNet]);
       }
 
-      function calculate_three_year_irr(property) {
-        var first_month = -1 * propertyService.getDownPayment(property);
-        var gain_on_sale = exitScenariosService.thirdYearGainOnSale(property);
-        var three_year_nets = cashFlowService.getThreeYearExitNets(property, gain_on_sale);
-        three_year_nets.unshift(first_month);
+      function calculateThreeYearInternalRateOfReturn(property) {
+        var downPayment = -1 * propertyService.getDownPayment(property);
+        var gainOnSaleInTheThirdYear = exitScenariosService.thirdYearGainOnSale(property);
+        var threeYearNets = cashFlowService.getThreeYearExitNets(property, gainOnSaleInTheThirdYear);
+        threeYearNets.unshift(downPayment);
 
-        return irrService.calculateInternalRateOfReturn(three_year_nets);
+        return irrService.calculateInternalRateOfReturn(threeYearNets);
       }
 
-      function calculate_five_year_irr(property) {
-        var first_month = -1 * propertyService.getDownPayment(property);
-        var gain_on_sale = exitScenariosService.fifthYearGainOnSale(property);
-        var five_year_nets = cashFlowService.getFiveYearExitNets(property, gain_on_sale);
-        five_year_nets.unshift(first_month);
+      function calculateFiveYearInternalRateOfReturn(property) {
+        var downPayment = -1 * propertyService.getDownPayment(property);
+        var gainOnSaleInTheFifthYear = exitScenariosService.fifthYearGainOnSale(property);
+        var fiveYearNets = cashFlowService.getFiveYearExitNets(property, gainOnSaleInTheFifthYear);
+        fiveYearNets.unshift(downPayment);
 
-        return irrService.calculateInternalRateOfReturn(five_year_nets);
+        return irrService.calculateInternalRateOfReturn(fiveYearNets);
       }
     }
   }
