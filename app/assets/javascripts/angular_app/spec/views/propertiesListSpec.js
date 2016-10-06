@@ -4,7 +4,7 @@ describe('the properties list view', function () {
   beforeEach(function () {
     this.inject_dependencies('$scope', 'render_template', '$httpBackend', 'keyRentRatiosService', 'propertyService', 'roiService');
     spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
-    spyOn(this.roiService, 'cash_roi').and.returnValue('1.23');
+    spyOn(this.roiService, 'getCashOnCashReturn').and.returnValue('1.23');
     spyOn(this.propertyService, 'getTotalCost').and.returnValue('1000');
     this.$httpBackend.expectGET('/api/rental_properties').respond(200, [
       {

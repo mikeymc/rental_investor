@@ -20,7 +20,7 @@ describe('a property summary', function() {
 
     beforeEach(function () {
       spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
-      spyOn(this.roiService, 'cash_roi').and.returnValue(['57.89', '12.22']);
+      spyOn(this.roiService, 'getCashOnCashReturn').and.returnValue(['57.89', '12.22']);
       view = this.render_template('<div rental-property-summary="summary">', this.$scope);
       summary_row = view.find('.rental-property-summary');
     });
@@ -51,7 +51,7 @@ describe('a property summary', function() {
 
   describe('cap rate', function() {
     beforeEach(function() {
-      spyOn(this.roiService, 'cash_roi').and.returnValue('7.89');
+      spyOn(this.roiService, 'getCashOnCashReturn').and.returnValue('7.89');
     });
 
     describe('when the cap rate returns a number', function() {

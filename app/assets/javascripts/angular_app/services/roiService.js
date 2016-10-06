@@ -1,8 +1,8 @@
 angular.module('rentals').service('roiService', function(propertyService, operatingExpensesService, noiService, cashFlowService) {
   return {
-    annual_noi_roi: getAnnualNetOperatingIncome,
-    cash_roi: getCashOnCashReturn,
-    total_roi: getTotalReturnOnInvestment
+    getAnnualNetOperatingIncome: getAnnualNetOperatingIncome,
+    getCashOnCashReturn: getCashOnCashReturn,
+    getTotalReturnOnInvestment: getTotalReturnOnInvestment
   };
 
   /* --- Private --- */

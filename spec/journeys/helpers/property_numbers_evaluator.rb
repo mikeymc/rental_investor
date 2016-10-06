@@ -525,49 +525,49 @@ class PropertyNumbersEvaluator
     if property[:name] == 'moroni'
       if (property[:updated])
         assert_roi({
-          noi_roi: %w(5.88% 8.78% 12.76% 15.90% 18.41%),
-          cash_roi: %w(16.22% 18.83% 22.49% 25.30% 27.44%),
-          total_roi: %w(20.49% 23.39% 27.37% 30.51% 33.02%),
-          one_year_exit_net_cfs: %w(-$647,087 $779,661),
-          three_year_exit_net_cfs: %w(-$647,087 $104,989 $121,845 $1,309,221),
-          five_year_exit_net_cfs: %w(-$647,087 $104,989 $121,845 $145,523 $163,681 $1,749,535),
-          one_year_exit_price_gain: %w($3,235,435 $0 9.47%),
-          three_year_exit_price_gain: %w($3,663,394 $427,959 9.47%),
-          five_year_exit_price_gain: %w($4,001,791 $766,356 9.47%),
-          one_year_annualized_irr: '20.49%',
-          three_year_annualized_irr: '37.29%',
-          five_year_annualized_irr: '34.80%'
+                       noi_roi: %w(5.88% 8.78% 12.76% 15.90% 18.41%),
+                       cash_roi: %w(16.22% 18.83% 22.49% 25.30% 27.44%),
+                       total_roi: %w(20.49% 23.39% 27.37% 30.51% 33.02%),
+                       one_year_exit_net_cfs: %w(-$647,087 $779,661),
+                       three_year_exit_net_cfs: %w(-$647,087 $104,989 $121,845 $1,309,221),
+                       five_year_exit_net_cfs: %w(-$647,087 $104,989 $121,845 $145,523 $163,681 $1,749,535),
+                       one_year_exit_price_gain: %w($3,235,435 $0 9.47%),
+                       three_year_exit_price_gain: %w($3,663,394 $427,959 9.47%),
+                       five_year_exit_price_gain: %w($4,001,791 $766,356 9.47%),
+                       one_year_annualized_irr: '20.49%',
+                       three_year_annualized_irr: '37.29%',
+                       five_year_annualized_irr: '34.80%'
         })
       else
         assert_roi({
-          noi_roi: %w(3.68% 7.94% 12.35% 15.30% 18.15%),
-          cash_roi: %w(12.29% 16.02% 19.86% 22.22% 24.43%),
-          total_roi: %w(21.31% 25.57% 29.97% 32.93% 35.78%),
-          one_year_exit_net_cfs: %w(-$515,681 $625,570),
-          three_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $1,233,174),
-          five_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $102,405 $114,563 $1,652,837),
-          one_year_exit_price_gain: %w($3,033,420 $0 8.36%),
-          three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%),
-          five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%),
-          one_year_annualized_irr: '21.31%',
-          three_year_annualized_irr: '42.06%',
-          five_year_annualized_irr: '36.32%'
+                       noi_roi: %w(3.68% 7.94% 12.35% 15.30% 18.15%),
+                       cash_roi: %w(12.29% 16.02% 19.86% 22.22% 24.43%),
+                       total_roi: %w(21.31% 25.57% 29.97% 32.93% 35.78%),
+                       one_year_exit_net_cfs: %w(-$515,681 $625,570),
+                       three_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $1,233,174),
+                       five_year_exit_net_cfs: %w(-$515,681 $63,374 $82,605 $102,405 $114,563 $1,652,837),
+                       one_year_exit_price_gain: %w($3,033,420 $0 8.36%),
+                       three_year_exit_price_gain: %w($3,500,565 $467,145 8.36%),
+                       five_year_exit_price_gain: %w($3,782,880 $749,460 8.36%),
+                       one_year_annualized_irr: '21.31%',
+                       three_year_annualized_irr: '42.06%',
+                       five_year_annualized_irr: '36.32%'
         })
       end
     elsif property[:name] == 'sesame'
       assert_roi({
-        noi_roi: %w(0.89% 3.19% 5.62% 7.38% 9.09%),
-        cash_roi: %w(11.65% 13.66% 15.79% 17.23% 18.63%),
-        total_roi: %w(18.69% 20.99% 23.42% 25.18% 26.89%),
-        one_year_exit_net_cfs: %w(-$61,082 $72,499),
-        three_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $120,781),
-        five_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $9,646 $10,527 $157,503),
-        one_year_exit_price_gain: %w($305,410 $0 6.91%),
-        three_year_exit_price_gain: %w($342,023 $36,613 6.91%),
-        five_year_exit_price_gain: %w($367,112 $61,702 6.91%),
-        one_year_annualized_irr: '18.69%',
-        three_year_annualized_irr: '33.25%',
-        five_year_annualized_irr: '29.91%'
+                     noi_roi: %w(0.89% 3.19% 5.62% 7.38% 9.09%),
+                     cash_roi: %w(11.65% 13.66% 15.79% 17.23% 18.63%),
+                     total_roi: %w(18.69% 20.99% 23.42% 25.18% 26.89%),
+                     one_year_exit_net_cfs: %w(-$61,082 $72,499),
+                     three_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $120,781),
+                     five_year_exit_net_cfs: %w(-$61,082 $7,115 $8,341 $9,646 $10,527 $157,503),
+                     one_year_exit_price_gain: %w($305,410 $0 6.91%),
+                     three_year_exit_price_gain: %w($342,023 $36,613 6.91%),
+                     five_year_exit_price_gain: %w($367,112 $61,702 6.91%),
+                     one_year_annualized_irr: '18.69%',
+                     three_year_annualized_irr: '33.25%',
+                     five_year_annualized_irr: '29.91%'
       })
     end
   end
