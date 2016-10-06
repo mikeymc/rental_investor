@@ -1,42 +1,42 @@
 <div id="net-operating-income" class="top-padded">
   <div class="row">
     <div class="col-sm-5 align-center subsection-header">Net Operating Income</div>
-    <div class="col-sm-2 align-right">{{noi_percentage | percentage:2}}</div>
-    <div class="col-sm-2 align-right">{{net_monthly_income | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="income in net_annual_incomes track by $index">{{income | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{noiPercentage | percentage:2}}</div>
+    <div class="col-sm-2 align-right">{{netMonthlyIncome | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="income in netAnnualIncomes track by $index">{{income | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Interest on Loan</div>
-    <div class="col-sm-2 align-right">{{monthly_interest_on_loan_percentage | percentage:1}}</div>
-    <div class="col-sm-2 align-right">{{monthly_interest_on_loan | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="interest_payment in annual_interest_on_loan track by $index">{{interest_payment | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyInterestOnLoanAsPercentage | percentage:1}}</div>
+    <div class="col-sm-2 align-right">{{monthlyInterestOnLoan | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="interest_payment in annualInterestOnLoan track by $index">{{interest_payment | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Depreciation Expenses - Building</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right add-border-bottom">{{monthly_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right add-border-bottom">{{monthlyBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Net Income Before Taxes</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_net_income_before_taxes | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="income in annual_net_income_before_taxes track by $index">{{income | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyNetIncomeBeforeTaxes | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="income in annualNetIncomeBeforeTaxes track by $index">{{income | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Income Tax Rate</div>
-    <div class="col-sm-2 align-right">{{income_tax_rate | percentage:0}}</div>
-    <div class="col-sm-2 align-right add-border-bottom">{{monthly_taxes | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom" ng-repeat="taxes in annual_taxes track by $index">{{taxes | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{incomeTaxRate | percentage:0}}</div>
+    <div class="col-sm-2 align-right add-border-bottom">{{monthlyTaxes | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom" ng-repeat="taxes in annualTaxes track by $index">{{taxes | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Net Income After Taxes</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_net_income_after_taxes | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="income in annual_net_income_after_taxes track by $index">{{income | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyNetIncomeAfterTaxes | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="income in annualNetIncomeAfterTaxes track by $index">{{income | currency:'$':0}}</div>
   </div>
 </div>
