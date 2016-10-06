@@ -1,40 +1,40 @@
 angular.module('rentals').service('roi_service', function(propertyService, operatingExpensesService, noiService, cashFlowService) {
   return {
-    annual_noi_roi: annual_noi_roi,
-    cash_roi: cash_roi,
-    total_roi: total_roi
+    annual_noi_roi: getAnnualNetOperatingIncome,
+    cash_roi: getCashOnCashReturn,
+    total_roi: getTotalReturnOnInvestment
   };
 
   /* --- Private --- */
 
-  function annual_noi_roi(property) {
-    var down_payment = propertyService.getDownPayment(property);
-    var operating_expenses_each_year = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs;
-    var gross_incomes_each_year = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
-    var interest_on_loan_each_year = noiService.getAnnualInterestOnLoan(property);
-    var depreciation_each_year = noiService.getAnnualBuildingDepreciation(property);
+  function getAnnualNetOperatingIncome(property) {
+    var downPaymentOnProperty = propertyService.getDownPayment(property);
+    var operatingExpensesEachYear = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs;
+    var grossIncomeEachYear = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
+    var interestOnTheLoanEachYear = noiService.getAnnualInterestOnLoan(property);
+    var depreciationAmountEachYear = noiService.getAnnualBuildingDepreciation(property);
 
-    return _.map(gross_incomes_each_year, function(gross_income_for_the_year, year) {
-      return 100 * (gross_income_for_the_year - operating_expenses_each_year[year] - interest_on_loan_each_year[year] - depreciation_each_year) / down_payment;
+    return _.map(grossIncomeEachYear, function(grossIncomeThatYear, year) {
+      return 100 * (grossIncomeThatYear - operatingExpensesEachYear[year] - interestOnTheLoanEachYear[year] - depreciationAmountEachYear) / downPaymentOnProperty;
     });
   }
 
-  function cash_roi(property) {
-    var remaining_cash_flow_each_year = cashFlowService.getAnnualCashFlowsRemaining(property);
-    var down_payment_on_the_property = propertyService.getDownPayment(property);
+  function getCashOnCashReturn(property) {
+    var remainingCashFlowEachYear = cashFlowService.getAnnualCashFlowsRemaining(property);
+    var downPaymentOnTheProperty = propertyService.getDownPayment(property);
 
-    return _.map(remaining_cash_flow_each_year, function(cash_flow_that_year) {
-      return 100 * cash_flow_that_year / down_payment_on_the_property;
+    return _.map(remainingCashFlowEachYear, function(cashFlowThatYear) {
+      return 100 * cashFlowThatYear / downPaymentOnTheProperty;
     });
   }
 
-  function total_roi(property) {
-    var down_payment = propertyService.getDownPayment(property);
-    var remaining_annual_cash_flows = cashFlowService.getAnnualCashFlowsRemaining(property);
-    var yearly_cumulative_payment_on_the_principal = cashFlowService.getAnnualCumPrincs(property);
+  function getTotalReturnOnInvestment(property) {
+    var downPaymentOnTheProperty = propertyService.getDownPayment(property);
+    var remainingCashFlowEachYear = cashFlowService.getAnnualCashFlowsRemaining(property);
+    var cumulativePaymentOnThePrincipalEachYear = cashFlowService.getAnnualCumPrincs(property);
 
-    return _.map(remaining_annual_cash_flows, function(remaining_cash_flow_this_year, year) {
-      return 100 * (remaining_cash_flow_this_year + yearly_cumulative_payment_on_the_principal[year]) / down_payment;
+    return _.map(remainingCashFlowEachYear, function(remainingCashFlowThatYear, year) {
+      return 100 * (remainingCashFlowThatYear + cumulativePaymentOnThePrincipalEachYear[year]) / downPaymentOnTheProperty;
     });
   }
 });
