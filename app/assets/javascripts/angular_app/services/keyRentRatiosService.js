@@ -24,7 +24,7 @@ angular.module('rentals').service('keyRentRatiosService', function(propertyServi
 
   function getCapitalizationRate(property) {
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var netOperatingIncome = noiService.net_annual_incomes(property, expenses)[0];
+    var netOperatingIncome = noiService.getNetAnnualIncomes(property, expenses)[0];
     var cost = propertyService.getTotalCost(property);
 
     return 100 * netOperatingIncome / cost;

@@ -6,13 +6,13 @@ angular.module('rentals').service('noiService', function(propertyService, cashFl
     getAnnualNetIncomeAfterTaxes: getAnnualNetIncomeAfterTaxes,
     getAnnualBuildingDepreciation: getAnnualBuildingDepreciation,
     getMonthlyBuildingDepreciation: getMonthlyBuildingDepreciation,
-    get_annual_interest_on_loan: getAnnualInterestOnLoan,
+    getAnnualInterestOnLoan: getAnnualInterestOnLoan,
     getMonthlyInterestOnLoanPercentage: getMonthlyInterestOnLoanPercentage,
     getMonthlyInterestOnLoan: getMonthlyInterestOnLoan,
-    net_monthly_income: getNetMonthlyIncome,
-    net_annual_incomes: getNetAnnualIncomes,
-    annual_taxes: getAnnualTaxes,
-    monthly_taxes: getMonthlyTaxes
+    getNetMonthlyIncome: getNetMonthlyIncome,
+    getNetAnnualIncomes: getNetAnnualIncomes,
+    getAnnualTaxes: getAnnualTaxes,
+    getMonthlyTaxes: getMonthlyTaxes
   };
 
   function getMonthlyNetIncomeBeforeTaxes(property, expenses) {

@@ -27,7 +27,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         $scope.monthly_building_depreciation = noiService.getMonthlyBuildingDepreciation($scope.rental_property);
         $scope.annual_building_depreciation = noiService.getAnnualBuildingDepreciation($scope.rental_property);
         $scope.monthly_interest_on_loan = noiService.getMonthlyInterestOnLoan($scope.rental_property);
-        $scope.annual_interest_on_loan = noiService.get_annual_interest_on_loan($scope.rental_property);
+        $scope.annual_interest_on_loan = noiService.getAnnualInterestOnLoan($scope.rental_property);
         $scope.monthly_total_cf_from_operations = monthly_total_cf_from_operations($scope.rental_property, expenses);
         $scope.annual_total_cf_from_operations = annual_total_cf_from_operations($scope.rental_property, expenses);
 

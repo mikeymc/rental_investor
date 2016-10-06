@@ -13,7 +13,7 @@ angular.module('rentals').service('exitScenariosService', function(keyRentRatios
   function firstYearExitPrice(property) {
     var capRate = keyRentRatiosService.getCapitalizationRate(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var netOperatingIncome = noiService.net_annual_incomes(property, expenses)[0];
+    var netOperatingIncome = noiService.getNetAnnualIncomes(property, expenses)[0];
 
     return netOperatingIncome / (0.01 * capRate);
   }
@@ -21,7 +21,7 @@ angular.module('rentals').service('exitScenariosService', function(keyRentRatios
   function thirdYearExitPrice(property) {
     var capRate = keyRentRatiosService.getCapitalizationRate(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var netOperatingIncome = noiService.net_annual_incomes(property, expenses)[2];
+    var netOperatingIncome = noiService.getNetAnnualIncomes(property, expenses)[2];
 
     return netOperatingIncome / (0.01 * capRate);
   }
@@ -29,7 +29,7 @@ angular.module('rentals').service('exitScenariosService', function(keyRentRatios
   function fifthYearExitPrice(property) {
     var capRate = keyRentRatiosService.getCapitalizationRate(property);
     var expenses = operating_expenses_service.all_operating_expenses(property);
-    var netOperatingIncome = noiService.net_annual_incomes(property, expenses)[4];
+    var netOperatingIncome = noiService.getNetAnnualIncomes(property, expenses)[4];
 
     return netOperatingIncome / (0.01 * capRate);
   }
