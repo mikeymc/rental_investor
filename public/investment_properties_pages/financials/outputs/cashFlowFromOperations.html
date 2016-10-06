@@ -5,69 +5,69 @@
   <div class="row">
     <div class="col-sm-5">Net Income After Taxes</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_net_income_after_taxes | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="income in annual_net_income_after_taxes track by $index">{{income | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyNetIncomeAfterTaxes | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="income in annualNetIncomeAfterTaxes track by $index">{{income | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Depreciation Expenses</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right add-border-bottom">{{monthly_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_building_depreciation | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right add-border-bottom">{{monthlyBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualBuildingDepreciation | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Total CF from Operations</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_total_cf_from_operations | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="cash in annual_total_cf_from_operations track by $index">{{cash | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyTotalCashFlowFromOperations | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="cash in annualTotalCashFlowFromOperations track by $index">{{cash | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Interest on Loan</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right add-border-bottom">{{monthly_interest_on_loan | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom" ng-repeat="interest in annual_interest_on_loan track by $index"> {{interest | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right add-border-bottom">{{monthlyInterestOnLoan | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom" ng-repeat="interest in annualInterestOnLoan track by $index"> {{interest | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Cash Available for Loan Servicing</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{cash_available | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="cash in annual_cash_available track by $index"> {{cash | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{cashAvailable | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="cash in annualCashAvailable track by $index"> {{cash | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Debt Service</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right add-border-bottom">{{monthly_debt_service | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom">{{annual_debt_service | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right add-border-bottom">{{monthlyDebtService | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualDebtService | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualDebtService | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualDebtService | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualDebtService | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom">{{annualDebtService | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Remaining CF from Operations</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_cf_remaining | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="cash in annual_cfs_remaining track by $index">{{cash | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyCashFlowRemaining | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="cash in annualCashFlowsRemaining track by $index">{{cash | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Plus Principal Reduction</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right add-border-bottom">{{monthly_principal_reduction | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right add-border-bottom" ng-repeat="year in yearly_principal_reductions track by $index">{{year | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right add-border-bottom">{{monthlyPrincipalReduction | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right add-border-bottom" ng-repeat="year in yearlyPrincipalReductions track by $index">{{year | currency:'$':0}}</div>
   </div>
   <div class="row">
     <div class="col-sm-5">Total Return</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_total_return | currency:'$':0}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="year in annual_total_returns track by $index">{{year | currency:'$':0}}</div>
+    <div class="col-sm-2 align-right">{{monthlyTotalReturn | currency:'$':0}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="year in annualTotalReturns track by $index">{{year | currency:'$':0}}</div>
   </div>
   <div class="row top-padded">
     <div class="col-sm-5">CF/Debt Servicing Ratio</div>
     <div class="col-sm-2"></div>
-    <div class="col-sm-2 align-right">{{monthly_cf_debt_servicing_ratio | percentage:2}}</div>
-    <div class="col-sm-3 align-right" ng-repeat="ratio in annual_cf_debt_servicing_ratio track by $index">{{ratio | percentage:2}}</div>
+    <div class="col-sm-2 align-right">{{monthlyCashFlowDebtServicingRatio | percentage:2}}</div>
+    <div class="col-sm-3 align-right" ng-repeat="ratio in annualCashFlowDebtServicingRatio track by $index">{{ratio | percentage:2}}</div>
   </div>
 </div>
