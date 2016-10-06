@@ -15,7 +15,7 @@
                          type="text"
                          name="new_property_street"
                          placeholder="1524 Mulberry Street"
-                         ng-model="new_property.street"
+                         ng-model="newProperty.street"
                          autofocus>
                 </div>
                 <div class="col-sm-3 less-spaced">
@@ -23,21 +23,21 @@
                          type="text"
                          name="new_property_city"
                          placeholder="Fruitvale"
-                         ng-model="new_property.city">
+                         ng-model="newProperty.city">
                 </div>
                 <div class="col-sm-2 less-spaced">
                   <input class="col-sm-12"
                          type="text"
                          name="new_property_state"
                          placeholder="CA"
-                         ng-model="new_property.state">
+                         ng-model="newProperty.state">
                 </div>
                 <div class="col-sm-2 less-spaced">
                   <input class="col-sm-12"
                          type="text"
                          name="new_property_zip"
                          placeholder="94212"
-                         ng-model="new_property.zip_code">
+                         ng-model="newProperty.zip_code">
                 </div>
               </div>
             </td>
@@ -47,7 +47,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary btn-default" ng-click="cancel()" data-dismiss="modal">Cancel
         </button>
-        <button type="button" class="btn btn-primary btn-default" ng-click="createProperty(new_property)" data-dismiss="modal">
+        <button type="button" class="btn btn-primary btn-default" ng-click="createProperty(newProperty)" data-dismiss="modal">
           Create
         </button>
       </div>

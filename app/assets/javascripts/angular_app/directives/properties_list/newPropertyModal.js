@@ -7,7 +7,7 @@ angular.module('rentals').directive('newPropertyModal', function() {
       createProperty: '='
     },
     link: function($scope) {
-      $scope.new_property = {};
+      $scope.newProperty = {};
     }
   }
 });
