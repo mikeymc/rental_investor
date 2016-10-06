@@ -8,9 +8,9 @@ angular.module('rentals').directive('returnOnInvestment', function(roiService) {
           return;
         }
 
-        $scope.noi_roi = roiService.getAnnualNetOperatingIncome($scope.rental_property);
-        $scope.cash_roi = roiService.getCashOnCashReturn($scope.rental_property);
-        $scope.total_roi = roiService.getTotalReturnOnInvestment($scope.rental_property);
+        $scope.noiRoi = roiService.getAnnualNetOperatingIncome($scope.rental_property);
+        $scope.cashRoi = roiService.getCashOnCashReturn($scope.rental_property);
+        $scope.totalRoi = roiService.getTotalReturnOnInvestment($scope.rental_property);
 
       }, true);
     }
