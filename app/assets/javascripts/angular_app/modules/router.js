@@ -1,7 +1,7 @@
 angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
 
-  $stateProvider.state('sign_in', {
-    url: '/sign_in',
+  $stateProvider.state('sign-in', {
+    url: '/sign-in',
     templateUrl: 'user_sessions/new.html'
   });
 
@@ -17,7 +17,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
-          $state.go('sign_in')
+          $state.go('sign-in')
         });
       }
     }
@@ -30,7 +30,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
-          $state.go('sign_in')
+          $state.go('sign-in')
         });
       }
     }
@@ -43,7 +43,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     resolve: {
       auth: function($auth, $state) {
         return $auth.validateUser().catch(function() {
-          $state.go('sign_in')
+          $state.go('sign-in')
         });
       }
     }
