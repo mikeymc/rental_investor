@@ -2,7 +2,7 @@ describe('signing in', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', '$httpBackend');
+    this.injectDependencies('$scope', 'render_template', '$httpBackend');
   });
 
   afterEach(function() {

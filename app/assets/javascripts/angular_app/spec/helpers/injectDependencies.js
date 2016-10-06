@@ -1,6 +1,6 @@
 beforeEach(function() {
   var self = this;
-  this.inject_dependencies = function() {
+  this.injectDependencies = function() {
     var dependencies = _.toArray(arguments);
 
     return inject(function($injector) {

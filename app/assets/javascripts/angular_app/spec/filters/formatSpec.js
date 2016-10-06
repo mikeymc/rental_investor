@@ -1,7 +1,7 @@
 describe('format', function() {
   var view;
   beforeEach(function() {
-    this.inject_dependencies('render_template', '$scope');
+    this.injectDependencies('render_template', '$scope');
   });
 
   describe('when just looking at an input value', function() {

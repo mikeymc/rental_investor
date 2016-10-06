@@ -2,7 +2,7 @@ describe('the navbar', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', '$state', '$auth', '$q');
+    this.injectDependencies('$scope', 'render_template', '$state', '$auth', '$q');
     spyOn(this.$auth, 'validateUser').and.returnValue(this.$q.when(true));
   });
 

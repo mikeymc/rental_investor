@@ -2,7 +2,7 @@ describe('propertyService', function() {
   var subject;
 
   beforeEach(function() {
-    this.inject_dependencies('propertyService');
+    this.injectDependencies('propertyService');
     subject = this.propertyService;
   });
 

@@ -2,7 +2,7 @@ describe('irrService', function() {
   var subject;
 
   beforeEach(function() {
-    this.inject_dependencies('irrService');
+    this.injectDependencies('irrService');
     subject = this.irrService;
   });
 

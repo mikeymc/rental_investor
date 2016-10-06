@@ -2,7 +2,7 @@ describe('a property summary', function() {
   var view;
 
   beforeEach(function() {
-    this.inject_dependencies('$scope', 'render_template', 'keyRentRatiosService', 'propertyService', 'roiService');
+    this.injectDependencies('$scope', 'render_template', 'keyRentRatiosService', 'propertyService', 'roiService');
     this.$scope.summary = {
       street: '123 Sesame Street',
       city: 'Bunville',

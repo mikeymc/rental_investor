@@ -1,7 +1,7 @@
 describe('percentage', function() {
   var view;
   beforeEach(function() {
-    this.inject_dependencies('render_template', '$scope', '$httpBackend');
+    this.injectDependencies('render_template', '$scope', '$httpBackend');
   });
 
   describe('when interpolated in a view', function() {
