@@ -10,6 +10,6 @@ angular.module('rentals').controller('userSessionsController', function($scope, 
   });
 
   $scope.signUp = function() {
-    $state.go('sign_up');
+    $state.go('sign-up');
   }
 });

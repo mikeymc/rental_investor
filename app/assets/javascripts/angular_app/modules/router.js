@@ -5,8 +5,8 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     templateUrl: 'user_sessions/new.html'
   });
 
-  $stateProvider.state('sign_up', {
-    url: '/sign_up',
+  $stateProvider.state('sign-up', {
+    url: '/sign-up',
     templateUrl: 'user_registrations/new.html',
     controller: 'UserRegistrationsController'
   });
