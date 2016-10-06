@@ -24,7 +24,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
   });
 
   $stateProvider.state('questionnaire', {
-    url: '/rental_property/:rental_id/questionnaire',
+    url: '/rental_property/:rentalId/questionnaire',
     templateUrl: 'investment_properties_pages/questionnaire.html',
     controller: 'questionnaireController',
     resolve: {
@@ -37,7 +37,7 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
   });
 
   $stateProvider.state('financials', {
-    url: '/rental_property/:rental_id',
+    url: '/rental_property/:rentalId',
     templateUrl: 'investment_properties_pages/financials/rentalProperty.html',
     controller: 'RentalPropertyController',
     resolve: {

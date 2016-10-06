@@ -19,7 +19,7 @@ angular.module('rentals').directive('rentalPropertySummary', function($state, ke
       });
 
       $scope.goToProperty = function(id) {
-        $state.go('financials', {rental_id: id});
+        $state.go('financials', {rentalId: id});
       };
     }
   }

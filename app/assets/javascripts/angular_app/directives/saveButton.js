@@ -3,14 +3,14 @@ angular.module('rentals').directive('saveButton', function(propertyRepository, $
     templateUrl: 'investment_properties_pages/saveButton.html',
     restrict: 'E',
     scope: {
-      rental_id: '=rentalId',
+      rentalId: '=rentalId',
       rental_property: '=rentalProperty'
     },
     link: function($scope) {
       $scope.persistence_state = 'Save';
 
       $scope.save = function() {
-        propertyRepository.update($scope.rental_id, $scope.rental_property).then(function(response) {
+        propertyRepository.update($scope.rentalId, $scope.rental_property).then(function(response) {
           $scope.rental_property = response.data;
           displaySavedFlag();
         });
