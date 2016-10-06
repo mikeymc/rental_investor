@@ -12,7 +12,7 @@ angular.module('rentals').directive('navbar', function($state) {
           return;
         }
 
-        $scope.address = full_address($scope.rental_property);
+        $scope.address = fullPropertyAddress($scope.rental_property);
       });
 
       $scope.show_property_buttons = function() {
@@ -21,7 +21,7 @@ angular.module('rentals').directive('navbar', function($state) {
 
       /* --- Private --- */
 
-      function full_address(property) {
+      function fullPropertyAddress(property) {
         return property.street +
           ', ' + property.city +
           ', ' + property.state +
