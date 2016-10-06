@@ -16,7 +16,7 @@ angular.module('rentals').directive('navbar', function($state) {
       });
 
       $scope.show_property_buttons = function() {
-        return $state.current.name != 'rental_properties';
+        return $state.current.name != 'rental-properties';
       };
 
       /* --- Private --- */

@@ -1,7 +1,7 @@
 angular.module('rentals').controller('userSessionsController', function($scope, $state) {
   $scope.login = function(loginForm) {
     $scope.submitLogin(loginForm).then(function() {
-      $state.go('rental_properties');
+      $state.go('rental-properties');
     });
   };
 

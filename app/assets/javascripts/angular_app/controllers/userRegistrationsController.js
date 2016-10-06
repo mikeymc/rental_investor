@@ -35,6 +35,6 @@ angular.module('rentals').controller('UserRegistrationsController', function($au
   }
 
   function goToPropertiesList() {
-    $state.go('rental_properties');
+    $state.go('rental-properties');
   }
 });

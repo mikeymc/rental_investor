@@ -11,8 +11,8 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     controller: 'UserRegistrationsController'
   });
 
-  $stateProvider.state('rental_properties', {
-    url: '/rental_properties',
+  $stateProvider.state('rental-properties', {
+    url: '/rental-properties',
     templateUrl: 'investment_properties_pages/properties_list/rentalPropertiesList.html',
     resolve: {
       auth: function($auth, $state) {
@@ -54,5 +54,5 @@ angular.module('rentals').config(function($stateProvider, $urlRouterProvider) {
     templateUrl: '404.html'
   });
 
-  $urlRouterProvider.otherwise('/rental_properties');
+  $urlRouterProvider.otherwise('/rental-properties');
 });

@@ -18,13 +18,13 @@ describe('the navbar', function() {
       });
 
       it('links back to the properties list', function() {
-        expect(view.find('a:contains(Home)').attr('ui-sref')).toEqual('rental_properties');
+        expect(view.find('a:contains(Home)').attr('ui-sref')).toEqual('rental-properties');
       });
     });
 
     describe('when on the properties list page', function() {
       it('does not show a home link', function() {
-        this.$state.current.name = 'rental_properties';
+        this.$state.current.name = 'rental-properties';
 
         view = this.renderTemplate('<navbar/>', this.$scope);
 
@@ -61,7 +61,7 @@ describe('the navbar', function() {
   describe('the financials link', function() {
     describe('when on the properties list page', function() {
       it('does not show the link', function() {
-        this.$state.go('rental_properties');
+        this.$state.go('rental-properties');
         view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view).not.toContainText('Financials');
@@ -88,7 +88,7 @@ describe('the navbar', function() {
   describe('the questionnaire link', function() {
     describe('when on the properties list page', function() {
       it('does not show the link', function() {
-        this.$state.go('rental_properties');
+        this.$state.go('rental-properties');
         view = this.renderTemplate('<navbar/>', this.$scope);
 
         expect(view).not.toContainText('Questionnaire');
