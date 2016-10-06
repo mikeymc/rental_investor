@@ -1,4 +1,4 @@
-angular.module('rentals').service('keyRentRatiosService', function(propertyService, operating_expenses_service, noiService) {
+angular.module('rentals').service('keyRentRatiosService', function(propertyService, operatingExpensesService, noiService) {
   return {
     getExpensesPerUnit: getExpensesPerUnit,
     getOperatingEfficiency: getOperatingEfficiency,
@@ -9,21 +9,21 @@ angular.module('rentals').service('keyRentRatiosService', function(propertyServi
   /* --- Private --- */
 
   function getExpensesPerUnit(property) {
-    var expenses = operating_expenses_service.all_operating_expenses(property).total.yearly_costs[0];
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs[0];
     var units = property.financing_and_income_assumption.number_of_units;
 
     return expenses / units;
   }
 
   function getOperatingEfficiency(property) {
-    var expenses = operating_expenses_service.all_operating_expenses(property).total.yearly_costs[0];
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs[0];
     var area = property.financing_and_income_assumption.total_square_feet;
 
     return expenses / area;
   }
 
   function getCapitalizationRate(property) {
-    var expenses = operating_expenses_service.all_operating_expenses(property);
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property);
     var netOperatingIncome = noiService.getNetAnnualIncomes(property, expenses)[0];
     var cost = propertyService.getTotalCost(property);
 

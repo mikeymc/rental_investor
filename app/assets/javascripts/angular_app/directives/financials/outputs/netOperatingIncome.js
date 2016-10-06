@@ -1,4 +1,4 @@
-angular.module('rentals').directive('netOperatingIncome', function(operating_expenses_service, noiService) {
+angular.module('rentals').directive('netOperatingIncome', function(operatingExpensesService, noiService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/netOperatingIncome.html',
     restrict: 'E',
@@ -7,7 +7,7 @@ angular.module('rentals').directive('netOperatingIncome', function(operating_exp
         if (!$scope.rental_property) {
           return;
         }
-        var expenses = operating_expenses_service.all_operating_expenses($scope.rental_property);
+        var expenses = operatingExpensesService.getAllOperatingExpenses($scope.rental_property);
 
         $scope.noi_percentage = 100 - expenses.total.percentage;
         $scope.net_monthly_income = noiService.getNetMonthlyIncome($scope.rental_property, expenses);

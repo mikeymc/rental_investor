@@ -1,4 +1,4 @@
-angular.module('rentals').directive('operatingExpenses', function(operating_expenses_service) {
+angular.module('rentals').directive('operatingExpenses', function(operatingExpensesService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/operatingExpenses.html',
     restrict: 'E',
@@ -8,7 +8,7 @@ angular.module('rentals').directive('operatingExpenses', function(operating_expe
           return;
         }
 
-        var expenses = _.values(operating_expenses_service.all_operating_expenses($scope.rental_property));
+        var expenses = _.values(operatingExpensesService.getAllOperatingExpenses($scope.rental_property));
         $scope.total_expenses = expenses.pop();
         $scope.individual_expenses = expenses;
 

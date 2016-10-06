@@ -1,4 +1,4 @@
-angular.module('rentals').service('cashFlowService', function(propertyService, operating_expenses_service) {
+angular.module('rentals').service('cashFlowService', function(propertyService, operatingExpensesService) {
   return {
     getMonthlyTotalReturn: getMonthlyTotalReturn,
     getAnnualTotalReturns: getAnnualTotalReturns,
@@ -121,7 +121,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
 
   function getMonthlyCashFlowRemaining(property) {
     var monthlyDebtService = propertyService.getMonthlyLoanPayment(property);
-    var expenses = operating_expenses_service.all_operating_expenses(property);
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property);
     var cashAvailable = propertyService.getNetOperatingIncome(property, expenses);
 
     return cashAvailable - monthlyDebtService;
@@ -129,7 +129,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
 
   function getAnnualCashFlowsRemaining(property) {
     var annualDebtService = 12 * propertyService.getMonthlyLoanPayment(property);
-    var expenses = operating_expenses_service.all_operating_expenses(property);
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property);
     var annualCashAvailableForDebtFinancing = propertyService.getNetAnnualOperatingIncomes(property, expenses);
 
     return _.map(annualCashAvailableForDebtFinancing, function(cash) {

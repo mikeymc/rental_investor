@@ -1,4 +1,4 @@
-angular.module('rentals').directive('cashFlowFromOperations', function(propertyService, operating_expenses_service, cashFlowService, noiService) {
+angular.module('rentals').directive('cashFlowFromOperations', function(propertyService, operatingExpensesService, cashFlowService, noiService) {
   return {
     templateUrl: 'investment_properties_pages/financials/outputs/cashFlowFromOperations.html',
     restrict: 'E',
@@ -8,7 +8,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
           return;
         }
 
-        var expenses = operating_expenses_service.all_operating_expenses($scope.rental_property);
+        var expenses = operatingExpensesService.getAllOperatingExpenses($scope.rental_property);
 
         $scope.monthly_debt_service = propertyService.getMonthlyLoanPayment($scope.rental_property);
         $scope.annual_debt_service = cashFlowService.getAnnualDebtService($scope.rental_property);
@@ -50,7 +50,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         }
 
         function annual_cf_debt_servicing_ratio(property) {
-          var expenses = operating_expenses_service.all_operating_expenses(property);
+          var expenses = operatingExpensesService.getAllOperatingExpenses(property);
           var annual_cash_available = propertyService.getNetAnnualOperatingIncomes(property, expenses);
           var annual_debt_service = cashFlowService.getAnnualDebtService(property);
 
@@ -60,7 +60,7 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
         }
 
         function monthly_cf_debt_servicing_ratio(property) {
-          var expenses = operating_expenses_service.all_operating_expenses(property);
+          var expenses = operatingExpensesService.getAllOperatingExpenses(property);
           var monthly_debt_service = propertyService.getMonthlyLoanPayment(property);
           var cash_available = propertyService.getNetOperatingIncome(property, expenses);
 

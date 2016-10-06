@@ -1,11 +1,11 @@
-angular.module('rentals').service('operating_expenses_service', function(propertyService) {
+angular.module('rentals').service('operatingExpensesService', function(propertyService) {
   return {
-    all_operating_expenses: getAllOperatingExpesnses
+    getAllOperatingExpenses: getAllOperatingExpenses
   };
 
   /* --- Private --- */
 
-  function getAllOperatingExpesnses(property) {
+  function getAllOperatingExpenses(property) {
     return {
       repairs_and_maintenance: {
         label: 'Repairs and Maintenance',
