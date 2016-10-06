@@ -11,8 +11,8 @@ angular.module('rentals').service('propertyService', function() {
     getTotalCostPerSquareFoot: getTotalCostPerSquareFoot,
     getAverageRentPerSquareFoot: getAverageRentPerSquareFoot,
     getProjectedOtherIncomes: getProjectedOtherIncomes,
-    getVacancyOperatingExpense: getVacancyOperatingExpense,
-    getNetRentalIncome: getNetRentalIncome,
+    getVacancyOperatingExpense: getMonthlyVacancyCosts,
+    getNetRentalIncome: getNetMonthlyRentalIncome,
     getGrossOperatingIncome: getGrossOperatingIncome,
     getProjectedGrossAnnualRents: getProjectedGrossAnnualRents,
     getProjectedAnnualVacancyCosts: getProjectedAnnualVacancyCosts,
@@ -41,16 +41,16 @@ angular.module('rentals').service('propertyService', function() {
   }
 
   function getNetOperatingIncome(property, expenses) {
-    var gross_income = getGrossOperatingIncome(property);
-    var total_monthly_expenses = expenses.total.monthly_cost;
-    return gross_income - total_monthly_expenses;
+    var grossMonthlyOperatingIncome = getGrossOperatingIncome(property);
+    var totalMonthlyExpenses = expenses.total.monthly_cost;
+    return grossMonthlyOperatingIncome - totalMonthlyExpenses;
   }
 
   function getBalanceToFinance(property) {
-    var total_cost = getTotalCost(property);
-    var amount_down = getDownPayment(property);
+    var totalCost = getTotalCost(property);
+    var downPayment = getDownPayment(property);
 
-    return total_cost - amount_down;
+    return totalCost - downPayment;
   }
 
   function getPercentToFinance(property) {
@@ -58,169 +58,169 @@ angular.module('rentals').service('propertyService', function() {
   }
 
   function getDownPayment(property) {
-    var equity_percentage = property.financing_and_income_assumption.equity_percentage;
-    return getTotalCost(property) * equity_percentage / 100;
+    var downPaymentPercentage = property.financing_and_income_assumption.equity_percentage;
+    return getTotalCost(property) * downPaymentPercentage / 100;
   }
 
   function getMonthlyLoanPayment(property) {
     var principal = getBalanceToFinance(property);
-    var interest_rate = property.financing_and_income_assumption.loan_interest_rate / 12;
-    var num_payments = property.financing_and_income_assumption.amortization_period_in_years * 12;
+    var loanInterestRate = property.financing_and_income_assumption.loan_interest_rate / 12;
+    var numberOfLoanPayments = property.financing_and_income_assumption.amortization_period_in_years * 12;
 
-    var i = interest_rate / 100;
-    var mortgage = principal * i * Math.pow(1 + i, num_payments) / (Math.pow(1 + i, num_payments) - 1);
-    return mortgage;
+    var i = loanInterestRate / 100;
+    var monthlyLoanPayment = principal * i * Math.pow(1 + i, numberOfLoanPayments) / (Math.pow(1 + i, numberOfLoanPayments) - 1);
+    return monthlyLoanPayment;
   }
 
   function getProjectedAnnualGrossOperatingIncomes(property) {
-    var projected_nets = getProjectedAnnualNetRentalIncomes(property);
-    var projected_others = getProjectedOtherIncomes(property);
+    var projectedAnnualNetRentalIncomes = getProjectedAnnualNetRentalIncomes(property);
+    var projectedOtherIncomes = getProjectedOtherIncomes(property);
 
-    return _.map(projected_nets, function(net, index) {
-      return net + projected_others[index];
+    return _.map(projectedAnnualNetRentalIncomes, function(netRentalIncomeThisYear, year) {
+      return netRentalIncomeThisYear + projectedOtherIncomes[year];
     });
   }
 
   function getProjectedAnnualNetRentalIncomes(property) {
-    var gross_incomes = getProjectedGrossAnnualRents(property);
-    var vacancy_costs = getProjectedAnnualVacancyCosts(property);
+    var projectedGrossAnnualRents = getProjectedGrossAnnualRents(property);
+    var projectedAnnualVacancyCosts = getProjectedAnnualVacancyCosts(property);
 
-    return _.map(gross_incomes, function(income, index) {
-      return income - vacancy_costs[index];
+    return _.map(projectedGrossAnnualRents, function(rentsThisYear, year) {
+      return rentsThisYear - projectedAnnualVacancyCosts[year];
     });
   }
 
   function getProjectedAnnualVacancyCosts(property) {
-    var rents = getProjectedGrossAnnualRents(property);
-    var vacancy_rate = property.operating_expenses_assumption.vacancy_rate / 100;
+    var projectedGrossAnnualRents = getProjectedGrossAnnualRents(property);
+    var vacancyRate = property.operating_expenses_assumption.vacancy_rate / 100;
 
-    return _.map(rents, function(rent) {
-      return rent * vacancy_rate;
+    return _.map(projectedGrossAnnualRents, function(grossAnnualRent) {
+      return grossAnnualRent * vacancyRate;
     })
   }
 
   function getProjectedGrossAnnualRents(property) {
-    var projected_average_monthly_rents = getProjectedAverageRents(property);
-    var number_of_units = property.financing_and_income_assumption.number_of_units;
+    var projectedAverageMonthlyRents = getProjectedAverageRents(property);
+    var numberOfUnitsInTheProperty = property.financing_and_income_assumption.number_of_units;
 
-    return _.map(projected_average_monthly_rents, function(rent) {
-      return rent * 12 * number_of_units;
+    return _.map(projectedAverageMonthlyRents, function(averageMonthlyRent) {
+      return averageMonthlyRent * 12 * numberOfUnitsInTheProperty;
     })
   }
 
   function getGrossOperatingIncome(property) {
-    var net_income = getNetRentalIncome(property);
-    var other_income = property.financing_and_income_assumption.other_monthly_income;
-    return net_income + parseFloat(other_income)
+    var netMonthlyRentalIncome = getNetMonthlyRentalIncome(property);
+    var otherMonthlyIncome = property.financing_and_income_assumption.other_monthly_income;
+    return netMonthlyRentalIncome + parseFloat(otherMonthlyIncome)
   }
 
-  function getNetRentalIncome(property) {
-    var gross_rent = getGrossMonthlyRent(property);
-    var vacancy_cost = getVacancyOperatingExpense(property);
-    return gross_rent - vacancy_cost;
+  function getNetMonthlyRentalIncome(property) {
+    var grossMonthlyRent = getGrossMonthlyRent(property);
+    var monthlyVacancyCosts = getMonthlyVacancyCosts(property);
+    return grossMonthlyRent - monthlyVacancyCosts;
   }
 
-  function getVacancyOperatingExpense(property) {
-    var vacancy_rate = property.operating_expenses_assumption.vacancy_rate;
-    var gross_rent = getGrossMonthlyRent(property);
-    return gross_rent * vacancy_rate / 100;
+  function getMonthlyVacancyCosts(property) {
+    var vacancyRate = property.operating_expenses_assumption.vacancy_rate;
+    var grossMonthlyRent = getGrossMonthlyRent(property);
+    return grossMonthlyRent * vacancyRate / 100;
   }
 
   function getAverageRentPerSquareFoot(property) {
-    var total_area = property.financing_and_income_assumption.total_square_feet;
-    var gross_rent = getGrossMonthlyRent(property);
+    var totalBuildingArea = property.financing_and_income_assumption.total_square_feet;
+    var grossMonthlyRent = getGrossMonthlyRent(property);
 
-    return gross_rent / total_area;
+    return grossMonthlyRent / totalBuildingArea;
   }
 
   function getTotalCostPerSquareFoot(property) {
-    var total_area = property.financing_and_income_assumption.total_square_feet;
-    var total_cost = getTotalCost(property);
+    var totalBuildingArea = property.financing_and_income_assumption.total_square_feet;
+    var totalCost = getTotalCost(property);
 
-    return total_cost / total_area;
+    return totalCost / totalBuildingArea;
   }
 
   function getAverageAreaPerUnit(property) {
-    var number_of_units = property.financing_and_income_assumption.number_of_units;
-    var total_area = property.financing_and_income_assumption.total_square_feet;
+    var numberOfUnitsInTheProperty = property.financing_and_income_assumption.number_of_units;
+    var totalBuildingArea = property.financing_and_income_assumption.total_square_feet;
 
-    return total_area / number_of_units;
+    return totalBuildingArea / numberOfUnitsInTheProperty;
   }
 
   function getCostPerUnit(property) {
-    var total_cost = getTotalCost(property);
-    var number_of_units = property.financing_and_income_assumption.number_of_units;
+    var totalCost = getTotalCost(property);
+    var numberOfUnitsInTheProperty = property.financing_and_income_assumption.number_of_units;
 
-    return total_cost / number_of_units;
+    return totalCost / numberOfUnitsInTheProperty;
   }
 
   function getLoanOriginationFee(property) {
-    var land_cost = parseFloat(property.financing_and_income_assumption.land_cost);
-    var building_cost = parseFloat(property.financing_and_income_assumption.building_cost);
+    var costOfTheLand = parseFloat(property.financing_and_income_assumption.land_cost);
+    var costOfTheBuilding = parseFloat(property.financing_and_income_assumption.building_cost);
 
-    return 0.01 * (land_cost + building_cost);
+    return 0.01 * (costOfTheLand + costOfTheBuilding);
   }
 
   function getClosingCosts(property) {
-    function clean_up(costs) {
-      var costs_copy = angular.copy(costs);
-      costs_copy.rental_property_id = 0;
-      costs_copy.id = 0;
-      return costs_copy;
+    function cleanUp(costs) {
+      var copyOfTheCosts = angular.copy(costs);
+      copyOfTheCosts.rental_property_id = 0;
+      copyOfTheCosts.id = 0;
+      return copyOfTheCosts;
     }
 
     function tally(costs) {
-      var total_costs = 0;
+      var totalCosts = 0;
       _.each(_.values(costs), function(cost) {
-        total_costs += parseFloat(cost);
+        totalCosts += parseFloat(cost);
       });
-      return total_costs;
+      return totalCosts;
     }
 
-    return tally(clean_up(property.closing_cost));
+    return tally(cleanUp(property.closing_cost));
   }
 
   function getGrossMonthlyRent(property) {
-    var number_of_units = property.financing_and_income_assumption.number_of_units;
-    var avg_rent_per_unit = property.financing_and_income_assumption.average_monthly_rent_per_unit;
+    var numberOfUnitsInTheProperty = property.financing_and_income_assumption.number_of_units;
+    var averageRentPerUnit = property.financing_and_income_assumption.average_monthly_rent_per_unit;
 
-    return number_of_units * avg_rent_per_unit;
+    return numberOfUnitsInTheProperty * averageRentPerUnit;
   }
 
   function getTotalGrossMonthlyIncome(property) {
-    var other_income = parseFloat(property.financing_and_income_assumption.other_monthly_income);
-    var gross_monthly_rent = getGrossMonthlyRent(property);
+    var otherMonthlyIncome = parseFloat(property.financing_and_income_assumption.other_monthly_income);
+    var grossMonthlyRent = getGrossMonthlyRent(property);
 
-    return gross_monthly_rent + other_income;
+    return grossMonthlyRent + otherMonthlyIncome;
   }
 
   function getTotalCost(property) {
-    var closing_costs = getClosingCosts(property);
-    var land_cost = parseFloat(property.financing_and_income_assumption.land_cost);
-    var building_cost = parseFloat(property.financing_and_income_assumption.building_cost);
-    var improvements = parseFloat(property.financing_and_income_assumption.improvements);
+    var closingCosts = getClosingCosts(property);
+    var costOfTheLand = parseFloat(property.financing_and_income_assumption.land_cost);
+    var costOfTheBuilding = parseFloat(property.financing_and_income_assumption.building_cost);
+    var costOfImprovements = parseFloat(property.financing_and_income_assumption.improvements);
 
-    return closing_costs + land_cost + building_cost + improvements;
+    return closingCosts + costOfTheLand + costOfTheBuilding + costOfImprovements;
   }
 
   function getProjectedAverageRents(property) {
-    var rent_increases = property.income_and_cost_projection.rent_increases;
-    var rent = property.financing_and_income_assumption.average_monthly_rent_per_unit;
+    var rentIncreasesEachYear = property.income_and_cost_projection.rent_increases;
+    var averageMonthlyRentPerUnit = property.financing_and_income_assumption.average_monthly_rent_per_unit;
 
-    return _.map(rent_increases, function(increase) {
-      var new_rent = rent * (1 + (increase / 100));
-      rent = new_rent;
-      return new_rent;
+    return _.map(rentIncreasesEachYear, function(increase) {
+      var increasedRentAmount = averageMonthlyRentPerUnit * (1 + (increase / 100));
+      averageMonthlyRentPerUnit = increasedRentAmount;
+      return increasedRentAmount;
     });
   }
 
   function getProjectedOtherIncomes(property) {
-    var rent_increases = property.income_and_cost_projection.rent_increases;
-    var income = 12 * property.financing_and_income_assumption.other_monthly_income;
+    var rentIncreasesEachYear = property.income_and_cost_projection.rent_increases;
+    var otherIncomeEachYear = 12 * property.financing_and_income_assumption.other_monthly_income;
 
-    return _.map(rent_increases, function(increase) {
-      income = income * (1 + increase / 100);
-      return income;
+    return _.map(rentIncreasesEachYear, function(increase) {
+      otherIncomeEachYear = otherIncomeEachYear * (1 + increase / 100);
+      return otherIncomeEachYear;
     });
   }
 });
