@@ -3,15 +3,15 @@ angular.module('rentals').directive('saveButton', function(propertyRepository, $
     templateUrl: 'investment_properties_pages/saveButton.html',
     restrict: 'E',
     scope: {
-      rentalId: '=rentalId',
-      rental_property: '=rentalProperty'
+      rentalId: '=',
+      rentalProperty: '='
     },
     link: function($scope) {
       $scope.persistenceState = 'Save';
 
       $scope.save = function() {
-        propertyRepository.update($scope.rentalId, $scope.rental_property).then(function(response) {
-          $scope.rental_property = response.data;
+        propertyRepository.update($scope.rentalId, $scope.rentalProperty).then(function(response) {
+          $scope.rentalProperty = response.data;
           displaySavedFlag();
         });
       };
