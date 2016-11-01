@@ -3,7 +3,7 @@ angular.module('rentals').controller('questionnaireController', function($scope,
   $scope.questions = questionnaireService.getQuestionnaire();
 
   propertyRepository.find($stateParams.rentalId).then(function(response) {
-    $scope.rental_property = response.data;
+    $scope.rentalProperty = response.data.rentalProperty;
   }, function() {
     $state.go('404');
   });

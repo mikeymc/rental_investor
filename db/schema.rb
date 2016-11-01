@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160604173329) do
+ ActiveRecord::Schema.define(version: 20161030184257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,30 +55,30 @@ ActiveRecord::Schema.define(version: 20160604173329) do
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
   create_table "income_and_cost_projections", force: :cascade do |t|
-    t.decimal "rent_increases",              default: [#<BigDecimal:7fa346e53030,'0.0',9(18)>, #<BigDecimal:7fa346e52fb8,'0.0',9(18)>, #<BigDecimal:7fa346e52f40,'0.0',9(18)>, #<BigDecimal:7fa346e52ec8,'0.0',9(18)>, #<BigDecimal:7fa346e52e50,'0.0',9(18)>], array: true
-    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fa346e524c8,'0.0',9(18)>, #<BigDecimal:7fa346e52450,'0.0',9(18)>, #<BigDecimal:7fa346e523d8,'0.0',9(18)>, #<BigDecimal:7fa346e52360,'0.0',9(18)>, #<BigDecimal:7fa346e522e8,'0.0',9(18)>], array: true
+    t.decimal "rent_increases",              default: [#<BigDecimal:7ffb381da638,'0.0',9(18)>, #<BigDecimal:7ffb381da5c0,'0.0',9(18)>, #<BigDecimal:7ffb381da548,'0.0',9(18)>, #<BigDecimal:7ffb381da4d0,'0.0',9(18)>, #<BigDecimal:7ffb381da458,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7ffb381d9ad0,'0.0',9(18)>, #<BigDecimal:7ffb381d9a58,'0.0',9(18)>, #<BigDecimal:7ffb381d99e0,'0.0',9(18)>, #<BigDecimal:7ffb381d9968,'0.0',9(18)>, #<BigDecimal:7ffb381d98f0,'0.0',9(18)>], array: true
     t.integer "rental_property_id"
   end
 
   add_index "income_and_cost_projections", ["rental_property_id"], name: "index_income_and_cost_projections_on_rental_property_id", using: :btree
 
   create_table "operating_expenses_assumptions", force: :cascade do |t|
-    t.decimal "vacancy_rate"
-    t.decimal "repairs_and_maintenance"
-    t.decimal "property_management_fees"
-    t.decimal "taxes"
-    t.decimal "insurance"
-    t.decimal "salaries_and_wages"
-    t.decimal "utilities"
-    t.decimal "water_and_sewer"
-    t.decimal "trash_removal"
-    t.decimal "professional_fees"
-    t.decimal "advertising"
-    t.decimal "landscaping"
-    t.decimal "capex"
-    t.decimal "other_expenses"
-    t.decimal "equipment_depreciation"
-    t.decimal "income_tax_rate"
+    t.decimal "vacancy_rate",             precision: 14, scale: 2
+    t.decimal "repairs_and_maintenance",  precision: 14, scale: 2
+    t.decimal "property_management_fees", precision: 14, scale: 2
+    t.decimal "taxes",                    precision: 14, scale: 2
+    t.decimal "insurance",                precision: 14, scale: 2
+    t.decimal "salaries_and_wages",       precision: 14, scale: 2
+    t.decimal "utilities",                precision: 14, scale: 2
+    t.decimal "water_and_sewer",          precision: 14, scale: 2
+    t.decimal "trash_removal",            precision: 14, scale: 2
+    t.decimal "professional_fees",        precision: 14, scale: 2
+    t.decimal "advertising",              precision: 14, scale: 2
+    t.decimal "landscaping",              precision: 14, scale: 2
+    t.decimal "capex",                    precision: 14, scale: 2
+    t.decimal "other_expenses",           precision: 14, scale: 2
+    t.decimal "equipment_depreciation",   precision: 14, scale: 2
+    t.decimal "income_tax_rate",          precision: 14, scale: 2
     t.integer "rental_property_id"
   end
 

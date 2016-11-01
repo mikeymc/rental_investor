@@ -3,12 +3,12 @@ angular.module('rentals').directive('operatingExpenses', function(operatingExpen
     templateUrl: 'investment_properties_pages/financials/outputs/operatingExpenses.html',
     restrict: 'E',
     link: function($scope) {
-      $scope.$watch('rental_property', function() {
-        if (!$scope.rental_property) {
+      $scope.$watch('rentalProperty', function() {
+        if (!$scope.rentalProperty) {
           return;
         }
 
-        $scope.individualExpenses = _.values(operatingExpensesService.getAllOperatingExpenses($scope.rental_property));
+        $scope.individualExpenses = _.values(operatingExpensesService.getAllOperatingExpenses($scope.rentalProperty));
         $scope.totalExpenses = $scope.individualExpenses.pop();
 
       }, true);

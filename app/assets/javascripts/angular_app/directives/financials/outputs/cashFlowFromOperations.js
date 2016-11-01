@@ -3,33 +3,33 @@ angular.module('rentals').directive('cashFlowFromOperations', function(propertyS
     templateUrl: 'investment_properties_pages/financials/outputs/cashFlowFromOperations.html',
     restrict: 'E',
     link: function($scope) {
-      $scope.$watch('rental_property', function() {
-        if (!$scope.rental_property) {
+      $scope.$watch('rentalProperty', function() {
+        if (!$scope.rentalProperty) {
           return;
         }
 
-        var expenses = operatingExpensesService.getAllOperatingExpenses($scope.rental_property);
+        var expenses = operatingExpensesService.getAllOperatingExpenses($scope.rentalProperty);
 
-        $scope.monthlyDebtService = propertyService.getMonthlyLoanPayment($scope.rental_property);
-        $scope.annualDebtService = cashFlowService.getAnnualDebtService($scope.rental_property);
-        $scope.cashAvailable = propertyService.getNetOperatingIncome($scope.rental_property, expenses);
-        $scope.annualCashAvailable = propertyService.getNetAnnualOperatingIncomes($scope.rental_property, expenses);
-        $scope.monthlyCashFlowRemaining = cashFlowService.getMonthlyCashFlowRemaining($scope.rental_property);
-        $scope.annualCashFlowsRemaining = cashFlowService.getAnnualCashFlowsRemaining($scope.rental_property);
-        $scope.monthlyPrincipalReduction = cashFlowService.getMonthlyCumPrinc($scope.rental_property);
-        $scope.yearlyPrincipalReductions = cashFlowService.getAnnualCumPrincs($scope.rental_property);
-        $scope.monthlyTotalReturn = cashFlowService.getMonthlyTotalReturn($scope.rental_property);
-        $scope.annualTotalReturns = cashFlowService.getAnnualTotalReturns($scope.rental_property);
-        $scope.monthlyCashFlowDebtServicingRatio = monthlyCashFlowDebtServicingRatio($scope.rental_property);
-        $scope.annualCashFlowDebtServicingRatio = annualCashFlowDebtServicingRatio($scope.rental_property);
-        $scope.monthlyNetIncomeAfterTaxes = noiService.getMonthlyNetIncomeAfterTaxes($scope.rental_property, expenses);
-        $scope.annualNetIncomeAfterTaxes = noiService.getAnnualNetIncomeAfterTaxes($scope.rental_property, expenses);
-        $scope.monthlyBuildingDepreciation = noiService.getMonthlyBuildingDepreciation($scope.rental_property);
-        $scope.annualBuildingDepreciation = noiService.getAnnualBuildingDepreciation($scope.rental_property);
-        $scope.monthlyInterestOnLoan = noiService.getMonthlyInterestOnLoan($scope.rental_property);
-        $scope.annualInterestOnLoan = noiService.getAnnualInterestOnLoan($scope.rental_property);
-        $scope.monthlyTotalCashFlowFromOperations = monthlyTotalCashFlowFromOperations($scope.rental_property, expenses);
-        $scope.annualTotalCashFlowFromOperations = annualTotalCashFlowFromOperations($scope.rental_property, expenses);
+        $scope.monthlyDebtService = propertyService.getMonthlyLoanPayment($scope.rentalProperty);
+        $scope.annualDebtService = cashFlowService.getAnnualDebtService($scope.rentalProperty);
+        $scope.cashAvailable = propertyService.getNetOperatingIncome($scope.rentalProperty, expenses);
+        $scope.annualCashAvailable = propertyService.getNetAnnualOperatingIncomes($scope.rentalProperty, expenses);
+        $scope.monthlyCashFlowRemaining = cashFlowService.getMonthlyCashFlowRemaining($scope.rentalProperty);
+        $scope.annualCashFlowsRemaining = cashFlowService.getAnnualCashFlowsRemaining($scope.rentalProperty);
+        $scope.monthlyPrincipalReduction = cashFlowService.getMonthlyCumPrinc($scope.rentalProperty);
+        $scope.yearlyPrincipalReductions = cashFlowService.getAnnualCumPrincs($scope.rentalProperty);
+        $scope.monthlyTotalReturn = cashFlowService.getMonthlyTotalReturn($scope.rentalProperty);
+        $scope.annualTotalReturns = cashFlowService.getAnnualTotalReturns($scope.rentalProperty);
+        $scope.monthlyCashFlowDebtServicingRatio = monthlyCashFlowDebtServicingRatio($scope.rentalProperty);
+        $scope.annualCashFlowDebtServicingRatio = annualCashFlowDebtServicingRatio($scope.rentalProperty);
+        $scope.monthlyNetIncomeAfterTaxes = noiService.getMonthlyNetIncomeAfterTaxes($scope.rentalProperty, expenses);
+        $scope.annualNetIncomeAfterTaxes = noiService.getAnnualNetIncomeAfterTaxes($scope.rentalProperty, expenses);
+        $scope.monthlyBuildingDepreciation = noiService.getMonthlyBuildingDepreciation($scope.rentalProperty);
+        $scope.annualBuildingDepreciation = noiService.getAnnualBuildingDepreciation($scope.rentalProperty);
+        $scope.monthlyInterestOnLoan = noiService.getMonthlyInterestOnLoan($scope.rentalProperty);
+        $scope.annualInterestOnLoan = noiService.getAnnualInterestOnLoan($scope.rentalProperty);
+        $scope.monthlyTotalCashFlowFromOperations = monthlyTotalCashFlowFromOperations($scope.rentalProperty, expenses);
+        $scope.annualTotalCashFlowFromOperations = annualTotalCashFlowFromOperations($scope.rentalProperty, expenses);
 
         /* --- Private --- */
 

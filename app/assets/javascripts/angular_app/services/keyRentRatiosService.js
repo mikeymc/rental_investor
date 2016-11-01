@@ -9,15 +9,15 @@ angular.module('rentals').service('keyRentRatiosService', function(propertyServi
   /* --- Private --- */
 
   function getExpensesPerUnit(property) {
-    var expenses = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs[0];
-    var units = property.financing_and_income_assumption.number_of_units;
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property).total.yearlyCosts[0];
+    var units = property.financingAndIncomeAssumption.numberOfUnits;
 
     return expenses / units;
   }
 
   function getOperatingEfficiency(property) {
-    var expenses = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs[0];
-    var area = property.financing_and_income_assumption.total_square_feet;
+    var expenses = operatingExpensesService.getAllOperatingExpenses(property).total.yearlyCosts[0];
+    var area = property.financingAndIncomeAssumption.totalSquareFeet;
 
     return expenses / area;
   }

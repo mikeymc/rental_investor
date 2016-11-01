@@ -7,12 +7,12 @@ angular.module('rentals').directive('navbar', function($state) {
         $scope.logged_in_user = $scope.user.email;
       });
 
-      $scope.$watch('rental_property', function() {
-        if(!$scope.rental_property) {
+      $scope.$watch('rentalProperty', function() {
+        if(!$scope.rentalProperty) {
           return;
         }
 
-        $scope.address = fullPropertyAddress($scope.rental_property);
+        $scope.address = fullPropertyAddress($scope.rentalProperty);
       });
 
       $scope.show_property_buttons = function() {
@@ -25,7 +25,7 @@ angular.module('rentals').directive('navbar', function($state) {
         return property.street +
           ', ' + property.city +
           ', ' + property.state +
-          ' ' + property.zip_code;
+          ' ' + property.zipCode;
       }
     }
   }

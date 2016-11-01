@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.3.0'
 
+gem 'active_model_serializers'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'devise_token_auth'
-gem 'jbuilder', '~> 1.2'
 gem 'jquery-rails'
 gem 'omniauth'
 gem 'pg'

@@ -18,6 +18,7 @@ module.exports = function(config) {
       'app/assets/javascripts/angular_app/directives/**/*.js',
       'app/assets/javascripts/angular_app/filters/**/*.js',
       'app/assets/javascripts/angular_app/services/**/*.js',
+  }      'app/assets/javascripts/angular_app/spec/fixtures/**/*.js',
       'app/assets/javascripts/angular_app/spec/helpers/registerApplication.js',
       'app/assets/javascripts/angular_app/spec/helpers/scope.js',
       'app/assets/javascripts/angular_app/spec/helpers/injectDependencies.js',

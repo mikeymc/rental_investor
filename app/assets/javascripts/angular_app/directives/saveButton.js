@@ -11,7 +11,7 @@ angular.module('rentals').directive('saveButton', function(propertyRepository, $
 
       $scope.save = function() {
         propertyRepository.update($scope.rentalId, $scope.rentalProperty).then(function(response) {
-          $scope.rentalProperty = response.data;
+          $scope.rentalProperty = response.data.rentalProperty;
           displaySavedFlag();
         });
       };

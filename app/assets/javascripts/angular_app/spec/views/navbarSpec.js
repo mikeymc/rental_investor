@@ -36,11 +36,11 @@ describe('the navbar', function() {
   describe('the property address', function() {
     describe('when a property exists', function() {
       it('shows the property address', function() {
-        this.$scope.rental_property = {
+        this.$scope.rentalProperty = {
           street: '12345 Banana St',
           city: 'Fruitvale',
           state: 'CA',
-          zip_code: '09876'
+          zipCode: '09876'
         };
 
         view = this.renderTemplate('<navbar/>', this.$scope);
@@ -80,7 +80,7 @@ describe('the navbar', function() {
         this.$state.go('financials', {rentalId: 1});
         view = this.renderTemplate('<navbar/>', this.$scope);
 
-        expect(view.find('a:contains(Financials)').attr('ui-sref')).toEqual('financials({rentalId: rental_property.id})');
+        expect(view.find('a:contains(Financials)').attr('ui-sref')).toEqual('financials({rentalId: rentalProperty.id})');
       })
     });
   });
@@ -107,7 +107,7 @@ describe('the navbar', function() {
         this.$state.go('financials', {rentalId: 1});
         view = this.renderTemplate('<navbar/>', this.$scope);
 
-        expect(view.find('a:contains(Questionnaire)').attr('ui-sref')).toEqual('questionnaire({rentalId: rental_property.id})');
+        expect(view.find('a:contains(Questionnaire)').attr('ui-sref')).toEqual('questionnaire({rentalId: rentalProperty.id})');
       })
     });
 
@@ -123,7 +123,7 @@ describe('the navbar', function() {
         this.$state.go('questionnaire', {rentalId: 1});
         view = this.renderTemplate('<navbar/>', this.$scope);
 
-        expect(view.find('a:contains(Questionnaire)').attr('ui-sref')).toEqual('questionnaire({rentalId: rental_property.id})');
+        expect(view.find('a:contains(Questionnaire)').attr('ui-sref')).toEqual('questionnaire({rentalId: rentalProperty.id})');
       })
     });
   });

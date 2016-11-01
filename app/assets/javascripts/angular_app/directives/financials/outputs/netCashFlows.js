@@ -3,15 +3,15 @@ angular.module('rentals').directive('netCashFlows', function(propertyService, ca
     templateUrl: 'investment_properties_pages/financials/outputs/netCashFlows.html',
     restrict: 'E',
     link: function($scope) {
-      $scope.$watch('rental_property', function() {
-        if (!$scope.rental_property) {
+      $scope.$watch('rentalProperty', function() {
+        if (!$scope.rentalProperty) {
           return;
         }
 
-        $scope.monthlyCashFlow = -1 * propertyService.getDownPayment($scope.rental_property);
-        $scope.oneYearExitNet = cashFlowService.getOneYearExitNet($scope.rental_property);
-        $scope.threeYearExitNets = threeYearExitNets($scope.rental_property);
-        $scope.fiveYearExitNets = fiveYearExitNets($scope.rental_property);
+        $scope.monthlyCashFlow = -1 * propertyService.getDownPayment($scope.rentalProperty);
+        $scope.oneYearExitNet = cashFlowService.getOneYearExitNet($scope.rentalProperty);
+        $scope.threeYearExitNets = threeYearExitNets($scope.rentalProperty);
+        $scope.fiveYearExitNets = fiveYearExitNets($scope.rentalProperty);
       }, true);
 
       /* --- Private --- */

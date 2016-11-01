@@ -7,10 +7,10 @@ angular.module('rentals').service('propertyRepository', function($http) {
       return $http.get('/api/rental_properties/' + property_id);
     },
     create: function(property) {
-      return $http.post('/api/rental_properties', property)
+      return $http.post('/api/rental_properties', {rentalProperty: property})
     },
     update: function(property_id, property) {
-      return $http.put('/api/rental_properties/' + property_id, {rental_property: property});
+      return $http.put('/api/rental_properties/' + property_id, {rentalProperty: property});
     },
     remove: function(property_id) {
       return $http.delete('/api/rental_properties/' + property_id);

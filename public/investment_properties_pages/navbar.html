@@ -4,10 +4,10 @@
   </li>
   <li class="property-address" ng-if="address">{{address}}</li>
   <li class="questionnaire-link" ng-if="show_property_buttons()">
-    <a ui-sref="questionnaire({rentalId: rental_property.id})">Questionnaire</a>
+    <a ui-sref="questionnaire({rentalId: rentalProperty.id})">Questionnaire</a>
   </li>
   <li class="financials-link" ng-if="show_property_buttons()">
-    <a ui-sref="financials({rentalId: rental_property.id})">Financials</a>
+    <a ui-sref="financials({rentalId: rentalProperty.id})">Financials</a>
   </li>
   <li class="float-right">
     <span class="logged-in-user">{{logged_in_user}}</span>

@@ -3,24 +3,24 @@ angular.module('rentals').directive('exitScenarios', function(propertyService, k
     templateUrl: 'investment_properties_pages/financials/outputs/exitScenarios.html',
     restrict: 'E',
     link: function($scope) {
-      $scope.$watch('rental_property', function() {
-        if (!$scope.rental_property) {
+      $scope.$watch('rentalProperty', function() {
+        if (!$scope.rentalProperty) {
           return;
         }
 
-        $scope.firstYearExitPrice = exitScenariosService.firstYearExitPrice($scope.rental_property);
-        $scope.thirdYearExitPrice = exitScenariosService.thirdYearExitPrice($scope.rental_property);
-        $scope.fifthYearExitPrice = exitScenariosService.fifthYearExitPrice($scope.rental_property);
+        $scope.firstYearExitPrice = exitScenariosService.firstYearExitPrice($scope.rentalProperty);
+        $scope.thirdYearExitPrice = exitScenariosService.thirdYearExitPrice($scope.rentalProperty);
+        $scope.fifthYearExitPrice = exitScenariosService.fifthYearExitPrice($scope.rentalProperty);
 
-        $scope.firstYearGainOnSale = exitScenariosService.firstYearGainOnSale($scope.rental_property);
-        $scope.thirdYearGainOnSale = exitScenariosService.thirdYearGainOnSale($scope.rental_property);
-        $scope.fifthYearGainOnSale = exitScenariosService.fifthYearGainOnSale($scope.rental_property);
+        $scope.firstYearGainOnSale = exitScenariosService.firstYearGainOnSale($scope.rentalProperty);
+        $scope.thirdYearGainOnSale = exitScenariosService.thirdYearGainOnSale($scope.rentalProperty);
+        $scope.fifthYearGainOnSale = exitScenariosService.fifthYearGainOnSale($scope.rentalProperty);
 
-        $scope.capRate = keyRentRatiosService.getCapitalizationRate($scope.rental_property);
+        $scope.capRate = keyRentRatiosService.getCapitalizationRate($scope.rentalProperty);
 
-        $scope.oneYearIrr = calculateOneYearInternalRateOfReturn($scope.rental_property);
-        $scope.threeYearIrr = calculateThreeYearInternalRateOfReturn($scope.rental_property);
-        $scope.fiveYearIrr = calculateFiveYearInternalRateOfReturn($scope.rental_property);
+        $scope.oneYearIrr = calculateOneYearInternalRateOfReturn($scope.rentalProperty);
+        $scope.threeYearIrr = calculateThreeYearInternalRateOfReturn($scope.rentalProperty);
+        $scope.fiveYearIrr = calculateFiveYearInternalRateOfReturn($scope.rentalProperty);
 
       }, true);
 

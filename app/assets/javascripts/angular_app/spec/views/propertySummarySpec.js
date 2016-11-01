@@ -3,15 +3,7 @@ describe('a property summary', function() {
 
   beforeEach(function() {
     this.injectDependencies('$scope', 'renderTemplate', 'keyRentRatiosService', 'propertyService', 'roiService');
-    this.$scope.summary = {
-      street: '123 Sesame Street',
-      city: 'Bunville',
-      state: 'TN',
-      zip_code: '12345',
-      financing_and_income_assumption: {
-        number_of_units: 55
-      }
-    };
+    this.$scope.summary = fixtures.rentalProperties().rentalProperties[0];
     spyOn(this.propertyService, 'getTotalCost').and.returnValue('1000');
   });
 
@@ -26,14 +18,14 @@ describe('a property summary', function() {
     });
 
     it('shows the address in the first 4 slots', function () {
-      expect(summary_row.find('div:nth(0)').text().trim()).toEqual('123 Sesame Street');
-      expect(summary_row.find('div:nth(1)').text().trim()).toEqual('Bunville');
-      expect(summary_row.find('div:nth(2)').text().trim()).toEqual('TN');
+      expect(summary_row.find('div:nth(0)').text().trim()).toEqual('421 Moroni Blvd');
+      expect(summary_row.find('div:nth(1)').text().trim()).toEqual('Salt Lake City');
+      expect(summary_row.find('div:nth(2)').text().trim()).toEqual('UT');
       expect(summary_row.find('div:nth(3)').text().trim()).toEqual('12345');
     });
 
     it('shows the number of units in the 5th slot', function () {
-      expect(summary_row.find('div:nth(4)').text().trim()).toEqual('55');
+      expect(summary_row.find('div:nth(4)').text().trim()).toEqual('60');
     });
 
     it('shows the cap rate in the 6th slot', function () {

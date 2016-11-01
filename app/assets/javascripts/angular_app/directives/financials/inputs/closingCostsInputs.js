@@ -3,13 +3,13 @@ angular.module('rentals').directive('closingCostsInputs', function(propertyServi
     templateUrl: 'investment_properties_pages/financials/inputs/closingCosts.html',
     restrict: 'E',
     link: function($scope) {
-      $scope.$watch('rental_property', function() {
-        if (!$scope.rental_property) {
+      $scope.$watch('rentalProperty', function() {
+        if (!$scope.rentalProperty) {
           return;
         }
 
-        $scope.rental_property.closing_cost.origination_fee = propertyService.getLoanOriginationFee($scope.rental_property);
-        $scope.total = propertyService.getClosingCosts($scope.rental_property);
+        $scope.rentalProperty.closingCost.originationFee = propertyService.getLoanOriginationFee($scope.rentalProperty);
+        $scope.total = propertyService.getClosingCosts($scope.rentalProperty);
       }, true);
     }
   }

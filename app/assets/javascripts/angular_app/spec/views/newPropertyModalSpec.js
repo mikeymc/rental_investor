@@ -32,21 +32,21 @@ describe('the new property dialog', function () {
 
   describe('entering an address and hitting Create', function () {
     it('calls the callback that was passed in with the right input values', function () {
-      this.$scope.save_new_property = function () {};
-      spyOn(this.$scope, 'save_new_property');
+      this.$scope.saveNewProperty = function () {};
+      spyOn(this.$scope, 'saveNewProperty');
 
-      view = this.renderTemplate('<new-property-modal create-property="save_new_property"/>', this.$scope);
+      view = this.renderTemplate('<new-property-modal create-property="saveNewProperty"/>', this.$scope);
       view.find('input[name=new_property_street]').val('123 Banana Street').trigger('input');
       view.find('input[name=new_property_city]').val('Fruitvale').trigger('input');
       view.find('input[name=new_property_state]').val('CA').trigger('input');
       view.find('input[name=new_property_zip]').val('12345').trigger('input');
       view.find('button:contains(Create)').click();
 
-      expect(this.$scope.save_new_property).toHaveBeenCalledWith({
+      expect(this.$scope.saveNewProperty).toHaveBeenCalledWith({
         street: '123 Banana Street',
         city: 'Fruitvale',
         state: 'CA',
-        zip_code: '12345'
+        zipCode: '12345'
       });
     });
   });

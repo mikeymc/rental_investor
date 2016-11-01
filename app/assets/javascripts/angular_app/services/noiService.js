@@ -53,7 +53,7 @@ angular.module('rentals').service('noiService', function(propertyService, cashFl
   }
 
   function getMonthlyBuildingDepreciation(property) {
-    return property.financing_and_income_assumption.building_cost / 27.5 / 12;
+    return property.financingAndIncomeAssumption.buildingCost / 27.5 / 12;
   }
 
   function getAnnualInterestOnLoan(property) {
@@ -75,26 +75,26 @@ angular.module('rentals').service('noiService', function(propertyService, cashFl
 
   function getNetMonthlyIncome(property, expenses) {
     var grossOperatingIncome = propertyService.getGrossOperatingIncome(property);
-    var totalMonthlyExpenses = expenses.total.monthly_cost;
+    var totalMonthlyExpenses = expenses.total.monthlyCost;
     return grossOperatingIncome - totalMonthlyExpenses;
   }
 
   function getNetAnnualIncomes(property, expenses) {
     var incomes = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
     return _.map(incomes, function(income, index) {
-      return income - expenses.total.yearly_costs[index];
+      return income - expenses.total.yearlyCosts[index];
     });
   }
 
   function getMonthlyTaxes(property, expenses) {
-    var taxRate = property.operating_expenses_assumption.income_tax_rate / 100;
+    var taxRate = property.operatingExpensesAssumption.incomeTaxRate / 100;
     var netMonthlyIncomeBeforeTaxes = getMonthlyNetIncomeBeforeTaxes(property, expenses);
 
     return taxRate * netMonthlyIncomeBeforeTaxes;
   }
 
   function getAnnualTaxes(property, expenses) {
-    var taxRate = property.operating_expenses_assumption.income_tax_rate / 100;
+    var taxRate = property.operatingExpensesAssumption.incomeTaxRate / 100;
     var annualNetIncomeBeforeTaxes = getAnnualNetIncomeBeforeTaxes(property, expenses);
 
     return _.map(annualNetIncomeBeforeTaxes, function(netIncomeBeforeTaxesThisYear) {

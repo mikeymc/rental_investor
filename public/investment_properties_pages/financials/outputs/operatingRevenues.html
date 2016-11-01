@@ -11,7 +11,7 @@
     </div>
     <div class="row">
       <div class="col-sm-5">Vacancy Rate</div>
-      <div class="col-sm-2 align-right">{{rental_property.operating_expenses_assumption.vacancy_rate | percentage:1}}</div>
+      <div class="col-sm-2 align-right">{{rentalProperty.operatingExpensesAssumption.vacancyRate | percentage:1}}</div>
       <div class="col-sm-2 align-right add-border-bottom">{{vacancy | currency:"$":0}}</div>
       <div class="col-sm-3 align-right add-border-bottom" ng-repeat="cost in projectedAnnualVacancyCosts track by $index">{{cost | currency:"$":0}}</div>
     </div>

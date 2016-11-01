@@ -6,26 +6,7 @@ describe('the properties list view', function () {
     spyOn(this.keyRentRatiosService, 'getCapitalizationRate').and.returnValue('1.23');
     spyOn(this.roiService, 'getCashOnCashReturn').and.returnValue('1.23');
     spyOn(this.propertyService, 'getTotalCost').and.returnValue('1000');
-    this.$httpBackend.expectGET('/api/rental_properties').respond(200, [
-      {
-        street: '123 Sesame Street',
-        city: 'Bunville',
-        state: 'TN',
-        zip_code: '12345',
-        financing_and_income_assumption: {
-          number_of_units: 55
-        }
-      },
-      {
-        street: '666 Demon Road',
-        city: 'Hell',
-        state: 'ME',
-        zip_code: '99999',
-        financing_and_income_assumption: {
-          number_of_units: 543
-        }
-      }
-    ]);
+    this.$httpBackend.expectGET('/api/rental_properties').respond(200, fixtures.rentalProperties());
 
     view = this.renderTemplate('investment_properties_pages/properties_list/rentalPropertiesList.html', this.$scope);
     this.$httpBackend.flush();
@@ -38,8 +19,8 @@ describe('the properties list view', function () {
 
   it('shows a list of properties', function () {
     expect(view.find('.rental-property-summary').length).toEqual(2);
-    expect(view.find('.rental-property-summary:nth(0)').text()).toContain('123 Sesame Street');
-    expect(view.find('.rental-property-summary:nth(1)').text()).toContain('666 Demon Road');
+    expect(view.find('.rental-property-summary:nth(0)').text()).toContain('421 Moroni Blvd');
+    expect(view.find('.rental-property-summary:nth(1)').text()).toContain('123 Sesame St');
   });
 
   describe('the header for the summary list', function () {

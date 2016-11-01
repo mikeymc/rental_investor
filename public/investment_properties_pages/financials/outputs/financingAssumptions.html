@@ -19,7 +19,7 @@
   </div>
   <div class="row" id="interest-rate">
     <span class="col-sm-12">Interest Rate</span>
-    <span class="col-sm-6 align-right">{{rental_property.financing_and_income_assumption.loan_interest_rate | percentage:3}}</span>
+    <span class="col-sm-6 align-right">{{rentalProperty.financingAndIncomeAssumption.loanInterestRate | percentage:3}}</span>
     <span class="col-sm-6 align-right">{{monthlyInterestRate | percentage:3}}</span>
   </div>
   <br/>
@@ -30,7 +30,7 @@
   </div>
   <div class="row" id="amortization-period">
     <span class="col-sm-12">Amortization Period</span>
-    <span class="col-sm-6 align-right">{{rental_property.financing_and_income_assumption.amortization_period_in_years | number:0}}</span>
+    <span class="col-sm-6 align-right">{{rentalProperty.financingAndIncomeAssumption.amortizationPeriodInYears | number:0}}</span>
     <span class="col-sm-6 align-right">{{amortizationPeriodInMonths}}</span>
   </div>
   <div class="row" id="loan-payment">

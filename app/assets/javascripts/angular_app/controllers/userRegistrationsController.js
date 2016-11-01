@@ -28,7 +28,7 @@ angular.module('rentals').controller('UserRegistrationsController', function($au
       street: '123 Sample St',
       city: 'Atlanta',
       state: 'GA',
-      zip_code: '12345'
+      zipCode: '12345'
     };
 
     return propertyRepository.create(sampleProperty);

@@ -9,7 +9,7 @@ angular.module('rentals').service('roiService', function(propertyService, operat
 
   function getAnnualNetOperatingIncome(property) {
     var downPaymentOnProperty = propertyService.getDownPayment(property);
-    var operatingExpensesEachYear = operatingExpensesService.getAllOperatingExpenses(property).total.yearly_costs;
+    var operatingExpensesEachYear = operatingExpensesService.getAllOperatingExpenses(property).total.yearlyCosts;
     var grossIncomeEachYear = propertyService.getProjectedAnnualGrossOperatingIncomes(property);
     var interestOnTheLoanEachYear = noiService.getAnnualInterestOnLoan(property);
     var depreciationAmountEachYear = noiService.getAnnualBuildingDepreciation(property);

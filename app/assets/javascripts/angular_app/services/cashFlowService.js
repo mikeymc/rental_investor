@@ -91,7 +91,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
 
   function getMonthlyCumPrinc(property) {
     var rate = propertyService.getMonthlyInterestRate(property);
-    var numberOfPayments = property.financing_and_income_assumption.amortization_period_in_years * 12;
+    var numberOfPayments = property.financingAndIncomeAssumption.amortizationPeriodInYears * 12;
     var balance = propertyService.getBalanceToFinance(property);
 
     return cumPrinc(rate, numberOfPayments, balance, 1, 1, 0);
@@ -99,7 +99,7 @@ angular.module('rentals').service('cashFlowService', function(propertyService, o
 
   function getAnnualCumPrincs(property) {
     var rate = propertyService.getMonthlyInterestRate(property);
-    var numberOfPayments = property.financing_and_income_assumption.amortization_period_in_years * 12;
+    var numberOfPayments = property.financingAndIncomeAssumption.amortizationPeriodInYears * 12;
     var balance = propertyService.getBalanceToFinance(property);
 
     var start = 1;
