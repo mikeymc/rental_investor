@@ -35,7 +35,7 @@ RSpec.describe 'the rental investment tool' do
     then_expect.to_see_choice_to_login_or_register
     now.register
     then_expect.to_be_on_the_registration_page
-    then_expect.to_see('Email already in use')
+    then_expect.to_see('Email has already been taken')
   end
 
   it 'shows a user only his properties' do

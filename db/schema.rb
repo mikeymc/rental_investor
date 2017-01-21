@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
- ActiveRecord::Schema.define(version: 20161030184257) do
+ActiveRecord::Schema.define(version: 20161030184257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,8 +55,8 @@
   add_index "financing_and_income_assumptions", ["rental_property_id"], name: "index_financing_and_income_assumptions_on_rental_property_id", using: :btree
 
   create_table "income_and_cost_projections", force: :cascade do |t|
-    t.decimal "rent_increases",              default: [#<BigDecimal:7ffb381da638,'0.0',9(18)>, #<BigDecimal:7ffb381da5c0,'0.0',9(18)>, #<BigDecimal:7ffb381da548,'0.0',9(18)>, #<BigDecimal:7ffb381da4d0,'0.0',9(18)>, #<BigDecimal:7ffb381da458,'0.0',9(18)>], array: true
-    t.decimal "operating_expense_increases", default: [#<BigDecimal:7ffb381d9ad0,'0.0',9(18)>, #<BigDecimal:7ffb381d9a58,'0.0',9(18)>, #<BigDecimal:7ffb381d99e0,'0.0',9(18)>, #<BigDecimal:7ffb381d9968,'0.0',9(18)>, #<BigDecimal:7ffb381d98f0,'0.0',9(18)>], array: true
+    t.decimal "rent_increases",              default: [#<BigDecimal:7fa53fcbe350,'0.0',9(18)>, #<BigDecimal:7fa53fcbe2d8,'0.0',9(18)>, #<BigDecimal:7fa53fcbe238,'0.0',9(18)>, #<BigDecimal:7fa53fcbe1c0,'0.0',9(18)>, #<BigDecimal:7fa53fcbe148,'0.0',9(18)>], array: true
+    t.decimal "operating_expense_increases", default: [#<BigDecimal:7fa53fcbd748,'0.0',9(18)>, #<BigDecimal:7fa53fcbd6a8,'0.0',9(18)>, #<BigDecimal:7fa53fcbd630,'0.0',9(18)>, #<BigDecimal:7fa53fcbd5b8,'0.0',9(18)>, #<BigDecimal:7fa53fcbd540,'0.0',9(18)>], array: true
     t.integer "rental_property_id"
   end
 
